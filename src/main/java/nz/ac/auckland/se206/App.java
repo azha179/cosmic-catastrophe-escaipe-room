@@ -24,6 +24,10 @@ public class App extends Application {
     scene.setRoot(loadFxml(fxml));
   }
 
+  public static void setUi(AppUi newUi) {
+    scene.setRoot(SceneManager.getAppUi(newUi));
+  }
+
   /**
    * Returns the node associated to the input file. The method expects that the file is located in
    * "src/main/resources/fxml".

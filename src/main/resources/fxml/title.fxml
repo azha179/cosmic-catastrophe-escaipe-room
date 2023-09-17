@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPress" onMouseClicked="#onMouseClick" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
    <children>
       <Text layoutX="55.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="smth here anywhere maybe game title or anything :D" wrappingWidth="354.21630859375">
          <font>
