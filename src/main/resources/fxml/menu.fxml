@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
    <children>
@@ -61,5 +61,15 @@
       <Rectangle fx:id="two" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="72.0" layoutY="246.0" onMouseClicked="#onClickTwo" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
       <Rectangle fx:id="four" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="202.0" layoutY="246.0" onMouseClicked="#onClickFour" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
       <Rectangle fx:id="six" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="332.0" layoutY="246.0" onMouseClicked="#onClickSix" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Label fx:id="difficulty" layoutX="285.0" layoutY="34.0" prefHeight="22.0" prefWidth="85.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="timeLimit" layoutX="446.0" layoutY="34.0" prefHeight="22.0" prefWidth="85.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
