@@ -23,12 +23,6 @@
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="easy" layoutX="54.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#onClickEasy" text="EASY" />
-      <Button fx:id="medium" layoutX="244.0" layoutY="151.0" mnemonicParsing="false" onMouseClicked="#onClickMedium" text="MEDIUM" />
-      <Button fx:id="hard" layoutX="419.0" layoutY="151.0" mnemonicParsing="false" onMouseClicked="#onClickHard" text="HARD" />
-      <Button fx:id="two" layoutX="54.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#onClickTwoMinutes" text="2 MIN" />
-      <Button fx:id="four" layoutX="244.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#onClickFourMinutes" text="4 MIN" />
-      <Button fx:id="six" layoutX="419.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#onClickSixMinutes" text="6 MIN" />
       <Button fx:id="play" layoutX="253.0" layoutY="349.0" mnemonicParsing="false" onMouseClicked="#onClickPlay" text="PLAY" />
    </children>
 </Pane>
