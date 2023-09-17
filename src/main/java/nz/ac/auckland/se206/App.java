@@ -49,6 +49,7 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     SceneManager.addAppUi(AppUi.TITLE, loadFxml("title"));
+    SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.ROOM, loadFxml("room"));
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 600, 400);
 

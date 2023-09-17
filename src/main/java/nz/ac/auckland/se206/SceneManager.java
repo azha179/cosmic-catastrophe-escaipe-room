@@ -8,6 +8,7 @@ public class SceneManager {
 
   public enum AppUi {
     TITLE,
+    MENU,
     ROOM
   }
 
