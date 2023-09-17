@@ -2,18 +2,19 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
    <children>
-      <Text layoutX="54.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Settings :]" wrappingWidth="244.21630859375">
+      <Text layoutX="54.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Settings :]" wrappingWidth="244.21630859375">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text layoutX="54.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a difficulty!" wrappingWidth="244.21630859375">
+      <Text layoutX="54.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a difficulty!" wrappingWidth="244.21630859375">
          <font>
             <Font size="25.0" />
          </font>
@@ -23,6 +24,42 @@
             <Font size="25.0" />
          </font>
       </Text>
-      <Button fx:id="play" layoutX="253.0" layoutY="349.0" mnemonicParsing="false" onMouseClicked="#onClickPlay" text="PLAY" />
+      <Button fx:id="play" layoutX="276.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#onClickPlay" text="PLAY" />
+      <Text layoutX="94.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="easy" wrappingWidth="85.21630859375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="224.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="medium" wrappingWidth="85.21630859375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="348.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hard" wrappingWidth="85.21630859375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="94.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2 min" wrappingWidth="85.21630859375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="224.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4 min" wrappingWidth="85.21630859375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="354.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6 min" wrappingWidth="85.21630859375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="easy" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="72.0" layoutY="120.0" onMouseClicked="#onClickEasy" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle fx:id="medium" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="202.0" layoutY="120.0" onMouseClicked="#onClickMedium" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle fx:id="hard" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="332.0" layoutY="120.0" onMouseClicked="#onClickHard" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle fx:id="two" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="72.0" layoutY="246.0" onMouseClicked="#onClickTwo" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle fx:id="four" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="202.0" layoutY="246.0" onMouseClicked="#onClickFour" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle fx:id="six" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="332.0" layoutY="246.0" onMouseClicked="#onClickSix" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="130.0" />
    </children>
 </Pane>
