@@ -94,12 +94,8 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
-    // wait .3 seconds
-    try {
-      Thread.sleep(300);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    // hide catInitial
+    catInitial.setVisible(false);
     // change image
     Image image = new Image("/images/catSleep2.png");
     catImage.setImage(image);
