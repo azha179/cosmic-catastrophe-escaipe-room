@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
@@ -16,7 +17,9 @@ public class MainRoomController {
 
   @FXML private Pane room;
   @FXML private ImageView roomImage;
+  @FXML private ImageView catImage;
   @FXML private Circle catInitial;
+  @FXML private Rectangle rocket;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -90,5 +93,15 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
+  }
+
+  /**
+   * Handles the click event on the rocket.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickRocket(MouseEvent event) {
+    System.out.println("rocket clicked");
   }
 }
