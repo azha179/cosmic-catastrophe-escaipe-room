@@ -28,6 +28,10 @@ public class App extends Application {
     scene.setRoot(SceneManager.getAppUi(newUi));
   }
 
+  public static Scene getScene() {
+    return scene;
+  }
+
   /**
    * Returns the node associated to the input file. The method expects that the file is located in
    * "src/main/resources/fxml".
@@ -50,9 +54,10 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     SceneManager.addAppUi(AppUi.TITLE, loadFxml("title"));
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
-    SceneManager.addAppUi(AppUi.ROOM, loadFxml("room"));
-    scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 600, 400);
+    SceneManager.addAppUi(AppUi.MAIN_ROOM, loadFxml("mainroom"));
+    scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 960, 540);
 
+    stage.setTitle("Game");
     stage.setScene(scene);
     stage.setResizable(false);
     stage.show();

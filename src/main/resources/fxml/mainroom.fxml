@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
+   <children>
+      <ImageView fx:id="roomImage" fitHeight="707.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/mainroom.png" />
+         </image>
+      </ImageView>
+      <Circle fx:id="catInitial" fill="#1f93ff00" layoutX="749.0" layoutY="435.0" onMouseClicked="#catInitialise" radius="91.0" stroke="#ffd43d" strokeType="INSIDE" strokeWidth="3.0" />
+   </children>
+</Pane>
