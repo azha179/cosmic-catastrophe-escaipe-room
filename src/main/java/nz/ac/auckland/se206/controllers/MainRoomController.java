@@ -3,18 +3,24 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
 /** Controller class for the room view. */
-public class RoomController {
+public class MainRoomController {
 
-  @FXML private Rectangle door;
-  @FXML private Rectangle window;
-  @FXML private Rectangle vase;
+  @FXML private Pane room;
+  @FXML private ImageView roomImage;
+  @FXML private ImageView catImage;
+  @FXML private Circle catInitial;
+  @FXML private Rectangle rocket;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -81,26 +87,27 @@ public class RoomController {
   }
 
   /**
-   * Handles the click event on the vase.
+   * Handles the click event on cat initialise click at the start of the game.
    *
    * @param event the mouse event
    */
   @FXML
-  public void clickVase(MouseEvent event) {
-    System.out.println("vase clicked");
-    if (GameState.isRiddleResolved && !GameState.isKeyFound) {
-      showDialog("Info", "Key Found", "You found a key under the vase!");
-      GameState.isKeyFound = true;
-    }
+  public void catInitialise(MouseEvent catInitialise) {
+    System.out.println("cat first clicked");
+    // hide catInitial
+    catInitial.setVisible(false);
+    // change image
+    Image image = new Image("/images/catSleep2.png");
+    catImage.setImage(image);
   }
 
   /**
-   * Handles the click event on the window.
+   * Handles the click event on the rocket.
    *
    * @param event the mouse event
    */
   @FXML
-  public void clickWindow(MouseEvent event) {
-    System.out.println("window clicked");
+  public void clickRocket(MouseEvent event) {
+    System.out.println("rocket clicked");
   }
 }

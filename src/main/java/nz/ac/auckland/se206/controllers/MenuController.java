@@ -71,6 +71,6 @@ public class MenuController {
   }
 
   private void switchToRoom() {
-    App.setUi(AppUi.ROOM);
+    App.setUi(AppUi.MAIN_ROOM);
   }
 }
