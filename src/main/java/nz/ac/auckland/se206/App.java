@@ -55,6 +55,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.TITLE, loadFxml("title"));
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.MAIN_ROOM, loadFxml("mainroom"));
+    SceneManager.addAppUi(AppUi.ROCKET_INTERIOR, loadFxml("rocket"));
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 960, 540);
 
     stage.setTitle("Game");
