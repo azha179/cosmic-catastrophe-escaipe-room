@@ -4,7 +4,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="543.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
    <children>
@@ -18,18 +17,16 @@
             <Image url="@../images/SleepingCat.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="rocketImage" fitHeight="363.0" fitWidth="376.0" layoutX="29.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rocketImage" fitHeight="363.0" fitWidth="376.0" layoutX="53.0" layoutY="125.0" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/RocketShip.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="pantryImage" fitHeight="261.0" fitWidth="264.0" layoutX="232.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pantryImage" fitHeight="147.0" fitWidth="175.0" layoutX="302.0" layoutY="268.0" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/PantryBuilding.PNG" />
          </image>
       </ImageView>
-      <Rectangle fx:id="pantryOut" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" layoutX="338.0" layoutY="298.0" onMouseClicked="#clickPantry" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
-      <Rectangle fx:id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="272.0" layoutX="122.0" layoutY="174.0" onMouseClicked="#clickRocket" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="122.0" />
       <Circle fx:id="catInitial" fill="#1f93ff00" layoutX="535.0" layoutY="425.0" onMouseClicked="#catInitialise" radius="78.0" stroke="#ffd43d" strokeType="INSIDE" strokeWidth="3.0" />
    </children>
 </Pane>

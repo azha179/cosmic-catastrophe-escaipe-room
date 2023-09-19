@@ -10,7 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -24,11 +23,11 @@ public class MainRoomController {
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
   @FXML private Circle catInitial;
-  @FXML private Rectangle rocket;
-  @FXML private Rectangle pantryOut;
 
   private double originalWidth;
   private double originalHeight;
+  private double originalX;
+  private double originalY;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -142,35 +141,38 @@ public class MainRoomController {
   @FXML
   public void onHoverInteractable(MouseEvent event) {
 
-    Node node = (Node) event.getTarget();
-
-    ImageView image = null;
-    if (node.equals(rocket)) {
-      image = rocketImage;
-    } else if (node.equals(pantryOut)) {
-      image = (ImageView) pantryImage;
-    }
+    ImageView image = (ImageView) (Node) event.getTarget();
 
     originalWidth = image.getFitWidth();
     originalHeight = image.getFitHeight();
+    originalX = image.getLayoutX();
+    originalY = image.getLayoutY();
     double aspectRatio = originalWidth / originalHeight;
-    double newWidth = originalWidth + 100;
+    double newWidth = originalWidth + 6;
     double newHeight = newWidth / aspectRatio;
+
+    // Calculate the difference in width and height
+    double widthDiff = newWidth - originalWidth;
+    double heightDiff = newHeight - originalHeight;
+
+    // Adjust the layout position to maintain the same center point
+    image.setLayoutX(image.getLayoutX() - widthDiff / 2);
+    image.setLayoutY(image.getLayoutY() - heightDiff / 2);
+
     image.setFitWidth(newWidth);
     image.setFitHeight(newHeight);
   }
 
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
+    ImageView image = (ImageView) (Node) event.getTarget();
 
-    Node node = (Node) event.getTarget();
-    ImageView image = null;
-    if (node.equals(rocket)) {
-      image = rocketImage;
-    } else if (node.equals(pantryOut)) {
-      image = pantryImage;
-    }
+    // Revert to the original width and height
     image.setFitWidth(originalWidth);
     image.setFitHeight(originalHeight);
+
+    // Reset the layout position to its original value
+    image.setLayoutX(originalX);
+    image.setLayoutY(originalY);
   }
 }
