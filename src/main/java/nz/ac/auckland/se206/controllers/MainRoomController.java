@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** Controller class for the room view. */
@@ -23,12 +24,6 @@ public class MainRoomController {
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
   @FXML private Circle catInitial;
-
-  // used for hovering over objects
-  private double originalWidth;
-  private double originalHeight;
-  private double originalX;
-  private double originalY;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -143,40 +138,12 @@ public class MainRoomController {
   public void onHoverInteractable(MouseEvent event) {
 
     ImageView image = (ImageView) (Node) event.getTarget();
-
-    // storing original image parameters
-    originalWidth = image.getFitWidth();
-    originalHeight = image.getFitHeight();
-    originalX = image.getLayoutX();
-    originalY = image.getLayoutY();
-
-    // calculating scaled image sizes
-    double aspectRatio = originalWidth / originalHeight;
-    double newWidth = originalWidth + 6;
-    double newHeight = newWidth / aspectRatio;
-
-    // calculating the difference in width and height
-    double widthDiff = newWidth - originalWidth;
-    double heightDiff = newHeight - originalHeight;
-
-    // adjusting the layout position to maintain the same center point
-    image.setLayoutX(image.getLayoutX() - widthDiff / 2);
-    image.setLayoutY(image.getLayoutY() - heightDiff / 2);
-
-    image.setFitWidth(newWidth);
-    image.setFitHeight(newHeight);
+    Hover.scaleUp(image);
   }
 
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-
-    // reverts to the original width and height
-    image.setFitWidth(originalWidth);
-    image.setFitHeight(originalHeight);
-
-    // reverts to the original position
-    image.setLayoutX(originalX);
-    image.setLayoutY(originalY);
+    Hover.scaleDown(image);
   }
 }
