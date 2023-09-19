@@ -18,12 +18,12 @@
             <Image url="@../images/SleepingCat.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="363.0" fitWidth="376.0" layoutX="29.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rocketImage" fitHeight="363.0" fitWidth="376.0" layoutX="29.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/RocketShip.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="261.0" fitWidth="264.0" layoutX="232.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pantryImage" fitHeight="261.0" fitWidth="264.0" layoutX="232.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/PantryBuilding.PNG" />
          </image>

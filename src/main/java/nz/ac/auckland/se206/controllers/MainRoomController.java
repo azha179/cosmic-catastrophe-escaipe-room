@@ -27,6 +27,9 @@ public class MainRoomController {
   @FXML private Rectangle rocket;
   @FXML private Rectangle pantryOut;
 
+  private double originalWidth;
+  private double originalHeight;
+
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Initialization code goes here
@@ -139,22 +142,35 @@ public class MainRoomController {
   @FXML
   public void onHoverInteractable(MouseEvent event) {
 
-    Node targetNode = (Node) event.getTarget();
+    Node node = (Node) event.getTarget();
 
-    if (targetNode instanceof ImageView) {
-      ImageView image = (ImageView) targetNode;
-      double currentWidth = image.getFitWidth();
-      double currentHeight = image.getFitHeight();
-      double aspectRatio = currentWidth / currentHeight;
-      double newWidth = currentWidth + 100;
-      double newHeight = newWidth / aspectRatio;
-      image.setFitWidth(newWidth);
-      image.setFitHeight(newHeight);
+    ImageView image = null;
+    if (node.equals(rocket)) {
+      image = rocketImage;
+    } else if (node.equals(pantryOut)) {
+      image = (ImageView) pantryImage;
     }
+
+    originalWidth = image.getFitWidth();
+    originalHeight = image.getFitHeight();
+    double aspectRatio = originalWidth / originalHeight;
+    double newWidth = originalWidth + 100;
+    double newHeight = newWidth / aspectRatio;
+    image.setFitWidth(newWidth);
+    image.setFitHeight(newHeight);
   }
 
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
-    System.out.println("oi");
+
+    Node node = (Node) event.getTarget();
+    ImageView image = null;
+    if (node.equals(rocket)) {
+      image = rocketImage;
+    } else if (node.equals(pantryOut)) {
+      image = pantryImage;
+    }
+    image.setFitWidth(originalWidth);
+    image.setFitHeight(originalHeight);
   }
 }
