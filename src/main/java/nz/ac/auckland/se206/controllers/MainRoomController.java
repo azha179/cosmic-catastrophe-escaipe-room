@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,8 +21,11 @@ public class MainRoomController {
   @FXML private ImageView roomImage;
   @FXML private ImageView catImageSleep;
   @FXML private ImageView catImageAwoken;
+  @FXML private ImageView catImageActive;
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
+  @FXML private Pane chatPane;
+  @FXML private TextArea catTextArea;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
