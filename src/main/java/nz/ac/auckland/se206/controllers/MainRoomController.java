@@ -24,6 +24,7 @@ public class MainRoomController {
   @FXML private ImageView pantryImage;
   @FXML private Circle catInitial;
 
+  // used for hovering over objects
   private double originalWidth;
   private double originalHeight;
   private double originalX;
@@ -143,19 +144,22 @@ public class MainRoomController {
 
     ImageView image = (ImageView) (Node) event.getTarget();
 
+    // storing original image parameters
     originalWidth = image.getFitWidth();
     originalHeight = image.getFitHeight();
     originalX = image.getLayoutX();
     originalY = image.getLayoutY();
+
+    // calculating scaled image sizes
     double aspectRatio = originalWidth / originalHeight;
     double newWidth = originalWidth + 6;
     double newHeight = newWidth / aspectRatio;
 
-    // Calculate the difference in width and height
+    // calculating the difference in width and height
     double widthDiff = newWidth - originalWidth;
     double heightDiff = newHeight - originalHeight;
 
-    // Adjust the layout position to maintain the same center point
+    // adjusting the layout position to maintain the same center point
     image.setLayoutX(image.getLayoutX() - widthDiff / 2);
     image.setLayoutY(image.getLayoutY() - heightDiff / 2);
 
@@ -167,11 +171,11 @@ public class MainRoomController {
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
 
-    // Revert to the original width and height
+    // reverts to the original width and height
     image.setFitWidth(originalWidth);
     image.setFitHeight(originalHeight);
 
-    // Reset the layout position to its original value
+    // reverts to the original position
     image.setLayoutX(originalX);
     image.setLayoutY(originalY);
   }
