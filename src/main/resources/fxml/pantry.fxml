@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PantryController">
+   <children>
+      <ImageView fitHeight="576.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Pantry.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="280.0" fitWidth="272.0" layoutX="-65.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Back.PNG" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="backButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="97.0" layoutX="5.0" layoutY="21.0" onMouseClicked="#onClickBack" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
+   </children>
+</Pane>
