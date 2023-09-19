@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.HashSet;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,15 +21,18 @@ public class MainRoomController {
 
   @FXML private Pane room;
   @FXML private ImageView roomImage;
-
   @FXML private ImageView catImage;
   @FXML private Circle catInitial;
   @FXML private Rectangle rocket;
   @FXML private Rectangle pantryOut;
+  private HashSet<Node> hoverable;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Initialization code goes here
+    hoverable = new HashSet<Node>();
+    hoverable.add(rocket);
+    hoverable.add(pantryOut);
   }
 
   /**
@@ -132,5 +137,10 @@ public class MainRoomController {
 
   private void switchToPantry() {
     App.setUi(AppUi.PANTRY_INTERIOR);
+  }
+
+  @FXML
+  public void onHoverInteractable(MouseEvent event) {
+    Node node = (Node) event.getTarget();
   }
 }
