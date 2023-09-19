@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import java.util.HashSet;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -22,17 +21,15 @@ public class MainRoomController {
   @FXML private Pane room;
   @FXML private ImageView roomImage;
   @FXML private ImageView catImage;
+  @FXML private ImageView rocketImage;
+  @FXML private ImageView pantryImage;
   @FXML private Circle catInitial;
   @FXML private Rectangle rocket;
   @FXML private Rectangle pantryOut;
-  private HashSet<Node> hoverable;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Initialization code goes here
-    hoverable = new HashSet<Node>();
-    hoverable.add(rocket);
-    hoverable.add(pantryOut);
   }
 
   /**
@@ -141,6 +138,23 @@ public class MainRoomController {
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {
-    Node node = (Node) event.getTarget();
+
+    Node targetNode = (Node) event.getTarget();
+
+    if (targetNode instanceof ImageView) {
+      ImageView image = (ImageView) targetNode;
+      double currentWidth = image.getFitWidth();
+      double currentHeight = image.getFitHeight();
+      double aspectRatio = currentWidth / currentHeight;
+      double newWidth = currentWidth + 100;
+      double newHeight = newWidth / aspectRatio;
+      image.setFitWidth(newWidth);
+      image.setFitHeight(newHeight);
+    }
+  }
+
+  @FXML
+  public void onLeaveInteractable(MouseEvent event) {
+    System.out.println("oi");
   }
 }
