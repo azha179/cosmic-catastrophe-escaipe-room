@@ -6,19 +6,30 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
+<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="543.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
    <children>
-      <ImageView fx:id="roomImage" fitHeight="707.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomImage" fitHeight="554.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mainroom.png" />
+            <Image url="@../images/MainScreen.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="catImage" fitHeight="182.0" fitWidth="215.0" layoutX="658.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="catImage" fitHeight="393.0" fitWidth="414.0" layoutX="380.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/catSleep.png" />
+            <Image url="@../images/SleepingCat.PNG" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="339.0" layoutX="100.0" layoutY="70.0" onMouseClicked="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="307.0" />
-      <Circle fx:id="catInitial" fill="#1f93ff00" layoutX="749.0" layoutY="435.0" onMouseClicked="#catInitialise" radius="91.0" stroke="#ffd43d" strokeType="INSIDE" strokeWidth="3.0" />
+      <ImageView fitHeight="363.0" fitWidth="376.0" layoutX="29.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/RocketShip.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="261.0" fitWidth="264.0" layoutX="232.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/PantryBuilding.PNG" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="pantryOut" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" layoutX="338.0" layoutY="298.0" onMouseClicked="#clickPantry" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
+      <Rectangle fx:id="rocket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="272.0" layoutX="122.0" layoutY="174.0" onMouseClicked="#clickRocket" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="122.0" />
+      <Circle fx:id="catInitial" fill="#1f93ff00" layoutX="535.0" layoutY="425.0" onMouseClicked="#catInitialise" radius="78.0" stroke="#ffd43d" strokeType="INSIDE" strokeWidth="3.0" />
    </children>
 </Pane>

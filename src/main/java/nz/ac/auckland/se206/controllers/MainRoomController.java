@@ -19,9 +19,11 @@ public class MainRoomController {
 
   @FXML private Pane room;
   @FXML private ImageView roomImage;
+
   @FXML private ImageView catImage;
   @FXML private Circle catInitial;
   @FXML private Rectangle rocket;
+  @FXML private Rectangle pantryOut;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -98,7 +100,7 @@ public class MainRoomController {
     // hide catInitial
     catInitial.setVisible(false);
     // change image
-    Image image = new Image("/images/catSleep2.png");
+    Image image = new Image("/images/AwokenCat.png");
     catImage.setImage(image);
   }
 
@@ -115,5 +117,20 @@ public class MainRoomController {
 
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
+  }
+
+  /**
+   * Handles the click event on the rocket.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickPantry(MouseEvent event) {
+    switchToPantry();
+    System.out.println("pantry clicked");
+  }
+
+  private void switchToPantry() {
+    App.setUi(AppUi.PANTRY_INTERIOR);
   }
 }
