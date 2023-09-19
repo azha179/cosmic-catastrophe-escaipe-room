@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,9 +10,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** Controller class for the room view. */
@@ -19,11 +20,10 @@ public class MainRoomController {
 
   @FXML private Pane room;
   @FXML private ImageView roomImage;
-
   @FXML private ImageView catImage;
+  @FXML private ImageView rocketImage;
+  @FXML private ImageView pantryImage;
   @FXML private Circle catInitial;
-  @FXML private Rectangle rocket;
-  @FXML private Rectangle pantryOut;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -132,5 +132,18 @@ public class MainRoomController {
 
   private void switchToPantry() {
     App.setUi(AppUi.PANTRY_INTERIOR);
+  }
+
+  @FXML
+  public void onHoverInteractable(MouseEvent event) {
+
+    ImageView image = (ImageView) (Node) event.getTarget();
+    Hover.scaleUp(image);
+  }
+
+  @FXML
+  public void onLeaveInteractable(MouseEvent event) {
+    ImageView image = (ImageView) (Node) event.getTarget();
+    Hover.scaleDown(image);
   }
 }
