@@ -4,12 +4,10 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
@@ -20,10 +18,10 @@ public class MainRoomController {
 
   @FXML private Pane room;
   @FXML private ImageView roomImage;
-  @FXML private ImageView catImage;
+  @FXML private ImageView catImageSleep;
+  @FXML private ImageView catImageAwoken;
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
-  @FXML private Circle catInitial;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -97,11 +95,13 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
-    // hide catInitial
-    catInitial.setVisible(false);
+    // Hide sleeping cat
+    catImageSleep.setVisible(false);
+    // Show awake cat
+    catImageAwoken.setVisible(true);
     // change image
-    Image image = new Image("/images/AwokenCat.png");
-    catImage.setImage(image);
+    // Image image = new Image("/images/AwokenCat.png");
+    // catImage.setImage(image);
   }
 
   /**
