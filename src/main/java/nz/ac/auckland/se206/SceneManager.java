@@ -9,7 +9,8 @@ public class SceneManager {
   public enum AppUi {
     TITLE,
     MENU,
-    MAIN_ROOM
+    MAIN_ROOM,
+    ROCKET_INTERIOR
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

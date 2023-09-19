@@ -12,6 +12,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class MainRoomController {
@@ -108,6 +109,11 @@ public class MainRoomController {
    */
   @FXML
   public void clickRocket(MouseEvent event) {
+    switchToRocket();
     System.out.println("rocket clicked");
+  }
+
+  private void switchToRocket() {
+    App.setUi(AppUi.ROCKET_INTERIOR);
   }
 }
