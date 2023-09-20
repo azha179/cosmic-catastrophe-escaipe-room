@@ -18,10 +18,17 @@ public class MenuController {
   @FXML private Rectangle easy;
   @FXML private Rectangle medium;
   @FXML private Rectangle hard;
+  @FXML private ImageView easyImage;
+  @FXML private ImageView mediumImage;
+  @FXML private ImageView hardImage;
   @FXML private Rectangle two;
   @FXML private Rectangle four;
   @FXML private Rectangle six;
+  @FXML private Label twoText;
+  @FXML private Label fourText;
+  @FXML private Label sixText;
   @FXML private ImageView play;
+  @FXML private Label playText;
   @FXML private Label difficulty;
   @FXML private Label timeLimit;
 

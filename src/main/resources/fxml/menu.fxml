@@ -37,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label layoutX="328.0" layoutY="419.0" prefHeight="37.0" prefWidth="94.0" text="PLAY" textFill="#2c230d">
+      <Label fx:id="playText" layoutX="328.0" layoutY="419.0" onMouseClicked="#onClickPlay" prefHeight="37.0" prefWidth="94.0" text="PLAY" textFill="#2c230d">
          <font>
             <Font name="Copperplate" size="30.0" />
          </font>
@@ -49,7 +49,7 @@
          </effect>
       </Label>
       <Rectangle fx:id="easy" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="189.0" layoutX="81.0" layoutY="94.0" onMouseClicked="#onClickEasy" opacity="0.75" stroke="BLACK" strokeType="INSIDE" width="184.0" />
-      <ImageView fitHeight="163.0" fitWidth="158.0" layoutX="93.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="easyImage" fitHeight="163.0" fitWidth="158.0" layoutX="93.0" layoutY="109.0" onMouseClicked="#onClickEasy" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/EasyImage.jpg" />
          </image>
@@ -58,7 +58,7 @@
          </cursor>
       </ImageView>
       <Rectangle fx:id="medium" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="188.0" layoutX="281.0" layoutY="94.0" onMouseClicked="#onClickMedium" opacity="0.75" stroke="BLACK" strokeType="INSIDE" width="173.0" />
-      <ImageView fitHeight="168.0" fitWidth="148.0" layoutX="293.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mediumImage" fitHeight="168.0" fitWidth="148.0" layoutX="293.0" layoutY="108.0" onMouseClicked="#onClickMedium" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/MediumImage.jpg" />
          </image>
@@ -67,7 +67,7 @@
          </cursor>
       </ImageView>
       <Rectangle fx:id="hard" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="190.0" layoutX="476.0" layoutY="93.0" onMouseClicked="#onClickHard" opacity="0.75" stroke="BLACK" strokeType="INSIDE" width="180.0" />
-      <ImageView fitHeight="167.0" fitWidth="157.0" layoutX="492.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hardImage" fitHeight="167.0" fitWidth="157.0" layoutX="492.0" layoutY="106.0" onMouseClicked="#onClickHard" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HardImage.jpg" />
          </image>
@@ -76,7 +76,7 @@
          </cursor>
       </ImageView>
       <Rectangle fx:id="two" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="32.0" layoutX="155.0" layoutY="341.0" onMouseClicked="#onClickTwo" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="94.0" />
-      <Label layoutX="176.0" layoutY="346.0" text="2 Mins" textFill="#ffb700">
+      <Label fx:id="twoText" layoutX="176.0" layoutY="346.0" onMouseClicked="#onClickTwo" text="2 Mins" textFill="#ffb700">
          <font>
             <Font name="Copperplate" size="18.0" />
          </font>
@@ -99,7 +99,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="342.0" layoutY="346.0" text="4 Mins" textFill="#ffb700">
+      <Label fx:id="fourText" layoutX="342.0" layoutY="346.0" onMouseClicked="#onClickFour" text="4 Mins" textFill="#ffb700">
          <font>
             <Font name="Copperplate" size="18.0" />
          </font>
@@ -110,7 +110,7 @@
             <Bloom />
          </effect>
       </Label>
-      <Label layoutX="515.0" layoutY="347.0" text="6 Mins" textFill="#ffb700">
+      <Label fx:id="sixText" layoutX="515.0" layoutY="347.0" onMouseClicked="#onClickSix" text="6 Mins" textFill="#ffb700">
          <font>
             <Font name="Copperplate" size="18.0" />
          </font>
