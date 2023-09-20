@@ -172,8 +172,19 @@ public class MainRoomController {
   }
 
   @FXML
-  public void onHoverInteractable(MouseEvent event) {
+  public void onMouseHub(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) (Node) event.getTarget();
+    HudState.highlightRectangle(rectangle);
+  }
 
+  @FXML
+  public void offMouseHub(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) (Node) event.getTarget();
+    HudState.removeHighlightRectangle(rectangle);
+  }
+
+  @FXML
+  public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
