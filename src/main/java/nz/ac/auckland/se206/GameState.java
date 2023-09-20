@@ -10,4 +10,6 @@ public class GameState {
   public static boolean isKeyFound = false;
 
   public static boolean isAnimationRunning = false;
+
+  public static boolean isMemoryGameResolved = false;
 }

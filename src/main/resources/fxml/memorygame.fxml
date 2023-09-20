@@ -9,10 +9,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MemoryGameController">
    <children>
-      <ImageView fx:id="back" fitHeight="58.0" fitWidth="55.0" layoutX="10.0" layoutY="12.0" onMouseClicked="#clickBack" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="back" fitHeight="58.0" fitWidth="55.0" layoutX="10.0" layoutY="12.0" onMouseClicked="#clickBack" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Back.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="button1" fitHeight="93.0" fitWidth="78.0" layoutX="183.0" layoutY="107.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -147,7 +150,7 @@
             <Image url="@../images/tempMemoryGame.png" />
          </image>
       </ImageView>
-      <Label fx:id="text" layoutX="292.0" layoutY="37.0" text="Label">
+      <Label fx:id="text" layoutX="100.0" layoutY="37.0">
          <font>
             <Font size="56.0" />
          </font>

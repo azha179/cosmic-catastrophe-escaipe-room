@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonSequence;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MemoryGameController {
@@ -53,13 +55,12 @@ public class MemoryGameController {
 
   @FXML
   public void clickPlay(MouseEvent event) {
-
     if (GameState.isAnimationRunning) {
       return;
     }
     sequenceIndex = 0;
-    // highlights the correct memory sequence recursively
-    highlightSequence();
+    // plays the correct memory sequence recursively
+    playSequence();
   }
 
   private void switchToRocket() {
@@ -72,6 +73,10 @@ public class MemoryGameController {
   @FXML
   private void pressButton(MouseEvent event) {
 
+    if (GameState.isAnimationRunning || GameState.isMemoryGameResolved) {
+      return;
+    }
+
     // button turns green when pressed
     setToGreen((ImageView) event.getTarget());
   }
@@ -79,14 +84,32 @@ public class MemoryGameController {
   @FXML
   private void releaseButton(MouseEvent event) {
 
+    if (GameState.isAnimationRunning || GameState.isMemoryGameResolved) {
+      return;
+    }
     ImageView image = (ImageView) event.getTarget();
 
     // button turns to original when released
     setToOriginal(image);
 
     // retrives assigned value from button
+    System.out.println(GameState.isAnimationRunning);
     int button = Integer.parseInt((String) image.getUserData());
     ButtonSequence.add(button);
+
+    // this occurs when the most recently added value does not match the value at the same position
+    // in the correct sequence
+    if (!ButtonSequence.correctSequence
+        .get(ButtonSequence.playerSequence.size() - 1)
+        .equals(ButtonSequence.playerSequence.get(ButtonSequence.playerSequence.size() - 1))) {
+      ButtonSequence.clear();
+      text.setText("incorrect sequence please try again");
+    }
+    // this occurs when all the added values match the values in the correct sequence
+    if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
+      GameState.isMemoryGameResolved = true;
+      text.setText("correct sequence !!");
+    }
   }
 
   private void initialiseUserData() {
@@ -131,27 +154,38 @@ public class MemoryGameController {
     image.setEffect(colorAdjust);
   }
 
-  private void highlightSequence() {
+  private void playSequence() {
 
+    GameState.isAnimationRunning = true;
     int currentInteger = ButtonSequence.correctSequence.get(sequenceIndex);
     ImageView button = findButtonByUserData(currentInteger);
     setToGreen(button);
-
     PauseTransition firstPause = new PauseTransition(Duration.seconds(0.6));
     firstPause.setOnFinished(
         (ActionEvent e) -> {
           setToOriginal(button);
           sequenceIndex++;
-
           if (sequenceIndex < ButtonSequence.correctSequence.size()) {
             PauseTransition secondPause = new PauseTransition(Duration.seconds(0.5));
-            secondPause.setOnFinished((ActionEvent event1) -> highlightSequence());
+            secondPause.setOnFinished((ActionEvent event1) -> playSequence());
             secondPause.play();
           } else {
             GameState.isAnimationRunning = false;
           }
         });
-    GameState.isAnimationRunning = true;
     firstPause.play();
+  }
+
+  @FXML
+  public void onHoverInteractable(MouseEvent event) {
+
+    ImageView image = (ImageView) (Node) event.getTarget();
+    Hover.scaleUp(image);
+  }
+
+  @FXML
+  public void onLeaveInteractable(MouseEvent event) {
+    ImageView image = (ImageView) (Node) event.getTarget();
+    Hover.scaleDown(image);
   }
 }

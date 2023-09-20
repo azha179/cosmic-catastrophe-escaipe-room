@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ButtonSequence {
   public static ArrayList<Integer> correctSequence = new ArrayList<Integer>();
-  private static ArrayList<Integer> playerSequence = new ArrayList<Integer>();
+  public static ArrayList<Integer> playerSequence = new ArrayList<Integer>();
 
   public static void initialiseCorrectSequence() {
 
