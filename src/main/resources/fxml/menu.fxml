@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -48,11 +49,42 @@
             <Glow />
          </effect>
       </Label>
-      <Rectangle fx:id="easy" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="181.0" layoutX="88.0" layoutY="101.0" onMouseClicked="#onClickEasy" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="166.0">
+      <Rectangle fx:id="easy" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="181.0" layoutX="88.0" layoutY="101.0" onMouseClicked="#onClickEasy" opacity="0.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="166.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <ImageView fx:id="easyImage" fitHeight="163.0" fitWidth="158.0" layoutX="93.0" layoutY="109.0" onMouseClicked="#onClickEasy" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="easy1" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="161.0" layoutX="96.0" layoutY="111.0" onMouseClicked="#onClickEasy" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="152.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Label fx:id="fourText1" layoutX="137.0" layoutY="144.0" onMouseClicked="#onClickFour" prefHeight="25.0" prefWidth="77.0" text="EASY" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="25.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom>
+               <input>
+                  <SepiaTone />
+               </input>
+            </Bloom>
+         </effect>
+      </Label>
+      <Label fx:id="fourText12" layoutX="97.0" layoutY="163.0" onMouseClicked="#onClickFour" prefHeight="104.0" prefWidth="148.0" text="Ask as many questions as you wish, and enjoy hints aplenty!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <ImageView fx:id="easyImage" fitHeight="163.0" fitWidth="158.0" layoutX="93.0" layoutY="109.0" onMouseClicked="#onClickEasy" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/EasyImage.jpg" />
          </image>
@@ -60,11 +92,38 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle fx:id="medium" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="174.0" layoutX="285.0" layoutY="101.0" onMouseClicked="#onClickMedium" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="166.0">
+      <Rectangle fx:id="medium" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="174.0" layoutX="285.0" layoutY="101.0" onMouseClicked="#onClickMedium" opacity="0.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="166.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <ImageView fx:id="mediumImage" fitHeight="168.0" fitWidth="148.0" layoutX="293.0" layoutY="108.0" onMouseClicked="#onClickMedium" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="easy12" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="161.0" layoutX="292.0" layoutY="109.0" onMouseClicked="#onClickEasy" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="149.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Label fx:id="fourText11" layoutX="320.0" layoutY="144.0" onMouseClicked="#onClickFour" text="MEDIUM" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="25.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText121" layoutX="294.0" layoutY="168.0" onMouseClicked="#onClickFour" prefHeight="94.0" prefWidth="148.0" text="You get a paw-some five hints and can chat with the alien catto!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <ImageView fx:id="mediumImage" fitHeight="168.0" fitWidth="148.0" layoutX="293.0" layoutY="108.0" onMouseClicked="#onClickMedium" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/MediumImage.jpg" />
          </image>
@@ -72,11 +131,38 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle fx:id="hard" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="174.0" layoutX="483.0" layoutY="102.0" onMouseClicked="#onClickHard" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="166.0">
+      <Rectangle fx:id="hard" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="174.0" layoutX="483.0" layoutY="102.0" onMouseClicked="#onClickHard" opacity="0.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="166.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <ImageView fx:id="hardImage" fitHeight="163.0" fitWidth="148.0" layoutX="492.0" layoutY="106.0" onMouseClicked="#onClickHard" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="easy11" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="161.0" layoutX="493.0" layoutY="107.0" onMouseClicked="#onClickEasy" opacity="0.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="144.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Label fx:id="fourText111" layoutX="530.0" layoutY="142.0" onMouseClicked="#onClickFour" text="HARD" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="25.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText1211" layoutX="492.0" layoutY="168.0" onMouseClicked="#onClickFour" prefHeight="94.0" prefWidth="148.0" text="chat with the cunning cat, but rely solely on your existing knowledge – no hints allowed!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <ImageView fx:id="hardImage" fitHeight="163.0" fitWidth="148.0" layoutX="492.0" layoutY="106.0" onMouseClicked="#onClickHard" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HardImage.jpg" />
          </image>
@@ -84,11 +170,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle fx:id="two" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="32.0" layoutX="155.0" layoutY="341.0" onMouseClicked="#onClickTwo" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="94.0">
+      <Rectangle fx:id="two" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="32.0" layoutX="155.0" layoutY="341.0" onMouseClicked="#onClickTwo" opacity="0.28" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="94.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Label fx:id="twoText" layoutX="176.0" layoutY="346.0" onMouseClicked="#onClickTwo" text="2 Mins" textFill="#ffb700">
+      <Label fx:id="twoText" layoutX="176.0" layoutY="346.0" onMouseClicked="#onClickTwo" text="2 Mins" textFill="#ffc500">
          <font>
             <Font name="Copperplate" size="18.0" />
          </font>
@@ -99,21 +185,11 @@
             <Bloom />
          </effect>
       </Label>
-      <Rectangle fx:id="four" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="35.0" layoutX="313.0" layoutY="338.0" onMouseClicked="#onClickFour" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="109.0">
+      <Rectangle fx:id="four" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="35.0" layoutX="313.0" layoutY="338.0" onMouseClicked="#onClickFour" opacity="0.28" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="109.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Rectangle fx:id="six" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="37.0" layoutX="488.0" layoutY="337.0" onMouseClicked="#onClickSix" opacity="0.28" stroke="BLACK" strokeType="INSIDE" width="109.0" />
-      <Label fx:id="difficulty" layoutX="625.0" layoutY="80.0" prefHeight="22.0" prefWidth="85.0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label fx:id="timeLimit" layoutX="628.0" layoutY="154.0" prefHeight="22.0" prefWidth="85.0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
+      <Rectangle fx:id="six" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="37.0" layoutX="488.0" layoutY="337.0" onMouseClicked="#onClickSix" opacity="0.28" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="109.0" />
       <Label fx:id="fourText" layoutX="342.0" layoutY="346.0" onMouseClicked="#onClickFour" text="4 Mins" textFill="#ffb700">
          <font>
             <Font name="Copperplate" size="18.0" />

@@ -33,8 +33,6 @@ public class MenuController {
   @FXML private Label sixText;
   @FXML private ImageView play;
   @FXML private Label playText;
-  @FXML private Label difficulty;
-  @FXML private Label timeLimit;
 
   GameDifficulty setRectangle;
   GameDifficulty currentDifficulty;
@@ -46,42 +44,39 @@ public class MenuController {
   @FXML
   public void onClickEasy(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.EASY;
-    difficulty.setText("EASY");
+
     changeColourDifficulty(easy);
   }
 
   @FXML
   public void onClickMedium(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.MEDIUM;
-    difficulty.setText("MEDIUM");
+
     changeColourDifficulty(medium);
   }
 
   @FXML
   public void onClickHard(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.HARD;
-    difficulty.setText("HARD");
+
     changeColourDifficulty(hard);
   }
 
   @FXML
   public void onClickTwo(MouseEvent event) {
     GameSettings.timeLimit = TimeLimit.TWO;
-    timeLimit.setText("2 MIN");
     changeColourTime(two);
   }
 
   @FXML
   public void onClickFour(MouseEvent event) {
     GameSettings.timeLimit = TimeLimit.FOUR;
-    timeLimit.setText("4 MIN");
     changeColourTime(four);
   }
 
   @FXML
   public void onClickSix(MouseEvent event) {
     GameSettings.timeLimit = TimeLimit.SIX;
-    timeLimit.setText("6 MIN");
     changeColourTime(six);
   }
 
@@ -117,7 +112,7 @@ public class MenuController {
   @FXML
   public void selectedObject(Rectangle rectangle) {
     DropShadow dropShadowEffect = new DropShadow();
-    dropShadowEffect.setColor(Color.YELLOW);
+    dropShadowEffect.setColor(Color.WHITE);
     dropShadowEffect.setOffsetX(5.0);
     dropShadowEffect.setOffsetY(5.0);
     dropShadowEffect.setRadius(10.0); // Adjust the radius as needed
@@ -136,6 +131,18 @@ public class MenuController {
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
+  }
+
+  @FXML
+  public void onMouseEnter(MouseEvent event) {
+    ImageView image = (ImageView) (Node) event.getTarget();
+    image.setOpacity(0.2);
+  }
+
+  @FXML
+  public void onMouseExit(MouseEvent event) {
+    ImageView image = (ImageView) (Node) event.getTarget();
+    image.setOpacity(1);
   }
 
   private void switchToRoom() {
