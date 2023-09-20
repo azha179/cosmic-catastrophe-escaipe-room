@@ -18,4 +18,20 @@ public class GptPromptEngineering {
         + " reveal the answer even if the player asks for it. Even if player gives up, do not give"
         + " the answer";
   }
+
+  /**
+   * Generates a GPT prompt engineering string for a introduction message when the player first
+   * meets the cat.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getIntroductionMessage() {
+    return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
+               + " escape-style video game.  You want the player to help you launch your rocket"
+               + " ship and reach Earth to enjoy its food. Write an introduction message to the"
+               + " player, first telling them about yourself, then telling them they must complete"
+               + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
+               + " this response. The cat must use elementary vocabulary and occasionally meow. The"
+               + " message must be three sentences maximum.";
+  }
 }

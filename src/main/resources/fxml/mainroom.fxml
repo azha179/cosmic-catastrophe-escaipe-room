@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="543.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
    <children>
       <ImageView fx:id="roomImage" fitHeight="554.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/MainScreen.PNG" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="catImage" fitHeight="393.0" fitWidth="414.0" layoutX="380.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/SleepingCat.PNG" />
          </image>
       </ImageView>
       <ImageView fx:id="rocketImage" fitHeight="363.0" fitWidth="376.0" layoutX="53.0" layoutY="125.0" onMouseClicked="#clickRocket" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
@@ -27,6 +24,30 @@
             <Image url="@../images/PantryBuilding.PNG" />
          </image>
       </ImageView>
-      <Circle fx:id="catInitial" fill="#1f93ff00" layoutX="535.0" layoutY="425.0" onMouseClicked="#catInitialise" radius="78.0" stroke="#ffd43d" strokeType="INSIDE" strokeWidth="3.0" />
+      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="485.0" layoutY="353.0" onMouseClicked="#catInitialise" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/SleepingCat.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="catImageAwoken" fitHeight="173.0" fitWidth="205.0" layoutX="486.0" layoutY="297.0" onMouseClicked="#clickCatAwoken" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/AwokenCat.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="542.0" layoutY="307.0" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/NeutralCat.PNG" />
+         </image>
+      </ImageView>
+      <Pane fx:id="chatPane" layoutX="442.0" layoutY="107.0" prefHeight="200.0" prefWidth="288.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="203.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" style="-fx-arc-width: 75; -fx-arc-height: 75;" width="286.0" />
+            <TextArea fx:id="catTextArea" editable="false" layoutX="16.0" layoutY="8.0" prefHeight="184.0" prefWidth="255.0" wrapText="true">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextArea>
+         </children>
+      </Pane>
    </children>
 </Pane>

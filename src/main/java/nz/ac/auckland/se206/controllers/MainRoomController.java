@@ -1,29 +1,39 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /** Controller class for the room view. */
 public class MainRoomController {
 
   @FXML private Pane room;
   @FXML private ImageView roomImage;
-  @FXML private ImageView catImage;
+  @FXML private ImageView catImageSleep;
+  @FXML private ImageView catImageAwoken;
+  @FXML private ImageView catImageActive;
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
-  @FXML private Circle catInitial;
+  @FXML private Pane chatPane;
+  @FXML private TextArea catTextArea;
+
+  private ChatCompletionRequest chatCompletionRequest;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -97,11 +107,57 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
-    // hide catInitial
-    catInitial.setVisible(false);
-    // change image
-    Image image = new Image("/images/AwokenCat.png");
-    catImage.setImage(image);
+    // Hide sleeping cat
+    catImageSleep.setVisible(false);
+    // Show awake cat
+    catImageAwoken.setVisible(true);
+
+    // Initiate first message from GPT after cat is clicked using a thread
+    Task<Void> initiateDeviceTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.2)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            ChatMessage chatMessage;
+            chatMessage =
+                GptActions.runGpt(
+                    new ChatMessage("user", GptPromptEngineering.getIntroductionMessage()),
+                    chatCompletionRequest);
+
+            Platform.runLater(
+                () -> {
+                  // Append chat message to device text area
+                  GptActions.appendChatMessage(chatMessage, catTextArea);
+                  // Make chat pane visible
+                  chatPane.setVisible(true);
+                  // Hide catImageAwoken
+                  catImageAwoken.setVisible(false);
+                  // Show catImageActive
+                  catImageActive.setVisible(true);
+                });
+
+            return null;
+          }
+        };
+
+    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+    initiateDeviceThread.start();
+  }
+
+  /**
+   * Handles the click event on awoken cat.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickCatAwoken(MouseEvent event) {
+    System.out.println("cat clicked");
   }
 
   /**
