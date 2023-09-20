@@ -1,19 +1,19 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class PantryController {
 
-  @FXML private Rectangle backButton;
+  @FXML private ImageView back;
 
   public void initialize() {}
 
   @FXML
-  public void onClickBack(MouseEvent event) {
+  public void clickBack(MouseEvent event) {
     switchToRoom();
   }
 

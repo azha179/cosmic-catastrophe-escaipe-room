@@ -12,6 +12,7 @@ public class RocketController {
   @FXML private Pane pane;
   @FXML private ImageView exit;
   @FXML private ImageView cat;
+  @FXML private ImageView temp;
 
   public void initialize() {}
 
@@ -25,7 +26,16 @@ public class RocketController {
     System.out.println("meow");
   }
 
+  @FXML
+  public void clickTemp(MouseEvent event) {
+    switchToMemoryGame();
+  }
+
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
+  }
+
+  private void switchToMemoryGame() {
+    App.setUi(AppUi.MEMORY_GAME);
   }
 }

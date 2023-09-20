@@ -4,7 +4,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
    <children>
       <ImageView fx:id="rocketImage" fitHeight="554.0" fitWidth="977.0" layoutX="-15.0" layoutY="-12.0" pickOnBounds="true">
@@ -20,6 +19,11 @@
       <ImageView fx:id="cat" fitHeight="176.0" fitWidth="199.0" layoutX="578.0" layoutY="223.0" onMouseClicked="#onClickCat" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/catChilling.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="temp" fitHeight="171.0" fitWidth="126.0" layoutX="254.0" layoutY="213.0" onMouseClicked="#clickTemp" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempMemoryGame.png" />
          </image>
       </ImageView>
    </children>
