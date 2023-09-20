@@ -12,7 +12,7 @@ public class HudState {
 
   // if torchHudDone so the torch has been used, it will be greyed out
   public static void torchHudDone(ImageView image) {
-    if ((GameState.torchFound) && (GameState.footprintsFound) && (GameState.puzzle1)) {
+    if (GameState.torchHudDone()) {
       greyImage(image);
     }
     if (!GameState.torchFound) {
@@ -24,7 +24,7 @@ public class HudState {
 
   // if note1Done so the note has been used, it will be greyed out
   public static void note1HudDone(ImageView image) {
-    if ((GameState.note1Found) && (GameState.puzzle3)) {
+    if (GameState.note1HudDone()) {
       greyImage(image);
     }
     if (!GameState.note1Found) {
@@ -36,7 +36,7 @@ public class HudState {
 
   // if note1Done so the note has been used, it will be greyed out
   public static void note2HudDone(ImageView image) {
-    if ((GameState.note1Found) && (GameState.puzzle3)) {
+    if (GameState.note2HudDone()) {
       greyImage(image);
     }
     if (!GameState.note2Found) {
@@ -73,10 +73,19 @@ public class HudState {
     ImageView image = (ImageView) (Node) event.getTarget();
     if ("torchHud".equals(image.getId())) {
       rectangle = torch;
+      if (GameState.torchHudDone()) {
+        rectangle = null;
+      }
     } else if ("note1Hud".equals(image.getId())) {
       rectangle = note1;
+      if (GameState.note1HudDone()) {
+        rectangle = null;
+      }
     } else if ("note2Hud".equals(image.getId())) {
       rectangle = note2;
+      if (GameState.note2HudDone()) {
+        rectangle = null;
+      }
     }
     return rectangle;
   }

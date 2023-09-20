@@ -37,7 +37,6 @@ public class MainRoomController {
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
-  private Rectangle rectangle;
 
   private ChatCompletionRequest chatCompletionRequest;
 
@@ -46,6 +45,8 @@ public class MainRoomController {
     GameState.torchFound = true;
     GameState.note1Found = true;
     GameState.note2Found = true;
+    GameState.puzzle1 = true;
+    GameState.footprintsFound = true;
     HudState.torchHudDone(torchHud);
     HudState.note1HudDone(note1Hud);
     HudState.note2HudDone(note2Hud);
@@ -179,14 +180,18 @@ public class MainRoomController {
   public void onMouseHub(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
-    HudState.highlightRectangle(rectangle);
+    if (rectangle != null) {
+      HudState.highlightRectangle(rectangle);
+    }
   }
 
   @FXML
   public void offMouseHub(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
-    HudState.removeHighlightRectangle(rectangle);
+    if (rectangle != null) {
+      HudState.removeHighlightRectangle(rectangle);
+    }
   }
 
   @FXML
