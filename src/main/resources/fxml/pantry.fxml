@@ -5,9 +5,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PantryController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PantryController">
    <children>
-      <ImageView fitHeight="576.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pantryImage" fitHeight="576.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Pantry.PNG" />
          </image>

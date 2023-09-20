@@ -15,9 +15,10 @@ public class PantryController {
 
   @FXML private Pane pane;
   @FXML private ImageView back;
+  @FXML private ImageView pantryImage;
 
   public void initialize() {
-    pane.requestFocus();
+    pane.setFocusTraversable(true);
   }
 
   @FXML
@@ -26,7 +27,8 @@ public class PantryController {
   }
 
   @FXML
-  public void onKeyPressed(KeyEvent event) {
+  public void onPressKey(KeyEvent event) {
+
     if (event.getCode() == KeyCode.ESCAPE) {
       switchToRoom();
     }
