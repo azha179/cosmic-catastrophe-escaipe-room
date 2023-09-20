@@ -99,6 +99,27 @@
                <image>
                   <Image url="@../images/Back.PNG" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="note2Pane" layoutX="13.0" layoutY="12.0" prefHeight="543.0" prefWidth="737.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <ImageView fitHeight="363.0" fitWidth="365.0" layoutX="201.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/note2Screen.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="note2Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote2Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Back.PNG" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </Pane>
