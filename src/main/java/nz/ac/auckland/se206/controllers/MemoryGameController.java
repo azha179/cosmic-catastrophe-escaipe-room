@@ -1,9 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.lang.reflect.Field;
+import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonSequence;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -11,6 +15,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class MemoryGameController {
 
   @FXML private ImageView back;
+  @FXML private ImageView play;
   @FXML private ImageView button1;
   @FXML private ImageView button2;
   @FXML private ImageView button3;
@@ -28,6 +33,8 @@ public class MemoryGameController {
   @FXML private ImageView button15;
   @FXML private ImageView button16;
 
+  private int sequenceIndex;
+
   public void initialize() {
     // creates a random button sequence
     ButtonSequence.initialiseCorrectSequence();
@@ -41,19 +48,47 @@ public class MemoryGameController {
     switchToRocket();
   }
 
+  @FXML
+  public void clickPlay(MouseEvent event) {
+
+    // checking if the index is within the bounds of the sequence
+    if (sequenceIndex >= ButtonSequence.correctSequence.size()) {
+      sequenceIndex = 0;
+      return;
+    }
+
+    int currentInteger = ButtonSequence.correctSequence.get(sequenceIndex);
+    ImageView button = findButtonByUserData(currentInteger);
+    setToGreen(button);
+
+    PauseTransition firstPause = new PauseTransition(Duration.seconds(0.6));
+    firstPause.setOnFinished(
+        (ActionEvent e) -> {
+          setToOriginal(button);
+          sequenceIndex++;
+
+          // checking if there are more integers to process
+          if (sequenceIndex < ButtonSequence.correctSequence.size()) {
+            PauseTransition secondPause = new PauseTransition(Duration.seconds(0.5));
+            secondPause.setOnFinished((ActionEvent event1) -> clickPlay(null));
+            secondPause.play();
+          }
+        });
+    firstPause.play();
+  }
+
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
+
+    // resets player sequence when exiting the memory game
+    ButtonSequence.clear();
   }
 
   @FXML
   private void pressButton(MouseEvent event) {
 
-    ImageView image = (ImageView) event.getTarget();
-
     // button turns green when pressed
-    ColorAdjust colorAdjust = new ColorAdjust();
-    colorAdjust.setHue(-0.4);
-    image.setEffect(colorAdjust);
+    setToGreen((ImageView) event.getTarget());
   }
 
   @FXML
@@ -62,9 +97,7 @@ public class MemoryGameController {
     ImageView image = (ImageView) event.getTarget();
 
     // button turns to original when released
-    ColorAdjust colorAdjust = new ColorAdjust();
-    colorAdjust.setHue(0);
-    image.setEffect(colorAdjust);
+    setToOriginal(image);
 
     // retrives assigned value from button
     int button = Integer.parseInt((String) image.getUserData());
@@ -88,5 +121,31 @@ public class MemoryGameController {
     button14.setUserData("14");
     button15.setUserData("15");
     button16.setUserData("16");
+  }
+
+  private ImageView findButtonByUserData(int value) {
+    try {
+
+      String num = Integer.toString(value);
+      String buttonName = "button" + num;
+      Field field = getClass().getDeclaredField(buttonName);
+      field.setAccessible(true);
+      return (ImageView) field.get(this);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  private void setToGreen(ImageView image) {
+    ColorAdjust colorAdjust = new ColorAdjust();
+    colorAdjust.setHue(-0.4);
+    image.setEffect(colorAdjust);
+  }
+
+  private void setToOriginal(ImageView image) {
+    ColorAdjust colorAdjust = new ColorAdjust();
+    colorAdjust.setHue(0);
+    image.setEffect(colorAdjust);
   }
 }

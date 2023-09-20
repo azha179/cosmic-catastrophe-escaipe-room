@@ -140,5 +140,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <ImageView fx:id="play" fitHeight="120.0" fitWidth="68.0" layoutX="562.0" layoutY="226.0" onMouseClicked="#clickPlay" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempMemoryGame.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
