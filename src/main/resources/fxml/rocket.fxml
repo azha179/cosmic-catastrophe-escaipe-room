@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -11,10 +12,13 @@
             <Image url="@../images/rocketInterior.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="exit" fitHeight="79.0" fitWidth="104.0" layoutX="32.0" layoutY="21.0" onMouseClicked="#onClickExit" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="back" fitHeight="71.0" fitWidth="59.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#clickBack" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/return.jpeg" />
+            <Image url="@../images/Back.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="cat" fitHeight="176.0" fitWidth="199.0" layoutX="578.0" layoutY="223.0" onMouseClicked="#onClickCat" pickOnBounds="true" preserveRatio="true">
          <image>
