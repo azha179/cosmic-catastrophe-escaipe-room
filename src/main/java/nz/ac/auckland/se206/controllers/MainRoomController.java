@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
@@ -124,7 +125,7 @@ public class MainRoomController {
   }
 
   /**
-   * Handles the click event on the rocket.
+   * Handles the click event on the pantry.
    *
    * @param event the mouse event
    */
@@ -136,6 +137,38 @@ public class MainRoomController {
 
   private void switchToPantry() {
     App.setUi(AppUi.PANTRY_INTERIOR);
+  }
+
+  /**
+   * Handles the click event on the note1.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote1(MouseEvent event) {
+    if (GameState.note1Found) {
+      switchToNote1();
+    }
+  }
+
+  private void switchToNote1() {
+    App.setUi(AppUi.NOTE1);
+  }
+
+  /**
+   * Handles the click event on the note1.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote2(MouseEvent event) {
+    if (GameState.note2Found) {
+      switchToNote2();
+    }
+  }
+
+  private void switchToNote2() {
+    App.setUi(AppUi.NOTE2);
   }
 
   @FXML
