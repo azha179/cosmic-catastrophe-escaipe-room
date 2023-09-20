@@ -5,7 +5,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +16,6 @@ import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager;
-
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;

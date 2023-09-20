@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
-import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -29,7 +28,6 @@ public class RocketController {
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
   @FXML private ImageView temp;
-
 
   public void initialize() {}
 
