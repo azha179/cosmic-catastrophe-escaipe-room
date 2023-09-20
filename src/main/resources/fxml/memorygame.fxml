@@ -4,12 +4,91 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MemoryGameController">
    <children>
       <ImageView fx:id="back" fitHeight="58.0" fitWidth="55.0" layoutX="10.0" layoutY="12.0" onMouseClicked="#clickBack" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Back.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button0" fitHeight="93.0" fitWidth="78.0" layoutX="183.0" layoutY="107.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button1" fitHeight="93.0" fitWidth="78.0" layoutX="269.0" layoutY="107.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button2" fitHeight="93.0" fitWidth="78.0" layoutX="357.0" layoutY="108.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button3" fitHeight="93.0" fitWidth="78.0" layoutX="443.0" layoutY="108.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button4" fitHeight="93.0" fitWidth="78.0" layoutX="183.0" layoutY="194.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button5" fitHeight="93.0" fitWidth="78.0" layoutX="269.0" layoutY="194.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button6" fitHeight="93.0" fitWidth="78.0" layoutX="357.0" layoutY="195.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button7" fitHeight="93.0" fitWidth="78.0" layoutX="443.0" layoutY="195.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button8" fitHeight="93.0" fitWidth="78.0" layoutX="182.0" layoutY="282.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button9" fitHeight="93.0" fitWidth="78.0" layoutX="268.0" layoutY="282.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button10" fitHeight="93.0" fitWidth="78.0" layoutX="356.0" layoutY="283.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button11" fitHeight="93.0" fitWidth="78.0" layoutX="442.0" layoutY="283.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button12" fitHeight="93.0" fitWidth="78.0" layoutX="182.0" layoutY="369.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button13" fitHeight="93.0" fitWidth="78.0" layoutX="268.0" layoutY="369.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button14" fitHeight="93.0" fitWidth="78.0" layoutX="356.0" layoutY="370.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button15" fitHeight="93.0" fitWidth="78.0" layoutX="442.0" layoutY="370.0" onMousePressed="#pressButton" onMouseReleased="#releaseButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tempButton.png" />
          </image>
       </ImageView>
    </children>
