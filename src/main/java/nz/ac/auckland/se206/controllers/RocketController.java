@@ -12,6 +12,7 @@ public class RocketController {
   @FXML private Pane pane;
   @FXML private ImageView exit;
   @FXML private ImageView cat;
+  @FXML private ImageView temp;
 
   public void initialize() {}
 
@@ -23,6 +24,11 @@ public class RocketController {
   @FXML
   public void onClickCat(MouseEvent event) {
     System.out.println("meow");
+  }
+
+  @FXML
+  public void clickTemp(MouseEvent event) {
+    System.out.println("click temp");
   }
 
   private void switchToRoom() {
