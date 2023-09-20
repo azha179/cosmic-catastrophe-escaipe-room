@@ -1,12 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 import javafx.fxml.FXML;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ButtonSequence;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MemoryGameController {
@@ -29,17 +28,12 @@ public class MemoryGameController {
   @FXML private ImageView button15;
   @FXML private ImageView button16;
 
-  private ArrayList<Integer> correctSequence;
-  private ArrayList<Integer> buttonSequence;
-
   public void initialize() {
     // creates a random button sequence
-    initialiseCorrectSequence();
+    ButtonSequence.initialiseCorrectSequence();
 
     // assigns each button to values 1-16 respectively
     initaliseUserData();
-
-    buttonSequence = new ArrayList<Integer>();
   }
 
   @FXML
@@ -74,24 +68,7 @@ public class MemoryGameController {
 
     // retrives assigned value from button
     int button = Integer.parseInt((String) image.getUserData());
-    buttonSequence.add(button);
-
-    if (correctSequence.equals(buttonSequence)) {
-      System.out.println("correct sequence !");
-    }
-  }
-
-  private void initialiseCorrectSequence() {
-    correctSequence = new ArrayList<Integer>();
-    for (int i = 0; i < 5; i++) {
-      // random integer from 1 - 16
-      int randomInt = ThreadLocalRandom.current().nextInt(1, 17);
-      correctSequence.add(randomInt);
-    }
-
-    for (int val : correctSequence) {
-      System.out.println("its " + val);
-    }
+    ButtonSequence.add(button);
   }
 
   private void initaliseUserData() {
