@@ -37,11 +37,15 @@ public class MainRoomController {
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
+  private Rectangle rectangle;
 
   private ChatCompletionRequest chatCompletionRequest;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    GameState.torchFound = true;
+    GameState.note1Found = true;
+    GameState.note2Found = true;
     HudState.torchHudDone(torchHud);
     HudState.note1HudDone(note1Hud);
     HudState.note2HudDone(note2Hud);
@@ -173,13 +177,15 @@ public class MainRoomController {
 
   @FXML
   public void onMouseHub(MouseEvent event) {
-    Rectangle rectangle = (Rectangle) (Node) event.getTarget();
+    Rectangle rectangle =
+        HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     HudState.highlightRectangle(rectangle);
   }
 
   @FXML
   public void offMouseHub(MouseEvent event) {
-    Rectangle rectangle = (Rectangle) (Node) event.getTarget();
+    Rectangle rectangle =
+        HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     HudState.removeHighlightRectangle(rectangle);
   }
 

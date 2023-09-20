@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206;
 
+import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -49,7 +51,7 @@ public class HudState {
     dropShadowEffect.setColor(Color.WHITE);
     dropShadowEffect.setOffsetX(5.0);
     dropShadowEffect.setOffsetY(5.0);
-    dropShadowEffect.setRadius(10.0); // Adjust the radius as needed
+    dropShadowEffect.setRadius(10.0);
     rectangle.setEffect(dropShadowEffect);
   }
 
@@ -63,5 +65,19 @@ public class HudState {
 
   public static void removeHighlightRectangle(Rectangle rectangle) {
     rectangle.setEffect(null);
+  }
+
+  public static Rectangle findRectangle(
+      MouseEvent event, Rectangle torch, Rectangle note1, Rectangle note2) {
+    Rectangle rectangle = new Rectangle();
+    ImageView image = (ImageView) (Node) event.getTarget();
+    if ("torchHud".equals(image.getId())) {
+      rectangle = torch;
+    } else if ("note1Hud".equals(image.getId())) {
+      rectangle = note1;
+    } else if ("note2Hud".equals(image.getId())) {
+      rectangle = note2;
+    }
+    return rectangle;
   }
 }
