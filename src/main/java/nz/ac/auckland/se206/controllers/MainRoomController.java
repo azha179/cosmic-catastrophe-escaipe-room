@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,6 +16,8 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
+import nz.ac.auckland.se206.SceneManager;
+
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -127,6 +131,10 @@ public class MainRoomController {
 
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
+    // gives focus to rocket
+    Parent rocketScene = SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
+    App.getScene().setRoot(rocketScene);
+    rocketScene.requestFocus();
   }
 
   /**
@@ -142,6 +150,10 @@ public class MainRoomController {
 
   private void switchToPantry() {
     App.setUi(AppUi.PANTRY_INTERIOR);
+    // gives focus to pantry
+    Parent pantryScene = SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
+    App.getScene().setRoot(pantryScene);
+    pantryScene.requestFocus();
   }
 
   /**

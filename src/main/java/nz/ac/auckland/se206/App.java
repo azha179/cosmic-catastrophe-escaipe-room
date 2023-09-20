@@ -56,6 +56,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.MAIN_ROOM, loadFxml("mainroom"));
     SceneManager.addAppUi(AppUi.ROCKET_INTERIOR, loadFxml("rocket"));
+    SceneManager.addAppUi(AppUi.MEMORY_GAME, loadFxml("memorygame"));
     SceneManager.addAppUi(AppUi.PANTRY_INTERIOR, loadFxml("pantry"));
     SceneManager.addAppUi(AppUi.NOTE1, loadFxml("note1"));
     SceneManager.addAppUi(AppUi.NOTE2, loadFxml("note2"));

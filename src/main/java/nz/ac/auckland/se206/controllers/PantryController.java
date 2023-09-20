@@ -3,12 +3,15 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
+import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class PantryController {
@@ -20,6 +23,9 @@ public class PantryController {
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
+  @FXML private Pane pane;
+  @FXML private ImageView back;
+  @FXML private ImageView pantryImage;
 
   public void initialize() {
     HudState.torchHudDone(torchHud);
@@ -28,8 +34,16 @@ public class PantryController {
   }
 
   @FXML
-  public void onClickBack(MouseEvent event) {
+  public void clickBack(MouseEvent event) {
     switchToRoom();
+  }
+
+  @FXML
+  public void onPressKey(KeyEvent event) {
+
+    if (event.getCode() == KeyCode.ESCAPE) {
+      switchToRoom();
+    }
   }
 
   private void switchToRoom() {

@@ -4,19 +4,22 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PantryController">
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PantryController">
    <children>
-      <ImageView fitHeight="576.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pantryImage" fitHeight="576.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Pantry.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="280.0" fitWidth="272.0" layoutX="-65.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="back" fitHeight="60.0" fitWidth="68.0" layoutX="6.0" layoutY="7.0" onMouseClicked="#clickBack" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Back.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Rectangle fx:id="backButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="97.0" layoutX="5.0" layoutY="21.0" onMouseClicked="#onClickBack" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="225.0" layoutY="25.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
