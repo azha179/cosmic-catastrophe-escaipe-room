@@ -42,6 +42,11 @@ public class MainRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    GameState.torchFound = true;
+    GameState.footprintsFound = true;
+    GameState.puzzle1 = true;
+    GameState.note1Found = true;
+    GameState.note2Found = true;
     HudState.torchHudDone(torchHud);
     HudState.note1HudDone(note1Hud);
     HudState.note2HudDone(note2Hud);
