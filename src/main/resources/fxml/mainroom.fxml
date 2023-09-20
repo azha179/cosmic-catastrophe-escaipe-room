@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="543.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="543.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
    <children>
       <ImageView fx:id="roomImage" fitHeight="554.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -48,6 +48,34 @@
          <image>
             <Image url="@../images/NeutralCat.PNG" />
          </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="215.0" layoutY="15.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
+      <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="225.0" layoutY="19.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="226.0" layoutY="22.0" onMouseDragEntered="#onMouseHub" onMouseDragExited="#offMouseHub" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Torch.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="327.0" layoutY="19.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="339.0" layoutY="15.0" onMouseClicked="#clickNote1" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Note1.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="424.0" layoutY="19.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="440.0" layoutY="18.0" onMouseClicked="#clickNote2" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Note2.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Pane fx:id="chatPane" layoutX="442.0" layoutY="107.0" prefHeight="200.0" prefWidth="288.0" visible="false">
          <children>

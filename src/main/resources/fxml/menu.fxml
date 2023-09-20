@@ -3,7 +3,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Bloom?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,17 +37,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="playText" layoutX="328.0" layoutY="419.0" onMouseClicked="#onClickPlay" prefHeight="37.0" prefWidth="94.0" text="PLAY" textFill="#2c230d">
-         <font>
-            <Font name="Copperplate" size="30.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Glow />
-         </effect>
-      </Label>
       <Rectangle fx:id="easy" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="181.0" layoutX="88.0" layoutY="101.0" onMouseClicked="#onClickEasy" opacity="0.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="166.0">
          <cursor>
             <Cursor fx:constant="HAND" />

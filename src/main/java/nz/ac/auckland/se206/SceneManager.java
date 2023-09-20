@@ -12,6 +12,8 @@ public class SceneManager {
     MAIN_ROOM,
     ROCKET_INTERIOR,
     PANTRY_INTERIOR,
+    NOTE1,
+    NOTE2,
     MEMORY_GAME
   }
 

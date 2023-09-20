@@ -4,12 +4,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
    <children>
-      <ImageView fx:id="rocketImage" fitHeight="554.0" fitWidth="977.0" layoutX="-15.0" layoutY="-12.0" pickOnBounds="true">
+      <ImageView fx:id="rocketImage" fitHeight="570.0" fitWidth="769.0" layoutX="-15.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/rocketInterior.jpeg" />
+            <Image url="@../images/Cockpit.PNG" />
          </image>
       </ImageView>
       <ImageView fx:id="back" fitHeight="71.0" fitWidth="59.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#clickBack" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
@@ -20,10 +22,41 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="cat" fitHeight="176.0" fitWidth="199.0" layoutX="578.0" layoutY="223.0" onMouseClicked="#onClickCat" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cat" fitHeight="176.0" fitWidth="199.0" layoutX="578.0" layoutY="223.0" onMouseClicked="#onClickCat" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/catChilling.jpeg" />
+            <Image url="@../images/NeutralCat.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="225.0" layoutY="25.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
+      <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="235.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="236.0" layoutY="32.0" onMouseDragEntered="#onMouseHub" onMouseDragExited="#offMouseHub" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Torch.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="337.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="349.0" layoutY="25.0" onMouseClicked="#clickNote1" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Note1.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="434.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="450.0" layoutY="28.0" onMouseClicked="#clickNote2" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Note2.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="temp" fitHeight="171.0" fitWidth="126.0" layoutX="254.0" layoutY="213.0" onMouseClicked="#clickTemp" pickOnBounds="true" preserveRatio="true">
          <image>
