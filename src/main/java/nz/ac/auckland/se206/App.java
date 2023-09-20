@@ -71,6 +71,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.NOTE2, loadFxml("note2"));
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 740, 550);
 
+    scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
     stage.setTitle("Game");
     stage.setScene(scene);
     stage.setResizable(false);
