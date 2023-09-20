@@ -93,7 +93,6 @@ public class MemoryGameController {
     setToOriginal(image);
 
     // retrives assigned value from button
-    System.out.println(GameState.isAnimationRunning);
     int button = Integer.parseInt((String) image.getUserData());
     ButtonSequence.add(button);
 
