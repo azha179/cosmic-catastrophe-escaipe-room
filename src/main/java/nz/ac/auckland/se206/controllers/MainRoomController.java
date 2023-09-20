@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -40,6 +41,9 @@ public class MainRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    HudState.torchHudDone(torchHud);
+    HudState.note1HudDone(note1Hud);
+    HudState.note2HudDone(note2Hud);
     // Initialization code goes here
   }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -46,9 +45,6 @@
          <image>
             <Image url="@../images/Torch.PNG" />
          </image>
-         <effect>
-            <ColorAdjust />
-         </effect>
       </ImageView>
       <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="327.0" layoutY="19.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
       <ImageView fx:id="note1Hud" fitHeight="49.0" fitWidth="74.0" layoutX="347.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
