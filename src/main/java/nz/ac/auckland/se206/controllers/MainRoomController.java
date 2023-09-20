@@ -32,10 +32,12 @@ public class MainRoomController {
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
   @FXML private Pane chatPane;
+  @FXML private Pane note1Pane;
   @FXML private TextArea catTextArea;
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
   @FXML private ImageView note2Hud;
+  @FXML private ImageView note1Return;
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
@@ -162,12 +164,18 @@ public class MainRoomController {
   @FXML
   public void clickNote1(MouseEvent event) {
     if (GameState.note1Found) {
-      switchToNote1();
+      note1Pane.setVisible(true);
     }
   }
 
-  private void switchToNote1() {
-    App.setUi(AppUi.NOTE1);
+  /**
+   * Handles the click event on the note1return.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote1Return(MouseEvent event) {
+    note1Pane.setVisible(false);
   }
 
   /**
