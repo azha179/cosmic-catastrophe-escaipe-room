@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
@@ -39,13 +40,21 @@ public class MemoryGameController {
 
   @FXML
   private void pressButton(MouseEvent event) {
-    System.out.println("press button");
+
     ImageView image = (ImageView) event.getTarget();
-    System.out.println(image);
+
+    ColorAdjust colorAdjust = new ColorAdjust();
+    colorAdjust.setHue(-0.4);
+    image.setEffect(colorAdjust);
   }
 
   @FXML
   private void releaseButton(MouseEvent event) {
-    System.out.println("release button");
+
+    ImageView image = (ImageView) event.getTarget();
+
+    ColorAdjust colorAdjust = new ColorAdjust();
+    colorAdjust.setHue(0);
+    image.setEffect(colorAdjust);
   }
 }
