@@ -11,7 +11,8 @@ public class SceneManager {
     MENU,
     MAIN_ROOM,
     ROCKET_INTERIOR,
-    PANTRY_INTERIOR
+    PANTRY_INTERIOR,
+    MEMORY_GAME
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

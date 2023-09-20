@@ -28,10 +28,14 @@ public class RocketController {
 
   @FXML
   public void clickTemp(MouseEvent event) {
-    System.out.println("click temp");
+    switchToMemoryGame();
   }
 
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
+  }
+
+  private void switchToMemoryGame() {
+    App.setUi(AppUi.MEMORY_GAME);
   }
 }

@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-public class PantryController {
+public class MemoryGameController {
 
   @FXML private ImageView back;
 
@@ -14,10 +14,10 @@ public class PantryController {
 
   @FXML
   public void clickBack(MouseEvent event) {
-    switchToRoom();
+    switchToRocket();
   }
 
-  private void switchToRoom() {
-    App.setUi(AppUi.MAIN_ROOM);
+  private void switchToRocket() {
+    App.setUi(AppUi.ROCKET_INTERIOR);
   }
 }
