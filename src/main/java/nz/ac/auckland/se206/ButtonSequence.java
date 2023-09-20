@@ -14,10 +14,6 @@ public class ButtonSequence {
       int randomInt = ThreadLocalRandom.current().nextInt(1, 17);
       correctSequence.add(randomInt);
     }
-
-    for (int val : correctSequence) {
-      System.out.println("its " + val);
-    }
   }
 
   public static void add(int num) {
