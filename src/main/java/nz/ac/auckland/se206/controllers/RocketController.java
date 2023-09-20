@@ -1,10 +1,14 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class RocketController {
@@ -37,5 +41,17 @@ public class RocketController {
 
   private void switchToMemoryGame() {
     App.setUi(AppUi.MEMORY_GAME);
+    // gives focus to memory game
+    Parent memoryGameScene = SceneManager.getAppUi(AppUi.MEMORY_GAME);
+    App.getScene().setRoot(memoryGameScene);
+    memoryGameScene.requestFocus();
+  }
+
+  @FXML
+  public void onPressKey(KeyEvent event) {
+
+    if (event.getCode() == KeyCode.ESCAPE) {
+      switchToRoom();
+    }
   }
 }

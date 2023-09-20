@@ -5,19 +5,25 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonSequence;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MemoryGameController {
 
+  @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView play;
   @FXML private Label text;
@@ -65,9 +71,21 @@ public class MemoryGameController {
 
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
+    // gives focus to memory game
+    Parent rocketScene = SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
+    App.getScene().setRoot(rocketScene);
+    rocketScene.requestFocus();
 
     // resets player sequence when exiting the memory game
     ButtonSequence.clear();
+  }
+
+  @FXML
+  public void onPressKey(KeyEvent event) {
+
+    if (event.getCode() == KeyCode.ESCAPE) {
+      switchToRocket();
+    }
   }
 
   @FXML
