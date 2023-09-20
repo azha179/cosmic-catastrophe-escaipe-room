@@ -73,17 +73,17 @@ public class HudState {
     ImageView image = (ImageView) (Node) event.getTarget();
     if ("torchHud".equals(image.getId())) {
       rectangle = torch;
-      if (GameState.torchHudDone()) {
+      if (GameState.torchHudDone() || (!GameState.torchFound)) {
         rectangle = null;
       }
     } else if ("note1Hud".equals(image.getId())) {
       rectangle = note1;
-      if (GameState.note1HudDone()) {
+      if (GameState.note1HudDone() || (!GameState.note1Found)) {
         rectangle = null;
       }
     } else if ("note2Hud".equals(image.getId())) {
       rectangle = note2;
-      if (GameState.note2HudDone()) {
+      if (GameState.note2HudDone() || (!GameState.note2Found)) {
         rectangle = null;
       }
     }

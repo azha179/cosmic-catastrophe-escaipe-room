@@ -42,11 +42,6 @@ public class MainRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    GameState.torchFound = true;
-    GameState.note1Found = true;
-    GameState.note2Found = true;
-    GameState.puzzle1 = true;
-    GameState.footprintsFound = true;
     HudState.torchHudDone(torchHud);
     HudState.note1HudDone(note1Hud);
     HudState.note2HudDone(note2Hud);
@@ -182,6 +177,7 @@ public class MainRoomController {
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
       HudState.highlightRectangle(rectangle);
+      onHoverInteractable(event);
     }
   }
 
@@ -191,6 +187,7 @@ public class MainRoomController {
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
       HudState.removeHighlightRectangle(rectangle);
+      onLeaveInteractable(event);
     }
   }
 
