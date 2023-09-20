@@ -1,8 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -21,7 +21,7 @@ public class MenuController {
   @FXML private Rectangle two;
   @FXML private Rectangle four;
   @FXML private Rectangle six;
-  @FXML private Button play;
+  @FXML private ImageView play;
   @FXML private Label difficulty;
   @FXML private Label timeLimit;
 
