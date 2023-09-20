@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +18,7 @@ public class MemoryGameController {
 
   @FXML private ImageView back;
   @FXML private ImageView play;
+  @FXML private Label text;
   @FXML private ImageView button1;
   @FXML private ImageView button2;
   @FXML private ImageView button3;
@@ -41,7 +43,7 @@ public class MemoryGameController {
     ButtonSequence.initialiseCorrectSequence();
 
     // assigns each button to values 1-16 respectively
-    initaliseUserData();
+    initialiseUserData();
   }
 
   @FXML
@@ -87,23 +89,20 @@ public class MemoryGameController {
     ButtonSequence.add(button);
   }
 
-  private void initaliseUserData() {
-    button1.setUserData("1");
-    button2.setUserData("2");
-    button3.setUserData("3");
-    button4.setUserData("4");
-    button5.setUserData("5");
-    button6.setUserData("6");
-    button7.setUserData("7");
-    button8.setUserData("8");
-    button9.setUserData("9");
-    button10.setUserData("10");
-    button11.setUserData("11");
-    button12.setUserData("12");
-    button13.setUserData("13");
-    button14.setUserData("14");
-    button15.setUserData("15");
-    button16.setUserData("16");
+  private void initialiseUserData() {
+    Field[] buttonFields = getClass().getDeclaredFields();
+
+    for (Field field : buttonFields) {
+      if (field.getName().startsWith("button")) {
+        try {
+          int buttonNumber = Integer.parseInt(field.getName().substring(6));
+          ImageView button = (ImageView) field.get(this);
+          button.setUserData(Integer.toString(buttonNumber));
+        } catch (IllegalAccessException | NumberFormatException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 
   private ImageView findButtonByUserData(int value) {
