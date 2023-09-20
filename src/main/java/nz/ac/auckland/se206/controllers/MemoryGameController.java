@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonSequence;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MemoryGameController {
@@ -51,30 +52,12 @@ public class MemoryGameController {
   @FXML
   public void clickPlay(MouseEvent event) {
 
-    // checking if the index is within the bounds of the sequence
-    if (sequenceIndex >= ButtonSequence.correctSequence.size()) {
-      sequenceIndex = 0;
+    if (GameState.isAnimationRunning) {
       return;
     }
-
-    int currentInteger = ButtonSequence.correctSequence.get(sequenceIndex);
-    ImageView button = findButtonByUserData(currentInteger);
-    setToGreen(button);
-
-    PauseTransition firstPause = new PauseTransition(Duration.seconds(0.6));
-    firstPause.setOnFinished(
-        (ActionEvent e) -> {
-          setToOriginal(button);
-          sequenceIndex++;
-
-          // checking if there are more integers to process
-          if (sequenceIndex < ButtonSequence.correctSequence.size()) {
-            PauseTransition secondPause = new PauseTransition(Duration.seconds(0.5));
-            secondPause.setOnFinished((ActionEvent event1) -> clickPlay(null));
-            secondPause.play();
-          }
-        });
-    firstPause.play();
+    sequenceIndex = 0;
+    // highlights the correct memory sequence recursively
+    highlightSequence();
   }
 
   private void switchToRocket() {
@@ -147,5 +130,29 @@ public class MemoryGameController {
     ColorAdjust colorAdjust = new ColorAdjust();
     colorAdjust.setHue(0);
     image.setEffect(colorAdjust);
+  }
+
+  private void highlightSequence() {
+
+    int currentInteger = ButtonSequence.correctSequence.get(sequenceIndex);
+    ImageView button = findButtonByUserData(currentInteger);
+    setToGreen(button);
+
+    PauseTransition firstPause = new PauseTransition(Duration.seconds(0.6));
+    firstPause.setOnFinished(
+        (ActionEvent e) -> {
+          setToOriginal(button);
+          sequenceIndex++;
+
+          if (sequenceIndex < ButtonSequence.correctSequence.size()) {
+            PauseTransition secondPause = new PauseTransition(Duration.seconds(0.5));
+            secondPause.setOnFinished((ActionEvent event1) -> highlightSequence());
+            secondPause.play();
+          } else {
+            GameState.isAnimationRunning = false;
+          }
+        });
+    GameState.isAnimationRunning = true;
+    firstPause.play();
   }
 }
