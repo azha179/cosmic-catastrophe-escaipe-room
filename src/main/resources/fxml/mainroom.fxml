@@ -82,7 +82,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="203.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" style="-fx-arc-width: 75; -fx-arc-height: 75;" width="286.0" />
             <TextArea fx:id="catTextArea" editable="false" layoutX="16.0" layoutY="8.0" prefHeight="184.0" prefWidth="255.0" wrapText="true">
                <font>
-                  <Font size="11.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </TextArea>
          </children>

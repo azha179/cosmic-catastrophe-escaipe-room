@@ -67,10 +67,8 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
-    // Hide sleeping cat
-    catImageSleep.setVisible(false);
-    // Show awake cat
-    catImageAwoken.setVisible(true);
+    // Disable cat
+    catImageSleep.setDisable(true);
 
     // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
@@ -108,6 +106,17 @@ public class MainRoomController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
+
+    // Wait 1 second
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    // Hide sleeping cat
+    catImageSleep.setVisible(false);
+    // Show awake cat
+    catImageAwoken.setVisible(true);
   }
 
   /**
