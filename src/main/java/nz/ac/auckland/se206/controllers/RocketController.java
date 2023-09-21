@@ -23,6 +23,7 @@ public class RocketController {
   @FXML private ImageView back;
   @FXML private ImageView cat;
   @FXML private ImageView temp;
+  @FXML private Rectangle leftMeowPad;
 
   // HUD Elements
   @FXML private ImageView torchHud;
@@ -70,6 +71,12 @@ public class RocketController {
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
   }
+
+  @FXML
+  public void onPressLeftMeowPad(MouseEvent event) {}
+
+  @FXML
+  public void onReleaseLeftMeowPad(MouseEvent event) {}
 
   /**
    * Handles the click event on the note1.

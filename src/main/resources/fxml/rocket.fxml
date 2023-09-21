@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
    <children>
@@ -83,6 +86,32 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="163.0" prefHeight="103.0" prefWidth="326.0" text="LAUNCH MANUAL" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Copperplate" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="246.0" prefHeight="46.0" prefWidth="326.0" text="HOLD THE MEOW PADS UNTIL THEY TURN ON" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Copperplate" size="21.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="191.0" prefHeight="46.0" prefWidth="326.0" text="rewritten by the engineers for dummies ~" textAlignment="CENTER" textFill="#9a9a9a" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="206.0" layoutY="346.0" prefHeight="76.0" prefWidth="241.0" text="engineer's notes - the right meow pad seems to be faulty. " textFill="#9a9a9a" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="note2Pane" layoutX="23.0" layoutY="22.0" prefHeight="543.0" prefWidth="737.0" visible="false">
@@ -114,5 +143,6 @@
             <Glow />
          </effect>
       </ImageView>
+      <Rectangle fx:id="leftMeowPad" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="34.0" layoutY="416.0" onMousePressed="#onPressLeftMeowPad" onMouseReleased="#onReleaseLeftMeowPad" opacity="0.0" rotate="156.7" stroke="BLACK" strokeType="INSIDE" width="70.0" />
    </children>
 </Pane>

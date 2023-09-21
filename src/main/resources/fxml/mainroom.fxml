@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -199,6 +201,32 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="157.0" prefHeight="103.0" prefWidth="326.0" text="LAUNCH MANUAL" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Copperplate" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="245.0" prefHeight="46.0" prefWidth="326.0" text="HOLD THE MEOW PADS UNTIL THEY TURN ON" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Copperplate" size="21.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="192.0" prefHeight="46.0" prefWidth="326.0" text="rewritten by the engineers for dummies ~" textAlignment="CENTER" textFill="#9a9a9a" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="215.0" layoutY="345.0" prefHeight="76.0" prefWidth="241.0" text="engineer's notes - the right meow pad seems to be faulty. " textFill="#9a9a9a" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="note2Pane" layoutX="13.0" layoutY="12.0" prefHeight="543.0" prefWidth="737.0" visible="false">
