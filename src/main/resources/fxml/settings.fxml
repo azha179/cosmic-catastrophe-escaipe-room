@@ -60,7 +60,7 @@
             <Font name="Copperplate" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="127.0" layoutY="292.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="95.0" text="Back">
+      <Button fx:id="backButton" layoutX="127.0" layoutY="292.0" mnemonicParsing="false" onMouseClicked="#onClickBack" prefHeight="55.0" prefWidth="95.0" text="Back">
          <font>
             <Font name="Copperplate" size="20.0" />
          </font>

@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class PantryController {
@@ -30,6 +31,7 @@ public class PantryController {
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView pantryImage;
+  @FXML private ImageView settingButton;
 
   public void initialize() {
     HudState.torchHudDone(torchHud);
@@ -96,6 +98,13 @@ public class PantryController {
   @FXML
   public void clickNote2Return(MouseEvent event) {
     note2Pane.setVisible(false);
+  }
+
+  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  @FXML
+  public void onClickSetting(MouseEvent event) {
+    App.setUi(AppUi.SETTING);
+    SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
   }
 
   @FXML

@@ -19,13 +19,20 @@ public class SceneManager {
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
+  // Keep track of the current scene (used for setting back button)
+  private static AppUi previousScene = null;
 
   public static void addAppUi(AppUi appUi, Parent parent) {
     sceneMap.put(appUi, parent);
   }
 
   public static Parent getAppUi(AppUi appUi) {
+    previousScene = appUi;
     return sceneMap.get(appUi);
+  }
+
+  public static AppUi getPreviousScene() {
+    return previousScene; // Get the current scene
   }
 
   // Hashmap to store FXML controllers

@@ -43,6 +43,7 @@ public class MainRoomController {
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
+  @FXML private ImageView settingButton;
 
   private ChatCompletionRequest chatCompletionRequest;
 
@@ -209,6 +210,13 @@ public class MainRoomController {
   @FXML
   public void clickNote2Return(MouseEvent event) {
     note2Pane.setVisible(false);
+  }
+
+  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  @FXML
+  public void onClickSetting(MouseEvent event) {
+    App.setUi(AppUi.SETTING);
+    SceneManager.getAppUi(AppUi.MAIN_ROOM);
   }
 
   @FXML
