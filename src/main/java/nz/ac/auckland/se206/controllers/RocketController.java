@@ -295,7 +295,8 @@ public class RocketController {
         event -> {
           rightMeowPadDragTimer.stop();
         });
-    
+  }
+
   /** Getter method for chatTextArea. */
   public TextArea getCatTextArea() {
     return catTextArea;
