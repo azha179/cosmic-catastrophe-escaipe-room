@@ -38,7 +38,7 @@ public class HudState {
 
   public static void updateTorchHud(ImageView image) {
     // toy and note 1 are found
-    if ((GameState.torchFound) && (GameState.footprintsFound)) {
+    if ((GameState.note1Found) && (GameState.toyFound)) {
       greyImage(image);
       image.setOpacity(0.33);
     }
