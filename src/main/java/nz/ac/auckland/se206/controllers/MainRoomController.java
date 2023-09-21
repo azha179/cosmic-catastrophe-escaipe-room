@@ -290,14 +290,13 @@ public class MainRoomController {
    */
   @FXML
   public void clickBush(MouseEvent event) {
-    System.out.println("bush clicked");
+
     // Update GameState
     GameState.note1Found = true;
 
     // disable bush
     bushImage.setDisable(true);
 
-    System.out.println("torchHud disabled");
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     torchHud.setImage(image);
@@ -317,6 +316,7 @@ public class MainRoomController {
     rocket.getHudElements().get(0).setDisable(true);
     pantry = (PantryController) SceneManager.getController("pantry");
     pantry.getHudElements().get(0).setDisable(true);
+    App.setUi(AppUi.BUSH);
   }
 
   /**
