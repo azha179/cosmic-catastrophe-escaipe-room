@@ -51,7 +51,7 @@
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="215.0" layoutY="15.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
       <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="225.0" layoutY="19.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="226.0" layoutY="22.0" onMouseDragEntered="#onMouseHub" onMouseDragExited="#offMouseHub" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="226.0" layoutY="22.0" onMouseClicked="#clickTorch" onMouseDragEntered="#onMouseHub" onMouseDragExited="#offMouseHub" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Torch.PNG" />
          </image>
@@ -131,101 +131,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane fx:id="footprintPane" layoutX="-8.0" layoutY="88.0" prefHeight="462.0" prefWidth="751.0">
-         <children>
-            <Pane fx:id="footprint1Pane" layoutX="163.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="85.2">
-               <children>
-                  <ImageView fx:id="footprint1Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint2Pane" layoutX="222.0" layoutY="389.0" prefHeight="56.0" prefWidth="33.0" rotate="95.2">
-               <children>
-                  <ImageView fx:id="footprint2Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint3Pane" layoutX="283.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="110.6">
-               <children>
-                  <ImageView fx:id="footprint3Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint4Pane" layoutX="351.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="90.0">
-               <children>
-                  <ImageView fx:id="footprint4Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint5Pane" layoutX="419.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="116.6">
-               <children>
-                  <ImageView fx:id="footprint5Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint6Pane" layoutX="484.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="53.1">
-               <children>
-                  <ImageView fx:id="footprint6Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint7Pane" layoutX="470.0" layoutY="347.0" prefHeight="56.0" prefWidth="33.0" rotate="-53.1">
-               <children>
-                  <ImageView fx:id="footprint7Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint8Pane" layoutX="408.0" layoutY="325.0" prefHeight="56.0" prefWidth="33.0" rotate="-85.6">
-               <children>
-                  <ImageView fx:id="footprint8Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint9Pane" layoutX="333.0" layoutY="325.0" prefHeight="56.0" prefWidth="33.0" rotate="-78.1">
-               <children>
-                  <ImageView fx:id="footprint9Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="footprint10Pane" layoutX="270.0" layoutY="303.0" prefHeight="56.0" prefWidth="33.0" rotate="-58.0">
-               <children>
-                  <ImageView fx:id="footprint10Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" rotate="16.7" visible="false">
-                     <image>
-                        <Image url="@../images/PawprintImage.PNG" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <ImageView fx:id="torchImage" fitHeight="32.0" fitWidth="38.0" layoutX="63.0" layoutY="496.0" onMouseClicked="#clickTorch" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="torchImage" fitHeight="32.0" fitWidth="38.0" layoutX="97.0" layoutY="497.0" onMouseClicked="#clickTorchGround" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Torch.PNG" />
          </image>
@@ -233,5 +139,64 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Pane fx:id="footprintPane" layoutX="-8.0" layoutY="88.0" prefHeight="462.0" prefWidth="751.0" visible="false">
+         <children>
+            <ImageView fx:id="footprint1Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="153.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="115.2">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint2Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="213.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="93.8">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint3Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="272.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="105.9">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint4Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="333.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="110.0">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint5Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="395.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="113.6">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint6Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="457.0" layoutY="411.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="123.7">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint7Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="513.0" layoutY="398.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="18.4">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint8Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="474.0" layoutY="350.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-47.7">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint9Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="406.0" layoutY="333.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-74.9">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint10Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="344.0" layoutY="320.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-60.3">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint11Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="273.0" layoutY="292.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-67.4">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </Pane>

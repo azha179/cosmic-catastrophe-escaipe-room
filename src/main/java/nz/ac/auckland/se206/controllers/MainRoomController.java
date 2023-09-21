@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -38,16 +39,6 @@ public class MainRoomController {
 
   // Puzzle 1 Elements
   @FXML private Pane footprintPane;
-  @FXML private Pane footprint1Pane;
-  @FXML private Pane footprint2Pane;
-  @FXML private Pane footprint3Pane;
-  @FXML private Pane footprint4Pane;
-  @FXML private Pane footprint5Pane;
-  @FXML private Pane footprint6Pane;
-  @FXML private Pane footprint7Pane;
-  @FXML private Pane footprint8Pane;
-  @FXML private Pane footprint9Pane;
-  @FXML private Pane footprint10Pane;
   @FXML private ImageView footprint1Image;
   @FXML private ImageView footprint2Image;
   @FXML private ImageView footprint3Image;
@@ -58,6 +49,7 @@ public class MainRoomController {
   @FXML private ImageView footprint8Image;
   @FXML private ImageView footprint9Image;
   @FXML private ImageView footprint10Image;
+  @FXML private ImageView footprint11Image;
 
   @FXML private ImageView bushImage;
   @FXML private ImageView torchImage;
@@ -192,17 +184,38 @@ public class MainRoomController {
   }
 
   /**
-   * Handles the click event on the torch.
+   * Handles the click event on the torch on ground.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickTorchGround(MouseEvent event) {
+    System.out.println("torch ground clicked");
+    // Update GameState
+    GameState.torchFound = true;
+    HudState.torchHudDone(torchHud);
+    // Hide torch
+    torchImage.setVisible(false);
+  }
+
+  /**
+   * Handles the click event on the torch in HUD.
    *
    * @param event the mouse event
    */
   @FXML
   public void clickTorch(MouseEvent event) {
-    System.out.println("torch clicked");
-    GameState.torchFound = true;
-    HudState.torchHudDone(torchHud);
-    // Hide torch
-    torchImage.setVisible(false);
+    System.out.println("torch hud clicked");
+    // Check game state
+    if (GameState.torchFound && !GameState.footprintsFound) {
+      // Change image
+      Image image = new Image("images/Torchlit.png");
+      torchHud.setImage(image);
+      // Show footprints pane
+      footprintPane.setVisible(true);
+      // Enable first footprint
+      footprint1Image.setDisable(false);
+    }
   }
 
   /**
@@ -213,6 +226,26 @@ public class MainRoomController {
   @FXML
   public void clickBush(MouseEvent event) {
     System.out.println("bush clicked");
+  }
+
+  /**
+   * Handles the hover event on the footprints.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void hoverFootprints(MouseEvent event) {
+    System.out.println("footprints hovered");
+  }
+
+  /**
+   * Handles the unhover event on the footprints.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void unhoverFootprints(MouseEvent event) {
+    System.out.println("footprints unhovered");
   }
 
   /**
