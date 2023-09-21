@@ -90,7 +90,7 @@
       <Pane fx:id="note1Pane" layoutX="3.0" layoutY="2.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="363.0" fitWidth="365.0" layoutX="201.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="108.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note1Screen.PNG" />
                </image>
@@ -108,7 +108,7 @@
       <Pane fx:id="note2Pane" layoutX="13.0" layoutY="12.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="363.0" fitWidth="365.0" layoutX="201.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="115.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note2Screen.PNG" />
                </image>
