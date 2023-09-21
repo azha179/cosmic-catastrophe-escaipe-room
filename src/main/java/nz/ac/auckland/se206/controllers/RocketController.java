@@ -63,6 +63,9 @@ public class RocketController {
 
     initialiseLeftMeowPad();
     initialiseRightMeowPad();
+
+    memoryGameRectangle.setDisable(true);
+    memoryGameRectangle.setVisible(false);
   }
 
   public ArrayList<ImageView> getHudElements() {
@@ -108,15 +111,19 @@ public class RocketController {
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
+      memoryGameRectangle.setDisable(false);
+      memoryGameRectangle.setVisible(true);
     }
   }
 
   private void handleLeftMeowPadActivation() {
-    System.out.println("left Meow pad held for 3 seconds!");
+    System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
+      memoryGameRectangle.setDisable(false);
+      memoryGameRectangle.setVisible(true);
     }
   }
 
@@ -235,7 +242,7 @@ public class RocketController {
     leftMeowPadPressTimer =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(3),
+                Duration.seconds(2),
                 new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
