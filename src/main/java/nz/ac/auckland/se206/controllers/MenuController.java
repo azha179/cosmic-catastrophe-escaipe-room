@@ -33,6 +33,7 @@ public class MenuController {
   @FXML private Label sixText;
   @FXML private ImageView play;
   @FXML private Label playText;
+  @FXML private ImageView settingButton;
 
   GameDifficulty setRectangle;
   GameDifficulty currentDifficulty;
@@ -85,6 +86,11 @@ public class MenuController {
     if (GameSettings.difficulty != null && GameSettings.timeLimit != null) {
       switchToRoom();
     }
+  }
+
+  @FXML
+  public void onClickSetting(MouseEvent event) {
+    App.setUi(AppUi.SETTING);
   }
 
   @FXML

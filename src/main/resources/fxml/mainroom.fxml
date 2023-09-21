@@ -43,11 +43,17 @@
          <image>
             <Image url="@../images/AwokenCat.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="WAIT" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="542.0" layoutY="307.0" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/NeutralCat.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="215.0" layoutY="15.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
       <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="225.0" layoutY="19.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />

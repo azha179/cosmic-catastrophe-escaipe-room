@@ -14,7 +14,8 @@ public class SceneManager {
     PANTRY_INTERIOR,
     NOTE1,
     NOTE2,
-    MEMORY_GAME
+    MEMORY_GAME,
+    SETTING
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
