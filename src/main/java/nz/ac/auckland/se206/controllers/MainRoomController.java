@@ -227,6 +227,12 @@ public class MainRoomController {
   public void clickTorch(MouseEvent event) {
     System.out.println("torch hud clicked");
     // Check game state
+    if (GameState.puzzle1) {
+      // disable the ability to click torchhud
+      torchHud.setDisable(true);
+
+      return;
+    }
     if (!GameState.isTorchOn) { // when torch is being turned on
       // Update GameState
       GameState.isTorchOn = true;
@@ -255,7 +261,9 @@ public class MainRoomController {
       // set lastFootprint to 0
       lastFootprint = 0;
     } else if (GameState.isTorchOn
-        && GameState.footprintsFound) { // when torch is being turned off and footprints found
+        && GameState
+            .footprintsFound) { // when torch is being turned off and footprints found (but bush not
+      // clicked)
       // Update GameState
       GameState.isTorchOn = false;
       // Change image
@@ -263,8 +271,6 @@ public class MainRoomController {
       torchHud.setImage(image);
       // Hide footprints pane
       footprintPane.setVisible(false);
-      // Update torch hud
-      HudState.torchHudDone(torchHud);
     }
   }
 
@@ -278,7 +284,23 @@ public class MainRoomController {
     System.out.println("bush clicked");
     // Update GameState
     GameState.puzzle1 = true;
+    GameState.note1Found = true;
+
+    // disable bush
+    bushImage.setDisable(true);
+
+    System.out.println("torchHud disabled");
+    // change image of torchhud
+    Image image = new Image("images/Torch.png");
+    torchHud.setImage(image);
+    // hide footprints pane
+    footprintPane.setVisible(false);
+
     HudState.torchHudDone(torchHud);
+    HudState.note1HudDone(note1Hud);
+
+    // disable torchHud
+    torchHud.setDisable(true);
   }
 
   /**
