@@ -28,4 +28,6 @@ public class GameState {
   public static boolean isMemoryGameResolved = false;
 
   public static boolean isRecipeResolved = false;
+
+  public static boolean isTorchOn = false;
 }
