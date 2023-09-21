@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-
-<?import javafx.scene.effect.Glow?>
-
 <?import javafx.scene.control.Label?>
-
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -55,43 +52,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-
-      <Pane fx:id="note1Pane" layoutX="23.0" layoutY="22.0" prefHeight="543.0" prefWidth="737.0" visible="false">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="108.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/note1Screen.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="note1Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote1Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Back.PNG" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="note2Pane" layoutX="33.0" layoutY="32.0" prefHeight="543.0" prefWidth="737.0" visible="false">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="115.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/note2Screen.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="note2Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote2Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Back.PNG" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-         </children>
-      </Pane>
       <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="27.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Settings.PNG" />
@@ -263,6 +223,43 @@
             <Font size="27.0" />
          </font>
       </Label>
+      <Pane fx:id="note2Pane" layoutX="33.0" layoutY="32.0" prefHeight="543.0" prefWidth="737.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="115.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/note2Screen.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="note2Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote2Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Back.PNG" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+
+      <Pane fx:id="note1Pane" layoutX="23.0" layoutY="22.0" prefHeight="543.0" prefWidth="737.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="108.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/note1Screen.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="note1Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote1Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Back.PNG" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
 
    </children>
 </Pane>
