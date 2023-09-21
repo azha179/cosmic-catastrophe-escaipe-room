@@ -24,6 +24,11 @@ public class App extends Application {
     scene.setRoot(loadFxml(fxml));
   }
 
+  /**
+   * Sets the root of the scene to the input node.
+   *
+   * @param newUi
+   */
   public static void setUi(AppUi newUi) {
     scene.setRoot(SceneManager.getAppUi(newUi));
   }
@@ -41,7 +46,11 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   private static Parent loadFxml(final String fxml) throws IOException {
-    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+    Parent node = loader.load();
+    // Get the controller associated to the FXML file and add it SceneManager
+    SceneManager.addController(fxml, loader.getController());
+    return node;
   }
 
   /**
@@ -62,6 +71,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.NOTE2, loadFxml("note2"));
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 740, 550);
 
+    scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
     stage.setTitle("Game");
     stage.setScene(scene);
     stage.setResizable(false);
