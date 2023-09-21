@@ -75,6 +75,9 @@ public class PantryController {
   @FXML
   public void clickIngredient(MouseEvent event) {
     ImageView ingredient = (ImageView) event.getTarget();
+    if (FoodRecipe.playerRecipe.contains(ingredient) || GameState.isRecipeResolved) {
+      return;
+    }
     FoodRecipe.playerRecipe.add(ingredient);
     count.setText(FoodRecipe.playerRecipe.size() + "/3");
 
