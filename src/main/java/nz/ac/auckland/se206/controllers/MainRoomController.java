@@ -282,7 +282,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickBush(MouseEvent event) {
-    System.out.println("bush clicked");
+
     // Update GameState
     GameState.puzzle1 = true;
     GameState.note1Found = true;
@@ -290,7 +290,6 @@ public class MainRoomController {
     // disable bush
     bushImage.setDisable(true);
 
-    System.out.println("torchHud disabled");
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     torchHud.setImage(image);
@@ -302,6 +301,7 @@ public class MainRoomController {
 
     // disable torchHud
     torchHud.setDisable(true);
+    App.setUi(AppUi.BUSH);
   }
 
   /**
