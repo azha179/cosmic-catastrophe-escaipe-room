@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
@@ -236,6 +238,23 @@ public class MainRoomController {
   @FXML
   public void hoverFootprints(MouseEvent event) {
     System.out.println("footprints hovered");
+    // get the image that was hovered
+    ImageView image = (ImageView) (Node) event.getTarget();
+
+    // Fade transition
+    FadeTransition ft = new FadeTransition(Duration.millis(150), image);
+
+    // set the transition to change opacity from 0 to 1
+    // if fxid is footprint1Image, set to 0.33
+    if (image.getId().equals("footprint1Image")) {
+      ft.setFromValue(0.33);
+    } else {
+      ft.setFromValue(0);
+    }
+    ft.setToValue(1);
+
+    // play the transition
+    ft.play();
   }
 
   /**
@@ -246,6 +265,23 @@ public class MainRoomController {
   @FXML
   public void unhoverFootprints(MouseEvent event) {
     System.out.println("footprints unhovered");
+    // get the image that was hovered
+    ImageView image = (ImageView) (Node) event.getTarget();
+
+    // Fade transition
+    FadeTransition ft = new FadeTransition(Duration.millis(150), image);
+
+    // set the transition to change opacity from 1 to 0
+    ft.setFromValue(1);
+    // if fxid is footprint1Image, set to 0.33
+    if (image.getId().equals("footprint1Image")) {
+      ft.setToValue(0.33);
+    } else {
+      ft.setToValue(0);
+    }
+
+    // play the transition
+    ft.play();
   }
 
   /**

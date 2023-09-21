@@ -141,57 +141,57 @@
       </ImageView>
       <Pane fx:id="footprintPane" layoutX="-8.0" layoutY="88.0" prefHeight="462.0" prefWidth="751.0" visible="false">
          <children>
-            <ImageView fx:id="footprint1Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="153.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="115.2">
+            <ImageView fx:id="footprint1Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="153.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.33" pickOnBounds="true" preserveRatio="true" rotate="115.2">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint2Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="213.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="93.8">
+            <ImageView fx:id="footprint2Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="213.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="93.8">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint3Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="272.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="105.9">
+            <ImageView fx:id="footprint3Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="272.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="105.9">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint4Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="333.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="110.0">
+            <ImageView fx:id="footprint4Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="333.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="110.0">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint5Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="395.0" layoutY="399.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="113.6">
+            <ImageView fx:id="footprint5Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="395.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="113.6">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint6Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="457.0" layoutY="411.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="123.7">
+            <ImageView fx:id="footprint6Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="457.0" layoutY="411.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="123.7">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint7Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="513.0" layoutY="398.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="18.4">
+            <ImageView fx:id="footprint7Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="513.0" layoutY="398.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="18.4">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint8Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="474.0" layoutY="350.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-47.7">
+            <ImageView fx:id="footprint8Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="474.0" layoutY="350.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-47.7">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint9Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="406.0" layoutY="333.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-74.9">
+            <ImageView fx:id="footprint9Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="406.0" layoutY="333.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-74.9">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint10Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="344.0" layoutY="320.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-60.3">
+            <ImageView fx:id="footprint10Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="344.0" layoutY="320.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-60.3">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="footprint11Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="273.0" layoutY="292.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-67.4">
+            <ImageView fx:id="footprint11Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="273.0" layoutY="292.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-67.4">
                <image>
                   <Image url="@../images/PawprintImage.PNG" />
                </image>
