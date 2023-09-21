@@ -42,7 +42,8 @@ public class MainRoomController {
   @FXML private Pane chatPane;
   @FXML private TextArea catTextArea;
   @FXML private TextField replyTextField;
-  @FXML private ImageView replyButton;
+  @FXML private ImageView replyImage;
+  @FXML private Rectangle replyRectangle;
 
   // Puzzle 1 Elements
   @FXML private Pane footprintPane;
@@ -145,14 +146,18 @@ public class MainRoomController {
 
             Platform.runLater(
                 () -> {
-                  // Append chat message to device text area
-                  GptActions.appendChatMessage(chatMessage, catTextArea);
+                  // Set chat message to device text area
+                  GptActions.setChatMessage(chatMessage, catTextArea);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Hide catImageAwoken
                   catImageAwoken.setVisible(false);
                   // Show catImageActive
                   catImageActive.setVisible(true);
+                  // Show reply area
+                  replyTextField.setVisible(true);
+                  replyImage.setVisible(true);
+                  replyRectangle.setVisible(true);
                 });
 
             return null;
@@ -186,6 +191,10 @@ public class MainRoomController {
   @FXML
   public void clickCatActive(MouseEvent event) {
     System.out.println("cat clicked");
+    // Show/Hide reply area
+    replyTextField.setVisible(!replyTextField.isVisible());
+    replyImage.setVisible(!replyImage.isVisible());
+    replyRectangle.setVisible(!replyRectangle.isVisible());
   }
 
   /**
@@ -196,6 +205,37 @@ public class MainRoomController {
   @FXML
   public void clickReply(MouseEvent event) {
     System.out.println("reply clicked");
+    String message = replyTextField.getText();
+    if (message.trim().isEmpty()) {
+      return;
+    }
+    // clear reply text field
+    replyTextField.clear();
+    // Disable reply button
+    replyImage.setDisable(true);
+    // Task for calling GPT
+    Task<Void> replyTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            ChatMessage msg = new ChatMessage("user", message);
+            ChatMessage lastMsg = GptActions.runGpt(msg, chatCompletionRequest);
+
+            Platform.runLater(
+                () -> {
+                  // Set chat message to device text area
+                  GptActions.setChatMessage(lastMsg, catTextArea);
+                  // Enable reply button
+                  replyImage.setDisable(false);
+                });
+
+            return null;
+          }
+        };
+
+    Thread replyThread = new Thread(replyTask);
+    replyThread.start();
   }
 
   /**

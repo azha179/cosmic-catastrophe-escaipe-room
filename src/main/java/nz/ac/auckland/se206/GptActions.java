@@ -19,6 +19,16 @@ public class GptActions {
   }
 
   /**
+   * Set message to the a text area.
+   *
+   * @param msg the message to set
+   * @param textArea the text area to set
+   */
+  public static void setChatMessage(ChatMessage msg, javafx.scene.control.TextArea textArea) {
+    textArea.setText(msg.getContent());
+  }
+
+  /**
    * Runs the GPT model with a given chat message.
    *
    * @param msg the chat message to process
