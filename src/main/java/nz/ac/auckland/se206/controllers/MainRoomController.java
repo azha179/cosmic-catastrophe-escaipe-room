@@ -125,6 +125,10 @@ public class MainRoomController {
     System.out.println("cat first clicked");
     // Disable cat
     catImageSleep.setDisable(true);
+    // Hide sleeping cat
+    catImageSleep.setVisible(false);
+    // Show awake cat
+    catImageAwoken.setVisible(true);
 
     // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
@@ -158,6 +162,13 @@ public class MainRoomController {
                   replyTextField.setVisible(true);
                   replyImage.setVisible(true);
                   replyRectangle.setVisible(true);
+                  // Change catImageSleep mouse click event to clickCatSleep
+                  catImageSleep.setOnMouseClicked(
+                      event -> {
+                        clickCatSleep(event);
+                      });
+                  // Enable cat
+                  catImageSleep.setDisable(false);
                 });
 
             return null;
@@ -166,11 +177,6 @@ public class MainRoomController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
-
-    // Hide sleeping cat
-    catImageSleep.setVisible(false);
-    // Show awake cat
-    catImageAwoken.setVisible(true);
   }
 
   /**
@@ -184,6 +190,24 @@ public class MainRoomController {
   }
 
   /**
+   * Handles the click event on sleeping cat.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickCatSleep(MouseEvent event) {
+    System.out.println("cat clicked");
+    // Hide sleeping cat
+    catImageSleep.setVisible(false);
+    // Show active cat
+    catImageActive.setVisible(true);
+    // Show/Hide chat pane
+    chatPane.setVisible(!chatPane.isVisible());
+    // Show/Hide reply area
+    toggleReplyArea();
+  }
+
+  /**
    * Handles the click event on active cat.
    *
    * @param event the mouse event
@@ -191,6 +215,18 @@ public class MainRoomController {
   @FXML
   public void clickCatActive(MouseEvent event) {
     System.out.println("cat clicked");
+    // Hide active cat
+    catImageActive.setVisible(false);
+    // Show sleeping cat
+    catImageSleep.setVisible(true);
+    // Show/Hide reply area
+    toggleReplyArea();
+    // Show/Hide chat pane
+    chatPane.setVisible(!chatPane.isVisible());
+  }
+
+  /** Method to toggle visibility of the reply area. */
+  public void toggleReplyArea() {
     // Show/Hide reply area
     replyTextField.setVisible(!replyTextField.isVisible());
     replyImage.setVisible(!replyImage.isVisible());
@@ -213,6 +249,18 @@ public class MainRoomController {
     replyTextField.clear();
     // Disable reply button
     replyImage.setDisable(true);
+    replyImage.setOpacity(0.5);
+
+    // Update cat image to thinking
+    Image image = new Image("images/ThinkingCat.png");
+    catImageActive.setImage(image);
+    // Disable cat image
+    catImageActive.setDisable(true);
+    // hide current chat pane
+    chatPane.setVisible(false);
+    // hide reply area
+    toggleReplyArea();
+
     // Task for calling GPT
     Task<Void> replyTask =
         new Task<Void>() {
@@ -228,6 +276,16 @@ public class MainRoomController {
                   GptActions.setChatMessage(lastMsg, catTextArea);
                   // Enable reply button
                   replyImage.setDisable(false);
+                  replyImage.setOpacity(1);
+                  // Show chat pane
+                  chatPane.setVisible(true);
+                  // Update cat image to active
+                  Image image = new Image("images/NeutralCat.png");
+                  catImageActive.setImage(image);
+                  // Enable cat image
+                  catImageActive.setDisable(false);
+                  // Show reply area
+                  toggleReplyArea();
                 });
 
             return null;
