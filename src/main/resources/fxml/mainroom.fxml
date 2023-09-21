@@ -245,6 +245,19 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="157.0" prefHeight="25.0" prefWidth="373.0" text="ENGINEER'S SCRAPBOOK" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Copperplate" size="27.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="198.0" layoutY="242.0" prefHeight="76.0" prefWidth="255.0" text="we've still yet fixed the right meow pad but we notice it detects movement" textFill="#9a9a9a" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
          </children>
       </Pane>
       <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="669.0" layoutY="24.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
