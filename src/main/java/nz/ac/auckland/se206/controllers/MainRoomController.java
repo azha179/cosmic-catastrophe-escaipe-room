@@ -31,6 +31,7 @@ public class MainRoomController {
   @FXML private ImageView catImageActive;
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
+  @FXML private ImageView bushImage;
   @FXML private Pane chatPane;
   @FXML private Pane note1Pane;
   @FXML private Pane note2Pane;
@@ -107,12 +108,6 @@ public class MainRoomController {
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
 
-    // Wait 1 second
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
     // Hide sleeping cat
     catImageSleep.setVisible(false);
     // Show awake cat
@@ -165,6 +160,16 @@ public class MainRoomController {
     Parent pantryScene = SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
     App.getScene().setRoot(pantryScene);
     pantryScene.requestFocus();
+  }
+
+  /**
+   * Handles the click event on the bush.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickBush(MouseEvent event) {
+    System.out.println("bush clicked");
   }
 
   /**
