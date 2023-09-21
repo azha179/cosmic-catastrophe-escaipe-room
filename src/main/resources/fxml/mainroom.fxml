@@ -135,7 +135,7 @@
          <children>
             <Pane fx:id="footprint1Pane" layoutX="163.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="85.2">
                <children>
-                  <ImageView fx:id="footprint1Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint1Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -144,7 +144,7 @@
             </Pane>
             <Pane fx:id="footprint2Pane" layoutX="222.0" layoutY="389.0" prefHeight="56.0" prefWidth="33.0" rotate="95.2">
                <children>
-                  <ImageView fx:id="footprint2Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint2Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -153,7 +153,7 @@
             </Pane>
             <Pane fx:id="footprint3Pane" layoutX="283.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="110.6">
                <children>
-                  <ImageView fx:id="footprint3Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint3Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -162,7 +162,7 @@
             </Pane>
             <Pane fx:id="footprint4Pane" layoutX="351.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="90.0">
                <children>
-                  <ImageView fx:id="footprint4Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint4Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -171,7 +171,7 @@
             </Pane>
             <Pane fx:id="footprint5Pane" layoutX="419.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="116.6">
                <children>
-                  <ImageView fx:id="footprint5Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint5Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -180,7 +180,7 @@
             </Pane>
             <Pane fx:id="footprint6Pane" layoutX="484.0" layoutY="396.0" prefHeight="56.0" prefWidth="33.0" rotate="53.1">
                <children>
-                  <ImageView fx:id="footprint6Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint6Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -189,7 +189,7 @@
             </Pane>
             <Pane fx:id="footprint7Pane" layoutX="470.0" layoutY="347.0" prefHeight="56.0" prefWidth="33.0" rotate="-53.1">
                <children>
-                  <ImageView fx:id="footprint7Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint7Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -198,7 +198,7 @@
             </Pane>
             <Pane fx:id="footprint8Pane" layoutX="408.0" layoutY="325.0" prefHeight="56.0" prefWidth="33.0" rotate="-85.6">
                <children>
-                  <ImageView fx:id="footprint8Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint8Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -207,7 +207,7 @@
             </Pane>
             <Pane fx:id="footprint9Pane" layoutX="333.0" layoutY="325.0" prefHeight="56.0" prefWidth="33.0" rotate="-78.1">
                <children>
-                  <ImageView fx:id="footprint9Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="footprint9Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -216,7 +216,7 @@
             </Pane>
             <Pane fx:id="footprint10Pane" layoutX="270.0" layoutY="303.0" prefHeight="56.0" prefWidth="33.0" rotate="-58.0">
                <children>
-                  <ImageView fx:id="footprint10Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" rotate="16.7">
+                  <ImageView fx:id="footprint10Image" fitHeight="86.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" rotate="16.7" visible="false">
                      <image>
                         <Image url="@../images/PawprintImage.PNG" />
                      </image>
@@ -225,5 +225,13 @@
             </Pane>
          </children>
       </Pane>
+      <ImageView fx:id="torchImage" fitHeight="32.0" fitWidth="38.0" layoutX="63.0" layoutY="496.0" onMouseClicked="#clickTorch" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Torch.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

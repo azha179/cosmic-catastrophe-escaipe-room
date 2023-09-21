@@ -60,6 +60,7 @@ public class MainRoomController {
   @FXML private ImageView footprint10Image;
 
   @FXML private ImageView bushImage;
+  @FXML private ImageView torchImage;
 
   // HUD Elements
   @FXML private ImageView torchHud;
@@ -77,10 +78,10 @@ public class MainRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    GameState.torchFound = true;
-    GameState.footprintsFound = true;
-    GameState.puzzle1 = true;
-    GameState.note1Found = true;
+    // GameState.torchFound = true;
+    // GameState.footprintsFound = true;
+    // GameState.puzzle1 = true;
+    // GameState.note1Found = true;
     GameState.note2Found = true;
     HudState.torchHudDone(torchHud);
     HudState.note1HudDone(note1Hud);
@@ -188,6 +189,20 @@ public class MainRoomController {
     Parent pantryScene = SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
     App.getScene().setRoot(pantryScene);
     pantryScene.requestFocus();
+  }
+
+  /**
+   * Handles the click event on the torch.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickTorch(MouseEvent event) {
+    System.out.println("torch clicked");
+    GameState.torchFound = true;
+    HudState.torchHudDone(torchHud);
+    // Hide torch
+    torchImage.setVisible(false);
   }
 
   /**
