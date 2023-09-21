@@ -75,7 +75,6 @@ public class MainRoomController {
   @FXML private ImageView settingButton;
   private ArrayList<ImageView> hudElements;
 
-  private ChatCompletionRequest chatCompletionRequest;
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
   // Index of last footprint that was enabled
@@ -104,6 +103,7 @@ public class MainRoomController {
     footprints.add(footprint11Image);
     lastFootprint = 0;
 
+    // Unfocus replyTextField when room is clicked
     room.setOnMouseClicked(
         event -> {
           if (replyTextField.isFocused()) {
@@ -138,7 +138,7 @@ public class MainRoomController {
           // Call GPT
           @Override
           protected Void call() throws Exception {
-            chatCompletionRequest =
+            App.chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.2)
@@ -148,7 +148,7 @@ public class MainRoomController {
             chatMessage =
                 GptActions.runGpt(
                     new ChatMessage("user", GptPromptEngineering.getIntroductionMessage()),
-                    chatCompletionRequest);
+                    App.chatCompletionRequest);
 
             Platform.runLater(
                 () -> {
@@ -267,6 +267,28 @@ public class MainRoomController {
   @FXML
   public void clickReply(MouseEvent event) {
     System.out.println("reply clicked");
+    // call reply method
+    reply();
+  }
+
+  /**
+   * Handles the key press event on the reply text field.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onPressKeyReply(KeyEvent event) {
+    //
+    // Check if enter key is pressed
+    if (event.getCode().toString().equals("ENTER")) {
+      System.out.println("enter pressed");
+      // call reply method
+      reply();
+    }
+  }
+
+  // Method for replying
+  public void reply() {
     String message = replyTextField.getText();
     if (message.trim().isEmpty()) {
       return;
@@ -294,7 +316,7 @@ public class MainRoomController {
           @Override
           protected Void call() throws Exception {
             ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, chatCompletionRequest);
+            ChatMessage lastMsg = GptActions.runGpt(msg, App.chatCompletionRequest);
 
             Platform.runLater(
                 () -> {
@@ -320,20 +342,6 @@ public class MainRoomController {
 
     Thread replyThread = new Thread(replyTask);
     replyThread.start();
-  }
-
-  /**
-   * Handles the key press event on the reply text field.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onPressKeyReply(KeyEvent event) {
-    //
-    // Check if enter key is pressed
-    if (event.getCode().toString().equals("ENTER")) {
-      System.out.println("enter pressed");
-    }
   }
 
   /**

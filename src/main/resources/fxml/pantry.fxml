@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -212,6 +214,65 @@
             <Font size="27.0" />
          </font>
       </Label>
+      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="27.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Settings.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="497.0" layoutY="393.0" onMouseClicked="#clickCatSleep" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/SleepingCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="catImageAwoken" fitHeight="173.0" fitWidth="205.0" layoutX="498.0" layoutY="337.0" onMouseClicked="#clickCatAwoken" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/AwokenCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="554.0" layoutY="347.0" onMouseClicked="#clickCatActive" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/NeutralCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="chatPane" layoutX="454.0" layoutY="147.0" prefHeight="200.0" prefWidth="288.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="203.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" style="-fx-arc-width: 75; -fx-arc-height: 75;" width="286.0" />
+            <TextArea fx:id="catTextArea" editable="false" layoutX="16.0" layoutY="8.0" prefHeight="184.0" prefWidth="255.0" wrapText="true">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </TextArea>
+         </children>
+      </Pane>
+      <Rectangle fx:id="replyRectangle" arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="-1.0" layoutY="520.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="746.0" />
+      <TextField fx:id="replyTextField" layoutX="8.0" layoutY="524.0" onKeyPressed="#onPressKeyReply" prefHeight="25.0" prefWidth="657.0" promptText="Reply to cat here" visible="false">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="replyImage" fitHeight="69.0" fitWidth="49.0" layoutX="683.0" layoutY="512.0" onMouseClicked="#clickReply" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/send.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
       <Pane fx:id="note2Pane" layoutX="3.0" layoutY="5.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="560.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
@@ -249,17 +310,6 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="27.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Settings.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Glow />
-         </effect>
-      </ImageView>
 
    </children>
 </Pane>
