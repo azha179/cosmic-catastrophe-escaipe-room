@@ -57,13 +57,11 @@ public class PantryController {
 
     storeIngredients();
 
-    for (ImageView ingredient : FoodRecipe.baseIngredient) {
+    FoodRecipe.initialiseDesiredRecipe();
+
+    for (ImageView ingredient : FoodRecipe.desiredRecipe) {
       System.out.println(
-          "Base ingredient = " + ingredient + " user data is " + ingredient.getUserData());
-    }
-    for (ImageView ingredient : FoodRecipe.prefixIngredient) {
-      System.out.println(
-          "Prefix ingredient = " + ingredient + " user data is " + ingredient.getUserData());
+          "ingredient is " + ingredient + " and user data is " + ingredient.getUserData());
     }
   }
 
