@@ -1,6 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
@@ -51,6 +56,15 @@ public class RocketController {
 
   @FXML private ImageView settingButton;
   @FXML private Rectangle memoryGameRectangle;
+  @FXML private Rectangle leftMeowPad;
+  @FXML private Rectangle rightMeowPad;
+
+  private boolean isLeftMeowPadPressed = false;
+  private Timeline leftMeowPadPressTimer;
+
+  private Timeline rightMeowPadDragTimer;
+  private long rightMeowPadDragStartTime;
+  private final long RIGHT_MEOW_PAD_DRAG_THRESHOLD = 3000;
 
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
@@ -58,6 +72,12 @@ public class RocketController {
     hudElements.add(note1Hud);
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
+
+    initialiseLeftMeowPad();
+    initialiseRightMeowPad();
+
+    memoryGameRectangle.setDisable(true);
+    memoryGameRectangle.setVisible(false);
   }
 
   public ArrayList<ImageView> getHudElements() {
@@ -81,6 +101,42 @@ public class RocketController {
 
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
+  }
+
+  @FXML
+  public void onPressLeftMeowPad(MouseEvent event) {
+    if (!isLeftMeowPadPressed && !GameState.isLeftMeowPadActivated) {
+      leftMeowPadPressTimer.play();
+      isLeftMeowPadPressed = true;
+    }
+  }
+
+  @FXML
+  public void onReleaseLeftMeowPad(MouseEvent event) {
+    leftMeowPadPressTimer.stop();
+    isLeftMeowPadPressed = false;
+  }
+
+  private void handleRightMeowPadActivation() {
+    GameState.isRightMeowPadActivated = true;
+    System.out.println("right Meow pad activated");
+    if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
+      GameState.isNotesResolved = true;
+      System.out.println("2 notes resolved");
+      memoryGameRectangle.setDisable(false);
+      memoryGameRectangle.setVisible(true);
+    }
+  }
+
+  private void handleLeftMeowPadActivation() {
+    System.out.println("left Meow pad activated");
+    GameState.isLeftMeowPadActivated = true;
+    if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
+      GameState.isNotesResolved = true;
+      System.out.println("2 notes resolved");
+      memoryGameRectangle.setDisable(false);
+      memoryGameRectangle.setVisible(true);
+    }
   }
 
   /**
@@ -135,7 +191,7 @@ public class RocketController {
   }
 
   @FXML
-  public void onMouseHub(MouseEvent event) {
+  public void onHoverHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
@@ -145,7 +201,7 @@ public class RocketController {
   }
 
   @FXML
-  public void offMouseHub(MouseEvent event) {
+  public void onLeaveHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
@@ -194,6 +250,52 @@ public class RocketController {
     Hover.scaleDown(image);
   }
 
+  private void initialiseLeftMeowPad() {
+    leftMeowPadPressTimer =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(2),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    handleLeftMeowPadActivation();
+                  }
+                }));
+    leftMeowPadPressTimer.setCycleCount(1);
+    leftMeowPadPressTimer.setOnFinished(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            isLeftMeowPadPressed = false;
+          }
+        });
+  }
+
+  private void initialiseRightMeowPad() {
+    rightMeowPadDragTimer =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(100),
+                event -> {
+                  long currentTime = System.currentTimeMillis();
+                  long dragDuration = currentTime - rightMeowPadDragStartTime;
+                  if (dragDuration >= RIGHT_MEOW_PAD_DRAG_THRESHOLD) {
+                    handleRightMeowPadActivation();
+                  }
+                }));
+    rightMeowPadDragTimer.setCycleCount(Timeline.INDEFINITE);
+
+    rightMeowPad.setOnMousePressed(
+        event -> {
+          rightMeowPadDragStartTime = System.currentTimeMillis();
+          rightMeowPadDragTimer.play();
+        });
+
+    rightMeowPad.setOnMouseReleased(
+        event -> {
+          rightMeowPadDragTimer.stop();
+        });
+    
   /** Getter method for chatTextArea. */
   public TextArea getCatTextArea() {
     return catTextArea;
