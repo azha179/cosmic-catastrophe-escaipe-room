@@ -307,12 +307,15 @@ public class MainRoomController {
     // play the transition
     ft.play();
 
-    // enable the next footprint
-    enableFootprint(lastFootprint + 1);
-    lastFootprint++;
+    // enable the next footprint if this footprint is the last enabled footprint
+    if (footprints.indexOf(image) == lastFootprint) {
+      enableFootprint(lastFootprint + 1);
+      lastFootprint++;
+    }
 
-    // if lastFootprint+1 is footprints.size(), then enable the bush and update GameState
-    if (lastFootprint + 1 == footprints.size()) {
+    // if lastFootprint is footprints.size(), then enable the bush and update GameState
+    if (lastFootprint == footprints.size()) {
+      System.out.println("bush enabled");
       bushImage.setDisable(false);
       GameState.footprintsFound = true;
     }
@@ -348,6 +351,7 @@ public class MainRoomController {
   private void enableFootprint(int index) {
     // if index is less than length of footprints, show and enable the next footprint
     if (index < footprints.size()) {
+      System.out.println("footprint " + index + " enabled");
       footprints.get(index).setDisable(false);
       footprints.get(index).setVisible(true);
     }
