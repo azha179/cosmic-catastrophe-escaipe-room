@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206;
 
+import nz.ac.auckland.se206.controllers.MainRoomController;
+import nz.ac.auckland.se206.controllers.PantryController;
+import nz.ac.auckland.se206.controllers.RocketController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -8,6 +11,12 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 /** Class to help with game actions involving the GPT model. */
 public class GptActions {
+
+  /** The chat completion request. */
+  public static ChatCompletionRequest chatCompletionRequest1;
+
+  public static ChatCompletionRequest chatCompletionRequest2;
+
   /**
    * Append message to the a text area.
    *
@@ -57,5 +66,19 @@ public class GptActions {
    */
   public static void clearMessages(ChatCompletionRequest chatCompletionRequest) {
     chatCompletionRequest.getMessages().clear();
+  }
+
+  /**
+   * Updates the text area of all scenes.
+   *
+   * @param msg the message to update the text area with
+   */
+  public static void updateTextAreaAll(ChatMessage msg) {
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    setChatMessage(msg, mainRoom.getCatTextArea());
+    setChatMessage(msg, pantry.getCatTextArea());
+    // setChatMessage(msg, rocket.getCatTextArea());
   }
 }

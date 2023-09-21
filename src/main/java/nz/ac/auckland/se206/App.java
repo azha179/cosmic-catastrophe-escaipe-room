@@ -74,7 +74,7 @@ public class App extends Application {
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 740, 550);
 
     scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-    stage.setTitle("Game");
+    stage.setTitle("Cosmic Catastrophe");
     stage.setScene(scene);
     stage.setResizable(false);
     stage.show();

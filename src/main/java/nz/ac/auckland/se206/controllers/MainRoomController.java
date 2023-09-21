@@ -75,7 +75,6 @@ public class MainRoomController {
   @FXML private ImageView settingButton;
   private ArrayList<ImageView> hudElements;
 
-  private ChatCompletionRequest chatCompletionRequest;
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
   // Index of last footprint that was enabled
@@ -104,6 +103,7 @@ public class MainRoomController {
     footprints.add(footprint11Image);
     lastFootprint = 0;
 
+    // Unfocus replyTextField when room is clicked
     room.setOnMouseClicked(
         event -> {
           if (replyTextField.isFocused()) {
@@ -138,7 +138,7 @@ public class MainRoomController {
           // Call GPT
           @Override
           protected Void call() throws Exception {
-            chatCompletionRequest =
+            GptActions.chatCompletionRequest1 =
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.2)
@@ -148,12 +148,12 @@ public class MainRoomController {
             chatMessage =
                 GptActions.runGpt(
                     new ChatMessage("user", GptPromptEngineering.getIntroductionMessage()),
-                    chatCompletionRequest);
+                    GptActions.chatCompletionRequest1);
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to device text area
-                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Set chat message to text area
+                  GptActions.updateTextAreaAll(chatMessage);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Hide catImageAwoken
@@ -267,6 +267,28 @@ public class MainRoomController {
   @FXML
   public void clickReply(MouseEvent event) {
     System.out.println("reply clicked");
+    // call reply method
+    reply();
+  }
+
+  /**
+   * Handles the key press event on the reply text field.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onPressKeyReply(KeyEvent event) {
+    //
+    // Check if enter key is pressed
+    if (event.getCode().toString().equals("ENTER")) {
+      System.out.println("enter pressed");
+      // call reply method
+      reply();
+    }
+  }
+
+  // Method for replying
+  public void reply() {
     String message = replyTextField.getText();
     if (message.trim().isEmpty()) {
       return;
@@ -294,12 +316,12 @@ public class MainRoomController {
           @Override
           protected Void call() throws Exception {
             ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, chatCompletionRequest);
+            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest1);
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to device text area
-                  GptActions.setChatMessage(lastMsg, catTextArea);
+                  // Update text area
+                  GptActions.updateTextAreaAll(lastMsg);
                   // Enable reply button
                   replyImage.setDisable(false);
                   replyImage.setOpacity(1);
@@ -320,20 +342,6 @@ public class MainRoomController {
 
     Thread replyThread = new Thread(replyTask);
     replyThread.start();
-  }
-
-  /**
-   * Handles the key press event on the reply text field.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onPressKeyReply(KeyEvent event) {
-    //
-    // Check if enter key is pressed
-    if (event.getCode().toString().equals("ENTER")) {
-      System.out.println("enter pressed");
-    }
   }
 
   /**
@@ -366,6 +374,10 @@ public class MainRoomController {
    */
   @FXML
   public void clickPantry(MouseEvent event) {
+    // Call catInitialise of PantryController
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.catInitialise();
+
     switchToPantry();
     System.out.println("pantry clicked");
   }
@@ -638,5 +650,10 @@ public class MainRoomController {
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
+  }
+
+  /** Getter method for catTextArea. */
+  public TextArea getCatTextArea() {
+    return catTextArea;
   }
 }
