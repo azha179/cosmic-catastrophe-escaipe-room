@@ -199,7 +199,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="text" layoutX="537.0" layoutY="44.0" prefHeight="28.0" prefWidth="194.0" wrapText="true">
+      <ImageView fx:id="plantImage" disable="true" fitHeight="156.0" fitWidth="153.0" layoutX="8.0" layoutY="356.0" onMouseClicked="#clickPlant" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Tree.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="text" layoutX="278.0" layoutY="469.0" prefHeight="28.0" prefWidth="194.0" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>

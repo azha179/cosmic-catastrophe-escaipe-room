@@ -64,6 +64,7 @@ public class PantryController {
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView pantryImage;
+  @FXML private ImageView plantImage;
 
   // Food ingredients
   @FXML private ImageView ingredientMilk;
@@ -147,6 +148,8 @@ public class PantryController {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         result.setText("correct dish!");
         GameState.isRecipeResolved = true;
+        // enable plant
+        plantImage.setDisable(false);
       } else {
         result.setText("wrong dish :/");
         FoodRecipe.playerRecipe.clear();
@@ -224,6 +227,8 @@ public class PantryController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
+
+    isRoomFirstEntered = true;
   }
 
   /**
@@ -387,6 +392,25 @@ public class PantryController {
 
     Thread replyThread = new Thread(replyTask);
     replyThread.start();
+  }
+
+  /**
+   * Handles the click event on the plant.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickPlant(MouseEvent event) {
+    System.out.println("plant clicked");
+
+    // disable plant
+    plantImage.setDisable(true);
+
+    // update game state
+    GameState.puzzle2 = true;
+    GameState.note2Found = true;
+
+    HudState.updateHudAll();
   }
 
   /**
