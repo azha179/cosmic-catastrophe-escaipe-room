@@ -24,9 +24,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="225.0" layoutY="25.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
-      <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="235.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="236.0" layoutY="32.0" onMouseDragEntered="#onMouseHub" onMouseDragExited="#offMouseHub" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="212.0" layoutY="12.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
+      <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="222.0" layoutY="16.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="223.0" layoutY="19.0" onMouseDragEntered="#onMouseHub" onMouseDragExited="#offMouseHub" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Torch.PNG" />
          </image>
@@ -34,8 +34,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="337.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="349.0" layoutY="25.0" onMouseClicked="#clickNote1" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="324.0" layoutY="16.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="336.0" layoutY="12.0" onMouseClicked="#clickNote1" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Note1.png" />
          </image>
@@ -43,25 +43,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="434.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="450.0" layoutY="28.0" onMouseClicked="#clickNote2" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="421.0" layoutY="16.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="437.0" layoutY="15.0" onMouseClicked="#clickNote2" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Note2.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </ImageView>
-      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="27.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Settings.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Glow />
-         </effect>
       </ImageView>
 
       <ImageView fx:id="ingredientMilk" fitHeight="66.0" fitWidth="77.0" layoutX="151.0" layoutY="119.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
@@ -223,15 +212,15 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <Pane fx:id="note2Pane" layoutX="33.0" layoutY="32.0" prefHeight="543.0" prefWidth="737.0" visible="false">
+      <Pane fx:id="note2Pane" layoutX="3.0" layoutY="5.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="115.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="560.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="132.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note2Screen.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="note2Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote2Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="note2Return" fitHeight="76.0" fitWidth="101.0" layoutX="191.0" layoutY="86.0" onMouseClicked="#clickNote2Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Back.PNG" />
                </image>
@@ -242,15 +231,15 @@
          </children>
       </Pane>
 
-      <Pane fx:id="note1Pane" layoutX="23.0" layoutY="22.0" prefHeight="543.0" prefWidth="737.0" visible="false">
+      <Pane fx:id="note1Pane" layoutX="1.0" prefHeight="560.0" prefWidth="737.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="108.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="566.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="111.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note1Screen.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="note1Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote1Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="note1Return" fitHeight="76.0" fitWidth="101.0" layoutX="177.0" layoutY="82.0" onMouseClicked="#clickNote1Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Back.PNG" />
                </image>
@@ -260,6 +249,17 @@
             </ImageView>
          </children>
       </Pane>
+      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="27.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Settings.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
 
    </children>
 </Pane>
