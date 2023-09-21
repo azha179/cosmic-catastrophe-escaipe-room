@@ -197,14 +197,38 @@ public class MainRoomController {
   @FXML
   public void clickCatSleep(MouseEvent event) {
     System.out.println("cat clicked");
-    // Hide sleeping cat
-    catImageSleep.setVisible(false);
-    // Show active cat
-    catImageActive.setVisible(true);
-    // Show/Hide chat pane
-    chatPane.setVisible(!chatPane.isVisible());
-    // Show/Hide reply area
-    toggleReplyArea();
+    // disable cat
+    catImageSleep.setDisable(true);
+    // Small animation to make cat look like it is waking up using a thread
+    Task<Void> catAwokenTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            // Wait 100ms
+            Thread.sleep(150);
+            // Hide catImageSleep
+            catImageSleep.setVisible(false);
+            // Show catImageAwoken
+            catImageAwoken.setVisible(true);
+            // Wait 100ms
+            Thread.sleep(300);
+            // Hide catImageAwoken
+            catImageAwoken.setVisible(false);
+            // Show catImageActive
+            catImageActive.setVisible(true);
+            // Show/Hide chat pane
+            chatPane.setVisible(!chatPane.isVisible());
+            // Show/Hide reply area
+            toggleReplyArea();
+            // Enable cat
+            catImageSleep.setDisable(false);
+
+            return null;
+          }
+        };
+
+    Thread catAwokenThread = new Thread(catAwokenTask);
+    catAwokenThread.start();
   }
 
   /**

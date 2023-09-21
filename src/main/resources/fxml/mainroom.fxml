@@ -46,7 +46,7 @@
             <Image url="@../images/AwokenCat.PNG" />
          </image>
          <cursor>
-            <Cursor fx:constant="WAIT" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
       <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="543.0" layoutY="294.0" onMouseClicked="#clickCatActive" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
