@@ -152,8 +152,8 @@ public class MainRoomController {
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to device text area
-                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Set chat message to text area
+                  GptActions.updateTextAreaAll(chatMessage);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Hide catImageAwoken
@@ -320,8 +320,8 @@ public class MainRoomController {
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to device text area
-                  GptActions.setChatMessage(lastMsg, catTextArea);
+                  // Update text area
+                  GptActions.updateTextAreaAll(lastMsg);
                   // Enable reply button
                   replyImage.setDisable(false);
                   replyImage.setOpacity(1);
@@ -646,5 +646,10 @@ public class MainRoomController {
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
+  }
+
+  /** Getter method for catTextArea. */
+  public TextArea getCatTextArea() {
+    return catTextArea;
   }
 }

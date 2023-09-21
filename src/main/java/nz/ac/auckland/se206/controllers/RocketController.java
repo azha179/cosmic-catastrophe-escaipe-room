@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,6 +25,16 @@ public class RocketController {
   @FXML private ImageView back;
   @FXML private ImageView cat;
   @FXML private ImageView temp;
+
+  // Cat and Chat Elements
+  @FXML private ImageView catImageSleep;
+  @FXML private ImageView catImageAwoken;
+  @FXML private ImageView catImageActive;
+  @FXML private Pane chatPane;
+  @FXML private TextArea catTextArea;
+  @FXML private TextField replyTextField;
+  @FXML private ImageView replyImage;
+  @FXML private Rectangle replyRectangle;
 
   // HUD Elements
   @FXML private ImageView torchHud;
@@ -180,5 +192,10 @@ public class RocketController {
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
+  }
+
+  /** Getter method for chatTextArea. */
+  public TextArea getCatTextArea() {
+    return catTextArea;
   }
 }

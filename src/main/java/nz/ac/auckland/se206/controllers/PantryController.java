@@ -297,8 +297,8 @@ public class PantryController {
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to device text area
-                  GptActions.setChatMessage(lastMsg, catTextArea);
+                  // Update text area
+                  GptActions.updateTextAreaAll(lastMsg);
                   // Enable reply button
                   replyImage.setDisable(false);
                   replyImage.setOpacity(1);
@@ -451,5 +451,10 @@ public class PantryController {
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
+  }
+
+  /** Getter method for chatTextArea. */
+  public TextArea getCatTextArea() {
+    return catTextArea;
   }
 }
