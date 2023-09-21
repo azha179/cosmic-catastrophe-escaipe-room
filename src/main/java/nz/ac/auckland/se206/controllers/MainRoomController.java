@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -39,6 +41,8 @@ public class MainRoomController {
   @FXML private ImageView catImageActive;
   @FXML private Pane chatPane;
   @FXML private TextArea catTextArea;
+  @FXML private TextField replyTextField;
+  @FXML private ImageView replyButton;
 
   // Puzzle 1 Elements
   @FXML private Pane footprintPane;
@@ -100,6 +104,14 @@ public class MainRoomController {
     footprints.add(footprint10Image);
     footprints.add(footprint11Image);
     lastFootprint = 0;
+
+    room.setOnMouseClicked(
+        event -> {
+          if (replyTextField.isFocused()) {
+            // unfocus replyTextField
+            replyTextField.getParent().requestFocus();
+          }
+        });
   }
 
   /**
@@ -164,6 +176,40 @@ public class MainRoomController {
   @FXML
   public void clickCatAwoken(MouseEvent event) {
     System.out.println("cat clicked");
+  }
+
+  /**
+   * Handles the click event on active cat.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickCatActive(MouseEvent event) {
+    System.out.println("cat clicked");
+  }
+
+  /**
+   * Handles the click event on the reply button.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickReply(MouseEvent event) {
+    System.out.println("reply clicked");
+  }
+
+  /**
+   * Handles the key press event on the reply text field.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onPressKeyReply(KeyEvent event) {
+    //
+    // Check if enter key is pressed
+    if (event.getCode().toString().equals("ENTER")) {
+      System.out.println("enter pressed");
+    }
   }
 
   /**
