@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.ArrayList;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -69,6 +70,10 @@ public class MainRoomController {
   @FXML private Rectangle note2Rectangle;
 
   private ChatCompletionRequest chatCompletionRequest;
+  // Arraylist of all the footprints
+  private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
+  // Index of last footprint that was enabled
+  private int lastFootprint;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -81,6 +86,19 @@ public class MainRoomController {
     HudState.note1HudDone(note1Hud);
     HudState.note2HudDone(note2Hud);
     // Initialization code goes here
+    // Adds all the footprints to the arraylist
+    footprints.add(footprint1Image);
+    footprints.add(footprint2Image);
+    footprints.add(footprint3Image);
+    footprints.add(footprint4Image);
+    footprints.add(footprint5Image);
+    footprints.add(footprint6Image);
+    footprints.add(footprint7Image);
+    footprints.add(footprint8Image);
+    footprints.add(footprint9Image);
+    footprints.add(footprint10Image);
+    footprints.add(footprint11Image);
+    lastFootprint = 0;
   }
 
   /**
@@ -255,6 +273,10 @@ public class MainRoomController {
 
     // play the transition
     ft.play();
+
+    // enable the next footprint
+    enableFootprint(lastFootprint + 1);
+    lastFootprint++;
   }
 
   /**
@@ -273,15 +295,22 @@ public class MainRoomController {
 
     // set the transition to change opacity from 1 to 0
     ft.setFromValue(1);
-    // if fxid is footprint1Image, set to 0.33
-    if (image.getId().equals("footprint1Image")) {
-      ft.setToValue(0.33);
-    } else {
-      ft.setToValue(0);
-    }
+    ft.setToValue(0.33);
 
     // play the transition
     ft.play();
+  }
+
+  /**
+   * Method to enable the footprints.
+   *
+   * @param index the index of the next footprint to be enabled
+   */
+  private void enableFootprint(int index) {
+    // if index is less than length of footprints, enable the next footprint
+    if (index < footprints.size()) {
+      footprints.get(index).setDisable(false);
+    }
   }
 
   /**
