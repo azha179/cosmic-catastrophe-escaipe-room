@@ -17,8 +17,6 @@ public class GameState {
 
   public static boolean note2Found = false;
 
-  public static boolean puzzle1 = false;
-
   public static boolean puzzle2 = false;
 
   public static boolean puzzle3 = false;

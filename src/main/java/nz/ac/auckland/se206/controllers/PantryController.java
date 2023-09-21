@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -20,9 +21,12 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class PantryController {
 
+  // Temporary text
   @FXML private Label text;
   @FXML private Label result;
   @FXML private Label count;
+
+  // HUD Elements
   @FXML private Rectangle backButton;
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
@@ -34,12 +38,15 @@ public class PantryController {
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
+  @FXML private ImageView settingButton;
+  private ArrayList<ImageView> hudElements;
+
+  // Room elements
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView pantryImage;
 
-  @FXML private ImageView settingButton;
-
+  // Food ingredients
   @FXML private ImageView ingredientMilk;
   @FXML private ImageView ingredientCheese;
   @FXML private ImageView ingredientCarrot;
@@ -59,11 +66,12 @@ public class PantryController {
   @FXML private ImageView ingredientIceCream;
   @FXML private ImageView ingredientOnigiri;
 
-
   public void initialize() {
-    HudState.torchHudDone(torchHud);
-    HudState.note1HudDone(note1Hud);
-    HudState.note2HudDone(note2Hud);
+    hudElements = new ArrayList<ImageView>();
+    hudElements.add(torchHud);
+    hudElements.add(note1Hud);
+    hudElements.add(note2Hud);
+    HudState.initialiseHud(hudElements);
 
     // assigns a value 1-3 to each food item
     initialiseUserData();
@@ -79,6 +87,10 @@ public class PantryController {
     text.setText(FoodRecipe.recipeToString(FoodRecipe.desiredRecipe));
 
     count.setText(FoodRecipe.playerRecipe.size() + "/3");
+  }
+
+  public ArrayList<ImageView> getHudElements() {
+    return hudElements;
   }
 
   @FXML

@@ -40,7 +40,7 @@ public class MainRoomController {
   @FXML private Pane chatPane;
   @FXML private TextArea catTextArea;
 
-  // Puzzle 1 Elements
+  // Toy Puzzle Elements
   @FXML private Pane footprintPane;
   @FXML private ImageView footprint1Image;
   @FXML private ImageView footprint2Image;
@@ -53,7 +53,6 @@ public class MainRoomController {
   @FXML private ImageView footprint9Image;
   @FXML private ImageView footprint10Image;
   @FXML private ImageView footprint11Image;
-
   @FXML private ImageView bushImage;
   @FXML private ImageView torchImage;
 
@@ -69,6 +68,7 @@ public class MainRoomController {
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
   @FXML private ImageView settingButton;
+  private ArrayList<ImageView> hudElements;
 
   private ChatCompletionRequest chatCompletionRequest;
   // Arraylist of all the footprints
@@ -78,15 +78,13 @@ public class MainRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    // GameState.torchFound = true;
-    // GameState.footprintsFound = true;
-    // GameState.puzzle1 = true;
-    // GameState.note1Found = true;
-    GameState.note2Found = true;
-    HudState.torchHudDone(torchHud);
-    HudState.note1HudDone(note1Hud);
-    HudState.note2HudDone(note2Hud);
-    // Initialization code goes here
+
+    hudElements = new ArrayList<ImageView>();
+    hudElements.add(torchHud);
+    hudElements.add(note1Hud);
+    hudElements.add(note2Hud);
+    HudState.initialiseHud(hudElements);
+
     // Adds all the footprints to the arraylist
     footprints.add(footprint1Image);
     footprints.add(footprint2Image);
@@ -100,6 +98,10 @@ public class MainRoomController {
     footprints.add(footprint10Image);
     footprints.add(footprint11Image);
     lastFootprint = 0;
+  }
+
+  public ArrayList<ImageView> getHudElements() {
+    return hudElements;
   }
 
   /**
@@ -214,24 +216,22 @@ public class MainRoomController {
     System.out.println("torch ground clicked");
     // Update GameState
     GameState.torchFound = true;
-    HudState.torchHudDone(torchHud);
+    HudState.updateHudAll();
     // Hide torch
     torchImage.setVisible(false);
   }
 
-  /**
-   * Handles the click event on the torch in HUD.
-   *
-   * @param event the mouse event
-   */
   @FXML
   public void clickTorch(MouseEvent event) {
     System.out.println("torch hud clicked");
     // Check game state
-    if (GameState.puzzle1) {
+    if (GameState.note1Found) {
       // disable the ability to click torchhud
       torchHud.setDisable(true);
-
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getHudElements().get(0).setDisable(true);
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getHudElements().get(0).setDisable(true);
       return;
     }
     if (!GameState.isTorchOn) { // when torch is being turned on
@@ -240,6 +240,10 @@ public class MainRoomController {
       // Change image
       Image image = new Image("images/Torchlit.png");
       torchHud.setImage(image);
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getHudElements().get(0).setImage(image);
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getHudElements().get(0).setImage(image);
       // Show footprints pane
       footprintPane.setVisible(true);
       // Enable first footprint
@@ -251,6 +255,10 @@ public class MainRoomController {
       // Change image
       Image image = new Image("images/Torch.png");
       torchHud.setImage(image);
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getHudElements().get(0).setImage(image);
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getHudElements().get(0).setImage(image);
       // Hide footprints pane
       footprintPane.setVisible(false);
       // Disable and hide all footprints except first and set opacity to 0
@@ -284,7 +292,6 @@ public class MainRoomController {
   public void clickBush(MouseEvent event) {
     System.out.println("bush clicked");
     // Update GameState
-    GameState.puzzle1 = true;
     GameState.note1Found = true;
 
     // disable bush
@@ -294,14 +301,22 @@ public class MainRoomController {
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     torchHud.setImage(image);
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getHudElements().get(0).setImage(image);
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getHudElements().get(0).setImage(image);
     // hide footprints pane
     footprintPane.setVisible(false);
 
-    HudState.torchHudDone(torchHud);
-    HudState.note1HudDone(note1Hud);
+    HudState.updateHudAll();
+    ;
 
     // disable torchHud
     torchHud.setDisable(true);
+    rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getHudElements().get(0).setDisable(true);
+    pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getHudElements().get(0).setDisable(true);
   }
 
   /**
@@ -432,7 +447,7 @@ public class MainRoomController {
   }
 
   @FXML
-  public void onMouseHub(MouseEvent event) {
+  public void onHoverHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
@@ -442,7 +457,7 @@ public class MainRoomController {
   }
 
   @FXML
-  public void offMouseHub(MouseEvent event) {
+  public void onLeaveHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
