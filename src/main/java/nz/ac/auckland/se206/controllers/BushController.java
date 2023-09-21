@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -12,6 +13,29 @@ public class BushController {
   @FXML private ImageView backButton;
   @FXML private ImageView catToy;
   @FXML private ImageView note1;
+
+  @FXML
+  public void clickToy(MouseEvent event) {
+    GameState.toyFound = true;
+    ImageView image = (ImageView) event.getTarget();
+    image.setVisible(false);
+  }
+
+  @FXML
+  public void clickNote1(MouseEvent event) {
+    GameState.note1Found = true;
+    ImageView image = (ImageView) event.getTarget();
+    image.setVisible(false);
+  }
+
+  @FXML
+  public void clickBack(MouseEvent event) {
+    switchToMainRoom();
+  }
+
+  private void switchToMainRoom() {
+    App.setUi(AppUi.MAIN_ROOM);
+  }
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -23,10 +47,5 @@ public class BushController {
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
-  }
-
-  @FXML
-  public void clickBack(MouseEvent event) {
-    App.setUi(AppUi.MAIN_ROOM);
   }
 }

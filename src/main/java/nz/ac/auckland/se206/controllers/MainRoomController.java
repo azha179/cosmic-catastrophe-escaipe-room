@@ -179,6 +179,10 @@ public class MainRoomController {
     System.out.println("rocket clicked");
   }
 
+  private void switchToBush() {
+    App.setUi(AppUi.BUSH);
+  }
+
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to rocket
@@ -291,9 +295,6 @@ public class MainRoomController {
   @FXML
   public void clickBush(MouseEvent event) {
 
-    // Update GameState
-    GameState.note1Found = true;
-
     // disable bush
     bushImage.setDisable(true);
 
@@ -309,14 +310,14 @@ public class MainRoomController {
 
     HudState.updateHudAll();
     ;
-
     // disable torchHud
     torchHud.setDisable(true);
     rocket = (RocketController) SceneManager.getController("rocket");
     rocket.getHudElements().get(0).setDisable(true);
     pantry = (PantryController) SceneManager.getController("pantry");
     pantry.getHudElements().get(0).setDisable(true);
-    App.setUi(AppUi.BUSH);
+
+    switchToBush();
   }
 
   /**

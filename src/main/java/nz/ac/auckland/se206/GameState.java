@@ -9,6 +9,8 @@ public class GameState {
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
 
+  public static boolean toyFound = false;
+
   public static boolean torchFound = false;
 
   public static boolean footprintsFound = false;
