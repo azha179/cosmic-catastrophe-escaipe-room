@@ -10,9 +10,9 @@ import javafx.scene.shape.Rectangle;
 
 public class HudState {
 
-  // if torchHudDone so the torch has been used, it will be greyed out
-  public static void torchHudDone(ImageView image) {
-    if ((GameState.torchFound) && (GameState.footprintsFound) && (GameState.puzzle1)) {
+  public static void updateTorchHud(ImageView image) {
+    // toy and note 1 are found
+    if ((GameState.torchFound) && (GameState.footprintsFound)) {
       greyImage(image);
       image.setOpacity(0.33);
     }
@@ -26,7 +26,7 @@ public class HudState {
   }
 
   // if note1Done so the note has been used, it will be greyed out
-  public static void note1HudDone(ImageView image) {
+  public static void updateNote1Hud(ImageView image) {
     if ((GameState.note1Found) && (GameState.puzzle2) && (GameState.puzzle3)) {
       greyImage(image);
     }
@@ -40,7 +40,7 @@ public class HudState {
   }
 
   // if note1Done so the note has been used, it will be greyed out
-  public static void note2HudDone(ImageView image) {
+  public static void updateNote2Hud(ImageView image) {
     if ((GameState.note2Found) && (GameState.puzzle2) && (GameState.puzzle3)) {
       greyImage(image);
     }
@@ -65,7 +65,8 @@ public class HudState {
   private static void greyImage(ImageView image) {
     // Create a ColorAdjust effect
     ColorAdjust colorAdjust = new ColorAdjust();
-    colorAdjust.setSaturation(-1.0); // Set saturation to -1
+    colorAdjust.setSaturation(-1.0);
+    colorAdjust.setBrightness(-0.3);
     // Apply the ColorAdjust effect to the ImageView
     image.setEffect(colorAdjust);
   }
@@ -80,7 +81,7 @@ public class HudState {
     ImageView image = (ImageView) (Node) event.getTarget();
     if ("torchHud".equals(image.getId())) {
       rectangle = torch;
-      if ((GameState.footprintsFound) && (GameState.puzzle1) || (!GameState.torchFound)) {
+      if ((GameState.footprintsFound) || (!GameState.torchFound)) {
         rectangle = null;
       }
     } else if ("note1Hud".equals(image.getId())) {

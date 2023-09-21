@@ -59,11 +59,10 @@ public class PantryController {
   @FXML private ImageView ingredientIceCream;
   @FXML private ImageView ingredientOnigiri;
 
-
   public void initialize() {
-    HudState.torchHudDone(torchHud);
-    HudState.note1HudDone(note1Hud);
-    HudState.note2HudDone(note2Hud);
+    HudState.updateTorchHud(torchHud);
+    HudState.updateNote1Hud(note1Hud);
+    HudState.updateNote2Hud(note2Hud);
 
     // assigns a value 1-3 to each food item
     initialiseUserData();

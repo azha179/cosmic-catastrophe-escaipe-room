@@ -40,7 +40,7 @@ public class MainRoomController {
   @FXML private Pane chatPane;
   @FXML private TextArea catTextArea;
 
-  // Puzzle 1 Elements
+  // Toy Puzzle Elements
   @FXML private Pane footprintPane;
   @FXML private ImageView footprint1Image;
   @FXML private ImageView footprint2Image;
@@ -53,7 +53,6 @@ public class MainRoomController {
   @FXML private ImageView footprint9Image;
   @FXML private ImageView footprint10Image;
   @FXML private ImageView footprint11Image;
-
   @FXML private ImageView bushImage;
   @FXML private ImageView torchImage;
 
@@ -78,15 +77,11 @@ public class MainRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    // GameState.torchFound = true;
-    // GameState.footprintsFound = true;
-    // GameState.puzzle1 = true;
-    // GameState.note1Found = true;
-    GameState.note2Found = true;
-    HudState.torchHudDone(torchHud);
-    HudState.note1HudDone(note1Hud);
-    HudState.note2HudDone(note2Hud);
-    // Initialization code goes here
+
+    HudState.updateTorchHud(torchHud);
+    HudState.updateNote1Hud(note1Hud);
+    HudState.updateNote2Hud(note2Hud);
+
     // Adds all the footprints to the arraylist
     footprints.add(footprint1Image);
     footprints.add(footprint2Image);
@@ -214,21 +209,16 @@ public class MainRoomController {
     System.out.println("torch ground clicked");
     // Update GameState
     GameState.torchFound = true;
-    HudState.torchHudDone(torchHud);
+    HudState.updateTorchHud(torchHud);
     // Hide torch
     torchImage.setVisible(false);
   }
 
-  /**
-   * Handles the click event on the torch in HUD.
-   *
-   * @param event the mouse event
-   */
   @FXML
   public void clickTorch(MouseEvent event) {
     System.out.println("torch hud clicked");
     // Check game state
-    if (GameState.puzzle1) {
+    if (GameState.note1Found) {
       // disable the ability to click torchhud
       torchHud.setDisable(true);
 
@@ -284,7 +274,6 @@ public class MainRoomController {
   public void clickBush(MouseEvent event) {
     System.out.println("bush clicked");
     // Update GameState
-    GameState.puzzle1 = true;
     GameState.note1Found = true;
 
     // disable bush
@@ -297,8 +286,8 @@ public class MainRoomController {
     // hide footprints pane
     footprintPane.setVisible(false);
 
-    HudState.torchHudDone(torchHud);
-    HudState.note1HudDone(note1Hud);
+    HudState.updateTorchHud(torchHud);
+    HudState.updateNote1Hud(note1Hud);
 
     // disable torchHud
     torchHud.setDisable(true);
@@ -432,7 +421,7 @@ public class MainRoomController {
   }
 
   @FXML
-  public void onMouseHub(MouseEvent event) {
+  public void onHoverHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
@@ -442,7 +431,7 @@ public class MainRoomController {
   }
 
   @FXML
-  public void offMouseHub(MouseEvent event) {
+  public void onLeaveHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
