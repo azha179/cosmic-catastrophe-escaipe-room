@@ -309,13 +309,6 @@ public class MainRoomController {
     footprintPane.setVisible(false);
 
     HudState.updateHudAll();
-    ;
-    // disable torchHud
-    torchHud.setDisable(true);
-    rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.getHudElements().get(0).setDisable(true);
-    pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.getHudElements().get(0).setDisable(true);
 
     switchToBush();
   }

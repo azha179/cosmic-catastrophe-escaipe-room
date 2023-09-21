@@ -7,6 +7,8 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.HudState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class BushController {
@@ -26,10 +28,20 @@ public class BushController {
     GameState.note1Found = true;
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
+    HudState.updateHudAll();
   }
 
   @FXML
   public void clickBack(MouseEvent event) {
+    if (GameState.toyFound && GameState.note1Found) {
+      // disable torchHud
+      MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+      mainRoom.getHudElements().get(0).setDisable(true);
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getHudElements().get(0).setDisable(true);
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getHudElements().get(0).setDisable(true);
+    }
     switchToMainRoom();
   }
 
