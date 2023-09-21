@@ -55,13 +55,25 @@ public class PantryController {
     // assigns a value 1-3 to each food item
     initialiseUserData();
 
+    // adds ingredients to collections in FoodRecipe
     storeIngredients();
 
+    // creates a random recipe the player will have to replicate
     FoodRecipe.initialiseDesiredRecipe();
 
     for (ImageView ingredient : FoodRecipe.desiredRecipe) {
       System.out.println(
           "ingredient is " + ingredient + " and user data is " + ingredient.getUserData());
+    }
+
+    FoodRecipe.desiredRecipe = FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
+
+    for (ImageView ingredient : FoodRecipe.desiredRecipe) {
+      System.out.println(
+          "reordered ingredient is "
+              + ingredient
+              + " and user data is "
+              + ingredient.getUserData());
     }
   }
 
@@ -161,7 +173,6 @@ public class PantryController {
   private void storeIngredients() {
 
     Field[] fields = PantryController.class.getDeclaredFields();
-
     for (Field field : fields) {
       // checks if the field is an ImageView and its name starts with "ingredient"
       if (field.getType() == ImageView.class && field.getName().startsWith("ingredient")) {

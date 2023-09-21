@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.image.ImageView;
 
@@ -26,5 +28,29 @@ public class FoodRecipe {
     } while (firstRandomPrefixIndex == secondRandomPrefixIndex);
     desiredRecipe.add(prefixIngredient.get(firstRandomPrefixIndex));
     desiredRecipe.add(prefixIngredient.get(secondRandomPrefixIndex));
+  }
+
+  public static String recipeToString(ArrayList<ImageView> recipe) {
+
+    String name = "";
+
+    return name;
+  }
+
+  public static ArrayList<ImageView> reorderRecipe(ArrayList<ImageView> recipe) {
+
+    Comparator<ImageView> comparator =
+        new Comparator<ImageView>() {
+          @Override
+          public int compare(ImageView img1, ImageView img2) {
+            int userData1 = (int) img1.getUserData();
+            int userData2 = (int) img2.getUserData();
+            return Integer.compare(userData1, userData2);
+          }
+        };
+
+    Collections.sort(recipe, comparator);
+
+    return recipe;
   }
 }
