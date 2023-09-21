@@ -30,4 +30,10 @@ public class GameState {
   public static boolean isRecipeResolved = false;
 
   public static boolean isTorchOn = false;
+
+  public static boolean isLeftMeowPadActivated = false;
+
+  public static boolean isRightMeowPadActivated = false;
+
+  public static boolean isNotesResolved = false;
 }
