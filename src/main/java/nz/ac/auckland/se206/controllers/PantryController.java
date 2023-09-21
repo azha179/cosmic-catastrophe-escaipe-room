@@ -293,7 +293,7 @@ public class PantryController {
           @Override
           protected Void call() throws Exception {
             ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, App.chatCompletionRequest);
+            ChatMessage lastMsg = GptActions.runGpt(msg, GameState.chatCompletionRequest);
 
             Platform.runLater(
                 () -> {

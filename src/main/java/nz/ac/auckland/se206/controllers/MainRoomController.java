@@ -138,7 +138,7 @@ public class MainRoomController {
           // Call GPT
           @Override
           protected Void call() throws Exception {
-            App.chatCompletionRequest =
+            GameState.chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.2)
@@ -148,7 +148,7 @@ public class MainRoomController {
             chatMessage =
                 GptActions.runGpt(
                     new ChatMessage("user", GptPromptEngineering.getIntroductionMessage()),
-                    App.chatCompletionRequest);
+                    GameState.chatCompletionRequest);
 
             Platform.runLater(
                 () -> {
@@ -316,7 +316,7 @@ public class MainRoomController {
           @Override
           protected Void call() throws Exception {
             ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, App.chatCompletionRequest);
+            ChatMessage lastMsg = GptActions.runGpt(msg, GameState.chatCompletionRequest);
 
             Platform.runLater(
                 () -> {
