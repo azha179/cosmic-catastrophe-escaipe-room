@@ -136,4 +136,17 @@ public class FoodRecipe {
     }
     return string;
   }
+
+  public static boolean checkEqual(ArrayList<ImageView> recipe1, ArrayList<ImageView> recipe2) {
+    if (recipe1.size() != recipe2.size()) {
+      return false;
+    }
+
+    for (ImageView ingredient : recipe1) {
+      if (!recipe2.contains(ingredient)) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

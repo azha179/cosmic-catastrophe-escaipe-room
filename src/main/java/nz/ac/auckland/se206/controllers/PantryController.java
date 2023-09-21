@@ -20,6 +20,8 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class PantryController {
 
   @FXML private Label text;
+  @FXML private Label result;
+  @FXML private Label count;
   @FXML private Rectangle backButton;
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
@@ -66,6 +68,25 @@ public class PantryController {
     FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
 
     text.setText(FoodRecipe.recipeToString(FoodRecipe.desiredRecipe));
+
+    count.setText(FoodRecipe.playerRecipe.size() + "/3");
+  }
+
+  @FXML
+  public void clickIngredient(MouseEvent event) {
+    ImageView ingredient = (ImageView) event.getTarget();
+    FoodRecipe.playerRecipe.add(ingredient);
+    count.setText(FoodRecipe.playerRecipe.size() + "/3");
+
+    if (FoodRecipe.playerRecipe.size() == 3) {
+      if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
+        result.setText("correct dish!");
+      } else {
+        result.setText("wrong dish :/");
+        FoodRecipe.playerRecipe.clear();
+        count.setText(FoodRecipe.playerRecipe.size() + "/3");
+      }
+    }
   }
 
   @FXML
