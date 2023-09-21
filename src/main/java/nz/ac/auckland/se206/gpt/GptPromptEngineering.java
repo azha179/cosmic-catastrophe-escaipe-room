@@ -74,4 +74,22 @@ public class GptPromptEngineering {
         + ". You must not reveal any"
         + " hints until the player asks.";
   }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player finishes the pantry
+   * puzzle
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFinishPantryPuzzleMessage() {
+    return "You are currently an alien cat traversing the galaxy to try different foods in a"
+               + " space-themed escape-style video game.  You want the player to help you launch"
+               + " your rocket ship and reach Earth to enjoy its food, but first you need to bring"
+               + " some food. The player has just completed your request of finding and taking food"
+               + " ingredients. Write a message to the player, first congratulating them, then"
+               + " telling them that before they leave, they should go and check the potted plant."
+               + " The cat must use elementary vocabulary and occasionally meow. The message must"
+               + " be three sentences maximum. If and only if the player asks for a hint, tell them"
+               + " that there are no more hints to give in this room.";
+  }
 }
