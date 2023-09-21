@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameSettings.GameDifficulty;
 import nz.ac.auckland.se206.GameSettings.TimeLimit;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
@@ -33,6 +34,7 @@ public class MenuController {
   @FXML private Label sixText;
   @FXML private ImageView play;
   @FXML private Label playText;
+  @FXML private ImageView settingButton;
 
   GameDifficulty setRectangle;
   GameDifficulty currentDifficulty;
@@ -85,6 +87,13 @@ public class MenuController {
     if (GameSettings.difficulty != null && GameSettings.timeLimit != null) {
       switchToRoom();
     }
+  }
+
+  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  @FXML
+  public void onClickSetting(MouseEvent event) {
+    App.setUi(AppUi.SETTING);
+    SceneManager.getAppUi(AppUi.MENU);
   }
 
   @FXML

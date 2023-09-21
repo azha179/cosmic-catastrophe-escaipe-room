@@ -15,6 +15,7 @@ import nz.ac.auckland.se206.FoodRecipe;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class PantryController {
@@ -26,12 +27,19 @@ public class PantryController {
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
   @FXML private ImageView note2Hud;
+  @FXML private Pane note1Pane;
+  @FXML private Pane note2Pane;
+  @FXML private ImageView note1Return;
+  @FXML private ImageView note2Return;
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView pantryImage;
+
+  @FXML private ImageView settingButton;
+
   @FXML private ImageView ingredientMilk;
   @FXML private ImageView ingredientCheese;
   @FXML private ImageView ingredientCarrot;
@@ -50,6 +58,7 @@ public class PantryController {
   @FXML private ImageView ingredientHotdog;
   @FXML private ImageView ingredientIceCream;
   @FXML private ImageView ingredientOnigiri;
+
 
   public void initialize() {
     HudState.torchHudDone(torchHud);
@@ -118,12 +127,18 @@ public class PantryController {
   @FXML
   public void clickNote1(MouseEvent event) {
     if (GameState.note1Found) {
-      switchToNote1();
+      note1Pane.setVisible(true);
     }
   }
 
-  private void switchToNote1() {
-    App.setUi(AppUi.NOTE1);
+  /**
+   * Handles the click event on the note1return.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote1Return(MouseEvent event) {
+    note1Pane.setVisible(false);
   }
 
   /**
@@ -134,12 +149,25 @@ public class PantryController {
   @FXML
   public void clickNote2(MouseEvent event) {
     if (GameState.note2Found) {
-      switchToNote2();
+      note2Pane.setVisible(true);
     }
   }
 
-  private void switchToNote2() {
-    App.setUi(AppUi.NOTE2);
+  /**
+   * Handles the click event on the note2return.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote2Return(MouseEvent event) {
+    note2Pane.setVisible(false);
+  }
+
+  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  @FXML
+  public void onClickSetting(MouseEvent event) {
+    App.setUi(AppUi.SETTING);
+    SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
   }
 
   @FXML

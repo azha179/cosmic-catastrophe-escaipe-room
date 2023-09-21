@@ -24,10 +24,15 @@ public class RocketController {
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
   @FXML private ImageView note2Hud;
+  @FXML private Pane note1Pane;
+  @FXML private Pane note2Pane;
+  @FXML private ImageView note1Return;
+  @FXML private ImageView note2Return;
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
   @FXML private ImageView temp;
+  @FXML private ImageView settingButton;
 
   public void initialize() {}
 
@@ -58,12 +63,18 @@ public class RocketController {
   @FXML
   public void clickNote1(MouseEvent event) {
     if (GameState.note1Found) {
-      switchToNote1();
+      note1Pane.setVisible(true);
     }
   }
 
-  private void switchToNote1() {
-    App.setUi(AppUi.NOTE1);
+  /**
+   * Handles the click event on the note1return.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote1Return(MouseEvent event) {
+    note1Pane.setVisible(false);
   }
 
   /**
@@ -74,12 +85,25 @@ public class RocketController {
   @FXML
   public void clickNote2(MouseEvent event) {
     if (GameState.note2Found) {
-      switchToNote2();
+      note2Pane.setVisible(true);
     }
   }
 
-  private void switchToNote2() {
-    App.setUi(AppUi.NOTE2);
+  /**
+   * Handles the click event on the note2return.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote2Return(MouseEvent event) {
+    note2Pane.setVisible(false);
+  }
+
+  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  @FXML
+  public void onClickSetting(MouseEvent event) {
+    App.setUi(AppUi.SETTING);
+    SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
   }
 
   @FXML
