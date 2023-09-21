@@ -32,12 +32,34 @@ public class FoodRecipe {
 
   public static String recipeToString(ArrayList<ImageView> recipe) {
 
-    String name = "";
+    String string = "";
+    for (ImageView ingredient : recipe) {
+      String add = ingredientToString(ingredient);
+      string += add;
+      if (ingredient.equals(recipe.get(2))) {
+        break;
+      }
+      // on ingredient #1
+      if (ingredient.equals(recipe.get(0))) {
+        // both adjectives
+        if ((int) ingredient.getUserData() == 1 && ((int) recipe.get(1).getUserData() == 1)) {
+          string += "-";
+          // both nouns
+        } else if ((int) ingredient.getUserData() == 2
+            && ((int) recipe.get(1).getUserData() == 2)) {
+          string += " & ";
+        } else {
+          string += " ";
+        }
+      } else {
+        string += " ";
+      }
+    }
 
-    return name;
+    return string;
   }
 
-  public static ArrayList<ImageView> reorderRecipe(ArrayList<ImageView> recipe) {
+  public static void reorderRecipe(ArrayList<ImageView> recipe) {
 
     Comparator<ImageView> comparator =
         new Comparator<ImageView>() {
@@ -50,7 +72,68 @@ public class FoodRecipe {
         };
 
     Collections.sort(recipe, comparator);
+  }
 
-    return recipe;
+  public static String ingredientToString(ImageView ingredient) {
+
+    String string = "";
+
+    switch (ingredient.getId().substring(10).toLowerCase()) {
+      case "milk":
+        string = "Milky";
+        break;
+      case "cheese":
+        string = "Cheesy";
+        break;
+      case "carrot":
+        string = "Carrot";
+        break;
+      case "mushroom":
+        string = "Mushroom";
+        break;
+      case "beer":
+        string = "Tipsy";
+        break;
+      case "burger":
+        string = "Burger";
+        break;
+      case "toast":
+        string = "Sandwich";
+        break;
+      case "pudding":
+        string = "Jiggly";
+        break;
+      case "fish":
+        string = "Fish";
+        break;
+      case "banana":
+        string = "Banana";
+        break;
+      case "lollipop":
+        string = "Sweet";
+        break;
+      case "meat":
+        string = "Meat";
+        break;
+      case "chicken":
+        string = "Chicken";
+        break;
+      case "egg":
+        string = "Omelette";
+        break;
+      case "pear":
+        string = "Fruity";
+        break;
+      case "hotdog":
+        string = "Hotdog";
+        break;
+      case "icecream":
+        string = "Ice Cream";
+        break;
+      case "onigiri":
+        string = "Onigiri";
+        break;
+    }
+    return string;
   }
 }

@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.lang.reflect.Field;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +19,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class PantryController {
 
+  @FXML private Label text;
   @FXML private Rectangle backButton;
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
@@ -61,20 +63,9 @@ public class PantryController {
     // creates a random recipe the player will have to replicate
     FoodRecipe.initialiseDesiredRecipe();
 
-    for (ImageView ingredient : FoodRecipe.desiredRecipe) {
-      System.out.println(
-          "ingredient is " + ingredient + " and user data is " + ingredient.getUserData());
-    }
+    FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
 
-    FoodRecipe.desiredRecipe = FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
-
-    for (ImageView ingredient : FoodRecipe.desiredRecipe) {
-      System.out.println(
-          "reordered ingredient is "
-              + ingredient
-              + " and user data is "
-              + ingredient.getUserData());
-    }
+    text.setText(FoodRecipe.recipeToString(FoodRecipe.desiredRecipe));
   }
 
   @FXML
