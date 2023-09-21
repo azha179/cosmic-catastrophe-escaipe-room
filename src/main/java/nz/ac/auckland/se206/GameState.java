@@ -1,12 +1,8 @@
 package nz.ac.auckland.se206;
 
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /** Represents the state of the game. */
 public class GameState {
-
-  /** The chat completion request. */
-  public static ChatCompletionRequest chatCompletionRequest;
 
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;

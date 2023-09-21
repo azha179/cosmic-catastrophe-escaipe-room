@@ -8,6 +8,10 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 /** Class to help with game actions involving the GPT model. */
 public class GptActions {
+
+  /** The chat completion request. */
+  public static ChatCompletionRequest chatCompletionRequest;
+
   /**
    * Append message to the a text area.
    *
