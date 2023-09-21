@@ -120,12 +120,12 @@ public class MemoryGameController {
         .get(ButtonSequence.playerSequence.size() - 1)
         .equals(ButtonSequence.playerSequence.get(ButtonSequence.playerSequence.size() - 1))) {
       ButtonSequence.clear();
-      text.setText("incorrect sequence please try again");
+      text.setText("Incorrect! \n Try again ^=_=^");
     }
     // this occurs when all the added values match the values in the correct sequence
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
-      text.setText("correct sequence !!");
+      text.setText("Correct \n sequence ^.~.^!!");
     }
   }
 
@@ -161,7 +161,10 @@ public class MemoryGameController {
 
   private void setToGreen(ImageView image) {
     ColorAdjust colorAdjust = new ColorAdjust();
-    colorAdjust.setHue(-0.4);
+    colorAdjust.setHue(0.56);
+    colorAdjust.setBrightness(0.26);
+    colorAdjust.setContrast(0.26);
+    colorAdjust.setSaturation(1);
     image.setEffect(colorAdjust);
   }
 
