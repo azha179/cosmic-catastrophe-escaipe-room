@@ -228,7 +228,10 @@ public class MainRoomController {
     if (GameState.note1Found) {
       // disable the ability to click torchhud
       torchHud.setDisable(true);
-
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getHudElements().get(0).setDisable(true);
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getHudElements().get(0).setDisable(true);
       return;
     }
     if (!GameState.isTorchOn) { // when torch is being turned on
@@ -237,6 +240,10 @@ public class MainRoomController {
       // Change image
       Image image = new Image("images/Torchlit.png");
       torchHud.setImage(image);
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getHudElements().get(0).setImage(image);
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getHudElements().get(0).setImage(image);
       // Show footprints pane
       footprintPane.setVisible(true);
       // Enable first footprint
@@ -248,6 +255,10 @@ public class MainRoomController {
       // Change image
       Image image = new Image("images/Torch.png");
       torchHud.setImage(image);
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getHudElements().get(0).setImage(image);
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getHudElements().get(0).setImage(image);
       // Hide footprints pane
       footprintPane.setVisible(false);
       // Disable and hide all footprints except first and set opacity to 0
@@ -290,14 +301,22 @@ public class MainRoomController {
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     torchHud.setImage(image);
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getHudElements().get(0).setImage(image);
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getHudElements().get(0).setImage(image);
     // hide footprints pane
     footprintPane.setVisible(false);
 
-    HudState.updateTorchHud(torchHud);
-    HudState.updateNote1Hud(note1Hud);
+    HudState.updateHudAll();
+    ;
 
     // disable torchHud
     torchHud.setDisable(true);
+    rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getHudElements().get(0).setDisable(true);
+    pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getHudElements().get(0).setDisable(true);
   }
 
   /**
