@@ -26,17 +26,45 @@ public class MainRoomController {
 
   @FXML private Pane room;
   @FXML private ImageView roomImage;
+  @FXML private ImageView rocketImage;
+  @FXML private ImageView pantryImage;
+
+  // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
   @FXML private ImageView catImageAwoken;
   @FXML private ImageView catImageActive;
-  @FXML private ImageView rocketImage;
-  @FXML private ImageView pantryImage;
-  @FXML private ImageView bushImage;
   @FXML private Pane chatPane;
+  @FXML private TextArea catTextArea;
+
+  // Puzzle 1 Elements
+  @FXML private Pane footprintPane;
+  @FXML private Pane footprint1Pane;
+  @FXML private Pane footprint2Pane;
+  @FXML private Pane footprint3Pane;
+  @FXML private Pane footprint4Pane;
+  @FXML private Pane footprint5Pane;
+  @FXML private Pane footprint6Pane;
+  @FXML private Pane footprint7Pane;
+  @FXML private Pane footprint8Pane;
+  @FXML private Pane footprint9Pane;
+  @FXML private Pane footprint10Pane;
+  @FXML private ImageView footprint1Image;
+  @FXML private ImageView footprint2Image;
+  @FXML private ImageView footprint3Image;
+  @FXML private ImageView footprint4Image;
+  @FXML private ImageView footprint5Image;
+  @FXML private ImageView footprint6Image;
+  @FXML private ImageView footprint7Image;
+  @FXML private ImageView footprint8Image;
+  @FXML private ImageView footprint9Image;
+  @FXML private ImageView footprint10Image;
+
+  @FXML private ImageView bushImage;
+
+  // HUD Elements
+  @FXML private ImageView torchHud;
   @FXML private Pane note1Pane;
   @FXML private Pane note2Pane;
-  @FXML private TextArea catTextArea;
-  @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
   @FXML private ImageView note2Hud;
   @FXML private ImageView note1Return;
