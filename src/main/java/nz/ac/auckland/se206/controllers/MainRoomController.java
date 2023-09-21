@@ -138,7 +138,7 @@ public class MainRoomController {
           // Call GPT
           @Override
           protected Void call() throws Exception {
-            GptActions.chatCompletionRequest =
+            GptActions.chatCompletionRequest1 =
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.2)
@@ -148,7 +148,7 @@ public class MainRoomController {
             chatMessage =
                 GptActions.runGpt(
                     new ChatMessage("user", GptPromptEngineering.getIntroductionMessage()),
-                    GptActions.chatCompletionRequest);
+                    GptActions.chatCompletionRequest1);
 
             Platform.runLater(
                 () -> {
@@ -316,7 +316,7 @@ public class MainRoomController {
           @Override
           protected Void call() throws Exception {
             ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest);
+            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest1);
 
             Platform.runLater(
                 () -> {
@@ -374,6 +374,10 @@ public class MainRoomController {
    */
   @FXML
   public void clickPantry(MouseEvent event) {
+    // Call catInitialise of PantryController
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.catInitialise();
+
     switchToPantry();
     System.out.println("pantry clicked");
   }

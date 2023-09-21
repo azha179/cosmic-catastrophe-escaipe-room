@@ -13,7 +13,9 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 public class GptActions {
 
   /** The chat completion request. */
-  public static ChatCompletionRequest chatCompletionRequest;
+  public static ChatCompletionRequest chatCompletionRequest1;
+
+  public static ChatCompletionRequest chatCompletionRequest2;
 
   /**
    * Append message to the a text area.
