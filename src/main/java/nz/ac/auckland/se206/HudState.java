@@ -14,11 +14,14 @@ public class HudState {
   public static void torchHudDone(ImageView image) {
     if ((GameState.torchFound) && (GameState.footprintsFound) && (GameState.puzzle1)) {
       greyImage(image);
+      image.setOpacity(0.33);
     }
     if (!GameState.torchFound) {
       image.setOpacity(0);
+      image.setDisable(true);
     } else {
       image.setOpacity(1);
+      image.setDisable(false);
     }
   }
 
@@ -29,8 +32,10 @@ public class HudState {
     }
     if (!GameState.note1Found) {
       image.setOpacity(0);
+      image.setDisable(true);
     } else {
       image.setOpacity(1);
+      image.setDisable(false);
     }
   }
 
@@ -41,8 +46,10 @@ public class HudState {
     }
     if (!GameState.note2Found) {
       image.setOpacity(0);
+      image.setDisable(true);
     } else {
       image.setOpacity(1);
+      image.setDisable(false);
     }
   }
 

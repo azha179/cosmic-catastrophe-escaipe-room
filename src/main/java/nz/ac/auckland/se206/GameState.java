@@ -22,8 +22,12 @@ public class GameState {
   public static boolean puzzle2 = false;
 
   public static boolean puzzle3 = false;
-  
+
   public static boolean isAnimationRunning = false;
 
   public static boolean isMemoryGameResolved = false;
+
+  public static boolean isRecipeResolved = false;
+
+  public static boolean isTorchOn = false;
 }

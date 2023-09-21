@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+
 <?import javafx.scene.effect.Glow?>
+
+<?import javafx.scene.control.Label?>
+
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PantryController">
    <children>
@@ -50,6 +55,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+
       <Pane fx:id="note1Pane" layoutX="23.0" layoutY="22.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
@@ -97,5 +103,166 @@
             <Glow />
          </effect>
       </ImageView>
+
+      <ImageView fx:id="ingredientMilk" fitHeight="66.0" fitWidth="77.0" layoutX="151.0" layoutY="119.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/milk.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientCheese" fitHeight="49.0" fitWidth="63.0" layoutX="216.0" layoutY="130.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/cheese.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientCarrot" fitHeight="56.0" fitWidth="65.0" layoutX="298.0" layoutY="125.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/carrot.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientMushroom" fitHeight="64.0" fitWidth="64.0" layoutX="139.0" layoutY="238.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/mushroom.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientBeer" fitHeight="74.0" fitWidth="35.0" layoutX="236.0" layoutY="229.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/beer.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientBurger" fitHeight="66.0" fitWidth="77.0" layoutX="297.0" layoutY="235.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/burger.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientToast" fitHeight="66.0" fitWidth="77.0" layoutX="133.0" layoutY="356.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/toast.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientPudding" fitHeight="54.0" fitWidth="64.0" layoutX="213.0" layoutY="367.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/pudding.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientFish" fitHeight="66.0" fitWidth="77.0" layoutX="292.0" layoutY="364.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/fish.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientBanana" fitHeight="56.0" fitWidth="57.0" layoutX="416.0" layoutY="128.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/banana.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientLollipop" fitHeight="73.0" fitWidth="43.0" layoutX="503.0" layoutY="115.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/lollipop.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientMeat" fitHeight="50.0" fitWidth="94.0" layoutX="559.0" layoutY="131.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/meat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientChicken" fitHeight="66.0" fitWidth="77.0" layoutX="417.0" layoutY="235.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/chicken.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientEgg" fitHeight="61.0" fitWidth="61.0" layoutX="496.0" layoutY="241.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/egg.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientPear" fitHeight="74.0" fitWidth="43.0" layoutX="577.0" layoutY="229.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/pear.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientHotdog" fitHeight="57.0" fitWidth="76.0" layoutX="410.0" layoutY="360.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/hotdog.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientIceCream" fitHeight="66.0" fitWidth="77.0" layoutX="503.0" layoutY="357.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/iceCream.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="ingredientOnigiri" fitHeight="57.0" fitWidth="57.0" layoutX="570.0" layoutY="366.0" onMouseClicked="#clickIngredient" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pantryFood/onigiri.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="text" layoutX="537.0" layoutY="44.0" prefHeight="28.0" prefWidth="194.0" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="result" layoutX="227.0" layoutY="188.0" prefHeight="34.0" prefWidth="297.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="count" layoutX="583.0" layoutY="197.0">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+
    </children>
 </Pane>

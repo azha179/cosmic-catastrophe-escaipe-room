@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.lang.reflect.Field;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -9,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.FoodRecipe;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
@@ -17,6 +20,9 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class PantryController {
 
+  @FXML private Label text;
+  @FXML private Label result;
+  @FXML private Label count;
   @FXML private Rectangle backButton;
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
@@ -31,12 +37,69 @@ public class PantryController {
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView pantryImage;
+
   @FXML private ImageView settingButton;
+
+  @FXML private ImageView ingredientMilk;
+  @FXML private ImageView ingredientCheese;
+  @FXML private ImageView ingredientCarrot;
+  @FXML private ImageView ingredientMushroom;
+  @FXML private ImageView ingredientBeer;
+  @FXML private ImageView ingredientBurger;
+  @FXML private ImageView ingredientToast;
+  @FXML private ImageView ingredientPudding;
+  @FXML private ImageView ingredientFish;
+  @FXML private ImageView ingredientBanana;
+  @FXML private ImageView ingredientLollipop;
+  @FXML private ImageView ingredientMeat;
+  @FXML private ImageView ingredientChicken;
+  @FXML private ImageView ingredientEgg;
+  @FXML private ImageView ingredientPear;
+  @FXML private ImageView ingredientHotdog;
+  @FXML private ImageView ingredientIceCream;
+  @FXML private ImageView ingredientOnigiri;
+
 
   public void initialize() {
     HudState.torchHudDone(torchHud);
     HudState.note1HudDone(note1Hud);
     HudState.note2HudDone(note2Hud);
+
+    // assigns a value 1-3 to each food item
+    initialiseUserData();
+
+    // adds ingredients to collections in FoodRecipe
+    storeIngredients();
+
+    // creates a random recipe the player will have to replicate
+    FoodRecipe.initialiseDesiredRecipe();
+
+    FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
+
+    text.setText(FoodRecipe.recipeToString(FoodRecipe.desiredRecipe));
+
+    count.setText(FoodRecipe.playerRecipe.size() + "/3");
+  }
+
+  @FXML
+  public void clickIngredient(MouseEvent event) {
+    ImageView ingredient = (ImageView) event.getTarget();
+    if (FoodRecipe.playerRecipe.contains(ingredient) || GameState.isRecipeResolved) {
+      return;
+    }
+    FoodRecipe.playerRecipe.add(ingredient);
+    count.setText(FoodRecipe.playerRecipe.size() + "/3");
+
+    if (FoodRecipe.playerRecipe.size() == 3) {
+      if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
+        result.setText("correct dish!");
+        GameState.isRecipeResolved = true;
+      } else {
+        result.setText("wrong dish :/");
+        FoodRecipe.playerRecipe.clear();
+        count.setText(FoodRecipe.playerRecipe.size() + "/3");
+      }
+    }
   }
 
   @FXML
@@ -124,6 +187,55 @@ public class PantryController {
     if (rectangle != null) {
       HudState.removeHighlightRectangle(rectangle);
       onLeaveInteractable(event);
+    }
+  }
+
+  private void initialiseUserData() {
+    // 1 indicates adjective ingredient
+    // 2 indicates noun ingredient
+    // 3 indicates base ingredient
+    ingredientMilk.setUserData(1);
+    ingredientCheese.setUserData(1);
+    ingredientCarrot.setUserData(2);
+    ingredientMushroom.setUserData(2);
+    ingredientBeer.setUserData(1);
+    ingredientBurger.setUserData(3);
+    ingredientToast.setUserData(3);
+    ingredientPudding.setUserData(1);
+    ingredientFish.setUserData(2);
+    ingredientBanana.setUserData(2);
+    ingredientLollipop.setUserData(1);
+    ingredientMeat.setUserData(2);
+    ingredientChicken.setUserData(2);
+    ingredientEgg.setUserData(3);
+    ingredientPear.setUserData(1);
+    ingredientHotdog.setUserData(3);
+    ingredientIceCream.setUserData(3);
+    ingredientOnigiri.setUserData(3);
+  }
+
+  private void storeIngredients() {
+
+    Field[] fields = PantryController.class.getDeclaredFields();
+    for (Field field : fields) {
+      // checks if the field is an ImageView and its name starts with "ingredient"
+      if (field.getType() == ImageView.class && field.getName().startsWith("ingredient")) {
+        ImageView ingredient = null;
+        try {
+          field.setAccessible(true);
+          ingredient = (ImageView) field.get(this);
+        } catch (IllegalAccessException e) {
+          e.printStackTrace();
+        }
+        if (ingredient != null) {
+          int userData = (int) ingredient.getUserData();
+          if (userData == 1 || userData == 2) {
+            FoodRecipe.prefixIngredient.add(ingredient);
+          } else if (userData == 3) {
+            FoodRecipe.baseIngredient.add(ingredient);
+          }
+        }
+      }
     }
   }
 
