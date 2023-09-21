@@ -68,6 +68,7 @@ public class MainRoomController {
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
   @FXML private ImageView settingButton;
+  private ArrayList<ImageView> hudElements;
 
   private ChatCompletionRequest chatCompletionRequest;
   // Arraylist of all the footprints
@@ -78,9 +79,11 @@ public class MainRoomController {
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
-    HudState.updateTorchHud(torchHud);
-    HudState.updateNote1Hud(note1Hud);
-    HudState.updateNote2Hud(note2Hud);
+    hudElements = new ArrayList<ImageView>();
+    hudElements.add(torchHud);
+    hudElements.add(note1Hud);
+    hudElements.add(note2Hud);
+    HudState.initialiseHud(hudElements);
 
     // Adds all the footprints to the arraylist
     footprints.add(footprint1Image);
@@ -95,6 +98,10 @@ public class MainRoomController {
     footprints.add(footprint10Image);
     footprints.add(footprint11Image);
     lastFootprint = 0;
+  }
+
+  public ArrayList<ImageView> getHudElements() {
+    return hudElements;
   }
 
   /**
@@ -209,7 +216,7 @@ public class MainRoomController {
     System.out.println("torch ground clicked");
     // Update GameState
     GameState.torchFound = true;
-    HudState.updateTorchHud(torchHud);
+    HudState.updateHudAll();
     // Hide torch
     torchImage.setVisible(false);
   }

@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,6 +22,9 @@ public class RocketController {
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView cat;
+  @FXML private ImageView temp;
+
+  // HUD Elements
   @FXML private ImageView torchHud;
   @FXML private ImageView note1Hud;
   @FXML private ImageView note2Hud;
@@ -31,10 +35,21 @@ public class RocketController {
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
-  @FXML private ImageView temp;
+  ArrayList<ImageView> hudElements;
+
   @FXML private ImageView settingButton;
 
-  public void initialize() {}
+  public void initialize() {
+    hudElements = new ArrayList<ImageView>();
+    hudElements.add(torchHud);
+    hudElements.add(note1Hud);
+    hudElements.add(note2Hud);
+    HudState.initialiseHud(hudElements);
+  }
+
+  public ArrayList<ImageView> getHudElements() {
+    return hudElements;
+  }
 
   @FXML
   public void clickBack(MouseEvent event) {

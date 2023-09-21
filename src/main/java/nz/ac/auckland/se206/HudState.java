@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
@@ -7,8 +8,33 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.controllers.MainRoomController;
+import nz.ac.auckland.se206.controllers.PantryController;
+import nz.ac.auckland.se206.controllers.RocketController;
 
 public class HudState {
+
+  public static void initialiseHud(ArrayList<ImageView> hudElements) {
+
+    updateTorchHud(hudElements.get(0));
+    updateNote1Hud(hudElements.get(1));
+    updateNote2Hud(hudElements.get(2));
+  }
+
+  public static void updateHudAll() {
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    updateTorchHud(rocket.getHudElements().get(0));
+    updateNote1Hud(rocket.getHudElements().get(1));
+    updateNote2Hud(rocket.getHudElements().get(2));
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    updateTorchHud(mainRoom.getHudElements().get(0));
+    updateNote1Hud(mainRoom.getHudElements().get(1));
+    updateNote2Hud(mainRoom.getHudElements().get(2));
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    updateTorchHud(pantry.getHudElements().get(0));
+    updateNote1Hud(pantry.getHudElements().get(1));
+    updateNote2Hud(pantry.getHudElements().get(2));
+  }
 
   public static void updateTorchHud(ImageView image) {
     // toy and note 1 are found
@@ -16,9 +42,12 @@ public class HudState {
       greyImage(image);
       image.setOpacity(0.33);
     }
+    // torch has not been picked up
     if (!GameState.torchFound) {
       image.setOpacity(0);
       image.setDisable(true);
+
+      // adds torch to HUD
     } else {
       image.setOpacity(1);
       image.setDisable(false);

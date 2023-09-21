@@ -68,8 +68,6 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.ROCKET_INTERIOR, loadFxml("rocket"));
     SceneManager.addAppUi(AppUi.MEMORY_GAME, loadFxml("memorygame"));
     SceneManager.addAppUi(AppUi.PANTRY_INTERIOR, loadFxml("pantry"));
-    SceneManager.addAppUi(AppUi.NOTE1, loadFxml("note1"));
-    SceneManager.addAppUi(AppUi.NOTE2, loadFxml("note2"));
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 740, 550);
 
     scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
