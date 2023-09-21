@@ -87,6 +87,81 @@
             </TextArea>
          </children>
       </Pane>
+      <ImageView fx:id="torchImage" fitHeight="32.0" fitWidth="38.0" layoutX="97.0" layoutY="497.0" onMouseClicked="#clickTorchGround" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Torch.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="footprintPane" layoutX="-8.0" layoutY="88.0" prefHeight="462.0" prefWidth="751.0" visible="false">
+         <children>
+            <ImageView fx:id="footprint1Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="153.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.33" pickOnBounds="true" preserveRatio="true" rotate="115.2">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint2Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="213.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="93.8" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint3Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="272.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="105.9" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint4Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="333.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="110.0" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint5Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="395.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="113.6" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint6Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="457.0" layoutY="411.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="123.7" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint7Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="505.0" layoutY="387.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-21.8" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint8Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="474.0" layoutY="350.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-47.7" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint9Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="406.0" layoutY="333.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-74.9" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint10Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="344.0" layoutY="320.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-60.3" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="footprint11Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="273.0" layoutY="292.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-67.4" visible="false">
+               <image>
+                  <Image url="@../images/PawprintImage.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ImageView fx:id="bushImage" disable="true" fitHeight="32.0" fitWidth="38.0" layoutX="225.0" layoutY="369.0" onMouseClicked="#clickBush" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="-18.4">
+         <image>
+            <Image url="@../images/Leaves.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
       <Pane fx:id="note1Pane" layoutX="3.0" layoutY="2.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
@@ -120,81 +195,6 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </ImageView>
-         </children>
-      </Pane>
-      <ImageView fx:id="bushImage" fitHeight="32.0" fitWidth="38.0" layoutX="225.0" layoutY="369.0" onMouseClicked="#clickBush" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="-18.4">
-         <image>
-            <Image url="@../images/Leaves.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="torchImage" fitHeight="32.0" fitWidth="38.0" layoutX="97.0" layoutY="497.0" onMouseClicked="#clickTorchGround" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Torch.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Pane fx:id="footprintPane" layoutX="-8.0" layoutY="88.0" prefHeight="462.0" prefWidth="751.0" visible="false">
-         <children>
-            <ImageView fx:id="footprint1Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="153.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.33" pickOnBounds="true" preserveRatio="true" rotate="115.2">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint2Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="213.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="93.8">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint3Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="272.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="105.9">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint4Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="333.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="110.0">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint5Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="395.0" layoutY="399.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="113.6">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint6Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="457.0" layoutY="411.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="123.7">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint7Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="513.0" layoutY="398.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="18.4">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint8Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="474.0" layoutY="350.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-47.7">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint9Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="406.0" layoutY="333.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-74.9">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint10Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="344.0" layoutY="320.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-60.3">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="footprint11Image" disable="true" fitHeight="86.0" fitWidth="33.0" layoutX="273.0" layoutY="292.0" onMouseEntered="#hoverFootprints" onMouseExited="#unhoverFootprints" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="-67.4">
-               <image>
-                  <Image url="@../images/PawprintImage.PNG" />
-               </image>
             </ImageView>
          </children>
       </Pane>

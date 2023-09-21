@@ -227,7 +227,9 @@ public class MainRoomController {
   public void clickTorch(MouseEvent event) {
     System.out.println("torch hud clicked");
     // Check game state
-    if (GameState.torchFound && !GameState.footprintsFound) {
+    if (!GameState.isTorchOn) { // when torch is being turned on
+      // Update GameState
+      GameState.isTorchOn = true;
       // Change image
       Image image = new Image("images/Torchlit.png");
       torchHud.setImage(image);
@@ -235,6 +237,34 @@ public class MainRoomController {
       footprintPane.setVisible(true);
       // Enable first footprint
       footprint1Image.setDisable(false);
+    } else if (GameState.isTorchOn
+        && !GameState.footprintsFound) { // when torch is being turned off but footprints not found
+      // Update GameState
+      GameState.isTorchOn = false;
+      // Change image
+      Image image = new Image("images/Torch.png");
+      torchHud.setImage(image);
+      // Hide footprints pane
+      footprintPane.setVisible(false);
+      // Disable and hide all footprints except first and set opacity to 0
+      for (int i = 1; i < footprints.size(); i++) {
+        footprints.get(i).setDisable(true);
+        footprints.get(i).setVisible(false);
+        footprints.get(i).setOpacity(0);
+      }
+      // set lastFootprint to 0
+      lastFootprint = 0;
+    } else if (GameState.isTorchOn
+        && GameState.footprintsFound) { // when torch is being turned off and footprints found
+      // Update GameState
+      GameState.isTorchOn = false;
+      // Change image
+      Image image = new Image("images/Torch.png");
+      torchHud.setImage(image);
+      // Hide footprints pane
+      footprintPane.setVisible(false);
+      // Update torch hud
+      HudState.torchHudDone(torchHud);
     }
   }
 
@@ -246,6 +276,9 @@ public class MainRoomController {
   @FXML
   public void clickBush(MouseEvent event) {
     System.out.println("bush clicked");
+    // Update GameState
+    GameState.puzzle1 = true;
+    HudState.torchHudDone(torchHud);
   }
 
   /**
@@ -277,6 +310,12 @@ public class MainRoomController {
     // enable the next footprint
     enableFootprint(lastFootprint + 1);
     lastFootprint++;
+
+    // if lastFootprint+1 is footprints.size(), then enable the bush and update GameState
+    if (lastFootprint + 1 == footprints.size()) {
+      bushImage.setDisable(false);
+      GameState.footprintsFound = true;
+    }
   }
 
   /**
@@ -307,9 +346,10 @@ public class MainRoomController {
    * @param index the index of the next footprint to be enabled
    */
   private void enableFootprint(int index) {
-    // if index is less than length of footprints, enable the next footprint
+    // if index is less than length of footprints, show and enable the next footprint
     if (index < footprints.size()) {
       footprints.get(index).setDisable(false);
+      footprints.get(index).setVisible(true);
     }
   }
 
