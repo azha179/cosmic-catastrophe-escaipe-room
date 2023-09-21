@@ -159,10 +159,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="play" fitHeight="106.0" fitWidth="134.0" layoutX="572.0" layoutY="394.0" onMouseClicked="#clickPlay" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="play" fitHeight="106.0" fitWidth="134.0" layoutX="572.0" layoutY="394.0" onMouseClicked="#clickPlay" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/PlayButton.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#230930" height="129.0" layoutX="561.0" layoutY="185.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" width="166.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fffede" height="108.0" layoutX="579.0" layoutY="197.0" opacity="0.38" stroke="BLACK" strokeType="INSIDE" width="129.0">

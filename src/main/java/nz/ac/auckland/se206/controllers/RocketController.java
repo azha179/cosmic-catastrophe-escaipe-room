@@ -33,6 +33,7 @@ public class RocketController {
   @FXML private Rectangle note2Rectangle;
   @FXML private ImageView temp;
   @FXML private ImageView settingButton;
+  @FXML private Rectangle memoryGameRectangle;
 
   public void initialize() {}
 
@@ -126,6 +127,18 @@ public class RocketController {
     }
   }
 
+  @FXML
+  public void onMouseRectangle(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) (Node) event.getTarget();
+    HudState.highlightRectangle(rectangle);
+  }
+
+  @FXML
+  public void offMouseRectangle(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) (Node) event.getTarget();
+    HudState.removeHighlightRectangle(rectangle);
+  }
+
   private void switchToMemoryGame() {
     App.setUi(AppUi.MEMORY_GAME);
     // gives focus to memory game
@@ -144,7 +157,6 @@ public class RocketController {
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {
-
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }

@@ -198,7 +198,6 @@ public class MemoryGameController {
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {
-
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
