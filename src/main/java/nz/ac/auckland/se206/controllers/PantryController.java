@@ -81,6 +81,7 @@ public class PantryController {
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         result.setText("correct dish!");
+        GameState.isRecipeResolved = true;
       } else {
         result.setText("wrong dish :/");
         FoodRecipe.playerRecipe.clear();
