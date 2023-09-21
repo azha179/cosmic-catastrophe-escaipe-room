@@ -123,7 +123,7 @@ public class RocketController {
   }
 
   @FXML
-  public void onMouseHub(MouseEvent event) {
+  public void onHoverHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {
@@ -133,7 +133,7 @@ public class RocketController {
   }
 
   @FXML
-  public void offMouseHub(MouseEvent event) {
+  public void onLeaveHud(MouseEvent event) {
     Rectangle rectangle =
         HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
     if (rectangle != null) {

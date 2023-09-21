@@ -33,7 +33,7 @@
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="225.0" layoutY="25.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
       <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="235.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="236.0" layoutY="32.0" onMouseDragEntered="#onMouseHub" onMouseDragExited="#offMouseHub" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="236.0" layoutY="32.0" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Torch.PNG" />
          </image>
@@ -42,7 +42,7 @@
          </cursor>
       </ImageView>
       <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="337.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="349.0" layoutY="25.0" onMouseClicked="#clickNote1" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="349.0" layoutY="25.0" onMouseClicked="#clickNote1" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Note1.png" />
          </image>
@@ -51,7 +51,7 @@
          </cursor>
       </ImageView>
       <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="434.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="450.0" layoutY="28.0" onMouseClicked="#clickNote2" onMouseEntered="#onMouseHub" onMouseExited="#offMouseHub" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="450.0" layoutY="28.0" onMouseClicked="#clickNote2" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Note2.png" />
          </image>
