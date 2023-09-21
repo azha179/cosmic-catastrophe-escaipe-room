@@ -162,7 +162,7 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="bushImage" disable="true" fitHeight="32.0" fitWidth="38.0" layoutX="223.0" layoutY="375.0" onMouseClicked="#clickBush" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="-18.4" visible="false">
+      <ImageView fx:id="bushImage" disable="true" fitHeight="32.0" fitWidth="38.0" layoutX="223.0" layoutY="375.0" onMouseClicked="#clickBush" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="-18.4">
          <image>
             <Image url="@../images/Leaves.PNG" />
          </image>
