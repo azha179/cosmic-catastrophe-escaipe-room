@@ -175,7 +175,9 @@ public class RocketController {
     switchToWin();
   }
 
-  private void switchToWin() {}
+  private void switchToWin() {
+    App.setUi(AppUi.WIN);
+  }
 
   public ImageView getLaunch() {
     return this.launch;
