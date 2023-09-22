@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -29,9 +28,6 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class PantryController {
-
-  // Temporary text
-  @FXML private Label count;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -102,8 +98,6 @@ public class PantryController {
     // creates a random recipe the player will have to replicate
     FoodRecipe.initialiseDesiredRecipe();
 
-    count.setText(FoodRecipe.playerRecipe.size() + "/3");
-
     // Cat and Chat initialisation
     // Hide catImageSleep
     catImageSleep.setVisible(false);
@@ -136,7 +130,6 @@ public class PantryController {
       return;
     }
     FoodRecipe.playerRecipe.add(ingredient);
-    count.setText(FoodRecipe.playerRecipe.size() + "/3");
 
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
@@ -212,7 +205,6 @@ public class PantryController {
         initiateDeviceThread.start();
       } else {
         FoodRecipe.playerRecipe.clear();
-        count.setText(FoodRecipe.playerRecipe.size() + "/3");
         // Cat response if incorrect dish
         // Hide catImageSleep
         catImageSleep.setVisible(false);

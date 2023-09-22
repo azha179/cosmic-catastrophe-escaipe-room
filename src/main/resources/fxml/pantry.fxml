@@ -208,11 +208,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="count" layoutX="552.0" layoutY="28.0" prefHeight="46.0" prefWidth="109.0">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
       <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="27.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Settings.PNG" />
