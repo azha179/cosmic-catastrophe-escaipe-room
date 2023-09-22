@@ -29,6 +29,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the room view. */
 public class MainRoomController {
@@ -90,6 +91,9 @@ public class MainRoomController {
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
+  // Timer element
+  @FXML private Label timer;
+
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
   // Index of last footprint that was enabled
@@ -131,6 +135,10 @@ public class MainRoomController {
             replyTextField.getParent().requestFocus();
           }
         });
+  }
+
+  public Label getTimer() {
+    return timer;
   }
 
   public ArrayList<ImageView> getHudElements() {
@@ -215,6 +223,24 @@ public class MainRoomController {
                       });
                   // Enable cat
                   catImageSleep.setDisable(false);
+                });
+
+            Platform.runLater(
+                () -> {
+
+                  // Text to speech task
+                  Task<Void> textToSpeechTask =
+                      new Task<Void>() {
+                        @Override
+                        protected Void call() throws Exception {
+                          TextToSpeech textToSpeech = new TextToSpeech();
+                          textToSpeech.speak("Meow");
+                          return null;
+                        }
+                      };
+
+                  Thread textToSpeechThread = new Thread(textToSpeechTask);
+                  textToSpeechThread.start();
                 });
 
             return null;
@@ -475,6 +501,11 @@ public class MainRoomController {
     HudState.updateHudAll();
     // Hide torch
     torchImage.setVisible(false);
+    // Disables torch in other rooms
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getHudElements().get(0).setDisable(true);
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getHudElements().get(0).setDisable(true);
   }
 
   @FXML

@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
@@ -15,6 +16,13 @@ public class BushController {
   @FXML private ImageView backButton;
   @FXML private ImageView catToy;
   @FXML private ImageView note1;
+
+  // Timer element
+  @FXML private Label timer;
+
+  public Label getTimer() {
+    return timer;
+  }
 
   @FXML
   public void clickToy(MouseEvent event) {
@@ -46,7 +54,9 @@ public class BushController {
 
   @FXML
   public void clickBack(MouseEvent event) {
-    switchToMainRoom();
+    if ((GameState.toyFound) && (GameState.note1Found)) {
+      switchToMainRoom();
+    }
   }
 
   private void switchToMainRoom() {

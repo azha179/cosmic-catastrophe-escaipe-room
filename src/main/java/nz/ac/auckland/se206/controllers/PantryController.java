@@ -95,6 +95,9 @@ public class PantryController {
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
+  // Timer element
+  @FXML private Label timer;
+
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -135,6 +138,10 @@ public class PantryController {
             replyTextField.getParent().requestFocus();
           }
         });
+  }
+
+  public Label getTimer() {
+    return timer;
   }
 
   public ArrayList<ImageView> getHudElements() {

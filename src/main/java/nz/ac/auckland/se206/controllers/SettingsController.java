@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
@@ -16,10 +17,17 @@ public class SettingsController {
   @FXML private ToggleButton ttsToggleButton;
   @FXML private ChoiceBox resolutionButton;
 
+  // Timer element
+  @FXML private Label timer;
+
   public void initialize() {}
 
   // to ensure that back goes to the scene it was just in, use the getPreviousScene method when
   // onClickBack is done
+
+  public Label getTimer() {
+    return timer;
+  }
 
   @FXML
   public void onClickBack(MouseEvent event) {

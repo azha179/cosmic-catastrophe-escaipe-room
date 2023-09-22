@@ -277,32 +277,42 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="log1" fitHeight="22.0" fitWidth="76.0" layoutX="577.0" layoutY="26.0" onMouseEntered="#onHoverLog" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="log1" fitHeight="22.0" fitWidth="89.0" layoutX="577.0" layoutY="26.0" onMouseEntered="#onHoverLog" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/log.png" />
          </image>
       </ImageView>
       <Pane fx:id="logPane" layoutX="577.0" layoutY="47.0" prefHeight="76.0" prefWidth="76.0" visible="false">
          <children>
-            <Rectangle fx:id="logBackground" arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="78.0" layoutX="-1.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="78.0" />
-            <CheckBox fx:id="task1" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="6.0" mnemonicParsing="false" text="???" textFill="#e4d443" wrapText="true">
+            <Rectangle fx:id="logBackground" arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="78.0" layoutX="-1.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="89.0" />
+            <CheckBox fx:id="task1" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="6.0" mnemonicParsing="false" text="???" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="task2" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="50.0" mnemonicParsing="false" text="???" textFill="#e4d443" wrapText="true">
+            <CheckBox fx:id="task3" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="50.0" mnemonicParsing="false" text="???" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="task3" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" text="???" textFill="#e4d443" wrapText="true">
+            <CheckBox fx:id="task2" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" text="???" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
             </CheckBox>
          </children>
       </Pane>
-      <Rectangle fx:id="logHover" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="103.0" layoutX="577.0" layoutY="26.0" onMouseExited="#onLeaveLog" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="76.0" />
+      <Pane layoutX="42.0" layoutY="2.0" prefHeight="113.0" prefWidth="163.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="35.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
+            <Label fx:id="timer" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
+               <font>
+                  <Font name="Copperplate" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Rectangle fx:id="logHover" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="103.0" layoutX="577.0" layoutY="26.0" onMouseExited="#onLeaveLog" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="89.0" />
       <Rectangle fx:id="dim" arcHeight="5.0" arcWidth="5.0" height="550.0" opacity="0.46" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="740.0" />
       <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="486.0" layoutY="340.0" onMouseClicked="#catInitialise" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>

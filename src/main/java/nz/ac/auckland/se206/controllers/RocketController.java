@@ -25,6 +25,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameSettings;
+import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
@@ -75,9 +76,8 @@ public class RocketController {
   @FXML private Circle rightActivateCircle;
   private boolean isLeftMeowPadPressed = false;
   private Timeline leftMeowPadPressTimer;
-  private Timeline rightMeowPadDragTimer;
-  private long rightMeowPadDragStartTime;
-  private final long RIGHT_MEOW_PAD_DRAG_THRESHOLD = 3000;
+  private boolean isRightMeowPadpressed = false;
+  private int rightMeowPadCount;
 
   // Task Log
   @FXML private ImageView log;
@@ -88,6 +88,11 @@ public class RocketController {
   @FXML private CheckBox task2;
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
+
+  // Timer element
+  @FXML private Label timer;
+
+  private boolean isRoomFirstEntered = false;
 
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
@@ -102,7 +107,6 @@ public class RocketController {
     taskList.add(task3);
 
     initialiseLeftMeowPad();
-    initialiseRightMeowPad();
 
     memoryGameRectangle.setDisable(true);
     memoryGameRectangle.setVisible(false);
@@ -126,6 +130,10 @@ public class RocketController {
             replyTextField.getParent().requestFocus();
           }
         });
+  }
+
+  public Label getTimer() {
+    return timer;
   }
 
   public ArrayList<ImageView> getHudElements() {
@@ -155,6 +163,30 @@ public class RocketController {
   }
 
   @FXML
+  public void onPressRightMeowPad(MouseEvent event) {
+    if (!GameState.isRightMeowPadActivated) {
+      rightMeowPadCount = 0;
+      isRightMeowPadpressed = true;
+    }
+  }
+
+  @FXML
+  public void onReleaseRightMeowPad(MouseEvent event) {
+    isRightMeowPadpressed = false;
+  }
+
+  @FXML
+  public void onMouseDrag(MouseEvent event) {
+    if (isRightMeowPadpressed && !GameState.isRightMeowPadActivated) {
+      rightMeowPadCount++;
+      System.out.println(rightMeowPadCount);
+      if (rightMeowPadCount == 150) {
+        handleRightMeowPadActivation();
+      }
+    }
+  }
+
+  @FXML
   public void onPressLeftMeowPad(MouseEvent event) {
     if (!isLeftMeowPadPressed && !GameState.isLeftMeowPadActivated) {
       leftMeowPadPressTimer.play();
@@ -169,11 +201,7 @@ public class RocketController {
   }
 
   private void handleRightMeowPadActivation() {
-    if (GameState.isRightMeowPadActivated) {
-      return;
-    }
     GameState.isRightMeowPadActivated = true;
-
     // Generate message
     // only if both notes are found AND left meow pad is not activated
     if (GameState.note1Found && GameState.note2Found && !GameState.isLeftMeowPadActivated) {
@@ -221,7 +249,7 @@ public class RocketController {
       Thread initiateDeviceThread = new Thread(initiateDeviceTask);
       initiateDeviceThread.start();
     }
-
+    
     System.out.println("right Meow pad activated");
     rightActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
@@ -229,7 +257,6 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
-
       // Generate message
       // Hide chat
       hideChat();
@@ -286,7 +313,6 @@ public class RocketController {
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
-
     // Generate message
     // only if both notes are found AND right meow pad is not activated
     if (GameState.note1Found && GameState.note2Found && !GameState.isRightMeowPadActivated) {
@@ -336,7 +362,6 @@ public class RocketController {
     }
 
     leftActivateCircle.setVisible(true);
-
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
@@ -400,6 +425,9 @@ public class RocketController {
   public void clickLaunch(MouseEvent event) {
     GameState.isGameActive = false;
     switchToWin();
+    CountDownTimer.countdownTimeline.stop();
+    WinController win = (WinController) SceneManager.getController("win");
+    win.getResult().setText("...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
   }
 
   private void switchToWin() {
@@ -412,7 +440,7 @@ public class RocketController {
 
   /** Initialise cat response upon entering the rocket for the first time. */
   public void catInitialise() {
-    if (GameState.isRocketFirstEntered) {
+    if (isRoomFirstEntered) {
       return;
     }
     // Disable cat
@@ -420,6 +448,8 @@ public class RocketController {
     // Hide return button
     back.setVisible(false);
     // Initiate first message from GPT
+
+    // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
         new Task<Void>() {
           // Call GPT
@@ -501,8 +531,8 @@ public class RocketController {
 
             Platform.runLater(
                 () -> {
-                  // Update text area
-                  GptActions.updateTextAreaAll(chatMessage);
+                  // Set chat message to text area
+                  GptActions.setChatMessage(chatMessage, catTextArea);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Change image to active cat
@@ -515,8 +545,6 @@ public class RocketController {
 
                   // Enable cat
                   catImageActive.setDisable(false);
-                  // Show return button
-                  back.setVisible(true);
                 });
 
             return null;
@@ -526,7 +554,7 @@ public class RocketController {
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
 
-    GameState.isRocketFirstEntered = true;
+    isRoomFirstEntered = true;
   }
 
   /**
@@ -801,10 +829,7 @@ public class RocketController {
   public void onPressKey(KeyEvent event) {
 
     if (event.getCode() == KeyCode.ESCAPE) {
-      // check if return button is visible
-      if (back.isVisible()) {
-        switchToRoom();
-      }
+      switchToRoom();
     }
   }
 
@@ -838,32 +863,6 @@ public class RocketController {
           public void handle(ActionEvent event) {
             isLeftMeowPadPressed = false;
           }
-        });
-  }
-
-  private void initialiseRightMeowPad() {
-    rightMeowPadDragTimer =
-        new Timeline(
-            new KeyFrame(
-                Duration.millis(100),
-                event -> {
-                  long currentTime = System.currentTimeMillis();
-                  long dragDuration = currentTime - rightMeowPadDragStartTime;
-                  if (dragDuration >= RIGHT_MEOW_PAD_DRAG_THRESHOLD) {
-                    handleRightMeowPadActivation();
-                  }
-                }));
-    rightMeowPadDragTimer.setCycleCount(Timeline.INDEFINITE);
-
-    rightMeowPad.setOnMousePressed(
-        event -> {
-          rightMeowPadDragStartTime = System.currentTimeMillis();
-          rightMeowPadDragTimer.play();
-        });
-
-    rightMeowPad.setOnMouseReleased(
-        event -> {
-          rightMeowPadDragTimer.stop();
         });
   }
 
