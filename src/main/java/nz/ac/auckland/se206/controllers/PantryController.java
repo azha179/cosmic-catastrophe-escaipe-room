@@ -240,11 +240,13 @@ public class PantryController {
                         .setTopP(0.5)
                         .setMaxTokens(100);
                 ChatMessage chatMessage;
+                String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
                 chatMessage =
                     GptActions.runGpt(
                         new ChatMessage(
                             "user",
-                            GptPromptEngineering.getWrongDishPantryMessage(FoodRecipe.food)),
+                            GptPromptEngineering.getWrongDishPantryMessage(
+                                FoodRecipe.food, recipe)),
                         GptActions.chatCompletionRequest2);
 
                 Platform.runLater(

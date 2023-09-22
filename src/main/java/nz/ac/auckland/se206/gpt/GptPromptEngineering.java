@@ -99,7 +99,7 @@ public class GptPromptEngineering {
    *
    * @return the generated prompt engineering string
    */
-  public static String getWrongDishPantryMessage(String food) {
+  public static String getWrongDishPantryMessage(String food, String recipe) {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
         + " space-themed escape-style video game.  You want the player to help you launch"
         + " your rocket ship and reach Earth to enjoy its food, but first you need to bring"
@@ -110,7 +110,17 @@ public class GptPromptEngineering {
         + " you were wanting"
         + food
         + ". The cat must use elementary vocabulary and"
-        + " occasionally meow. The message must be three sentences maximum. If and only if the"
-        + " player asks for a hint, tell them that there are no more hints to give in this room.";
+        + " occasionally meow. The message must be three sentences maximum."
+        + "If and only if the player asks for a hint, tell them that each word in "
+        + food
+        + "represents a food item, and they should pick all food items represented. If they respond"
+        + " again asking for another hint, tell them that for example, 'Sweet Jiggly Fish' means"
+        + " you would pick the lollipop, pudding, and fish. If they respond once more asking for a"
+        + " hint, tell them that "
+        + food
+        + " means that one of the ingredients you should pick is "
+        + recipe
+        + ". You must not reveal any"
+        + " hints until the player asks.";
   }
 }
