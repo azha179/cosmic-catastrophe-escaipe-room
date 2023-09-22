@@ -234,7 +234,7 @@
             <Glow />
          </effect>
       </ImageView>
-      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="497.0" layoutY="393.0" onMouseClicked="#clickCatSleep" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="496.0" layoutY="407.0" onMouseClicked="#clickCatSleep" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/SleepingCat.PNG" />
          </image>
@@ -242,7 +242,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="catImageAwoken" fitHeight="173.0" fitWidth="205.0" layoutX="498.0" layoutY="337.0" onMouseClicked="#clickCatAwoken" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="catImageAwoken" fitHeight="173.0" fitWidth="205.0" layoutX="497.0" layoutY="343.0" onMouseClicked="#clickCatAwoken" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/AwokenCat.PNG" />
          </image>
@@ -250,7 +250,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="554.0" layoutY="347.0" onMouseClicked="#clickCatActive" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="573.0" layoutY="356.0" onMouseClicked="#clickCatActive" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/NeutralCat.PNG" />
          </image>
@@ -269,14 +269,14 @@
          </children>
       </Pane>
       <Rectangle fx:id="replyRectangle" arcHeight="5.0" arcWidth="5.0" height="34.0" layoutX="-1.0" layoutY="520.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="746.0" />
-      <TextField fx:id="replyTextField" layoutX="8.0" layoutY="524.0" onKeyPressed="#onPressKeyReply" prefHeight="25.0" prefWidth="657.0" promptText="Reply to cat here" visible="false">
+      <TextField fx:id="replyTextField" layoutX="8.0" layoutY="524.0" onKeyPressed="#onPressKeyReply" prefHeight="25.0" prefWidth="657.0" promptText="Send meow-essage here!" visible="false">
          <font>
-            <Font name="Arial" size="12.0" />
+            <Font name="Copperplate" size="12.0" />
          </font>
       </TextField>
       <ImageView fx:id="replyImage" fitHeight="69.0" fitWidth="49.0" layoutX="683.0" layoutY="512.0" onMouseClicked="#clickReply" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/send.png" />
+            <Image url="@../images/replyButton.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
