@@ -280,17 +280,17 @@
       <Pane fx:id="logPane" layoutX="577.0" layoutY="47.0" prefHeight="76.0" prefWidth="76.0" visible="false">
          <children>
             <Rectangle fx:id="logBackground" arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="78.0" layoutX="-1.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="89.0" />
-            <CheckBox fx:id="task1" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="6.0" mnemonicParsing="false" text="???" textFill="#e4d443" wrapText="true">
+            <CheckBox fx:id="task1" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="6.0" mnemonicParsing="false" text="???" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="task2" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="50.0" mnemonicParsing="false" text="???" textFill="#e4d443" wrapText="true">
+            <CheckBox fx:id="task3" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="50.0" mnemonicParsing="false" text="???" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="task3" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" text="???" textFill="#e4d443" wrapText="true">
+            <CheckBox fx:id="task2" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="28.0" mnemonicParsing="false" text="???" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
