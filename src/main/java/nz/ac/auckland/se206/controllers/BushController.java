@@ -46,7 +46,9 @@ public class BushController {
 
   @FXML
   public void clickBack(MouseEvent event) {
-    switchToMainRoom();
+    if ((GameState.toyFound) && (GameState.note1Found)) {
+      switchToMainRoom();
+    }
   }
 
   private void switchToMainRoom() {
