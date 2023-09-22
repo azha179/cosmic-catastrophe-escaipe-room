@@ -35,6 +35,7 @@ public class MainRoomController {
   @FXML private ImageView roomImage;
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
+  @FXML private Rectangle dim;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -149,6 +150,8 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
+    // removes dim
+    dim.setVisible(false);
 
     // Disable cat
     catImageSleep.setDisable(true);
