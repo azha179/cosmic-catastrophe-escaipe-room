@@ -15,7 +15,9 @@ public class SceneManager {
     MEMORY_GAME,
     SETTING,
     BUSH,
-    WIN
+    WIN,
+    TREE
+
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
