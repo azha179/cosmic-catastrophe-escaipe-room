@@ -28,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="backButton" fitHeight="89.0" fitWidth="101.0" layoutX="7.0" layoutY="21.0" onMouseClicked="#clickBack" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backButton" fitHeight="89.0" fitWidth="101.0" layoutX="7.0" layoutY="21.0" onMouseClicked="#clickBack" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/Back.PNG" />
          </image>

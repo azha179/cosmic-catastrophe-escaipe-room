@@ -519,9 +519,6 @@ public class MainRoomController {
   @FXML
   public void clickBush(MouseEvent event) {
 
-    // disable bush
-    bushImage.setDisable(true);
-
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     torchHud.setImage(image);

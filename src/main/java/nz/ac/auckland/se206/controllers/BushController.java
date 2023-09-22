@@ -21,6 +21,9 @@ public class BushController {
     GameState.toyFound = true;
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
+    if (GameState.toyFound && GameState.note1Found) {
+      backButton.setVisible(true);
+    }
   }
 
   @FXML
@@ -29,6 +32,9 @@ public class BushController {
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     HudState.updateHudAll();
+    if (GameState.toyFound && GameState.note1Found) {
+      backButton.setVisible(true);
+    }
   }
 
   @FXML
