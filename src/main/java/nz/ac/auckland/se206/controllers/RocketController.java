@@ -408,7 +408,7 @@ public class RocketController {
     return this.launch;
   }
 
-  /** Initialise cat response upon entering the pantry for the first time. */
+  /** Initialise cat response upon entering the rocket for the first time. */
   public void catInitialise() {
     if (GameState.isRocketFirstEntered) {
       return;

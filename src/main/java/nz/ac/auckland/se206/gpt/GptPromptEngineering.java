@@ -31,15 +31,15 @@ public class GptPromptEngineering {
         + " ship and reach Earth to enjoy its food. Write an introduction message to the"
         + " player, first telling them about yourself, then telling them they must complete"
         + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response, the player will receive a list of the three tasks that need to be"
-        + " completed. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum. If and only if the player asks for a"
-        + " hint, tell them to first find your toy outside, and they should follow your"
-        + " footprints which are only visible under light. If they respond again asking for"
-        + " another hint, tell them you dropped your torch somewhere outside. If they"
-        + " respond once more asking for a hint, tell them they should turn the torch on and"
-        + " follow the first footstep which is close to where the torch was dropped. You"
-        + " MUST refrain from revealing any hints unless the player explicitly asks.";
+        + " this response. The cat must use elementary vocabulary and occasionally meow. The"
+        + " message must be three sentences maximum. If the player asks for a hint, tell"
+        + " them to find your toy outside, and they should follow your footprints which are"
+        + " only visible under light and that you dropped your torch somewhere outside. If"
+        + " they respond once more asking for a hint, tell them they should turn the torch"
+        + " on and follow the first footstep which is close to where the torch was dropped."
+        + " You MUST refrain from revealing any hints unless the player explicitly asks."
+        + " When you reveal any hint, you MUST include the word 'Gladly' in your hint"
+        + " response.";
   }
 
   /**
@@ -54,17 +54,15 @@ public class GptPromptEngineering {
         + " ship and reach Earth to enjoy its food. Write an introduction message to the"
         + " player, first telling them about yourself, then telling them they must complete"
         + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response, the player will receive a list of the three tasks that need to be"
-        + " completed. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum. If and only if the player asks for a"
-        + " hint, tell them to first find your toy outside, and they should follow your"
-        + " footprints which are only visible under light. If they respond again asking for"
-        + " another hint, tell them you dropped your torch somewhere outside. If they"
-        + " respond once more asking for a hint, tell them they should turn the torch on and"
-        + " follow the first footstep which is close to where the torch was dropped. You"
-        + " MUST refrain from revealing any hints unless the player explicitly asks. When you"
-        + " reveal a hint, you MUST include the word 'Furtainly' in your hint response,"
-        + " and you must not use it in any other context or response.";
+        + " this response. The cat must use elementary vocabulary and occasionally meow. The"
+        + " message must be three sentences maximum. If the player asks for a hint, tell"
+        + " them to find your toy outside, and they should follow your footprints which are"
+        + " only visible under light and that you dropped your torch somewhere outside. If"
+        + " they respond once more asking for a hint, tell them they should turn the torch"
+        + " on and follow the first footstep which is close to where the torch was dropped."
+        + " You MUST refrain from revealing any hints unless the player explicitly asks."
+        + " When you reveal any hint, you MUST include the word 'Gladly' in your hint"
+        + " response.";
   }
 
   /**
@@ -105,7 +103,7 @@ public class GptPromptEngineering {
         + food
         + " word for word. The"
         + " cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum. If and only if the player asks for a hint, tell them"
+        + " three sentences maximum. If the player asks for a hint, tell them"
         + " that each word in "
         + food
         + "represents a food item, and they should pick all food items represented. If they respond"
@@ -116,8 +114,7 @@ public class GptPromptEngineering {
         + " means that one of the ingredients you should pick is "
         + recipe
         + ". You MUST refrain from revealing any hints unless the player explicitly asks. When you"
-        + " reveal a hint, you MUST include the word 'Furtainly' in your hint response, and you"
-        + " must not use it in any other context or response.";
+        + " reveal any hint, you MUST include the word 'Gladly' in your hint response.";
   }
 
   /**
@@ -174,11 +171,10 @@ public class GptPromptEngineering {
         + " you were wanting"
         + food
         + ". The cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum. If and only if the player asks for a hint, provide them with"
+        + " three sentences maximum. If the player asks for a hint, provide them with"
         + " the hints given previously one at a time. You MUST refrain from revealing any hints"
-        + " unless the player explicitly asks. When you reveal a hint, you MUST include the word"
-        + " 'Furtainly' in your hint response, and you must not use it in any other context or"
-        + " response.";
+        + " unless the player explicitly asks. When you reveal any hint, you MUST include the word"
+        + " 'Gladly' in your hint response.";
   }
 
   /**
@@ -215,13 +211,12 @@ public class GptPromptEngineering {
         + " since you last launched the rocket so you forgot exactly how to. Tell them that"
         + " there are two notes that should explain it, but you forgot where you left them."
         + " The cat must use elementary vocabulary and occasionally meow. The message must"
-        + " be three sentences maximum. If and only if the player asks for a hint, tell them"
+        + " be three sentences maximum. If the player asks for a hint, tell them"
         + " you recall the first note being somewhere outside and the second in the pantry."
         + " If they respond again asking for another hint, tell them you don't have any more"
         + " hints, but maybe you can try asking outside or in the pantry. You MUST refrain"
         + " from revealing any hints unless the player explicitly asks. When you reveal a"
-        + " hint, you MUST include the word 'Furtainly' in your hint response, and you"
-        + " must not use it in any other context or response.";
+        + " hint, you MUST include the word 'Gladly' in your hint response.";
   }
 
   /**
@@ -260,12 +255,11 @@ public class GptPromptEngineering {
         + " since you last launched the rocket so you forgot exactly how to. Tell them that"
         + " the two notes they found should guide them to unlocking the button. The cat must"
         + " use elementary vocabulary and occasionally meow. The message must be three"
-        + " sentences maximum. If and only if the player asks for a hint, tell them to try"
+        + " sentences maximum. If the player asks for a hint, tell them to try"
         + " and press on and hold the left meow pad down. If they respond again asking for"
         + " another hint, tell them you don't have any more hints. You MUST refrain from"
-        + " revealing any hints unless the player explicitly asks. When you reveal a hint,"
-        + " you MUST include the word 'Furtainly' in your hint response, and you must not"
-        + " use it in any other context or response.";
+        + " revealing any hints unless the player explicitly asks. When you reveal any hint,"
+        + " you MUST include the word 'Gladly' in your hint response.";
   }
 
   /**
@@ -304,14 +298,13 @@ public class GptPromptEngineering {
         + " since you last launched the rocket so you forgot exactly how to. Tell them that"
         + " the note they found should help them, but there's also another note in the"
         + " pantry. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum. If and only if the player asks for a"
+        + " message must be three sentences maximum. If the player asks for a"
         + " hint, tell them to try and press on and hold the left meow pad down. If they"
         + " respond asking for another hint, tell them to go and find the second note in the"
         + " pantry and see if that helps. If they respond again asking for another hint,"
         + " tell them you don't have any more hints. You MUST refrain from revealing any"
-        + " hints unless the player explicitly asks. When you reveal a hint, you MUST"
-        + " include the word 'Furtainly' in your hint response, and you must not use it in"
-        + " any other context or response.";
+        + " hints unless the player explicitly asks. When you reveal any hint, you MUST"
+        + " include the word 'Gladly' in your hint response.";
   }
 
   /**
@@ -350,13 +343,13 @@ public class GptPromptEngineering {
         + " since you last launched the rocket so you forgot exactly how to. Tell them that"
         + " the note they found should help them, but there's also another note outside. The"
         + " cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum. If and only if the player asks for a hint, tell them to"
+        + " three sentences maximum. If the player asks for a hint, tell them to"
         + " try and wiggle the right meow pad around. If they respond asking for another"
         + " hint, tell them to go and find the other note outside and see if that helps. If"
         + " they respond again asking for another hint, tell them you don't have any more"
         + " hints. You MUST refrain from revealing any hints unless the player explicitly"
-        + " asks. When you reveal a hint, you MUST include the word 'Furtainly' in your"
-        + " hint response, and you must not use it in any other context or response.";
+        + " asks. When you reveal any hint, you MUST include the word 'Gladly' in your"
+        + " hint response.";
   }
 
   /**
@@ -387,14 +380,13 @@ public class GptPromptEngineering {
    */
   public static String getLeftPadCompleteMessage() {
     return "The player has just completed the left meow pad. Write a message to the player,"
-        + " congratulating them. The message must be two sentences maximum. If and only if"
+        + " congratulating them. The message must be two sentences maximum. If"
         + " the player asks for a hint now, tell them to try and wiggle the right meow pad"
         + " around. If they respond asking for another hint, tell them to press and hold"
         + " down the right meow pad while wiggling it around. If they respond again asking"
         + " for another hint, tell them you don't have any more hints. You MUST refrain from"
-        + " revealing any hints unless the player explicitly asks. When you reveal a hint,"
-        + " you MUST include the word 'Furtainly' in your hint response, and you must not"
-        + " use it in any other context or response.";
+        + " revealing any hints unless the player explicitly asks. When you reveal any hint,"
+        + " you MUST include the word 'Gladly' in your hint response.";
   }
 
   /**
@@ -417,14 +409,13 @@ public class GptPromptEngineering {
    */
   public static String getRightPadCompleteMessage() {
     return "The player has just completed the right meow pad. Write a message to the player,"
-        + " congratulating them. The message must be two sentences maximum. If and only if"
+        + " congratulating them. The message must be two sentences maximum. If"
         + " the player asks for a hint now, tell them the left meow pad should be similar,"
         + " but there's no need to wiggle it. If they respond asking for another hint, tell"
         + " them to press and hold down the left meow pad. If they respond again asking for"
         + " another hint, tell them you don't have any more hints. You MUST refrain from"
-        + " revealing any hints unless the player explicitly asks. When you reveal a hint,"
-        + " you MUST include the word 'Furtainly' in your hint response, and you must not"
-        + " use it in any other context or response.";
+        + " revealing any hints unless the player explicitly asks. When you reveal any hint,"
+        + " you MUST include the word 'Gladly' in your hint response.";
   }
 
   /**
@@ -453,12 +444,11 @@ public class GptPromptEngineering {
         + " congratulating them, then tell them that they should now attempt the"
         + " verification puzzle on the control panel. The cat must use elementary vocabulary"
         + " and occasionally meow. The message must be three sentences maximum. If and only"
-        + " if the player asks for a hint now, tell them that it's simple, just repeat the"
+        + " if the player asks for a hint, tell them repeat the"
         + " patten shown. If they respond again asking for another hint, tell them you don't"
         + " have any more hints. You MUST refrain from revealing any hints unless the player"
-        + " explicitly asks. When you reveal a hint, you MUST include the word 'Furtainly'"
-        + " in your hint response, and you must not use it in any other context or"
-        + " response.";
+        + " explicitly asks. When you reveal any hint, you MUST include the word 'Gladly'"
+        + " in your hint response.";
   }
 
   /**
