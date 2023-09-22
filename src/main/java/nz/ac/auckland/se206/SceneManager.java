@@ -16,8 +16,8 @@ public class SceneManager {
     SETTING,
     BUSH,
     WIN,
-    TREE
-
+    TREE,
+    LOSS
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
