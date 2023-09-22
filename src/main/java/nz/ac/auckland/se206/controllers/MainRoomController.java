@@ -389,6 +389,10 @@ public class MainRoomController {
    */
   @FXML
   public void clickRocket(MouseEvent event) {
+    // Call catInitialise of RocketController
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.catInitialise();
+    
     switchToRocket();
     System.out.println("rocket clicked");
   }
