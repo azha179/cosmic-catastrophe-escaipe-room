@@ -38,4 +38,6 @@ public class GameState {
   public static boolean isPantryFirstEntered = false;
 
   public static boolean isRocketFirstEntered = false;
+
+  public static int hintsLeft;
 }

@@ -54,6 +54,7 @@ public class MenuController {
   @FXML
   public void onClickMedium(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.MEDIUM;
+    GameState.hintsLeft = 5;
 
     changeColourDifficulty(medium);
   }
@@ -61,6 +62,7 @@ public class MenuController {
   @FXML
   public void onClickHard(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.HARD;
+    GameState.hintsLeft = 0;
 
     changeColourDifficulty(hard);
   }
