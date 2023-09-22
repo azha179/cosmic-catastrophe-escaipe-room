@@ -108,11 +108,14 @@ public class MenuController {
     selectedObject(rectangle);
   }
 
+  // set the colour effects for the selected times
   @FXML
   public void changeColourTime(Rectangle rectangle) {
+    // set the effects to the first colour
     two.setFill(unselected);
     four.setFill(unselected);
     six.setFill(unselected);
+    // set the effects to the variables to nothing
     two.setEffect(null);
     four.setEffect(null);
     six.setEffect(null);

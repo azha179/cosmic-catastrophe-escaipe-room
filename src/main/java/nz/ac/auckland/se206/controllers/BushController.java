@@ -41,12 +41,15 @@ public class BushController {
     pantry.getTasks().get(0).setSelected(true);
   }
 
+  // if the note is clicked on, it will hide from the scene builder
   @FXML
   public void clickNote1(MouseEvent event) {
     GameState.note1Found = true;
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
+    // The note is hidden and the hud is updated to contain the note
     HudState.updateHudAll();
+    // if statement ensures that the note and toy have been found before exit
     if (GameState.toyFound && GameState.note1Found) {
       backButton.setVisible(true);
     }

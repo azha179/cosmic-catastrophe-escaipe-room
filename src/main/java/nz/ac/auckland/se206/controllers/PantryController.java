@@ -96,6 +96,8 @@ public class PantryController {
   // Timer element
   @FXML private Label timer;
 
+  private ArrayList<ImageView> shadowArray = new ArrayList<>();
+
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -154,22 +156,25 @@ public class PantryController {
     log.setVisible(true);
   }
 
-  ArrayList<ImageView> shadowArray = new ArrayList<>();
-
+  // Will put shadow behind image if it is selected
   public void dropShadow(ImageView image, String colour) {
     DropShadow dropShadow = new DropShadow();
+    // if colour selected is already white then stay white otherwise become green
     if (colour.equals("WHITE")) {
       dropShadow.setColor(javafx.scene.paint.Color.WHITE);
     } else {
       dropShadow.setColor(javafx.scene.paint.Color.GREEN);
     }
+    // set dropshadow values
     dropShadow.setRadius(10.0);
     dropShadow.setOffsetX(5.0);
     dropShadow.setOffsetY(5.0);
+    // apply the effect to the image
     image.setEffect(dropShadow);
     shadowArray.add(image);
   }
 
+  // remove the selected highlight from all the array elements
   public void removeShadow() {
     for (ImageView imageView : shadowArray) {
       imageView.setEffect(null);

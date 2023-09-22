@@ -63,7 +63,7 @@ public class RocketController {
   @FXML private Rectangle torchRectangle;
   @FXML private Rectangle note1Rectangle;
   @FXML private Rectangle note2Rectangle;
-  ArrayList<ImageView> hudElements;
+  private ArrayList<ImageView> hudElements;
 
   // Meow Pad
   @FXML private ImageView settingButton;
@@ -198,31 +198,39 @@ public class RocketController {
     isLeftMeowPadPressed = false;
   }
 
+  // Dependent on the state of the rightpad, the memory game will be revealed
   private void handleRightMeowPadActivation() {
     GameState.isRightMeowPadActivated = true;
+
     System.out.println("right Meow pad activated");
+    // If the task has been done, then it activates
     rightActivateCircle.setVisible(true);
+    // if both notes are activated, then the memory game is activated
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+      // update the hud so note cannot be used anymore
       HudState.updateHudAll();
       HudState.disableHud(1);
       HudState.disableHud(2);
     }
   }
 
+  // Dependent on the state of the leftpad, the memory game will be revealed
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
-
+    // If the task has been done, then it activates
     leftActivateCircle.setVisible(true);
+    // if both notes are activated, then the memory game is activated
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+      // update the hud so note cannot be used anymore
       HudState.updateHudAll();
       HudState.disableHud(1);
       HudState.disableHud(2);
@@ -235,7 +243,8 @@ public class RocketController {
     switchToWin();
     CountDownTimer.countdownTimeline.stop();
     WinController win = (WinController) SceneManager.getController("win");
-    win.getResult().setText("...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
+    win.getResult()
+        .setText("...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
   }
 
   private void switchToWin() {
@@ -561,6 +570,7 @@ public class RocketController {
     }
   }
 
+  // Scales the image up where the mouse is hovering over
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();

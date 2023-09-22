@@ -23,7 +23,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a introduction message when the player first
    * meets the cat.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getIntroductionMessage() {
     return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
@@ -47,7 +47,7 @@ public class GptPromptEngineering {
    *
    * @param food the food that the player needs to find
    * @param recipe the recipe that the player needs to find
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterPantryMessage(String food, String recipe) {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
@@ -79,7 +79,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player finishes the pantry
    * puzzle
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFinishPantryPuzzleMessage() {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
@@ -95,9 +95,11 @@ public class GptPromptEngineering {
 
   /**
    * Generates a GPT prompt engineering string for a message when the player makes the wrong dish in
-   * the pantry
+   * the pantry. It will not reveal any hints to the player unless asked for.
    *
-   * @return the generated prompt engineering string
+   * @param food the food that the player needs to find
+   * @param recipe the recipe that the player needs to find
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getWrongDishPantryMessage(String food, String recipe) {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
@@ -128,7 +130,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player first enters the
    * rocket.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessage() {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
@@ -151,7 +153,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player first enters the rocket
    * and both notes have been found.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageBothNotesFound() {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
@@ -173,7 +175,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player first enters the rocket
    * and only note 1 has been found.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageNoteOneFound() {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
@@ -197,7 +199,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player first enters the rocket
    * and only note 1 has been found.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageNoteTwoFound() {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
@@ -220,7 +222,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player completes the left meow
    * pad and asks for help.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getLeftPadCompleteMessage() {
     return "The player has just completed the left meow pad. Write a message to the player,"
@@ -236,7 +238,7 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player completes the right
    * meow pad and asks for help.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getRightPadCompleteMessage() {
     return "The player has just completed the right meow pad. Write a message to the player,"
@@ -250,9 +252,9 @@ public class GptPromptEngineering {
 
   /**
    * Generates a GPT prompt engineering string for a message when the player completes both meow
-   * pads.
+   * pads. The gpt will give them hints if they ask for it.
    *
-   * @return the generated prompt engineering string
+   * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getBothPadCompleteMessage() {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"

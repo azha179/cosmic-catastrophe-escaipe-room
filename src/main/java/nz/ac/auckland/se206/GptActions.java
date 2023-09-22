@@ -54,6 +54,7 @@ public class GptActions {
       throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
     try {
+      // does the chat complete method and finds the result to update chat reply
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
