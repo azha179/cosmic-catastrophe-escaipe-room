@@ -92,8 +92,6 @@ public class PantryController {
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
-  boolean isRoomFirstEntered = false;
-
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -240,8 +238,8 @@ public class PantryController {
 
                 Platform.runLater(
                     () -> {
-                      // Set chat message to text area
-                      GptActions.setChatMessage(chatMessage, catTextArea);
+                      // Update all text areas
+                      GptActions.updateTextAreaAll(chatMessage);
                       // Make chat pane visible
                       chatPane.setVisible(true);
                       // Change image to active cat
@@ -350,7 +348,10 @@ public class PantryController {
   public void onPressKey(KeyEvent event) {
 
     if (event.getCode() == KeyCode.ESCAPE) {
-      switchToRoom();
+      // check if return button is visible
+      if (back.isVisible()) {
+        switchToRoom();
+      }
     }
   }
 
@@ -360,11 +361,13 @@ public class PantryController {
 
   /** Initialise cat response upon entering the pantry for the first time. */
   public void catInitialise() {
-    if (isRoomFirstEntered) {
+    if (GameState.isPantryFirstEntered) {
       return;
     }
     // Disable cat
     catImageActive.setDisable(true);
+    // Hide return button
+    back.setVisible(false);
     // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
         new Task<Void>() {
@@ -388,8 +391,8 @@ public class PantryController {
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to text area
-                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Update all text areas
+                  GptActions.updateTextAreaAll(chatMessage);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Change image to active cat
@@ -402,6 +405,8 @@ public class PantryController {
 
                   // Enable cat
                   catImageActive.setDisable(false);
+                  // show return button
+                  back.setVisible(true);
                 });
 
             return null;
@@ -410,6 +415,8 @@ public class PantryController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
+
+    GameState.isPantryFirstEntered = true;
 
     // assigning task 2
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
@@ -421,8 +428,6 @@ public class PantryController {
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.enableLog();
     rocket.getTasks().get(1).setText("Make food");
-
-    isRoomFirstEntered = true;
   }
 
   /**

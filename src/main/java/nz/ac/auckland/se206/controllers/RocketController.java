@@ -86,8 +86,6 @@ public class RocketController {
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
-  private boolean isRoomFirstEntered = false;
-
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -168,7 +166,52 @@ public class RocketController {
   }
 
   private void handleRightMeowPadActivation() {
+    if (GameState.isRightMeowPadActivated) {
+      return;
+    }
     GameState.isRightMeowPadActivated = true;
+
+    // Generate message
+    // only if both notes are found AND left meow pad is not activated
+    if (GameState.note1Found && GameState.note2Found && !GameState.isLeftMeowPadActivated) {
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT after cat is clicked using a thread
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              // clear messages
+              GptActions.clearMessages(GptActions.chatCompletionRequest3);
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getRightPadCompleteMessage()),
+                      GptActions.chatCompletionRequest3);
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+    }
+
     System.out.println("right Meow pad activated");
     rightActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
@@ -176,6 +219,45 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+
+      // Generate message
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT after cat is clicked using a thread
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              // clear messages
+              GptActions.clearMessages(GptActions.chatCompletionRequest3);
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getBothPadCompleteMessage()),
+                      GptActions.chatCompletionRequest3);
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+
       HudState.updateHudAll();
       HudState.disableHud(1);
       HudState.disableHud(2);
@@ -186,12 +268,93 @@ public class RocketController {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
 
+    // Generate message
+    // only if both notes are found AND right meow pad is not activated
+    if (GameState.note1Found && GameState.note2Found && !GameState.isRightMeowPadActivated) {
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT after cat is clicked using a thread
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              // clear messages
+              GptActions.clearMessages(GptActions.chatCompletionRequest3);
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getLeftPadCompleteMessage()),
+                      GptActions.chatCompletionRequest3);
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+    }
+
     leftActivateCircle.setVisible(true);
+
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+
+      // Generate message
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT after cat is clicked using a thread
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              // clear messages
+              GptActions.clearMessages(GptActions.chatCompletionRequest3);
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getBothPadCompleteMessage()),
+                      GptActions.chatCompletionRequest3);
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+
       HudState.updateHudAll();
       HudState.disableHud(1);
       HudState.disableHud(2);
@@ -214,11 +377,13 @@ public class RocketController {
 
   /** Initialise cat response upon entering the pantry for the first time. */
   public void catInitialise() {
-    if (isRoomFirstEntered) {
+    if (GameState.isRocketFirstEntered) {
       return;
     }
     // Disable cat
     catImageActive.setDisable(true);
+    // Hide return button
+    back.setVisible(false);
     // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
         new Task<Void>() {
@@ -232,15 +397,37 @@ public class RocketController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage chatMessage;
-            chatMessage =
-                GptActions.runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
-                    GptActions.chatCompletionRequest3);
+            // If no notes are found, if note 1 only is found, if note 2 only is found, if both
+            // notes
+            if (!GameState.note1Found && !GameState.note2Found) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
+                      GptActions.chatCompletionRequest3);
+            } else if (GameState.note1Found && !GameState.note2Found) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getFirstEnterRocketMessageNoteOneFound()),
+                      GptActions.chatCompletionRequest3);
+            } else if (!GameState.note1Found && GameState.note2Found) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getFirstEnterRocketMessageNoteTwoFound()),
+                      GptActions.chatCompletionRequest3);
+            } else {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getFirstEnterRocketMessageBothNotesFound()),
+                      GptActions.chatCompletionRequest3);
+            }
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to text area
-                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Update text area
+                  GptActions.updateTextAreaAll(chatMessage);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Change image to active cat
@@ -253,6 +440,8 @@ public class RocketController {
 
                   // Enable cat
                   catImageActive.setDisable(false);
+                  // Show return button
+                  back.setVisible(true);
                 });
 
             return null;
@@ -262,7 +451,7 @@ public class RocketController {
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
 
-    isRoomFirstEntered = true;
+    GameState.isRocketFirstEntered = true;
   }
 
   /**
@@ -523,7 +712,10 @@ public class RocketController {
   public void onPressKey(KeyEvent event) {
 
     if (event.getCode() == KeyCode.ESCAPE) {
-      switchToRoom();
+      // check if return button is visible
+      if (back.isVisible()) {
+        switchToRoom();
+      }
     }
   }
 
@@ -601,5 +793,46 @@ public class RocketController {
   public void onLeaveLog(MouseEvent event) {
     logPane.setVisible(false);
     logHover.setDisable(true);
+  }
+
+  // Method to hide all the chat elements while generating
+  public void hideChat() {
+    // Hide catImageSleep
+    catImageSleep.setVisible(false);
+    // hide catImageAwoken
+    catImageAwoken.setVisible(false);
+    // Show catImageActive
+    catImageActive.setVisible(true);
+    // Change image to thinking cat
+    Image image = new Image("images/ThinkingCat.png");
+    catImageActive.setImage(image);
+    // Disable cat
+    catImageActive.setDisable(true);
+    // hide return button
+    back.setVisible(false);
+    // hide current chat pane
+    chatPane.setVisible(false);
+    // hide reply area
+    replyTextField.setVisible(false);
+    replyImage.setVisible(false);
+    replyRectangle.setVisible(false);
+  }
+
+  // Method to show all the chat elements after generating
+  public void showChat() {
+    // Make chat pane visible
+    chatPane.setVisible(true);
+    // Change image to active cat
+    Image image = new Image("images/NeutralCat.png");
+    catImageActive.setImage(image);
+    // Show reply area
+    replyTextField.setVisible(true);
+    replyImage.setVisible(true);
+    replyRectangle.setVisible(true);
+
+    // Enable cat
+    catImageActive.setDisable(false);
+    // show return button
+    back.setVisible(true);
   }
 }
