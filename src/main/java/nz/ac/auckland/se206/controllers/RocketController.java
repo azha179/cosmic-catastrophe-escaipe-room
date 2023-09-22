@@ -16,6 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -60,6 +61,8 @@ public class RocketController {
   @FXML private Rectangle memoryGameRectangle;
   @FXML private Rectangle leftMeowPad;
   @FXML private Rectangle rightMeowPad;
+  @FXML private Circle leftActivateCircle;
+  @FXML private Circle rightActivateCircle;
   private boolean isLeftMeowPadPressed = false;
   private Timeline leftMeowPadPressTimer;
   private Timeline rightMeowPadDragTimer;
@@ -143,6 +146,7 @@ public class RocketController {
   private void handleRightMeowPadActivation() {
     GameState.isRightMeowPadActivated = true;
     System.out.println("right Meow pad activated");
+    rightActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
@@ -154,6 +158,8 @@ public class RocketController {
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
+    
+  leftActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
