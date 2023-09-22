@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.controllers.MainRoomController;
 import nz.ac.auckland.se206.controllers.MemoryGameController;
 import nz.ac.auckland.se206.controllers.PantryController;
 import nz.ac.auckland.se206.controllers.RocketController;
+import nz.ac.auckland.se206.controllers.SettingsController;
 import nz.ac.auckland.se206.controllers.TreeController;
 
 public class CountDownTimer {
@@ -75,5 +76,7 @@ public class CountDownTimer {
     mainRoom.getTimer().setText(time);
     TreeController tree = (TreeController) SceneManager.getController("tree");
     tree.getTimer().setText(time);
+    SettingsController settings = (SettingsController) SceneManager.getController("settings");
+    settings.getTimer().setText(time);
   }
 }
