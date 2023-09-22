@@ -83,7 +83,6 @@
             <BoxBlur />
          </effect>
       </Circle>
-      <Pane fx:id="note1Pane" layoutX="13.0" layoutY="12.0" prefHeight="543.0" prefWidth="737.0" visible="false">
       <Rectangle fx:id="leftMeowPad" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="34.0" layoutY="416.0" onMousePressed="#onPressLeftMeowPad" onMouseReleased="#onReleaseLeftMeowPad" opacity="0.0" rotate="156.7" stroke="BLACK" strokeType="INSIDE" width="70.0" />
       <Rectangle fx:id="rightMeowPad" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="632.0" layoutY="416.0" opacity="0.0" rotate="-163.5" stroke="BLACK" strokeType="INSIDE" width="70.0" />
       <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="439.0" layoutY="404.0" onMouseClicked="#clickCatSleep" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
