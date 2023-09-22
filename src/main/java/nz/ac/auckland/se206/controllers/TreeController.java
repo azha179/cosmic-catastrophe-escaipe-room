@@ -25,6 +25,7 @@ public class TreeController {
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     HudState.updateHudAll();
+    back.setVisible(true);
   }
 
   public Label getTimer() {

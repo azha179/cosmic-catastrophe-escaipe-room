@@ -614,9 +614,6 @@ public class PantryController {
 
     App.setUi(AppUi.TREE);
 
-    // update game state
-    GameState.note2Found = true;
-
     HudState.updateHudAll();
   }
 
