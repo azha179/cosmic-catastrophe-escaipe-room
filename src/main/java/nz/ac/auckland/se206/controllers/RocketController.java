@@ -162,6 +162,9 @@ public class RocketController {
   }
 
   private void handleRightMeowPadActivation() {
+    if (GameState.isRightMeowPadActivated) {
+      return;
+    }
     GameState.isRightMeowPadActivated = true;
 
     // Generate message

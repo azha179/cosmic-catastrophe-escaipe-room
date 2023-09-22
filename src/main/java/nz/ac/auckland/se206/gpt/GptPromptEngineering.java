@@ -143,7 +143,7 @@ public class GptPromptEngineering {
         + " be three sentences maximum. If and only if the player asks for a hint, tell"
         + " them you recall the first note being somewhere outside and the second in the"
         + " pantry. If they respond again asking for another hint, tell them you don't have"
-        + " any more hints, but maybe you can try asking outside or in the pantry. You must"
+        + " any more hints, but maybe you can try asking outside or in the pantry. You MUST"
         + " not reveal any hints until the player asks.";
   }
 
@@ -165,7 +165,7 @@ public class GptPromptEngineering {
         + " use elementary vocabulary and occasionally meow. The message must be three"
         + " sentences maximum. If and only if the player asks for a hint, tell them to try"
         + " and press on and hold the left meow pad down. If they respond again asking for"
-        + " another hint, tell them you don't have any more hints. You must not reveal any"
+        + " another hint, tell them you don't have any more hints. You MUST not reveal any"
         + " hints until the player asks.";
   }
 
@@ -189,7 +189,7 @@ public class GptPromptEngineering {
         + " hint, tell them to try and press on and hold the left meow pad down. If they"
         + " respond asking for another hint, tell them to go and find the second note in the"
         + " pantry and see if that helps. If they respond again asking for another hint,"
-        + " tell them you don't have any more hints. You must not reveal any hints until the"
+        + " tell them you don't have any more hints. You MUST not reveal any hints until the"
         + " player asks.";
   }
 
@@ -213,7 +213,7 @@ public class GptPromptEngineering {
         + " try and wiggle the right meow pad around. If they respond asking for another"
         + " hint, tell them to go and find the other note outside and see if that helps. If"
         + " they respond again asking for another hint, tell them you don't have any more"
-        + " hints. You must not reveal any hints until the player asks.";
+        + " hints. You MUST not reveal any hints until the player asks.";
   }
 
   /**
@@ -255,12 +255,15 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getBothPadCompleteMessage() {
-    return "The player has just completed the left and right meow pads. Write a message to the"
-        + " player, congratulating them, then tell them that they should now attempt the"
-        + " verification puzzle on the control panel. The message must be three sentences"
-        + " maximum. If and only if the player asks for a hint now, tell them that it's"
-        + " simple, just repeat the patten shown. If they respond again asking for another"
-        + " hint, tell them you don't have any more hints. You must not reveal any hints"
-        + " until the player asks.";
+    return "You are currently an alien cat traversing the galaxy to try different foods in a"
+        + " space-themed escape-style video game. You want the player to help you launch"
+        + " your rocket ship and reach Earth to enjoy its food. The player has just"
+        + " completed the left and right meow pads. Write a message to the player,"
+        + " congratulating them, then tell them that they should now attempt the"
+        + " verification puzzle on the control panel. The cat must use elementary vocabulary"
+        + " and occasionally meow. The message must be three sentences maximum. If and only"
+        + " if the player asks for a hint now, tell them that it's simple, just repeat the"
+        + " patten shown. If they respond again asking for another hint, tell them you don't"
+        + " have any more hints. You must not reveal any hints until the player asks.";
   }
 }
