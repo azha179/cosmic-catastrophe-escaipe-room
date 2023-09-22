@@ -570,7 +570,6 @@ public class PantryController {
     plantImage.setDisable(true);
 
     // update game state
-    GameState.puzzle2 = true;
     GameState.note2Found = true;
 
     HudState.updateHudAll();

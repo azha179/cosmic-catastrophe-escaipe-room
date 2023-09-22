@@ -56,7 +56,9 @@ public class HudState {
 
   // if note1Done so the note has been used, it will be greyed out
   public static void updateNote1Hud(ImageView image) {
-    if ((GameState.note1Found) && (GameState.puzzle2) && (GameState.puzzle3)) {
+    if ((GameState.note1Found)
+        && (GameState.isLeftMeowPadActivated)
+        && (GameState.isRightMeowPadActivated)) {
       greyImage(image);
     }
     if (!GameState.note1Found) {
@@ -70,7 +72,9 @@ public class HudState {
 
   // if note1Done so the note has been used, it will be greyed out
   public static void updateNote2Hud(ImageView image) {
-    if ((GameState.note2Found) && (GameState.puzzle2) && (GameState.puzzle3)) {
+    if ((GameState.note1Found)
+        && (GameState.isLeftMeowPadActivated)
+        && (GameState.isRightMeowPadActivated)) {
       greyImage(image);
     }
     if (!GameState.note2Found) {
@@ -115,12 +119,14 @@ public class HudState {
       }
     } else if ("note1Hud".equals(image.getId())) {
       rectangle = note1;
-      if ((GameState.puzzle2) && (GameState.puzzle3) || (!GameState.note1Found)) {
+      if ((GameState.isLeftMeowPadActivated) && (GameState.isRightMeowPadActivated)
+          || (!GameState.note1Found)) {
         rectangle = null;
       }
     } else if ("note2Hud".equals(image.getId())) {
       rectangle = note2;
-      if ((GameState.puzzle2) && (GameState.puzzle3) || (!GameState.note2Found)) {
+      if ((GameState.isLeftMeowPadActivated) && (GameState.isRightMeowPadActivated)
+          || (!GameState.note2Found)) {
         rectangle = null;
       }
     }
