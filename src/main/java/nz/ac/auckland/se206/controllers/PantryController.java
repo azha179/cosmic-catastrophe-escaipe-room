@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -29,11 +28,6 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class PantryController {
-
-  // Temporary text
-  @FXML private Label text;
-  @FXML private Label result;
-  @FXML private Label count;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -104,12 +98,6 @@ public class PantryController {
     // creates a random recipe the player will have to replicate
     FoodRecipe.initialiseDesiredRecipe();
 
-    FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
-
-    text.setText(FoodRecipe.recipeToString(FoodRecipe.desiredRecipe));
-
-    count.setText(FoodRecipe.playerRecipe.size() + "/3");
-
     // Cat and Chat initialisation
     // Hide catImageSleep
     catImageSleep.setVisible(false);
@@ -142,11 +130,9 @@ public class PantryController {
       return;
     }
     FoodRecipe.playerRecipe.add(ingredient);
-    count.setText(FoodRecipe.playerRecipe.size() + "/3");
 
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
-        result.setText("correct dish!");
         GameState.isRecipeResolved = true;
         // enable plant
         plantImage.setDisable(false);
@@ -218,9 +204,77 @@ public class PantryController {
         Thread initiateDeviceThread = new Thread(initiateDeviceTask);
         initiateDeviceThread.start();
       } else {
-        result.setText("wrong dish :/");
         FoodRecipe.playerRecipe.clear();
-        count.setText(FoodRecipe.playerRecipe.size() + "/3");
+        // Cat response if incorrect dish
+        // Hide catImageSleep
+        catImageSleep.setVisible(false);
+        // hide catImageAwoken
+        catImageAwoken.setVisible(false);
+        // Show catImageActive
+        catImageActive.setVisible(true);
+        // Change image to thinking cat
+        Image image = new Image("images/ThinkingCat.png");
+        catImageActive.setImage(image);
+        // Disable cat
+        catImageActive.setDisable(true);
+        // hide return button
+        back.setVisible(false);
+        // hide current chat pane
+        chatPane.setVisible(false);
+        // hide reply area
+        replyTextField.setVisible(false);
+        replyImage.setVisible(false);
+        replyRectangle.setVisible(false);
+        // Initiate first message from GPT after cat is clicked using a thread
+        Task<Void> initiateDeviceTask =
+            new Task<Void>() {
+              // Call GPT
+              @Override
+              protected Void call() throws Exception {
+                // clear messages
+                GptActions.clearMessages(GptActions.chatCompletionRequest2);
+                GptActions.chatCompletionRequest2 =
+                    new ChatCompletionRequest()
+                        .setN(1)
+                        .setTemperature(0.2)
+                        .setTopP(0.5)
+                        .setMaxTokens(100);
+                ChatMessage chatMessage;
+                String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getWrongDishPantryMessage(
+                                FoodRecipe.food, recipe)),
+                        GptActions.chatCompletionRequest2);
+
+                Platform.runLater(
+                    () -> {
+                      // Set chat message to text area
+                      GptActions.setChatMessage(chatMessage, catTextArea);
+                      // Make chat pane visible
+                      chatPane.setVisible(true);
+                      // Change image to active cat
+                      Image image = new Image("images/NeutralCat.png");
+                      catImageActive.setImage(image);
+                      // Show reply area
+                      replyTextField.setVisible(true);
+                      replyImage.setVisible(true);
+                      replyRectangle.setVisible(true);
+
+                      // Enable cat
+                      catImageActive.setDisable(false);
+                      // show return button
+                      back.setVisible(true);
+                    });
+
+                return null;
+              }
+            };
+
+        Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+        initiateDeviceThread.start();
       }
     }
   }
@@ -262,12 +316,12 @@ public class PantryController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage chatMessage;
-            String food = FoodRecipe.recipeToString(FoodRecipe.desiredRecipe);
             String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
             chatMessage =
                 GptActions.runGpt(
                     new ChatMessage(
-                        "user", GptPromptEngineering.getFirstEnterPantryMessage(food, recipe)),
+                        "user",
+                        GptPromptEngineering.getFirstEnterPantryMessage(FoodRecipe.food, recipe)),
                     GptActions.chatCompletionRequest2);
 
             Platform.runLater(
