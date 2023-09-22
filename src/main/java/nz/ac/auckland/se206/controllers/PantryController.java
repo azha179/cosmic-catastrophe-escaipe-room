@@ -546,14 +546,14 @@ public class PantryController {
    */
   @FXML
   public void clickPlant(MouseEvent event) {
-    System.out.println("plant clicked");
 
     // disable plant
     plantImage.setDisable(true);
 
+    App.setUi(AppUi.TREE);
+
     // update game state
     GameState.puzzle2 = true;
-    GameState.note2Found = true;
 
     HudState.updateHudAll();
   }
