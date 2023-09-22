@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameSettings.GameDifficulty;
 import nz.ac.auckland.se206.GameState;
@@ -157,5 +158,6 @@ public class MenuController {
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
     GameState.isGameActive = true;
+    CountDownTimer.initialiseCountdownTimer();
   }
 }

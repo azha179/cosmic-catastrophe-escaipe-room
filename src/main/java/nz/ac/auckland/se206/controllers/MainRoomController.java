@@ -713,4 +713,8 @@ public class MainRoomController {
     logPane.setVisible(false);
     logHover.setDisable(true);
   }
+
+  public void initialiseCountdownTimer() {
+    System.out.println("starting timer");
+  }
 }
