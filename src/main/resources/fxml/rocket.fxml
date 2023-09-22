@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.MotionBlur?>
@@ -26,17 +28,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="cat" fitHeight="176.0" fitWidth="199.0" layoutX="578.0" layoutY="223.0" onMouseClicked="#onClickCat" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/NeutralCat.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="225.0" layoutY="25.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
-      <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="235.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="236.0" layoutY="32.0" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="218.0" layoutY="17.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
+      <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="228.0" layoutY="21.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="229.0" layoutY="24.0" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Torch.PNG" />
          </image>
@@ -44,8 +38,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="337.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="349.0" layoutY="25.0" onMouseClicked="#clickNote1" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="330.0" layoutY="21.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="342.0" layoutY="17.0" onMouseClicked="#clickNote1" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Note1.png" />
          </image>
@@ -53,8 +47,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="434.0" layoutY="29.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="450.0" layoutY="28.0" onMouseClicked="#clickNote2" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="427.0" layoutY="21.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="443.0" layoutY="20.0" onMouseClicked="#clickNote2" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Note2.png" />
          </image>
@@ -70,15 +64,65 @@
             <MotionBlur />
          </effect>
       </Rectangle>
-      <Pane fx:id="note1Pane" layoutX="13.0" layoutY="12.0" prefHeight="543.0" prefWidth="737.0" visible="false">
+      <Rectangle fx:id="leftMeowPad" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="34.0" layoutY="416.0" onMousePressed="#onPressLeftMeowPad" onMouseReleased="#onReleaseLeftMeowPad" opacity="0.0" rotate="156.7" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+      <Rectangle fx:id="rightMeowPad" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="632.0" layoutY="416.0" opacity="0.0" rotate="-163.5" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="439.0" layoutY="404.0" onMouseClicked="#clickCatSleep" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/SleepingCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="catImageAwoken" fitHeight="173.0" fitWidth="205.0" layoutX="440.0" layoutY="348.0" onMouseClicked="#clickCatAwoken" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/AwokenCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="496.0" layoutY="358.0" onMouseClicked="#clickCatActive" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/NeutralCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="chatPane" layoutX="396.0" layoutY="158.0" prefHeight="200.0" prefWidth="288.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="108.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="203.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" style="-fx-arc-width: 75; -fx-arc-height: 75;" width="286.0" />
+            <TextArea fx:id="catTextArea" editable="false" layoutX="16.0" layoutY="8.0" prefHeight="184.0" prefWidth="255.0" wrapText="true">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </TextArea>
+         </children>
+      </Pane>
+      <Rectangle fx:id="replyRectangle" arcHeight="5.0" arcWidth="5.0" height="34.0" layoutY="521.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="746.0" />
+      <TextField fx:id="replyTextField" layoutX="9.0" layoutY="525.0" onKeyPressed="#onPressKeyReply" prefHeight="25.0" prefWidth="657.0" promptText="Reply to cat here">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="replyImage" fitHeight="69.0" fitWidth="49.0" layoutX="684.0" layoutY="513.0" onMouseClicked="#clickReply" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/send.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="note1Pane" layoutY="4.0" prefHeight="550.0" prefWidth="740.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="566.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="117.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note1Screen.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="note1Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote1Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="note1Return" fitHeight="76.0" fitWidth="101.0" layoutX="179.0" layoutY="82.0" onMouseClicked="#clickNote1Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Back.PNG" />
                </image>
@@ -86,17 +130,17 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="163.0" prefHeight="103.0" prefWidth="326.0" text="LAUNCH MANUAL" textAlignment="CENTER" wrapText="true">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="164.0" prefHeight="103.0" prefWidth="326.0" text="LAUNCH MANUAL" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Copperplate" size="30.0" />
                </font>
             </Label>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="246.0" prefHeight="46.0" prefWidth="326.0" text="HOLD THE MEOW PADS UNTIL THEY TURN ON" textAlignment="CENTER" wrapText="true">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="247.0" prefHeight="46.0" prefWidth="326.0" text="HOLD THE MEOW PADS UNTIL THEY TURN ON" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Copperplate" size="21.0" />
                </font>
             </Label>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="191.0" prefHeight="46.0" prefWidth="326.0" text="rewritten by the engineers for dummies ~" textAlignment="CENTER" textFill="#9a9a9a" wrapText="true">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="208.0" layoutY="192.0" prefHeight="46.0" prefWidth="326.0" text="rewritten by the engineers for dummies ~" textAlignment="CENTER" textFill="#9a9a9a" wrapText="true">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
@@ -104,7 +148,7 @@
                   <InnerShadow />
                </effect>
             </Label>
-            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="206.0" layoutY="346.0" prefHeight="76.0" prefWidth="241.0" text="engineer's notes - the right meow pad seems to be faulty. " textFill="#9a9a9a" wrapText="true">
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="211.0" layoutY="347.0" prefHeight="76.0" prefWidth="241.0" text="engineer's notes - the right meow pad seems to be faulty. " textFill="#9a9a9a" wrapText="true">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
@@ -114,15 +158,15 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="note2Pane" layoutX="23.0" layoutY="22.0" prefHeight="543.0" prefWidth="737.0" visible="false">
+      <Pane fx:id="note2Pane" layoutY="4.0" prefHeight="550.0" prefWidth="740.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
-            <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="115.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="566.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="134.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note2Screen.PNG" />
                </image>
             </ImageView>
-            <ImageView fx:id="note2Return" fitHeight="76.0" fitWidth="101.0" layoutX="174.0" layoutY="81.0" onMouseClicked="#clickNote2Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="note2Return" fitHeight="76.0" fitWidth="101.0" layoutX="193.0" layoutY="93.0" onMouseClicked="#clickNote2Return" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Back.PNG" />
                </image>
@@ -130,12 +174,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="157.0" prefHeight="25.0" prefWidth="373.0" text="ENGINEER'S SCRAPBOOK" textAlignment="CENTER" wrapText="true">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="184.0" layoutY="169.0" prefHeight="25.0" prefWidth="373.0" text="ENGINEER'S SCRAPBOOK" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Copperplate" size="27.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="190.0" layoutY="240.0" prefHeight="76.0" prefWidth="255.0" text="we've still yet fixed the right meow pad but we notice it detects movement" textFill="#9a9a9a" wrapText="true">
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="209.0" layoutY="252.0" prefHeight="76.0" prefWidth="255.0" text="we've still yet fixed the right meow pad but we notice it detects movement" textFill="#9a9a9a" wrapText="true">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
@@ -145,7 +189,7 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="12.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="667.0" layoutY="20.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Settings.PNG" />
          </image>
@@ -156,8 +200,6 @@
             <Glow />
          </effect>
       </ImageView>
-      <Rectangle fx:id="leftMeowPad" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="34.0" layoutY="416.0" onMousePressed="#onPressLeftMeowPad" onMouseReleased="#onReleaseLeftMeowPad" opacity="0.0" rotate="156.7" stroke="BLACK" strokeType="INSIDE" width="70.0" />
-      <Rectangle fx:id="rightMeowPad" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="632.0" layoutY="416.0" opacity="0.0" rotate="-163.5" stroke="BLACK" strokeType="INSIDE" width="70.0" />
       <ImageView fx:id="log" fitHeight="22.0" fitWidth="76.0" layoutX="571.0" layoutY="17.0" onMouseEntered="#onHoverLog" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/log.png" />
