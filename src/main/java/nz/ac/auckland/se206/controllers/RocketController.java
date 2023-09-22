@@ -82,8 +82,6 @@ public class RocketController {
   @FXML private Label task3;
   private ArrayList<Label> taskList;
 
-  private boolean isRoomFirstEntered = false;
-
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -207,10 +205,32 @@ public class RocketController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage chatMessage;
-            chatMessage =
-                GptActions.runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
-                    GptActions.chatCompletionRequest3);
+            // If no notes are found, if note 1 only is found, if note 2 only is found, if both
+            // notes
+            if (!GameState.note1Found && !GameState.note2Found) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
+                      GptActions.chatCompletionRequest3);
+            } else if (GameState.note1Found && !GameState.note2Found) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getFirstEnterRocketMessageNoteOneFound()),
+                      GptActions.chatCompletionRequest3);
+            } else if (!GameState.note1Found && GameState.note2Found) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getFirstEnterRocketMessageNoteTwoFound()),
+                      GptActions.chatCompletionRequest3);
+            } else {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getFirstEnterRocketMessageBothNotesFound()),
+                      GptActions.chatCompletionRequest3);
+            }
 
             Platform.runLater(
                 () -> {
