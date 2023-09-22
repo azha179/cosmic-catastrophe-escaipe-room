@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -54,17 +55,26 @@ public class RocketController {
   @FXML private Rectangle note2Rectangle;
   ArrayList<ImageView> hudElements;
 
+  // Meow Pad
   @FXML private ImageView settingButton;
   @FXML private Rectangle memoryGameRectangle;
   @FXML private Rectangle leftMeowPad;
   @FXML private Rectangle rightMeowPad;
-
   private boolean isLeftMeowPadPressed = false;
   private Timeline leftMeowPadPressTimer;
-
   private Timeline rightMeowPadDragTimer;
   private long rightMeowPadDragStartTime;
   private final long RIGHT_MEOW_PAD_DRAG_THRESHOLD = 3000;
+
+  // Task Log
+  @FXML private ImageView log;
+  @FXML private Rectangle logBackground;
+  @FXML private Rectangle logHover;
+  @FXML private Pane logPane;
+  @FXML private Label task1;
+  @FXML private Label task2;
+  @FXML private Label task3;
+  private ArrayList<Label> taskList;
 
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
@@ -72,6 +82,11 @@ public class RocketController {
     hudElements.add(note1Hud);
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
+
+    taskList = new ArrayList<Label>();
+    taskList.add(task1);
+    taskList.add(task2);
+    taskList.add(task3);
 
     initialiseLeftMeowPad();
     initialiseRightMeowPad();
@@ -82,6 +97,14 @@ public class RocketController {
 
   public ArrayList<ImageView> getHudElements() {
     return hudElements;
+  }
+
+  public ArrayList<Label> getTasks() {
+    return taskList;
+  }
+
+  public void enableLog() {
+    log.setVisible(true);
   }
 
   @FXML
@@ -300,5 +323,17 @@ public class RocketController {
   /** Getter method for chatTextArea. */
   public TextArea getCatTextArea() {
     return catTextArea;
+  }
+
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    logPane.setVisible(true);
+    logHover.setDisable(false);
+  }
+
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    logPane.setVisible(false);
+    logHover.setDisable(true);
   }
 }
