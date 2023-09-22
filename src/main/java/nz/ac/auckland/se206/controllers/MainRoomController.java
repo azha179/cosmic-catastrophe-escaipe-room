@@ -392,7 +392,7 @@ public class MainRoomController {
     // Call catInitialise of RocketController
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.catInitialise();
-    
+
     switchToRocket();
     System.out.println("rocket clicked");
   }
@@ -445,6 +445,11 @@ public class MainRoomController {
     HudState.updateHudAll();
     // Hide torch
     torchImage.setVisible(false);
+    // Disables torch in other rooms
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getHudElements().get(0).setDisable(true);
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getHudElements().get(0).setDisable(true);
   }
 
   @FXML

@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.Hover;
 
-public class WinController {
+public class LossController {
 
   @FXML private ImageView exit;
 

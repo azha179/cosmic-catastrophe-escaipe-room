@@ -71,6 +71,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
     SceneManager.addAppUi(AppUi.BUSH, loadFxml("bush"));
     SceneManager.addAppUi(AppUi.TREE, loadFxml("tree"));
+    SceneManager.addAppUi(AppUi.LOSS, loadFxml("loss"));
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 740, 550);
 
     scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
