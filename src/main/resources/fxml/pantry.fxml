@@ -286,6 +286,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Label fx:id="hintsLabel" alignment="BOTTOM_LEFT" layoutX="311.0" layoutY="86.0" text="Hints: inf." textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="25.0" />
+         </font>
+      </Label>
       <Pane fx:id="note2Pane" layoutX="3.0" layoutY="5.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="560.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />

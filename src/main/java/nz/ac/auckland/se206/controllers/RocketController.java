@@ -24,6 +24,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
@@ -51,6 +52,7 @@ public class RocketController {
   @FXML private TextField replyTextField;
   @FXML private ImageView replyImage;
   @FXML private Rectangle replyRectangle;
+  @FXML private Label hintsLabel;
 
   // HUD Elements
   @FXML private ImageView torchHud;
@@ -200,6 +202,54 @@ public class RocketController {
 
   private void handleRightMeowPadActivation() {
     GameState.isRightMeowPadActivated = true;
+    // Generate message
+    // only if both notes are found AND left meow pad is not activated
+    if (GameState.note1Found && GameState.note2Found && !GameState.isLeftMeowPadActivated) {
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getRightPadCompleteMessageHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getRightPadCompleteMessage()),
+                        GptActions.chatCompletionRequest3);
+              }
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+    }
+    
     System.out.println("right Meow pad activated");
     rightActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
@@ -207,6 +257,53 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+      // Generate message
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              // clear messages
+              GptActions.clearMessages(GptActions.chatCompletionRequest3);
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getBothPadCompleteMessageHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getBothPadCompleteMessage()),
+                        GptActions.chatCompletionRequest3);
+              }
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+
       HudState.updateHudAll();
       HudState.disableHud(1);
       HudState.disableHud(2);
@@ -216,6 +313,53 @@ public class RocketController {
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
+    // Generate message
+    // only if both notes are found AND right meow pad is not activated
+    if (GameState.note1Found && GameState.note2Found && !GameState.isRightMeowPadActivated) {
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getLeftPadCompleteMessageHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getLeftPadCompleteMessage()),
+                        GptActions.chatCompletionRequest3);
+              }
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+    }
 
     leftActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
@@ -223,6 +367,54 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+
+      // Generate message
+      // Hide chat
+      hideChat();
+      // Initiate first message from GPT
+      Task<Void> initiateDeviceTask =
+          new Task<Void>() {
+            // Call GPT
+            @Override
+            protected Void call() throws Exception {
+              // clear messages
+              GptActions.clearMessages(GptActions.chatCompletionRequest3);
+              GptActions.chatCompletionRequest3 =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.2)
+                      .setTopP(0.5)
+                      .setMaxTokens(100);
+              ChatMessage chatMessage;
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getBothPadCompleteMessageHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getBothPadCompleteMessage()),
+                        GptActions.chatCompletionRequest3);
+              }
+
+              Platform.runLater(
+                  () -> {
+                    // Set chat message to text area
+                    GptActions.setChatMessage(chatMessage, catTextArea);
+                    // Show chat
+                    showChat();
+                  });
+
+              return null;
+            }
+          };
+
+      Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+      initiateDeviceThread.start();
+
       HudState.updateHudAll();
       HudState.disableHud(1);
       HudState.disableHud(2);
@@ -246,13 +438,17 @@ public class RocketController {
     return this.launch;
   }
 
-  /** Initialise cat response upon entering the pantry for the first time. */
+  /** Initialise cat response upon entering the rocket for the first time. */
   public void catInitialise() {
     if (isRoomFirstEntered) {
       return;
     }
     // Disable cat
     catImageActive.setDisable(true);
+    // Hide return button
+    back.setVisible(false);
+    // Initiate first message from GPT
+
     // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
         new Task<Void>() {
@@ -266,10 +462,72 @@ public class RocketController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage chatMessage;
-            chatMessage =
-                GptActions.runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
-                    GptActions.chatCompletionRequest3);
+            // If no notes are found, if note 1 only is found, if note 2 only is found, if both
+            // notes
+            if (!GameState.note1Found && !GameState.note2Found) {
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getFirstEnterRocketMessageHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
+                        GptActions.chatCompletionRequest3);
+              }
+            } else if (GameState.note1Found && !GameState.note2Found) {
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getFirstEnterRocketMessageNoteOneFoundHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getFirstEnterRocketMessageNoteOneFound()),
+                        GptActions.chatCompletionRequest3);
+              }
+            } else if (!GameState.note1Found && GameState.note2Found) {
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getFirstEnterRocketMessageNoteTwoFoundHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getFirstEnterRocketMessageNoteTwoFound()),
+                        GptActions.chatCompletionRequest3);
+              }
+            } else {
+              // depends on difficulty
+              if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getFirstEnterRocketMessageBothNotesFoundHard()),
+                        GptActions.chatCompletionRequest3);
+              } else {
+                chatMessage =
+                    GptActions.runGpt(
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getFirstEnterRocketMessageBothNotesFound()),
+                        GptActions.chatCompletionRequest3);
+              }
+            }
 
             Platform.runLater(
                 () -> {
@@ -440,6 +698,20 @@ public class RocketController {
                 () -> {
                   // Update text area
                   GptActions.updateTextAreaAll(lastMsg);
+                  // Check if reply had the word 'Sure' and game difficulty is medium
+                  if (lastMsg.getContent().contains("Sure")
+                      && GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
+                    // update hints left
+                    GameState.hintsLeft--;
+                    // update hint label
+                    GameState.updateAllHintsLabel();
+                    // if hints left is 0
+                    if (GameState.hintsLeft == 0) {
+                      GameSettings.difficulty = GameSettings.GameDifficulty.HARD;
+                      GameState.isHintUsed = true;
+                      hintsUsed();
+                    }
+                  }
                   // Enable reply button
                   replyImage.setDisable(false);
                   replyImage.setOpacity(1);
@@ -609,5 +881,91 @@ public class RocketController {
   public void onLeaveLog(MouseEvent event) {
     logPane.setVisible(false);
     logHover.setDisable(true);
+  }
+
+  // Method to hide all the chat elements while generating
+  public void hideChat() {
+    // Hide catImageSleep
+    catImageSleep.setVisible(false);
+    // hide catImageAwoken
+    catImageAwoken.setVisible(false);
+    // Show catImageActive
+    catImageActive.setVisible(true);
+    // Change image to thinking cat
+    Image image = new Image("images/ThinkingCat.png");
+    catImageActive.setImage(image);
+    // Disable cat
+    catImageActive.setDisable(true);
+    // hide return button
+    back.setVisible(false);
+    // hide current chat pane
+    chatPane.setVisible(false);
+    // hide reply area
+    replyTextField.setVisible(false);
+    replyImage.setVisible(false);
+    replyRectangle.setVisible(false);
+  }
+
+  // Method to show all the chat elements after generating
+  public void showChat() {
+    // Make chat pane visible
+    chatPane.setVisible(true);
+    // Change image to active cat
+    Image image = new Image("images/NeutralCat.png");
+    catImageActive.setImage(image);
+    // Show reply area
+    replyTextField.setVisible(true);
+    replyImage.setVisible(true);
+    replyRectangle.setVisible(true);
+
+    // Enable cat
+    catImageActive.setDisable(false);
+    // show return button
+    back.setVisible(true);
+  }
+
+  /** Method that calls GPT when hints are used up in medium difficulty */
+  public void hintsUsed() {
+    // Disable cat
+    catImageActive.setDisable(true);
+    // change image to thinking cat
+    Image image = new Image("images/ThinkingCat.png");
+    catImageActive.setImage(image);
+    // send message to GPT
+    Task<Void> initiateDeviceTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            GptActions.chatCompletionRequest2 =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.2)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            GptActions.runGpt(
+                new ChatMessage("user", GptPromptEngineering.sendHintsUsed()),
+                GptActions.chatCompletionRequest2);
+
+            Platform.runLater(
+                () -> {
+                  // Change image to active cat
+                  Image image = new Image("images/NeutralCat.png");
+                  catImageActive.setImage(image);
+                  // Enable cat
+                  catImageActive.setDisable(false);
+                });
+
+            return null;
+          }
+        };
+
+    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+    initiateDeviceThread.start();
+  }
+
+  /** Updates hint label */
+  public void updateHintsLabel() {
+    hintsLabel.setText("Hints left: " + GameState.hintsLeft);
   }
 }
