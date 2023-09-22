@@ -31,6 +31,7 @@ public class RocketController {
   @FXML private ImageView back;
   @FXML private ImageView cat;
   @FXML private ImageView temp;
+  @FXML private ImageView launch;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -148,6 +149,9 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+      HudState.updateHudAll();
+      HudState.disableHud(1);
+      HudState.disableHud(2);
     }
   }
 
@@ -159,7 +163,22 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+      HudState.updateHudAll();
+      HudState.disableHud(1);
+      HudState.disableHud(2);
     }
+  }
+
+  @FXML
+  public void clickLaunch(MouseEvent event) {
+    GameState.isGameActive = false;
+    switchToWin();
+  }
+
+  private void switchToWin() {}
+
+  public ImageView getLaunch() {
+    return this.launch;
   }
 
   /**

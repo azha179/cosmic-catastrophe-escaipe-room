@@ -126,6 +126,8 @@ public class MemoryGameController {
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
       text.setText("Correct \n sequence ^.~.^!!");
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getLaunch().setDisable(false);
     }
   }
 

@@ -207,7 +207,7 @@ public class MainRoomController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
-    // enabling task log
+    // assigning task 1
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.enableLog();
     mainRoom.getTasks().get(0).setText("Find the toy");
@@ -523,7 +523,8 @@ public class MainRoomController {
     // hide footprints pane
     footprintPane.setVisible(false);
 
-    HudState.updateHudAll();
+    // disables torch
+    HudState.disableHud(0);
 
     switchToBush();
   }
