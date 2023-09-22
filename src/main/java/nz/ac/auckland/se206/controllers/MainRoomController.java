@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
@@ -173,10 +174,23 @@ public class MainRoomController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage chatMessage;
-            chatMessage =
-                GptActions.runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getIntroductionMessage()),
-                    GptActions.chatCompletionRequest1);
+            // Get message depending on difficulty
+            if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getIntroductionMessageEasy()),
+                      GptActions.chatCompletionRequest1);
+            } else if (GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getIntroductionMessageMedium()),
+                      GptActions.chatCompletionRequest1);
+            } else {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getIntroductionMessageHard()),
+                      GptActions.chatCompletionRequest1);
+            }
 
             Platform.runLater(
                 () -> {
@@ -392,7 +406,7 @@ public class MainRoomController {
     // Call catInitialise of RocketController
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.catInitialise();
-    
+
     switchToRocket();
     System.out.println("rocket clicked");
   }
