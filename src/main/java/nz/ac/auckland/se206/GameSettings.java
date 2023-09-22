@@ -8,13 +8,7 @@ public class GameSettings {
     HARD
   }
 
-  public enum TimeLimit {
-    TWO,
-    FOUR,
-    SIX
-  }
-
   public static GameDifficulty difficulty = null;
 
-  public static TimeLimit timeLimit = null;
+  public static int timeLimit = 0;
 }
