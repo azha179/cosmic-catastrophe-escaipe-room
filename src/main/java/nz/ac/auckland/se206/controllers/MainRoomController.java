@@ -211,18 +211,12 @@ public class MainRoomController {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.enableLog();
     mainRoom.getTasks().get(0).setText("Find the toy");
-    mainRoom.getTasks().get(1).setText("???");
-    mainRoom.getTasks().get(2).setText("???");
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     pantry.enableLog();
     pantry.getTasks().get(0).setText("Find the toy");
-    pantry.getTasks().get(1).setText("???");
-    pantry.getTasks().get(2).setText("???");
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.enableLog();
     rocket.getTasks().get(0).setText("Find the toy");
-    rocket.getTasks().get(1).setText("???");
-    rocket.getTasks().get(2).setText("???");
   }
 
   /**

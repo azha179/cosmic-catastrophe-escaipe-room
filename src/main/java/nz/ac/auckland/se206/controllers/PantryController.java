@@ -158,6 +158,13 @@ public class PantryController {
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         GameState.isRecipeResolved = true;
+        // checking task 2 off
+        MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+        mainRoom.getTasks().get(1).setSelected(true);
+        RocketController rocket = (RocketController) SceneManager.getController("rocket");
+        rocket.getTasks().get(1).setSelected(true);
+        PantryController pantry = (PantryController) SceneManager.getController("pantry");
+        pantry.getTasks().get(1).setSelected(true);
         // enable plant
         plantImage.setDisable(false);
         // Cat response
@@ -372,6 +379,17 @@ public class PantryController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
+
+    // assigning task 2
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    mainRoom.enableLog();
+    mainRoom.getTasks().get(1).setText("Make food");
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.enableLog();
+    pantry.getTasks().get(1).setText("Make food");
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.enableLog();
+    rocket.getTasks().get(1).setText("Make food");
 
     isRoomFirstEntered = true;
   }
