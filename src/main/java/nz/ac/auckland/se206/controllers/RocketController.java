@@ -29,6 +29,8 @@ import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class RocketController {
 
@@ -184,60 +186,57 @@ public class RocketController {
   }
 
   /** Initialise cat response upon entering the pantry for the first time. */
-  // public void catInitialise() {
-  //   if (isRoomFirstEntered) {
-  //     return;
-  //   }
-  //   // Disable cat
-  //   catImageActive.setDisable(true);
-  //   // Initiate first message from GPT after cat is clicked using a thread
-  //   Task<Void> initiateDeviceTask =
-  //       new Task<Void>() {
-  //         // Call GPT
-  //         @Override
-  //         protected Void call() throws Exception {
-  //           GptActions.chatCompletionRequest2 =
-  //               new ChatCompletionRequest()
-  //                   .setN(1)
-  //                   .setTemperature(0.2)
-  //                   .setTopP(0.5)
-  //                   .setMaxTokens(100);
-  //           ChatMessage chatMessage;
-  //           String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
-  //           chatMessage =
-  //               GptActions.runGpt(
-  //                   new ChatMessage(
-  //                       "user",
-  //                       GptPromptEngineering.getFirstEnterRocketMessage()),
-  //                   GptActions.chatCompletionRequest2);
+  public void catInitialise() {
+    if (isRoomFirstEntered) {
+      return;
+    }
+    // Disable cat
+    catImageActive.setDisable(true);
+    // Initiate first message from GPT after cat is clicked using a thread
+    Task<Void> initiateDeviceTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            GptActions.chatCompletionRequest3 =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.2)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            ChatMessage chatMessage;
+            chatMessage =
+                GptActions.runGpt(
+                    new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
+                    GptActions.chatCompletionRequest3);
 
-  //           Platform.runLater(
-  //               () -> {
-  //                 // Set chat message to text area
-  //                 GptActions.setChatMessage(chatMessage, catTextArea);
-  //                 // Make chat pane visible
-  //                 chatPane.setVisible(true);
-  //                 // Change image to active cat
-  //                 Image image = new Image("images/NeutralCat.png");
-  //                 catImageActive.setImage(image);
-  //                 // Show reply area
-  //                 replyTextField.setVisible(true);
-  //                 replyImage.setVisible(true);
-  //                 replyRectangle.setVisible(true);
+            Platform.runLater(
+                () -> {
+                  // Set chat message to text area
+                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Make chat pane visible
+                  chatPane.setVisible(true);
+                  // Change image to active cat
+                  Image image = new Image("images/NeutralCat.png");
+                  catImageActive.setImage(image);
+                  // Show reply area
+                  replyTextField.setVisible(true);
+                  replyImage.setVisible(true);
+                  replyRectangle.setVisible(true);
 
-  //                 // Enable cat
-  //                 catImageActive.setDisable(false);
-  //               });
+                  // Enable cat
+                  catImageActive.setDisable(false);
+                });
 
-  //           return null;
-  //         }
-  //       };
+            return null;
+          }
+        };
 
-  //   Thread initiateDeviceThread = new Thread(initiateDeviceTask);
-  //   initiateDeviceThread.start();
+    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+    initiateDeviceThread.start();
 
-  //   isRoomFirstEntered = true;
-  // }
+    isRoomFirstEntered = true;
+  }
 
   /**
    * Handles the click event on awoken cat.
@@ -374,7 +373,7 @@ public class RocketController {
           @Override
           protected Void call() throws Exception {
             ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
+            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest3);
 
             Platform.runLater(
                 () -> {
