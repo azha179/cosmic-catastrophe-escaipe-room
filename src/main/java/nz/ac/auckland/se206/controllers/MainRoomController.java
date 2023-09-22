@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -47,6 +48,7 @@ public class MainRoomController {
   @FXML private TextField replyTextField;
   @FXML private ImageView replyImage;
   @FXML private Rectangle replyRectangle;
+  @FXML private Label hintsLabel;
 
   // Toy Puzzle Elements
   @FXML private Pane footprintPane;
@@ -374,6 +376,20 @@ public class MainRoomController {
                 () -> {
                   // Update text area
                   GptActions.updateTextAreaAll(lastMsg);
+                  // Check if reply had the word 'Sure' and game difficulty is medium
+                  if (lastMsg.getContent().contains("Sure")
+                      && GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
+                    // update hints left
+                    GameState.hintsLeft--;
+                    // update hint label
+                    GameState.updateAllHintsLabel();
+                    // if hints left is 0
+                    if (GameState.hintsLeft == 0) {
+                      GameSettings.difficulty = GameSettings.GameDifficulty.HARD;
+                      GameState.isHintUsed = true;
+                      hintsUsed();
+                    }
+                  }
                   // Enable reply button
                   replyImage.setDisable(false);
                   replyImage.setOpacity(1);
@@ -721,5 +737,50 @@ public class MainRoomController {
   public void onLeaveLog(MouseEvent event) {
     logPane.setVisible(false);
     logHover.setDisable(true);
+  }
+
+  /** Method that calls GPT when hints are used up in medium difficulty */
+  public void hintsUsed() {
+    // Disable cat
+    catImageActive.setDisable(true);
+    // change image to thinking cat
+    Image image = new Image("images/ThinkingCat.png");
+    catImageActive.setImage(image);
+    // send message to GPT
+    Task<Void> initiateDeviceTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            GptActions.chatCompletionRequest2 =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.2)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            GptActions.runGpt(
+                new ChatMessage("user", GptPromptEngineering.sendHintsUsed()),
+                GptActions.chatCompletionRequest2);
+
+            Platform.runLater(
+                () -> {
+                  // Change image to active cat
+                  Image image = new Image("images/NeutralCat.png");
+                  catImageActive.setImage(image);
+                  // Enable cat
+                  catImageActive.setDisable(false);
+                });
+
+            return null;
+          }
+        };
+
+    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+    initiateDeviceThread.start();
+  }
+
+  /** Updates hint label */
+  public void updateHintsLabel() {
+    hintsLabel.setText("Hints left: " + GameState.hintsLeft);
   }
 }

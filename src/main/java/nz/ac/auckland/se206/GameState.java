@@ -1,5 +1,9 @@
 package nz.ac.auckland.se206;
 
+import nz.ac.auckland.se206.controllers.MainRoomController;
+import nz.ac.auckland.se206.controllers.PantryController;
+import nz.ac.auckland.se206.controllers.RocketController;
+
 /** Represents the state of the game. */
 public class GameState {
 
@@ -40,4 +44,16 @@ public class GameState {
   public static boolean isRocketFirstEntered = false;
 
   public static int hintsLeft;
+
+  public static boolean isHintUsed = false;
+
+  public static void updateAllHintsLabel() {
+    MainRoomController mainRoomController =
+        (MainRoomController) SceneManager.getController("mainroom");
+    PantryController pantryController = (PantryController) SceneManager.getController("pantry");
+    RocketController rocketController = (RocketController) SceneManager.getController("rocket");
+    mainRoomController.updateHintsLabel();
+    pantryController.updateHintsLabel();
+    rocketController.updateHintsLabel();
+  }
 }
