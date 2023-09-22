@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -87,6 +88,9 @@ public class MainRoomController {
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
+  // Timer element
+  @FXML private Label timer;
+
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
   // Index of last footprint that was enabled
@@ -128,6 +132,10 @@ public class MainRoomController {
             replyTextField.getParent().requestFocus();
           }
         });
+  }
+
+  public Label getTimer() {
+    return timer;
   }
 
   public ArrayList<ImageView> getHudElements() {
@@ -712,9 +720,5 @@ public class MainRoomController {
   public void onLeaveLog(MouseEvent event) {
     logPane.setVisible(false);
     logHover.setDisable(true);
-  }
-
-  public void initialiseCountdownTimer() {
-    System.out.println("starting timer");
   }
 }

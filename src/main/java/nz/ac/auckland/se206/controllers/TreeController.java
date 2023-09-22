@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
@@ -15,12 +16,19 @@ public class TreeController {
   @FXML private ImageView note2;
   @FXML private ImageView back;
 
+  // Timer element
+  @FXML private Label timer;
+
   @FXML
   public void onClickNote2(MouseEvent event) {
     GameState.note2Found = true;
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     HudState.updateHudAll();
+  }
+
+  public Label getTimer() {
+    return timer;
   }
 
   @FXML

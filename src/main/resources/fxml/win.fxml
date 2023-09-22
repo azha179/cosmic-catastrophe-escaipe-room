@@ -26,7 +26,7 @@
             <Font name="Copperplate" size="81.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="189.0" layoutY="337.0" prefHeight="30.0" prefWidth="349.0" text="...with *timeLeft* to spare!" textAlignment="CENTER" textFill="#fffbb2" wrapText="true">
+      <Label fx:id="result" alignment="CENTER" layoutX="189.0" layoutY="337.0" prefHeight="30.0" prefWidth="349.0" textAlignment="CENTER" textFill="#fffbb2" wrapText="true">
          <font>
             <Font name="Arial" size="25.0" />
          </font>

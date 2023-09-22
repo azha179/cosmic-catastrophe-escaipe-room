@@ -158,6 +158,7 @@ public class MenuController {
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
     GameState.isGameActive = true;
+
     CountDownTimer.initialiseCountdownTimer();
   }
 }

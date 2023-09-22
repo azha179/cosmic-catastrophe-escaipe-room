@@ -47,6 +47,9 @@ public class MemoryGameController {
   @FXML private ImageView button15;
   @FXML private ImageView button16;
 
+  // Timer element
+  @FXML private Label timer;
+
   private int sequenceIndex;
 
   public void initialize() {
@@ -55,6 +58,10 @@ public class MemoryGameController {
 
     // assigns each button to values 1-16 respectively
     initialiseUserData();
+  }
+
+  public Label getTimer() {
+    return timer;
   }
 
   @FXML
@@ -140,7 +147,6 @@ public class MemoryGameController {
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
 
-      
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
       rocket.getLaunch().setDisable(false);
 
@@ -155,7 +161,6 @@ public class MemoryGameController {
 
       timeline.setCycleCount(2); // Alternate between two values
       timeline.play();
-
     }
   }
 

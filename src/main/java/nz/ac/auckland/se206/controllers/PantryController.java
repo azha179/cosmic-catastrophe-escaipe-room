@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -92,6 +93,9 @@ public class PantryController {
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
+  // Timer element
+  @FXML private Label timer;
+
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -134,6 +138,10 @@ public class PantryController {
         });
   }
 
+  public Label getTimer() {
+    return timer;
+  }
+
   public ArrayList<ImageView> getHudElements() {
     return hudElements;
   }
@@ -153,8 +161,8 @@ public class PantryController {
     if (colour.equals("WHITE")) {
       dropShadow.setColor(javafx.scene.paint.Color.WHITE);
     } else {
-          dropShadow.setColor(javafx.scene.paint.Color.GREEN);
-        }
+      dropShadow.setColor(javafx.scene.paint.Color.GREEN);
+    }
     dropShadow.setRadius(10.0);
     dropShadow.setOffsetX(5.0);
     dropShadow.setOffsetY(5.0);
@@ -189,10 +197,10 @@ public class PantryController {
         PantryController pantry = (PantryController) SceneManager.getController("pantry");
         pantry.getTasks().get(1).setSelected(true);
 
-        for (ImageView desired:FoodRecipe.desiredRecipe){
+        for (ImageView desired : FoodRecipe.desiredRecipe) {
           dropShadow(desired, "GREEN");
         }
-        
+
         // enable plant
         plantImage.setDisable(false);
         // Cat response
@@ -608,8 +616,6 @@ public class PantryController {
 
     // update game state
     GameState.note2Found = true;
-
-    
 
     HudState.updateHudAll();
   }
