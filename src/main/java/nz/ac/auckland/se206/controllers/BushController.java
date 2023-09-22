@@ -24,6 +24,13 @@ public class BushController {
     if (GameState.toyFound && GameState.note1Found) {
       backButton.setVisible(true);
     }
+    // checking task 1 off
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    mainRoom.getTasks().get(0).setSelected(true);
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getTasks().get(0).setSelected(true);
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getTasks().get(0).setSelected(true);
   }
 
   @FXML
