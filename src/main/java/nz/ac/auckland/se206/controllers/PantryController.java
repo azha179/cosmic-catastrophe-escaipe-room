@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.FoodRecipe;
+import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
@@ -153,8 +154,8 @@ public class PantryController {
     if (colour.equals("WHITE")) {
       dropShadow.setColor(javafx.scene.paint.Color.WHITE);
     } else {
-          dropShadow.setColor(javafx.scene.paint.Color.GREEN);
-        }
+      dropShadow.setColor(javafx.scene.paint.Color.GREEN);
+    }
     dropShadow.setRadius(10.0);
     dropShadow.setOffsetX(5.0);
     dropShadow.setOffsetY(5.0);
@@ -189,10 +190,10 @@ public class PantryController {
         PantryController pantry = (PantryController) SceneManager.getController("pantry");
         pantry.getTasks().get(1).setSelected(true);
 
-        for (ImageView desired:FoodRecipe.desiredRecipe){
+        for (ImageView desired : FoodRecipe.desiredRecipe) {
           dropShadow(desired, "GREEN");
         }
-        
+
         // enable plant
         plantImage.setDisable(false);
         // Cat response
@@ -215,7 +216,7 @@ public class PantryController {
         replyTextField.setVisible(false);
         replyImage.setVisible(false);
         replyRectangle.setVisible(false);
-        // Initiate first message from GPT after cat is clicked using a thread
+        // message from GPT
         Task<Void> initiateDeviceTask =
             new Task<Void>() {
               // Call GPT
@@ -285,14 +286,12 @@ public class PantryController {
         replyTextField.setVisible(false);
         replyImage.setVisible(false);
         replyRectangle.setVisible(false);
-        // Initiate first message from GPT after cat is clicked using a thread
+        // message from GPT
         Task<Void> initiateDeviceTask =
             new Task<Void>() {
               // Call GPT
               @Override
               protected Void call() throws Exception {
-                // clear messages
-                GptActions.clearMessages(GptActions.chatCompletionRequest2);
                 GptActions.chatCompletionRequest2 =
                     new ChatCompletionRequest()
                         .setN(1)
@@ -301,13 +300,23 @@ public class PantryController {
                         .setMaxTokens(100);
                 ChatMessage chatMessage;
                 String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
-                chatMessage =
-                    GptActions.runGpt(
-                        new ChatMessage(
-                            "user",
-                            GptPromptEngineering.getWrongDishPantryMessage(
-                                FoodRecipe.food, recipe)),
-                        GptActions.chatCompletionRequest2);
+                // depends on difficulty
+                if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+                  chatMessage =
+                      GptActions.runGpt(
+                          new ChatMessage(
+                              "user",
+                              GptPromptEngineering.getWrongDishPantryMessageHard(FoodRecipe.food)),
+                          GptActions.chatCompletionRequest2);
+                } else {
+                  chatMessage =
+                      GptActions.runGpt(
+                          new ChatMessage(
+                              "user",
+                              GptPromptEngineering.getWrongDishPantryMessage(
+                                  FoodRecipe.food, recipe)),
+                          GptActions.chatCompletionRequest2);
+                }
 
                 Platform.runLater(
                     () -> {
@@ -368,7 +377,7 @@ public class PantryController {
     catImageActive.setDisable(true);
     // Hide return button
     back.setVisible(false);
-    // Initiate first message from GPT after cat is clicked using a thread
+    // Initiate first message from GPT
     Task<Void> initiateDeviceTask =
         new Task<Void>() {
           // Call GPT
@@ -382,12 +391,22 @@ public class PantryController {
                     .setMaxTokens(100);
             ChatMessage chatMessage;
             String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
-            chatMessage =
-                GptActions.runGpt(
-                    new ChatMessage(
-                        "user",
-                        GptPromptEngineering.getFirstEnterPantryMessage(FoodRecipe.food, recipe)),
-                    GptActions.chatCompletionRequest2);
+            // depends on difficulty
+            if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user",
+                          GptPromptEngineering.getFirstEnterPantryMessageHard(FoodRecipe.food)),
+                      GptActions.chatCompletionRequest2);
+            } else {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user",
+                          GptPromptEngineering.getFirstEnterPantryMessage(FoodRecipe.food, recipe)),
+                      GptActions.chatCompletionRequest2);
+            }
 
             Platform.runLater(
                 () -> {
@@ -608,8 +627,6 @@ public class PantryController {
 
     // update game state
     GameState.note2Found = true;
-
-    
 
     HudState.updateHudAll();
   }
