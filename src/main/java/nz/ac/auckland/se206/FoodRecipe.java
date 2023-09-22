@@ -12,6 +12,7 @@ public class FoodRecipe {
   public static ArrayList<ImageView> baseIngredient = new ArrayList<ImageView>();
   public static ArrayList<ImageView> desiredRecipe = new ArrayList<ImageView>();
   public static ArrayList<ImageView> playerRecipe = new ArrayList<ImageView>();
+  public static String food;
 
   public static void initialiseDesiredRecipe() {
 
@@ -28,6 +29,9 @@ public class FoodRecipe {
     } while (firstRandomPrefixIndex == secondRandomPrefixIndex);
     desiredRecipe.add(prefixIngredient.get(firstRandomPrefixIndex));
     desiredRecipe.add(prefixIngredient.get(secondRandomPrefixIndex));
+
+    FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
+    food = FoodRecipe.recipeToString(FoodRecipe.desiredRecipe);
   }
 
   public static String recipeToString(ArrayList<ImageView> recipe) {

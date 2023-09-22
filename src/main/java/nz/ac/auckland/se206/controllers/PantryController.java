@@ -31,8 +31,6 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 public class PantryController {
 
   // Temporary text
-  @FXML private Label text;
-  @FXML private Label result;
   @FXML private Label count;
 
   // Cat and Chat Elements
@@ -104,8 +102,6 @@ public class PantryController {
     // creates a random recipe the player will have to replicate
     FoodRecipe.initialiseDesiredRecipe();
 
-    FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
-
     count.setText(FoodRecipe.playerRecipe.size() + "/3");
 
     // Cat and Chat initialisation
@@ -144,7 +140,6 @@ public class PantryController {
 
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
-        result.setText("correct dish!");
         GameState.isRecipeResolved = true;
         // enable plant
         plantImage.setDisable(false);
@@ -216,7 +211,6 @@ public class PantryController {
         Thread initiateDeviceThread = new Thread(initiateDeviceTask);
         initiateDeviceThread.start();
       } else {
-        result.setText("wrong dish :/");
         FoodRecipe.playerRecipe.clear();
         count.setText(FoodRecipe.playerRecipe.size() + "/3");
         // Cat response if incorrect dish
@@ -256,7 +250,9 @@ public class PantryController {
                 ChatMessage chatMessage;
                 chatMessage =
                     GptActions.runGpt(
-                        new ChatMessage("user", GptPromptEngineering.getWrongDishPantryMessage()),
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getWrongDishPantryMessage(FoodRecipe.food)),
                         GptActions.chatCompletionRequest2);
 
                 Platform.runLater(
@@ -326,12 +322,12 @@ public class PantryController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage chatMessage;
-            String food = FoodRecipe.recipeToString(FoodRecipe.desiredRecipe);
             String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
             chatMessage =
                 GptActions.runGpt(
                     new ChatMessage(
-                        "user", GptPromptEngineering.getFirstEnterPantryMessage(food, recipe)),
+                        "user",
+                        GptPromptEngineering.getFirstEnterPantryMessage(FoodRecipe.food, recipe)),
                     GptActions.chatCompletionRequest2);
 
             Platform.runLater(
