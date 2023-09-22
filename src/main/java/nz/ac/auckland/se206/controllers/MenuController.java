@@ -10,9 +10,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameSettings.GameDifficulty;
-import nz.ac.auckland.se206.GameSettings.TimeLimit;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager;
@@ -67,25 +67,25 @@ public class MenuController {
 
   @FXML
   public void onClickTwo(MouseEvent event) {
-    GameSettings.timeLimit = TimeLimit.TWO;
+    GameSettings.timeLimit = 2;
     changeColourTime(two);
   }
 
   @FXML
   public void onClickFour(MouseEvent event) {
-    GameSettings.timeLimit = TimeLimit.FOUR;
+    GameSettings.timeLimit = 4;
     changeColourTime(four);
   }
 
   @FXML
   public void onClickSix(MouseEvent event) {
-    GameSettings.timeLimit = TimeLimit.SIX;
+    GameSettings.timeLimit = 6;
     changeColourTime(six);
   }
 
   @FXML
   public void onClickPlay(MouseEvent event) {
-    if (GameSettings.difficulty != null && GameSettings.timeLimit != null) {
+    if (GameSettings.difficulty != null && GameSettings.timeLimit != 0) {
       switchToRoom();
     }
   }
@@ -158,5 +158,7 @@ public class MenuController {
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
     GameState.isGameActive = true;
+
+    CountDownTimer.initialiseCountdownTimer();
   }
 }

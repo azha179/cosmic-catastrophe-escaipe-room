@@ -14,7 +14,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane prefHeight="540.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SettingsController">
    <children>
       <ImageView fitHeight="560.0" fitWidth="776.0" layoutX="-9.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
@@ -78,5 +77,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ChoiceBox>
+      <Pane layoutX="40.0" layoutY="4.0" prefHeight="113.0" prefWidth="163.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="35.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
+            <Label fx:id="timer" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
+               <font>
+                  <Font name="Copperplate" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>

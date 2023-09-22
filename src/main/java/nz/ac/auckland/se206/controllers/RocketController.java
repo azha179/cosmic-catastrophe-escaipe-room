@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -23,6 +24,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
@@ -85,6 +87,9 @@ public class RocketController {
   @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
+  // Timer element
+  @FXML private Label timer;
+
   private boolean isRoomFirstEntered = false;
 
   public void initialize() {
@@ -123,6 +128,10 @@ public class RocketController {
             replyTextField.getParent().requestFocus();
           }
         });
+  }
+
+  public Label getTimer() {
+    return timer;
   }
 
   public ArrayList<ImageView> getHudElements() {
@@ -224,6 +233,9 @@ public class RocketController {
   public void clickLaunch(MouseEvent event) {
     GameState.isGameActive = false;
     switchToWin();
+    CountDownTimer.countdownTimeline.stop();
+    WinController win = (WinController) SceneManager.getController("win");
+    win.getResult().setText("...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
   }
 
   private void switchToWin() {

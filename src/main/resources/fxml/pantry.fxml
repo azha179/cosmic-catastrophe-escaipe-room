@@ -388,6 +388,16 @@
          </children>
       </Pane>
       <Rectangle fx:id="logHover" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="103.0" layoutX="567.0" layoutY="16.0" onMouseExited="#onLeaveLog" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
+      <Pane layoutX="52.0" prefHeight="113.0" prefWidth="163.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="35.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
+            <Label fx:id="timer" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
+               <font>
+                  <Font name="Copperplate" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
 
    </children>
 </Pane>
