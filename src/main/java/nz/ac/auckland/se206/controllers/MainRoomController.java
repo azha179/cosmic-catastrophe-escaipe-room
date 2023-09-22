@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -74,6 +75,15 @@ public class MainRoomController {
   @FXML private Rectangle note2Rectangle;
   @FXML private ImageView settingButton;
   private ArrayList<ImageView> hudElements;
+
+  // Task Log
+  @FXML private ImageView log;
+  @FXML private Rectangle logBackground;
+  @FXML private Rectangle logHover;
+  @FXML private Pane logPane;
+  @FXML private Label task1;
+  @FXML private Label task2;
+  @FXML private Label task3;
 
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
@@ -655,5 +665,17 @@ public class MainRoomController {
   /** Getter method for catTextArea. */
   public TextArea getCatTextArea() {
     return catTextArea;
+  }
+
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    logPane.setVisible(true);
+    logHover.setDisable(false);
+  }
+
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    logPane.setVisible(false);
+    logHover.setDisable(true);
   }
 }
