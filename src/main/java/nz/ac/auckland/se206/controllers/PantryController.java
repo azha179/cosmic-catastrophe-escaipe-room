@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -147,6 +148,28 @@ public class PantryController {
     log.setVisible(true);
   }
 
+  ArrayList<ImageView> shadowArray = new ArrayList<>();
+
+  public void dropShadow(ImageView image, String colour) {
+    DropShadow dropShadow = new DropShadow();
+    if (colour.equals("WHITE")) {
+      dropShadow.setColor(javafx.scene.paint.Color.WHITE);
+    } else {
+          dropShadow.setColor(javafx.scene.paint.Color.GREEN);
+        }
+    dropShadow.setRadius(10.0);
+    dropShadow.setOffsetX(5.0);
+    dropShadow.setOffsetY(5.0);
+    image.setEffect(dropShadow);
+    shadowArray.add(image);
+  }
+
+  public void removeShadow() {
+    for (ImageView imageView : shadowArray) {
+      imageView.setEffect(null);
+    }
+  }
+
   @FXML
   public void clickIngredient(MouseEvent event) {
     ImageView ingredient = (ImageView) event.getTarget();
@@ -154,10 +177,16 @@ public class PantryController {
       return;
     }
     FoodRecipe.playerRecipe.add(ingredient);
+    dropShadow(ingredient, "WHITE");
 
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         GameState.isRecipeResolved = true;
+        for (ImageView desired:FoodRecipe.desiredRecipe){
+          dropShadow(desired, "GREEN");
+        }
+        
+
         // enable plant
         plantImage.setDisable(false);
         // Cat response
@@ -229,6 +258,7 @@ public class PantryController {
         initiateDeviceThread.start();
       } else {
         FoodRecipe.playerRecipe.clear();
+        removeShadow();
         // Cat response if incorrect dish
         // Hide catImageSleep
         catImageSleep.setVisible(false);
