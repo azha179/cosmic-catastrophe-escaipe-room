@@ -6,7 +6,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -86,10 +86,10 @@ public class PantryController {
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
   @FXML private Pane logPane;
-  @FXML private Label task1;
-  @FXML private Label task2;
-  @FXML private Label task3;
-  private ArrayList<Label> taskList;
+  @FXML private CheckBox task1;
+  @FXML private CheckBox task2;
+  @FXML private CheckBox task3;
+  private ArrayList<CheckBox> taskList;
 
   boolean isRoomFirstEntered = false;
 
@@ -100,7 +100,7 @@ public class PantryController {
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
 
-    taskList = new ArrayList<Label>();
+    taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -139,7 +139,7 @@ public class PantryController {
     return hudElements;
   }
 
-  public ArrayList<Label> getTasks() {
+  public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
