@@ -187,7 +187,7 @@ public class RocketController {
 
   /** Initialise cat response upon entering the pantry for the first time. */
   public void catInitialise() {
-    if (isRoomFirstEntered) {
+    if (GameState.isRocketFirstEntered) {
       return;
     }
     // Disable cat
@@ -212,8 +212,8 @@ public class RocketController {
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to text area
-                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Update text area
+                  GptActions.updateTextAreaAll(chatMessage);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Change image to active cat
@@ -235,7 +235,7 @@ public class RocketController {
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
 
-    isRoomFirstEntered = true;
+    GameState.isRocketFirstEntered = true;
   }
 
   /**

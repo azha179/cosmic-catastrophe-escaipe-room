@@ -91,8 +91,6 @@ public class PantryController {
   @FXML private Label task3;
   private ArrayList<Label> taskList;
 
-  boolean isRoomFirstEntered = false;
-
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -203,8 +201,8 @@ public class PantryController {
 
                 Platform.runLater(
                     () -> {
-                      // Set chat message to text area
-                      GptActions.setChatMessage(chatMessage, catTextArea);
+                      // Update all text areas
+                      GptActions.updateTextAreaAll(chatMessage);
                       // Make chat pane visible
                       chatPane.setVisible(true);
                       // Change image to active cat
@@ -322,7 +320,7 @@ public class PantryController {
 
   /** Initialise cat response upon entering the pantry for the first time. */
   public void catInitialise() {
-    if (isRoomFirstEntered) {
+    if (GameState.isPantryFirstEntered) {
       return;
     }
     // Disable cat
@@ -350,8 +348,8 @@ public class PantryController {
 
             Platform.runLater(
                 () -> {
-                  // Set chat message to text area
-                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Update all text areas
+                  GptActions.updateTextAreaAll(chatMessage);
                   // Make chat pane visible
                   chatPane.setVisible(true);
                   // Change image to active cat
@@ -373,7 +371,7 @@ public class PantryController {
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
 
-    isRoomFirstEntered = true;
+    GameState.isPantryFirstEntered = true;
   }
 
   /**

@@ -36,4 +36,8 @@ public class GameState {
   public static boolean isRightMeowPadActivated = false;
 
   public static boolean isNotesResolved = false;
+
+  public static boolean isPantryFirstEntered = false;
+
+  public static boolean isRocketFirstEntered = false;
 }
