@@ -86,6 +86,15 @@ public class PantryController {
   @FXML private ImageView ingredientIceCream;
   @FXML private ImageView ingredientOnigiri;
 
+  // Task Log
+  @FXML private ImageView log;
+  @FXML private Rectangle logBackground;
+  @FXML private Rectangle logHover;
+  @FXML private Pane logPane;
+  @FXML private Label task1;
+  @FXML private Label task2;
+  @FXML private Label task3;
+
   boolean isRoomFirstEntered = false;
 
   public void initialize() {
@@ -615,5 +624,17 @@ public class PantryController {
   /** Getter method for chatTextArea. */
   public TextArea getCatTextArea() {
     return catTextArea;
+  }
+
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    logPane.setVisible(true);
+    logHover.setDisable(false);
+  }
+
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    logPane.setVisible(false);
+    logHover.setDisable(true);
   }
 }
