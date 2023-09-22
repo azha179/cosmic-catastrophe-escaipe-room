@@ -310,7 +310,10 @@ public class PantryController {
   public void onPressKey(KeyEvent event) {
 
     if (event.getCode() == KeyCode.ESCAPE) {
-      switchToRoom();
+      // check if return button is visible
+      if (back.isVisible()) {
+        switchToRoom();
+      }
     }
   }
 
@@ -325,6 +328,8 @@ public class PantryController {
     }
     // Disable cat
     catImageActive.setDisable(true);
+    // Hide return button
+    back.setVisible(false);
     // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
         new Task<Void>() {
@@ -362,6 +367,8 @@ public class PantryController {
 
                   // Enable cat
                   catImageActive.setDisable(false);
+                  // show return button
+                  back.setVisible(true);
                 });
 
             return null;

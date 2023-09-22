@@ -192,6 +192,8 @@ public class RocketController {
     }
     // Disable cat
     catImageActive.setDisable(true);
+    // Hide return button
+    back.setVisible(false);
     // Initiate first message from GPT after cat is clicked using a thread
     Task<Void> initiateDeviceTask =
         new Task<Void>() {
@@ -226,6 +228,8 @@ public class RocketController {
 
                   // Enable cat
                   catImageActive.setDisable(false);
+                  // Show return button
+                  back.setVisible(true);
                 });
 
             return null;
@@ -496,7 +500,10 @@ public class RocketController {
   public void onPressKey(KeyEvent event) {
 
     if (event.getCode() == KeyCode.ESCAPE) {
-      switchToRoom();
+      // check if return button is visible
+      if (back.isVisible()) {
+        switchToRoom();
+      }
     }
   }
 
