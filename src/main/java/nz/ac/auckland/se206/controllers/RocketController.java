@@ -185,8 +185,8 @@ public class RocketController {
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
-    
-  leftActivateCircle.setVisible(true);
+
+    leftActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
@@ -197,7 +197,6 @@ public class RocketController {
       HudState.disableHud(2);
     }
   }
-
 
   @FXML
   public void clickLaunch(MouseEvent event) {
@@ -211,6 +210,7 @@ public class RocketController {
 
   public ImageView getLaunch() {
     return this.launch;
+  }
 
   /** Initialise cat response upon entering the pantry for the first time. */
   public void catInitialise() {
@@ -426,7 +426,6 @@ public class RocketController {
 
     Thread replyThread = new Thread(replyTask);
     replyThread.start();
-
   }
 
   /**
