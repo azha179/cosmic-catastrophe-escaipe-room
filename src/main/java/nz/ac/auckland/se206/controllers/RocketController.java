@@ -3,6 +3,8 @@ package nz.ac.auckland.se206.controllers;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,16 +24,19 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class RocketController {
 
   @FXML private Pane pane;
   @FXML private ImageView back;
-  @FXML private ImageView cat;
   @FXML private ImageView temp;
 
   // Cat and Chat Elements
@@ -79,6 +85,8 @@ public class RocketController {
   @FXML private Label task3;
   private ArrayList<Label> taskList;
 
+  private boolean isRoomFirstEntered = false;
+
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
     hudElements.add(torchHud);
@@ -96,6 +104,26 @@ public class RocketController {
 
     memoryGameRectangle.setDisable(true);
     memoryGameRectangle.setVisible(false);
+
+    // Cat and Chat initialisation
+    // Hide catImageSleep
+    catImageSleep.setVisible(false);
+    // Show catImageActive
+    catImageActive.setVisible(true);
+    // Change image to thinking cat
+    Image image = new Image("images/ThinkingCat.png");
+    catImageActive.setImage(image);
+    // Disable cat
+    catImageActive.setDisable(true);
+
+    // Unfocus replyTextField when room is clicked
+    pane.setOnMouseClicked(
+        event -> {
+          if (replyTextField.isFocused()) {
+            // unfocus replyTextField
+            replyTextField.getParent().requestFocus();
+          }
+        });
   }
 
   public ArrayList<ImageView> getHudElements() {
@@ -113,11 +141,6 @@ public class RocketController {
   @FXML
   public void clickBack(MouseEvent event) {
     switchToRoom();
-  }
-
-  @FXML
-  public void onClickCat(MouseEvent event) {
-    System.out.println("meow");
   }
 
   @FXML
@@ -166,6 +189,222 @@ public class RocketController {
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
     }
+  }
+
+  /** Initialise cat response upon entering the pantry for the first time. */
+  public void catInitialise() {
+    if (isRoomFirstEntered) {
+      return;
+    }
+    // Disable cat
+    catImageActive.setDisable(true);
+    // Initiate first message from GPT after cat is clicked using a thread
+    Task<Void> initiateDeviceTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            GptActions.chatCompletionRequest3 =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.2)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            ChatMessage chatMessage;
+            chatMessage =
+                GptActions.runGpt(
+                    new ChatMessage("user", GptPromptEngineering.getFirstEnterRocketMessage()),
+                    GptActions.chatCompletionRequest3);
+
+            Platform.runLater(
+                () -> {
+                  // Set chat message to text area
+                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Make chat pane visible
+                  chatPane.setVisible(true);
+                  // Change image to active cat
+                  Image image = new Image("images/NeutralCat.png");
+                  catImageActive.setImage(image);
+                  // Show reply area
+                  replyTextField.setVisible(true);
+                  replyImage.setVisible(true);
+                  replyRectangle.setVisible(true);
+
+                  // Enable cat
+                  catImageActive.setDisable(false);
+                });
+
+            return null;
+          }
+        };
+
+    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+    initiateDeviceThread.start();
+
+    isRoomFirstEntered = true;
+  }
+
+  /**
+   * Handles the click event on awoken cat.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickCatAwoken(MouseEvent event) {
+    System.out.println("cat clicked");
+  }
+
+  /**
+   * Handles the click event on sleeping cat.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickCatSleep(MouseEvent event) {
+    System.out.println("cat clicked");
+    // disable cat
+    catImageSleep.setDisable(true);
+    // Small animation to make cat look like it is waking up using a thread
+    Task<Void> catAwokenTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            // Wait 100ms
+            Thread.sleep(150);
+            // Hide catImageSleep
+            catImageSleep.setVisible(false);
+            // Show catImageAwoken
+            catImageAwoken.setVisible(true);
+            // Wait 100ms
+            Thread.sleep(300);
+            // Hide catImageAwoken
+            catImageAwoken.setVisible(false);
+            // Show catImageActive
+            catImageActive.setVisible(true);
+            // Show/Hide chat pane
+            chatPane.setVisible(!chatPane.isVisible());
+            // Show/Hide reply area
+            toggleReplyArea();
+            // Enable cat
+            catImageSleep.setDisable(false);
+
+            return null;
+          }
+        };
+
+    Thread catAwokenThread = new Thread(catAwokenTask);
+    catAwokenThread.start();
+  }
+
+  /**
+   * Handles the click event on active cat.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickCatActive(MouseEvent event) {
+    System.out.println("cat clicked");
+    // Hide active cat
+    catImageActive.setVisible(false);
+    // Show sleeping cat
+    catImageSleep.setVisible(true);
+    // Show/Hide reply area
+    toggleReplyArea();
+    // Show/Hide chat pane
+    chatPane.setVisible(!chatPane.isVisible());
+  }
+
+  /** Method to toggle visibility of the reply area. */
+  public void toggleReplyArea() {
+    // Show/Hide reply area
+    replyTextField.setVisible(!replyTextField.isVisible());
+    replyImage.setVisible(!replyImage.isVisible());
+    replyRectangle.setVisible(!replyRectangle.isVisible());
+  }
+
+  /**
+   * Handles the click event on the reply button.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickReply(MouseEvent event) {
+    System.out.println("reply clicked");
+    // call reply method
+    reply();
+  }
+
+  /**
+   * Handles the key press event on the reply text field.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onPressKeyReply(KeyEvent event) {
+    //
+    // Check if enter key is pressed
+    if (event.getCode().toString().equals("ENTER")) {
+      System.out.println("enter pressed");
+      // call reply method
+      reply();
+    }
+  }
+
+  // Method for replying
+  public void reply() {
+    String message = replyTextField.getText();
+    if (message.trim().isEmpty()) {
+      return;
+    }
+    // clear reply text field
+    replyTextField.clear();
+    // Disable reply button
+    replyImage.setDisable(true);
+    replyImage.setOpacity(0.5);
+
+    // Update cat image to thinking
+    Image image = new Image("images/ThinkingCat.png");
+    catImageActive.setImage(image);
+    // Disable cat image
+    catImageActive.setDisable(true);
+    // hide current chat pane
+    chatPane.setVisible(false);
+    // hide reply area
+    toggleReplyArea();
+
+    // Task for calling GPT
+    Task<Void> replyTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            ChatMessage msg = new ChatMessage("user", message);
+            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest3);
+
+            Platform.runLater(
+                () -> {
+                  // Update text area
+                  GptActions.updateTextAreaAll(lastMsg);
+                  // Enable reply button
+                  replyImage.setDisable(false);
+                  replyImage.setOpacity(1);
+                  // Show chat pane
+                  chatPane.setVisible(true);
+                  // Update cat image to active
+                  Image image = new Image("images/NeutralCat.png");
+                  catImageActive.setImage(image);
+                  // Enable cat image
+                  catImageActive.setDisable(false);
+                  // Show reply area
+                  toggleReplyArea();
+                });
+
+            return null;
+          }
+        };
+
+    Thread replyThread = new Thread(replyTask);
+    replyThread.start();
   }
 
   /**
