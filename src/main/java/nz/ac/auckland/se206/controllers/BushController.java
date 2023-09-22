@@ -21,6 +21,16 @@ public class BushController {
     GameState.toyFound = true;
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
+    if (GameState.toyFound && GameState.note1Found) {
+      backButton.setVisible(true);
+    }
+    // checking task 1 off
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    mainRoom.getTasks().get(0).setSelected(true);
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.getTasks().get(0).setSelected(true);
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.getTasks().get(0).setSelected(true);
   }
 
   @FXML
@@ -29,19 +39,13 @@ public class BushController {
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     HudState.updateHudAll();
+    if (GameState.toyFound && GameState.note1Found) {
+      backButton.setVisible(true);
+    }
   }
 
   @FXML
   public void clickBack(MouseEvent event) {
-    if (GameState.toyFound && GameState.note1Found) {
-      // disable torchHud
-      MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-      mainRoom.getHudElements().get(0).setDisable(true);
-      RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      rocket.getHudElements().get(0).setDisable(true);
-      PantryController pantry = (PantryController) SceneManager.getController("pantry");
-      pantry.getHudElements().get(0).setDisable(true);
-    }
     switchToMainRoom();
   }
 

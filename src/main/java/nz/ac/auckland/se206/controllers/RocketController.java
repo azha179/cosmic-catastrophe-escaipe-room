@@ -10,7 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -37,6 +38,7 @@ public class RocketController {
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView temp;
+  @FXML private ImageView launch;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -66,6 +68,8 @@ public class RocketController {
   @FXML private Rectangle memoryGameRectangle;
   @FXML private Rectangle leftMeowPad;
   @FXML private Rectangle rightMeowPad;
+  @FXML private Circle leftActivateCircle;
+  @FXML private Circle rightActivateCircle;
   private boolean isLeftMeowPadPressed = false;
   private Timeline leftMeowPadPressTimer;
   private Timeline rightMeowPadDragTimer;
@@ -77,10 +81,10 @@ public class RocketController {
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
   @FXML private Pane logPane;
-  @FXML private Label task1;
-  @FXML private Label task2;
-  @FXML private Label task3;
-  private ArrayList<Label> taskList;
+  @FXML private CheckBox task1;
+  @FXML private CheckBox task2;
+  @FXML private CheckBox task3;
+  private ArrayList<CheckBox> taskList;
 
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
@@ -89,7 +93,7 @@ public class RocketController {
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
 
-    taskList = new ArrayList<Label>();
+    taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -125,7 +129,7 @@ public class RocketController {
     return hudElements;
   }
 
-  public ArrayList<Label> getTasks() {
+  public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
@@ -209,6 +213,7 @@ public class RocketController {
     }
 
     System.out.println("right Meow pad activated");
+    rightActivateCircle.setVisible(true);
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
@@ -252,6 +257,10 @@ public class RocketController {
 
       Thread initiateDeviceThread = new Thread(initiateDeviceTask);
       initiateDeviceThread.start();
+
+      HudState.updateHudAll();
+      HudState.disableHud(1);
+      HudState.disableHud(2);
     }
   }
 
@@ -300,6 +309,8 @@ public class RocketController {
       initiateDeviceThread.start();
     }
 
+    leftActivateCircle.setVisible(true);
+
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
@@ -343,7 +354,25 @@ public class RocketController {
 
       Thread initiateDeviceThread = new Thread(initiateDeviceTask);
       initiateDeviceThread.start();
+
+      HudState.updateHudAll();
+      HudState.disableHud(1);
+      HudState.disableHud(2);
     }
+  }
+
+  @FXML
+  public void clickLaunch(MouseEvent event) {
+    GameState.isGameActive = false;
+    switchToWin();
+  }
+
+  private void switchToWin() {
+    App.setUi(AppUi.WIN);
+  }
+
+  public ImageView getLaunch() {
+    return this.launch;
   }
 
   /** Initialise cat response upon entering the pantry for the first time. */

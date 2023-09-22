@@ -7,7 +7,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -35,6 +35,7 @@ public class MainRoomController {
   @FXML private ImageView roomImage;
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
+  @FXML private Rectangle dim;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -81,10 +82,10 @@ public class MainRoomController {
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
   @FXML private Pane logPane;
-  @FXML private Label task1;
-  @FXML private Label task2;
-  @FXML private Label task3;
-  private ArrayList<Label> taskList;
+  @FXML private CheckBox task1;
+  @FXML private CheckBox task2;
+  @FXML private CheckBox task3;
+  private ArrayList<CheckBox> taskList;
 
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
@@ -100,7 +101,7 @@ public class MainRoomController {
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
 
-    taskList = new ArrayList<Label>();
+    taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -133,7 +134,7 @@ public class MainRoomController {
     return hudElements;
   }
 
-  public ArrayList<Label> getTasks() {
+  public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
@@ -149,6 +150,8 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
+    // removes dim
+    dim.setVisible(false);
 
     // Disable cat
     catImageSleep.setDisable(true);
@@ -204,22 +207,16 @@ public class MainRoomController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
-    // enabling task log
+    // assigning task 1
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.enableLog();
-    mainRoom.getTasks().get(0).setText("- Find the toy");
-    mainRoom.getTasks().get(1).setText("- ???");
-    mainRoom.getTasks().get(2).setText("- ???");
+    mainRoom.getTasks().get(0).setText("Find the toy");
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     pantry.enableLog();
-    pantry.getTasks().get(0).setText("- Find the toy");
-    pantry.getTasks().get(1).setText("- ???");
-    pantry.getTasks().get(2).setText("- ???");
+    pantry.getTasks().get(0).setText("Find the toy");
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.enableLog();
-    rocket.getTasks().get(0).setText("- Find the toy");
-    rocket.getTasks().get(1).setText("- ???");
-    rocket.getTasks().get(2).setText("- ???");
+    rocket.getTasks().get(0).setText("Find the toy");
   }
 
   /**
@@ -520,9 +517,6 @@ public class MainRoomController {
   @FXML
   public void clickBush(MouseEvent event) {
 
-    // disable bush
-    bushImage.setDisable(true);
-
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     torchHud.setImage(image);
@@ -533,7 +527,8 @@ public class MainRoomController {
     // hide footprints pane
     footprintPane.setVisible(false);
 
-    HudState.updateHudAll();
+    // disables torch
+    HudState.disableHud(0);
 
     switchToBush();
   }

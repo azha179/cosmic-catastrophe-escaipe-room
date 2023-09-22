@@ -6,9 +6,10 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -86,10 +87,10 @@ public class PantryController {
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
   @FXML private Pane logPane;
-  @FXML private Label task1;
-  @FXML private Label task2;
-  @FXML private Label task3;
-  private ArrayList<Label> taskList;
+  @FXML private CheckBox task1;
+  @FXML private CheckBox task2;
+  @FXML private CheckBox task3;
+  private ArrayList<CheckBox> taskList;
 
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
@@ -98,7 +99,7 @@ public class PantryController {
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
 
-    taskList = new ArrayList<Label>();
+    taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -137,12 +138,34 @@ public class PantryController {
     return hudElements;
   }
 
-  public ArrayList<Label> getTasks() {
+  public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
   public void enableLog() {
     log.setVisible(true);
+  }
+
+  ArrayList<ImageView> shadowArray = new ArrayList<>();
+
+  public void dropShadow(ImageView image, String colour) {
+    DropShadow dropShadow = new DropShadow();
+    if (colour.equals("WHITE")) {
+      dropShadow.setColor(javafx.scene.paint.Color.WHITE);
+    } else {
+          dropShadow.setColor(javafx.scene.paint.Color.GREEN);
+        }
+    dropShadow.setRadius(10.0);
+    dropShadow.setOffsetX(5.0);
+    dropShadow.setOffsetY(5.0);
+    image.setEffect(dropShadow);
+    shadowArray.add(image);
+  }
+
+  public void removeShadow() {
+    for (ImageView imageView : shadowArray) {
+      imageView.setEffect(null);
+    }
   }
 
   @FXML
@@ -152,10 +175,24 @@ public class PantryController {
       return;
     }
     FoodRecipe.playerRecipe.add(ingredient);
+    dropShadow(ingredient, "WHITE");
 
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         GameState.isRecipeResolved = true;
+
+        // checking task 2 off
+        MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+        mainRoom.getTasks().get(1).setSelected(true);
+        RocketController rocket = (RocketController) SceneManager.getController("rocket");
+        rocket.getTasks().get(1).setSelected(true);
+        PantryController pantry = (PantryController) SceneManager.getController("pantry");
+        pantry.getTasks().get(1).setSelected(true);
+
+        for (ImageView desired:FoodRecipe.desiredRecipe){
+          dropShadow(desired, "GREEN");
+        }
+        
         // enable plant
         plantImage.setDisable(false);
         // Cat response
@@ -227,6 +264,7 @@ public class PantryController {
         initiateDeviceThread.start();
       } else {
         FoodRecipe.playerRecipe.clear();
+        removeShadow();
         // Cat response if incorrect dish
         // Hide catImageSleep
         catImageSleep.setVisible(false);
@@ -379,6 +417,17 @@ public class PantryController {
     initiateDeviceThread.start();
 
     GameState.isPantryFirstEntered = true;
+
+    // assigning task 2
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    mainRoom.enableLog();
+    mainRoom.getTasks().get(1).setText("Make food");
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.enableLog();
+    pantry.getTasks().get(1).setText("Make food");
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.enableLog();
+    rocket.getTasks().get(1).setText("Make food");
   }
 
   /**
@@ -551,14 +600,16 @@ public class PantryController {
    */
   @FXML
   public void clickPlant(MouseEvent event) {
-    System.out.println("plant clicked");
 
     // disable plant
     plantImage.setDisable(true);
 
+    App.setUi(AppUi.TREE);
+
     // update game state
-    GameState.puzzle2 = true;
     GameState.note2Found = true;
+
+    
 
     HudState.updateHudAll();
   }

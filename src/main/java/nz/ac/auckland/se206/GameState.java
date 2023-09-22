@@ -9,6 +9,8 @@ public class GameState {
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
 
+  public static boolean isGameActive = false;
+
   public static boolean toyFound = false;
 
   public static boolean torchFound = false;
@@ -18,10 +20,6 @@ public class GameState {
   public static boolean note1Found = false;
 
   public static boolean note2Found = false;
-
-  public static boolean puzzle2 = false;
-
-  public static boolean puzzle3 = false;
 
   public static boolean isAnimationRunning = false;
 

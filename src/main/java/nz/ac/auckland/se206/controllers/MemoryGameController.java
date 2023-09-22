@@ -1,7 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.lang.reflect.Field;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -120,12 +123,39 @@ public class MemoryGameController {
         .get(ButtonSequence.playerSequence.size() - 1)
         .equals(ButtonSequence.playerSequence.get(ButtonSequence.playerSequence.size() - 1))) {
       ButtonSequence.clear();
-      text.setText("Incorrect! \n Try again ^=_=^");
+
+      text.setText("Incorrect!");
+
+      // Create a Timeline animation
+      Timeline timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(2), new KeyValue(text.textProperty(), "Try again ^=_=^")),
+              new KeyFrame(Duration.seconds(1), new KeyValue(text.textProperty(), "Incorrect!")));
+
+      timeline.setCycleCount(2); // Alternate between two values
+      timeline.play();
     }
     // this occurs when all the added values match the values in the correct sequence
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
-      text.setText("Correct \n sequence ^.~.^!!");
+
+      
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getLaunch().setDisable(false);
+
+      text.setText(("  /|\n(˚ˎ 。7\n|、˜〵\nじしˍ,)/"));
+
+      Timeline timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(2),
+                  new KeyValue(text.textProperty(), ("  /|\n(˚ˎ 。7\n|、˜〵\nじしˍ,)/"))),
+              new KeyFrame(Duration.seconds(1), new KeyValue(text.textProperty(), "Correct!")));
+
+      timeline.setCycleCount(2); // Alternate between two values
+      timeline.play();
+
     }
   }
 
