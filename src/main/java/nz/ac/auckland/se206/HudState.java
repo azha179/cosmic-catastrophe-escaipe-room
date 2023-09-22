@@ -21,16 +21,23 @@ public class HudState {
     updateNote2Hud(hudElements.get(2));
   }
 
+  // Update the hud depending on game states of all hud variables
   public static void updateHudAll() {
+    // get controller of rocket
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    // update its hud based on info
     updateTorchHud(rocket.getHudElements().get(0));
     updateNote1Hud(rocket.getHudElements().get(1));
     updateNote2Hud(rocket.getHudElements().get(2));
+    // get controller of main
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    // update its hud based on info
     updateTorchHud(mainRoom.getHudElements().get(0));
     updateNote1Hud(mainRoom.getHudElements().get(1));
     updateNote2Hud(mainRoom.getHudElements().get(2));
+    // get controller of pantry
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    // update its hud based on info
     updateTorchHud(pantry.getHudElements().get(0));
     updateNote1Hud(pantry.getHudElements().get(1));
     updateNote2Hud(pantry.getHudElements().get(2));

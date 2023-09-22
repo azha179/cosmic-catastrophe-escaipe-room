@@ -554,7 +554,6 @@ public class MainRoomController {
         footprints.get(i).setVisible(false);
         footprints.get(i).setOpacity(0);
       }
-      // set lastFootprint to 0
       lastFootprint = 0;
     } else if (GameState.isTorchOn
         && GameState

@@ -78,17 +78,20 @@ public class FoodRecipe {
     Collections.sort(recipe, comparator);
   }
 
+  // Takes the ingredient imageview and translates it to its string name
   public static String ingredientToString(ImageView ingredient) {
 
     String string = "";
-
+    // dependent on the name of the imageview, set its string
     switch (ingredient.getId().substring(10).toLowerCase()) {
+        // make it have the correct casing
       case "milk":
         string = "Milky";
         break;
       case "cheese":
         string = "Cheesy";
         break;
+        // make it have the correct casing
       case "carrot":
         string = "Carrot";
         break;
@@ -104,6 +107,7 @@ public class FoodRecipe {
       case "toast":
         string = "Sandwich";
         break;
+        // make it have the correct casing
       case "pudding":
         string = "Jiggly";
         break;
@@ -119,6 +123,7 @@ public class FoodRecipe {
       case "meat":
         string = "Meat";
         break;
+        // make it have the correct casing
       case "chicken":
         string = "Chicken";
         break;
@@ -128,6 +133,7 @@ public class FoodRecipe {
       case "pear":
         string = "Fruity";
         break;
+        // make it have the correct casing
       case "hotdog":
         string = "Hotdog";
         break;

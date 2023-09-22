@@ -164,9 +164,10 @@ public class MemoryGameController {
     }
   }
 
+  // savve the buttons that the user inupts
   private void initialiseUserData() {
     Field[] buttonFields = getClass().getDeclaredFields();
-
+    // set user data into the array
     for (Field field : buttonFields) {
       if (field.getName().startsWith("button")) {
         try {
@@ -180,11 +181,13 @@ public class MemoryGameController {
     }
   }
 
+  // Each button has a custom variable, this returns correct button with given user date
   private ImageView findButtonByUserData(int value) {
     try {
-
+      // change the button variable to string and set name
       String num = Integer.toString(value);
       String buttonName = "button" + num;
+      // returns the imageview variable that has the name button name
       Field field = getClass().getDeclaredField(buttonName);
       field.setAccessible(true);
       return (ImageView) field.get(this);
@@ -209,17 +212,21 @@ public class MemoryGameController {
     image.setEffect(colorAdjust);
   }
 
+  // The sequence of the buttons which is random
   private void playSequence() {
-
+    // if game is already running dont play again
     GameState.isAnimationRunning = true;
+    // save buttons pressed and highlight if it is pressed
     int currentInteger = ButtonSequence.correctSequence.get(sequenceIndex);
     ImageView button = findButtonByUserData(currentInteger);
+
     setToGreen(button);
     PauseTransition firstPause = new PauseTransition(Duration.seconds(0.6));
     firstPause.setOnFinished(
         (ActionEvent e) -> {
           setToOriginal(button);
           sequenceIndex++;
+          // play again if incorrect
           if (sequenceIndex < ButtonSequence.correctSequence.size()) {
             PauseTransition secondPause = new PauseTransition(Duration.seconds(0.5));
             secondPause.setOnFinished((ActionEvent event1) -> playSequence());
