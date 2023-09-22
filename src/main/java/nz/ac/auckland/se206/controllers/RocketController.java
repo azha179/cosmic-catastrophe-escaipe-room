@@ -74,6 +74,7 @@ public class RocketController {
   @FXML private Label task1;
   @FXML private Label task2;
   @FXML private Label task3;
+  private ArrayList<Label> taskList;
 
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
@@ -81,6 +82,11 @@ public class RocketController {
     hudElements.add(note1Hud);
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
+
+    taskList = new ArrayList<Label>();
+    taskList.add(task1);
+    taskList.add(task2);
+    taskList.add(task3);
 
     initialiseLeftMeowPad();
     initialiseRightMeowPad();
@@ -91,6 +97,14 @@ public class RocketController {
 
   public ArrayList<ImageView> getHudElements() {
     return hudElements;
+  }
+
+  public ArrayList<Label> getTasks() {
+    return taskList;
+  }
+
+  public void enableLog() {
+    log.setVisible(true);
   }
 
   @FXML

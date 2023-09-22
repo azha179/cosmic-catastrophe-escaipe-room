@@ -94,6 +94,7 @@ public class PantryController {
   @FXML private Label task1;
   @FXML private Label task2;
   @FXML private Label task3;
+  private ArrayList<Label> taskList;
 
   boolean isRoomFirstEntered = false;
 
@@ -103,6 +104,11 @@ public class PantryController {
     hudElements.add(note1Hud);
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
+
+    taskList = new ArrayList<Label>();
+    taskList.add(task1);
+    taskList.add(task2);
+    taskList.add(task3);
 
     // assigns a value 1-3 to each food item
     initialiseUserData();
@@ -142,6 +148,14 @@ public class PantryController {
 
   public ArrayList<ImageView> getHudElements() {
     return hudElements;
+  }
+
+  public ArrayList<Label> getTasks() {
+    return taskList;
+  }
+
+  public void enableLog() {
+    log.setVisible(true);
   }
 
   @FXML

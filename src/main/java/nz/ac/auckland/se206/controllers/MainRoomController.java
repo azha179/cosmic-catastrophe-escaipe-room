@@ -84,6 +84,7 @@ public class MainRoomController {
   @FXML private Label task1;
   @FXML private Label task2;
   @FXML private Label task3;
+  private ArrayList<Label> taskList;
 
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
@@ -98,6 +99,11 @@ public class MainRoomController {
     hudElements.add(note1Hud);
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
+
+    taskList = new ArrayList<Label>();
+    taskList.add(task1);
+    taskList.add(task2);
+    taskList.add(task3);
 
     // Adds all the footprints to the arraylist
     footprints.add(footprint1Image);
@@ -127,6 +133,14 @@ public class MainRoomController {
     return hudElements;
   }
 
+  public ArrayList<Label> getTasks() {
+    return taskList;
+  }
+
+  public void enableLog() {
+    log.setVisible(true);
+  }
+
   /**
    * Handles the click event on cat initialise click at the start of the game.
    *
@@ -135,6 +149,7 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
+
     // Disable cat
     catImageSleep.setDisable(true);
     // Hide sleeping cat
@@ -189,6 +204,22 @@ public class MainRoomController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
+    // enabling task log
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    mainRoom.enableLog();
+    mainRoom.getTasks().get(0).setText("- Find the toy");
+    mainRoom.getTasks().get(1).setText("- ???");
+    mainRoom.getTasks().get(2).setText("- ???");
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.enableLog();
+    pantry.getTasks().get(0).setText("- Find the toy");
+    pantry.getTasks().get(1).setText("- ???");
+    pantry.getTasks().get(2).setText("- ???");
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.enableLog();
+    rocket.getTasks().get(0).setText("- Find the toy");
+    rocket.getTasks().get(1).setText("- ???");
+    rocket.getTasks().get(2).setText("- ???");
   }
 
   /**
