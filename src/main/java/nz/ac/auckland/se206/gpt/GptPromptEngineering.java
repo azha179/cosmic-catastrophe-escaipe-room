@@ -132,18 +132,135 @@ public class GptPromptEngineering {
    */
   public static String getFirstEnterRocketMessage() {
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
-               + " space-themed escape-style video game.  You want the player to help you launch"
-               + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-               + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-               + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-               + " press the launch button. But, first they need to unlock it, and its been a while"
-               + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-               + " there are two notes that should explain it, but you forgot where you left them."
-               + " The cat must use elementary vocabulary and occasionally meow. The message must"
-               + " be three sentences maximum. If and only if the player asks for a hint, tell"
-               + " themyou recall the first note being somewhere outside and the second in the"
-               + " pantry. If they respond again asking for another hint, tell them you don't have"
-               + " any more hints, but maybe you can try asking outside or in the pantry. You must"
-               + " not reveal any hints until the player asks.";
+        + " space-themed escape-style video game.  You want the player to help you launch"
+        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
+        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
+        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
+        + " press the launch button. But, first they need to unlock it, and its been a while"
+        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
+        + " there are two notes that should explain it, but you forgot where you left them."
+        + " The cat must use elementary vocabulary and occasionally meow. The message must"
+        + " be three sentences maximum. If and only if the player asks for a hint, tell"
+        + " them you recall the first note being somewhere outside and the second in the"
+        + " pantry. If they respond again asking for another hint, tell them you don't have"
+        + " any more hints, but maybe you can try asking outside or in the pantry. You must"
+        + " not reveal any hints until the player asks.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player first enters the rocket
+   * and both notes have been found.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFirstEnterRocketMessageBothNotesFound() {
+    return "You are currently an alien cat traversing the galaxy to try different foods in a"
+        + " space-themed escape-style video game.  You want the player to help you launch"
+        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
+        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
+        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
+        + " press the launch button. But, first they need to unlock it, and its been a while"
+        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
+        + " the two notes they found should guide them to unlocking the button. The cat must"
+        + " use elementary vocabulary and occasionally meow. The message must be three"
+        + " sentences maximum. If and only if the player asks for a hint, tell them to try"
+        + " and press on and hold the left meow pad down. If they respond again asking for"
+        + " another hint, tell them you don't have any more hints. You must not reveal any"
+        + " hints until the player asks.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player first enters the rocket
+   * and only note 1 has been found.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFirstEnterRocketMessageNoteOneFound() {
+    return "You are currently an alien cat traversing the galaxy to try different foods in a"
+        + " space-themed escape-style video game.  You want the player to help you launch"
+        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
+        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
+        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
+        + " press the launch button. But, first they need to unlock it, and its been a while"
+        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
+        + " the note they found should help them, but there's also another note in the"
+        + " pantry. The cat must use elementary vocabulary and occasionally meow. The"
+        + " message must be three sentences maximum. If and only if the player asks for a"
+        + " hint, tell them to try and press on and hold the left meow pad down. If they"
+        + " respond asking for another hint, tell them to go and find the second note in the"
+        + " pantry and see if that helps. If they respond again asking for another hint,"
+        + " tell them you don't have any more hints. You must not reveal any hints until the"
+        + " player asks.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player first enters the rocket
+   * and only note 1 has been found.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFirstEnterRocketMessageNoteTwoFound() {
+    return "You are currently an alien cat traversing the galaxy to try different foods in a"
+        + " space-themed escape-style video game.  You want the player to help you launch"
+        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
+        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
+        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
+        + " press the launch button. But, first they need to unlock it, and its been a while"
+        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
+        + " the note they found should help them, but there's also another note outside. The"
+        + " cat must use elementary vocabulary and occasionally meow. The message must be"
+        + " three sentences maximum. If and only if the player asks for a hint, tell them to"
+        + " try and wiggle the right meow pad around. If they respond asking for another"
+        + " hint, tell them to go and find the other note outside and see if that helps. If"
+        + " they respond again asking for another hint, tell them you don't have any more"
+        + " hints. You must not reveal any hints until the player asks.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player completes the left meow
+   * pad and asks for help.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getLeftPadCompleteMessage() {
+    return "The player has just completed the left meow pad. Write a message to the player,"
+        + " congratulating them. The message must be two sentences maximum. If and only if"
+        + " the player asks for a hint now, tell them to try and wiggle the right meow pad"
+        + " around. If they respond asking for another hint, tell them to press and hold"
+        + " down the right meow pad while wiggling it around. If they respond again asking"
+        + " for another hint, tell them you don't have any more hints. You must not reveal"
+        + " any hints until the player asks.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player completes the right
+   * meow pad and asks for help.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getRightPadCompleteMessage() {
+    return "The player has just completed the right meow pad. Write a message to the player,"
+        + " congratulating them. The message must be two sentences maximum. If and only if"
+        + " the player asks for a hint now, tell them the left meow pad should be similar,"
+        + " but there's no need to wiggle it. If they respond asking for another hint, tell"
+        + " them to press and hold down the left meow pad. If they respond again asking for"
+        + " another hint, tell them you don't have any more hints. You must not reveal any"
+        + " hints until the player asks.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player completes both meow
+   * pads.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getBothPadCompleteMessage() {
+    return "The player has just completed the left and right meow pads. Write a message to the"
+        + " player, congratulating them, then tell them that they should now attempt the"
+        + " verification puzzle on the control panel. The message must be three sentences"
+        + " maximum. If and only if the player asks for a hint now, tell them that it's"
+        + " simple, just repeat the patten shown. If they respond again asking for another"
+        + " hint, tell them you don't have any more hints. You must not reveal any hints"
+        + " until the player asks.";
   }
 }
