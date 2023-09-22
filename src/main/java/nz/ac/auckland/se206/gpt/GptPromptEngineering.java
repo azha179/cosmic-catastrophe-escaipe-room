@@ -62,7 +62,7 @@ public class GptPromptEngineering {
         + " word for word. The"
         + " cat must use elementary vocabulary and occasionally meow. The message must be"
         + " three sentences maximum. If and only if the player asks for a hint, tell them"
-        + " to that each word in "
+        + " that each word in "
         + food
         + "represents a food item, and they should pick all food items represented. If they respond"
         + " again asking for another hint, tell them that for example, 'Sweet Jiggly Fish' means"
@@ -122,5 +122,28 @@ public class GptPromptEngineering {
         + recipe
         + ". You must not reveal any"
         + " hints until the player asks.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a message when the player first enters the
+   * rocket.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getFirstEnterRocketMessage() {
+    return "You are currently an alien cat traversing the galaxy to try different foods in a"
+               + " space-themed escape-style video game.  You want the player to help you launch"
+               + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
+               + " the rocket cockpit. Write a message to the player, first welcoming them to your"
+               + " trusty rocket, then tell them that to launch the rocket all they need to do is"
+               + " press the launch button. But, first they need to unlock it, and its been a while"
+               + " since you last launched the rocket so you forgot exactly how to. Tell them that"
+               + " there are two notes that should explain it, but you forgot where you left them."
+               + " The cat must use elementary vocabulary and occasionally meow. The message must"
+               + " be three sentences maximum. If and only if the player asks for a hint, tell"
+               + " themyou recall the first note being somewhere outside and the second in the"
+               + " pantry. If they respond again asking for another hint, tell them you don't have"
+               + " any more hints, but maybe you can try asking outside or in the pantry. You must"
+               + " not reveal any hints until the player asks.";
   }
 }

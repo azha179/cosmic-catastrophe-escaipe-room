@@ -13,9 +13,14 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 public class GptActions {
 
   /** The chat completion request. */
-  public static ChatCompletionRequest chatCompletionRequest1;
+  public static ChatCompletionRequest
+      chatCompletionRequest1; // Main request, first used in main room
 
-  public static ChatCompletionRequest chatCompletionRequest2;
+  public static ChatCompletionRequest
+      chatCompletionRequest2; // Pantry specific request, used in pantry
+
+  public static ChatCompletionRequest
+      chatCompletionRequest3; // Rocket specific request, used in rocket
 
   /**
    * Append message to the a text area.
@@ -79,6 +84,6 @@ public class GptActions {
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     setChatMessage(msg, mainRoom.getCatTextArea());
     setChatMessage(msg, pantry.getCatTextArea());
-    // setChatMessage(msg, rocket.getCatTextArea());
+    setChatMessage(msg, rocket.getCatTextArea());
   }
 }
