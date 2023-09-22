@@ -10,7 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,6 +38,7 @@ public class RocketController {
   @FXML private Pane pane;
   @FXML private ImageView back;
   @FXML private ImageView temp;
+  @FXML private ImageView launch;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -80,10 +81,10 @@ public class RocketController {
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
   @FXML private Pane logPane;
-  @FXML private Label task1;
-  @FXML private Label task2;
-  @FXML private Label task3;
-  private ArrayList<Label> taskList;
+  @FXML private CheckBox task1;
+  @FXML private CheckBox task2;
+  @FXML private CheckBox task3;
+  private ArrayList<CheckBox> taskList;
 
   private boolean isRoomFirstEntered = false;
 
@@ -94,7 +95,7 @@ public class RocketController {
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
 
-    taskList = new ArrayList<Label>();
+    taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -130,7 +131,7 @@ public class RocketController {
     return hudElements;
   }
 
-  public ArrayList<Label> getTasks() {
+  public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
@@ -175,6 +176,9 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+      HudState.updateHudAll();
+      HudState.disableHud(1);
+      HudState.disableHud(2);
     }
   }
 
@@ -188,8 +192,25 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+      HudState.updateHudAll();
+      HudState.disableHud(1);
+      HudState.disableHud(2);
     }
   }
+
+
+  @FXML
+  public void clickLaunch(MouseEvent event) {
+    GameState.isGameActive = false;
+    switchToWin();
+  }
+
+  private void switchToWin() {
+    App.setUi(AppUi.WIN);
+  }
+
+  public ImageView getLaunch() {
+    return this.launch;
 
   /** Initialise cat response upon entering the pantry for the first time. */
   public void catInitialise() {
@@ -405,6 +426,7 @@ public class RocketController {
 
     Thread replyThread = new Thread(replyTask);
     replyThread.start();
+
   }
 
   /**

@@ -6,7 +6,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -87,10 +87,10 @@ public class PantryController {
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
   @FXML private Pane logPane;
-  @FXML private Label task1;
-  @FXML private Label task2;
-  @FXML private Label task3;
-  private ArrayList<Label> taskList;
+  @FXML private CheckBox task1;
+  @FXML private CheckBox task2;
+  @FXML private CheckBox task3;
+  private ArrayList<CheckBox> taskList;
 
   boolean isRoomFirstEntered = false;
 
@@ -101,7 +101,7 @@ public class PantryController {
     hudElements.add(note2Hud);
     HudState.initialiseHud(hudElements);
 
-    taskList = new ArrayList<Label>();
+    taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -140,7 +140,7 @@ public class PantryController {
     return hudElements;
   }
 
-  public ArrayList<Label> getTasks() {
+  public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
@@ -182,11 +182,19 @@ public class PantryController {
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         GameState.isRecipeResolved = true;
+
+        // checking task 2 off
+        MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+        mainRoom.getTasks().get(1).setSelected(true);
+        RocketController rocket = (RocketController) SceneManager.getController("rocket");
+        rocket.getTasks().get(1).setSelected(true);
+        PantryController pantry = (PantryController) SceneManager.getController("pantry");
+        pantry.getTasks().get(1).setSelected(true);
+
         for (ImageView desired:FoodRecipe.desiredRecipe){
           dropShadow(desired, "GREEN");
         }
         
-
         // enable plant
         plantImage.setDisable(false);
         // Cat response
@@ -403,6 +411,17 @@ public class PantryController {
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
 
+    // assigning task 2
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    mainRoom.enableLog();
+    mainRoom.getTasks().get(1).setText("Make food");
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    pantry.enableLog();
+    pantry.getTasks().get(1).setText("Make food");
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    rocket.enableLog();
+    rocket.getTasks().get(1).setText("Make food");
+
     isRoomFirstEntered = true;
   }
 
@@ -583,7 +602,9 @@ public class PantryController {
     App.setUi(AppUi.TREE);
 
     // update game state
-    GameState.puzzle2 = true;
+    GameState.note2Found = true;
+
+    
 
     HudState.updateHudAll();
   }

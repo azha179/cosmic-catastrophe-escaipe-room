@@ -139,6 +139,11 @@ public class MemoryGameController {
     // this occurs when all the added values match the values in the correct sequence
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
+
+      
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getLaunch().setDisable(false);
+
       text.setText(("  /|\n(˚ˎ 。7\n|、˜〵\nじしˍ,)/"));
 
       Timeline timeline =
@@ -150,6 +155,7 @@ public class MemoryGameController {
 
       timeline.setCycleCount(2); // Alternate between two values
       timeline.play();
+
     }
   }
 

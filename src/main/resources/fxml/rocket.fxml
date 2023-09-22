@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.control.TextArea?>
@@ -227,23 +228,31 @@
       <Pane fx:id="logPane" layoutX="571.0" layoutY="38.0" prefHeight="76.0" prefWidth="76.0" visible="false">
          <children>
             <Rectangle fx:id="logBackground" arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="78.0" layoutX="-1.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="78.0" />
-            <Label fx:id="task1" alignment="TOP_LEFT" layoutX="4.0" layoutY="9.0" prefHeight="18.0" prefWidth="71.0" textFill="#e4d89b">
+            <CheckBox fx:id="task1" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="10.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="81.0" text="???" textFill="#e4d443" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
-            </Label>
-            <Label fx:id="task2" alignment="TOP_LEFT" layoutX="4.0" layoutY="29.0" prefHeight="18.0" prefWidth="71.0" textFill="#e4d89b">
+            </CheckBox>
+            <CheckBox fx:id="task2" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="31.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="83.0" text="???" textFill="#e4d443" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
-            </Label>
-            <Label fx:id="task3" alignment="TOP_LEFT" layoutX="4.0" layoutY="49.0" prefHeight="18.0" prefWidth="71.0" textFill="#e4d89b">
+            </CheckBox>
+            <CheckBox fx:id="task3" alignment="TOP_LEFT" disable="true" layoutX="2.0" layoutY="53.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="79.0" text="???" textFill="#e4d443" wrapText="true">
                <font>
                   <Font name="Copperplate" size="10.0" />
                </font>
-            </Label>
+            </CheckBox>
          </children>
       </Pane>
       <Rectangle fx:id="logHover" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="103.0" layoutX="571.0" layoutY="17.0" onMouseExited="#onLeaveLog" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="76.0" />
+      <ImageView fx:id="launch" disable="true" fitHeight="42.0" fitWidth="73.0" layoutX="337.0" layoutY="497.0" onMouseClicked="#clickLaunch" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FinalButton.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

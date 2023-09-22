@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameSettings.GameDifficulty;
 import nz.ac.auckland.se206.GameSettings.TimeLimit;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -156,5 +157,6 @@ public class MenuController {
 
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
+    GameState.isGameActive = true;
   }
 }

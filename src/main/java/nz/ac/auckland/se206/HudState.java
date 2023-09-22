@@ -36,11 +36,22 @@ public class HudState {
     updateNote2Hud(pantry.getHudElements().get(2));
   }
 
+  public static void disableHud(int index) {
+    RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    PantryController pantry = (PantryController) SceneManager.getController("pantry");
+
+    mainRoom.getHudElements().get(index).setDisable(true);
+    rocket.getHudElements().get(index).setDisable(true);
+    pantry.getHudElements().get(index).setDisable(true);
+  }
+
   public static void updateTorchHud(ImageView image) {
-    // toy and note 1 are found
+    // disables torch
     if ((GameState.note1Found) && (GameState.toyFound)) {
       greyImage(image);
       image.setOpacity(0.33);
+      image.setDisable(true);
     }
     // torch has not been picked up
     if (!GameState.torchFound) {
@@ -56,12 +67,16 @@ public class HudState {
 
   // if note1Done so the note has been used, it will be greyed out
   public static void updateNote1Hud(ImageView image) {
-    if ((GameState.note1Found) && (GameState.puzzle2) && (GameState.puzzle3)) {
+    // disables note 1
+    if (GameState.isNotesResolved) {
       greyImage(image);
+      image.setDisable(true);
     }
+    // note1 has not been picked up
     if (!GameState.note1Found) {
       image.setOpacity(0);
       image.setDisable(true);
+      // adds note1 to HUD
     } else {
       image.setOpacity(1);
       image.setDisable(false);
@@ -70,12 +85,16 @@ public class HudState {
 
   // if note1Done so the note has been used, it will be greyed out
   public static void updateNote2Hud(ImageView image) {
-    if ((GameState.note2Found) && (GameState.puzzle2) && (GameState.puzzle3)) {
+    // disables note 2
+    if (GameState.isNotesResolved) {
       greyImage(image);
+      image.setDisable(true);
     }
+    // note2 has not been picked up
     if (!GameState.note2Found) {
       image.setOpacity(0);
       image.setDisable(true);
+      // adds note2 to HUD
     } else {
       image.setOpacity(1);
       image.setDisable(false);
@@ -115,12 +134,14 @@ public class HudState {
       }
     } else if ("note1Hud".equals(image.getId())) {
       rectangle = note1;
-      if ((GameState.puzzle2) && (GameState.puzzle3) || (!GameState.note1Found)) {
+      if ((GameState.isLeftMeowPadActivated) && (GameState.isRightMeowPadActivated)
+          || (!GameState.note1Found)) {
         rectangle = null;
       }
     } else if ("note2Hud".equals(image.getId())) {
       rectangle = note2;
-      if ((GameState.puzzle2) && (GameState.puzzle3) || (!GameState.note2Found)) {
+      if ((GameState.isLeftMeowPadActivated) && (GameState.isRightMeowPadActivated)
+          || (!GameState.note2Found)) {
         rectangle = null;
       }
     }
