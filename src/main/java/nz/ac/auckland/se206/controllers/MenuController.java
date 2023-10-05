@@ -71,6 +71,14 @@ public class MenuController {
   public void onClickHard(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.HARD;
     GameState.hintsLeft = 0;
+    // Update the hint label
+    MainRoomController mainRoomController =
+        (MainRoomController) SceneManager.getController("mainroom");
+    PantryController pantryController = (PantryController) SceneManager.getController("pantry");
+    RocketController rocketController = (RocketController) SceneManager.getController("rocket");
+    mainRoomController.updateHintsLabel();
+    pantryController.updateHintsLabel();
+    rocketController.updateHintsLabel();
 
     changeColourDifficulty(hard);
   }
