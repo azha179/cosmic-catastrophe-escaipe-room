@@ -850,6 +850,11 @@ public class PantryController {
 
   /** Updates hint label */
   public void updateHintsLabel() {
+    // If easy difficult, set label to inf.
+    if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
+      hintsLabel.setText("Hints left: inf.");
+      return;
+    }
     hintsLabel.setText("Hints left: " + GameState.hintsLeft);
   }
 }

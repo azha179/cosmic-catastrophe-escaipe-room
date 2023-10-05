@@ -55,14 +55,6 @@ public class MenuController {
   public void onClickMedium(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.MEDIUM;
     GameState.hintsLeft = 5;
-    // Update the hint label
-    MainRoomController mainRoomController =
-        (MainRoomController) SceneManager.getController("mainroom");
-    PantryController pantryController = (PantryController) SceneManager.getController("pantry");
-    RocketController rocketController = (RocketController) SceneManager.getController("rocket");
-    mainRoomController.updateHintsLabel();
-    pantryController.updateHintsLabel();
-    rocketController.updateHintsLabel();
 
     changeColourDifficulty(medium);
   }
@@ -71,14 +63,6 @@ public class MenuController {
   public void onClickHard(MouseEvent event) {
     GameSettings.difficulty = GameDifficulty.HARD;
     GameState.hintsLeft = 0;
-    // Update the hint label
-    MainRoomController mainRoomController =
-        (MainRoomController) SceneManager.getController("mainroom");
-    PantryController pantryController = (PantryController) SceneManager.getController("pantry");
-    RocketController rocketController = (RocketController) SceneManager.getController("rocket");
-    mainRoomController.updateHintsLabel();
-    pantryController.updateHintsLabel();
-    rocketController.updateHintsLabel();
 
     changeColourDifficulty(hard);
   }
@@ -104,6 +88,14 @@ public class MenuController {
   @FXML
   public void onClickPlay(MouseEvent event) {
     if (GameSettings.difficulty != null && GameSettings.timeLimit != 0) {
+      // Update the hint label
+      MainRoomController mainRoomController =
+          (MainRoomController) SceneManager.getController("mainroom");
+      PantryController pantryController = (PantryController) SceneManager.getController("pantry");
+      RocketController rocketController = (RocketController) SceneManager.getController("rocket");
+      mainRoomController.updateHintsLabel();
+      pantryController.updateHintsLabel();
+      rocketController.updateHintsLabel();
       switchToRoom();
     }
   }
