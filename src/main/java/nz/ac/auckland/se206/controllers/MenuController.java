@@ -96,6 +96,8 @@ public class MenuController {
       mainRoomController.updateHintsLabel();
       pantryController.updateHintsLabel();
       rocketController.updateHintsLabel();
+
+      // Switch to the main room
       switchToRoom();
     }
   }

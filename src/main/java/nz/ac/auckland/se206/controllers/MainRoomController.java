@@ -94,6 +94,9 @@ public class MainRoomController {
   // Timer element
   @FXML private Label timer;
 
+  // Text to speech element
+  TextToSpeech textToSpeech;
+
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
   // Index of last footprint that was enabled
@@ -233,7 +236,7 @@ public class MainRoomController {
                       new Task<Void>() {
                         @Override
                         protected Void call() throws Exception {
-                          TextToSpeech textToSpeech = new TextToSpeech();
+                          textToSpeech = new TextToSpeech();
                           textToSpeech.speak("Meow");
                           return null;
                         }
@@ -817,5 +820,12 @@ public class MainRoomController {
       return;
     }
     hintsLabel.setText("Hints left: " + GameState.hintsLeft);
+  }
+
+  /** Terminate text to speech */
+  public void terminateTextToSpeech() {
+    if (textToSpeech != null) {
+      textToSpeech.terminate();
+    }
   }
 }
