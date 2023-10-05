@@ -24,8 +24,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.CountDownTimer;
+import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
@@ -251,7 +251,6 @@ public class RocketController {
       Thread initiateDeviceThread = new Thread(initiateDeviceTask);
       initiateDeviceThread.start();
     }
-    
 
     System.out.println("right Meow pad activated");
     // If the task has been done, then it activates
@@ -309,7 +308,6 @@ public class RocketController {
 
       Thread initiateDeviceThread = new Thread(initiateDeviceTask);
       initiateDeviceThread.start();
-
 
       HudState.updateHudAll();
       HudState.disableHud(1);
@@ -376,7 +374,6 @@ public class RocketController {
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
-
 
       // Generate message
       // Hide chat
@@ -458,6 +455,13 @@ public class RocketController {
     catImageActive.setDisable(true);
     // Hide return button
     back.setVisible(false);
+    // Hide chat pane
+    chatPane.setVisible(false);
+    // Hide reply area
+    replyTextField.setVisible(false);
+    replyImage.setVisible(false);
+    replyRectangle.setVisible(false);
+
     // Initiate first message from GPT
 
     // Initiate first message from GPT after cat is clicked using a thread
@@ -553,6 +557,8 @@ public class RocketController {
                   replyTextField.setVisible(true);
                   replyImage.setVisible(true);
                   replyRectangle.setVisible(true);
+                  // Show return button
+                  back.setVisible(true);
 
                   // Enable cat
                   catImageActive.setDisable(false);
@@ -840,7 +846,10 @@ public class RocketController {
   public void onPressKey(KeyEvent event) {
 
     if (event.getCode() == KeyCode.ESCAPE) {
-      switchToRoom();
+      // check if return button is visible
+      if (back.isVisible()) {
+        switchToRoom();
+      }
     }
   }
 
@@ -978,6 +987,11 @@ public class RocketController {
 
   /** Updates hint label */
   public void updateHintsLabel() {
+    // If easy difficult, set label to inf.
+    if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
+      hintsLabel.setText("Hints left: inf.");
+      return;
+    }
     hintsLabel.setText("Hints left: " + GameState.hintsLeft);
   }
 }
