@@ -31,34 +31,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8b906a" height="65.0" layoutX="218.0" layoutY="17.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="303.0" />
-      <Rectangle fx:id="torchRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="228.0" layoutY="21.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="torchHud" fitHeight="55.0" fitWidth="82.0" layoutX="229.0" layoutY="24.0" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Torch.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Rectangle fx:id="note1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="330.0" layoutY="21.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note1Hud" fitHeight="63.0" fitWidth="71.0" layoutX="342.0" layoutY="17.0" onMouseClicked="#clickNote1" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Note1.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Rectangle fx:id="note2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fcffea" height="56.0" layoutX="427.0" layoutY="21.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-      <ImageView fx:id="note2Hud" fitHeight="56.0" fitWidth="64.0" layoutX="443.0" layoutY="20.0" onMouseClicked="#clickNote2" onMouseEntered="#onHoverHud" onMouseExited="#onLeaveHud" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Note2.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Rectangle fx:id="memoryGameRectangle" arcHeight="5.0" arcWidth="5.0" fill="#ffa4a447" height="107.0" layoutX="149.0" layoutY="344.0" onMouseClicked="#clickTemp" onMouseEntered="#onMouseRectangle" onMouseExited="#offMouseRectangle" stroke="RED" strokeType="INSIDE" strokeWidth="3.0" width="146.0">
          <cursor>
             <Cursor fx:constant="HAND" />

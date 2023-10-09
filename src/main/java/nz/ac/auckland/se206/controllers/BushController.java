@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
-import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -48,7 +47,7 @@ public class BushController {
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     // The note is hidden and the hud is updated to contain the note
-    HudState.updateHudAll();
+    // here
     // if statement ensures that the note and toy have been found before exit
     if (GameState.toyFound && GameState.note1Found) {
       backButton.setVisible(true);

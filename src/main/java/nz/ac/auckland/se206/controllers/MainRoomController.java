@@ -23,7 +23,6 @@ import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
-import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -68,16 +67,6 @@ public class MainRoomController {
   @FXML private ImageView torchImage;
 
   // HUD Elements
-  @FXML private ImageView torchHud;
-  @FXML private Pane note1Pane;
-  @FXML private Pane note2Pane;
-  @FXML private ImageView note1Hud;
-  @FXML private ImageView note2Hud;
-  @FXML private ImageView note1Return;
-  @FXML private ImageView note2Return;
-  @FXML private Rectangle torchRectangle;
-  @FXML private Rectangle note1Rectangle;
-  @FXML private Rectangle note2Rectangle;
   @FXML private ImageView settingButton;
   private ArrayList<ImageView> hudElements;
 
@@ -106,10 +95,6 @@ public class MainRoomController {
   public void initialize() {
 
     hudElements = new ArrayList<ImageView>();
-    hudElements.add(torchHud);
-    hudElements.add(note1Hud);
-    hudElements.add(note2Hud);
-    HudState.initialiseHud(hudElements);
 
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
@@ -501,7 +486,6 @@ public class MainRoomController {
     System.out.println("torch ground clicked");
     // Update GameState
     GameState.torchFound = true;
-    HudState.updateHudAll();
     // Hide torch
     torchImage.setVisible(false);
     // Disables torch in other rooms
@@ -513,6 +497,7 @@ public class MainRoomController {
 
   @FXML
   public void clickTorch(MouseEvent event) {
+    /*   FIX THIS AFTER HUD
     System.out.println("torch hud clicked");
     // Check game state
     if (GameState.note1Found) {
@@ -570,6 +555,7 @@ public class MainRoomController {
       // Hide footprints pane
       footprintPane.setVisible(false);
     }
+     */
   }
 
   /**
@@ -582,16 +568,12 @@ public class MainRoomController {
 
     // change image of torchhud
     Image image = new Image("images/Torch.png");
-    torchHud.setImage(image);
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.getHudElements().get(0).setImage(image);
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     pantry.getHudElements().get(0).setImage(image);
     // hide footprints pane
     footprintPane.setVisible(false);
-
-    // disables torch
-    HudState.disableHud(0);
 
     switchToBush();
   }
@@ -672,50 +654,6 @@ public class MainRoomController {
     }
   }
 
-  /**
-   * Handles the click event on the note1.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote1(MouseEvent event) {
-    if (GameState.note1Found) {
-      note1Pane.setVisible(true);
-    }
-  }
-
-  /**
-   * Handles the click event on the note1return.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote1Return(MouseEvent event) {
-    note1Pane.setVisible(false);
-  }
-
-  /**
-   * Handles the click event on the note1.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote2(MouseEvent event) {
-    if (GameState.note2Found) {
-      note2Pane.setVisible(true);
-    }
-  }
-
-  /**
-   * Handles the click event on the note2return.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote2Return(MouseEvent event) {
-    note2Pane.setVisible(false);
-  }
-
   // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
   @FXML
   public void onClickSetting(MouseEvent event) {
@@ -724,24 +662,10 @@ public class MainRoomController {
   }
 
   @FXML
-  public void onHoverHud(MouseEvent event) {
-    Rectangle rectangle =
-        HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
-    if (rectangle != null) {
-      HudState.highlightRectangle(rectangle);
-      onHoverInteractable(event);
-    }
-  }
+  public void clickNote1Return(MouseEvent event) {}
 
   @FXML
-  public void onLeaveHud(MouseEvent event) {
-    Rectangle rectangle =
-        HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
-    if (rectangle != null) {
-      HudState.removeHighlightRectangle(rectangle);
-      onLeaveInteractable(event);
-    }
-  }
+  public void clickNote2Return(MouseEvent event) {}
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {

@@ -24,7 +24,6 @@ import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
-import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -46,16 +45,6 @@ public class PantryController {
 
   // HUD Elements
   @FXML private Rectangle backButton;
-  @FXML private ImageView torchHud;
-  @FXML private ImageView note1Hud;
-  @FXML private ImageView note2Hud;
-  @FXML private Pane note1Pane;
-  @FXML private Pane note2Pane;
-  @FXML private ImageView note1Return;
-  @FXML private ImageView note2Return;
-  @FXML private Rectangle torchRectangle;
-  @FXML private Rectangle note1Rectangle;
-  @FXML private Rectangle note2Rectangle;
   @FXML private ImageView settingButton;
   private ArrayList<ImageView> hudElements;
 
@@ -102,10 +91,6 @@ public class PantryController {
 
   public void initialize() {
     hudElements = new ArrayList<ImageView>();
-    hudElements.add(torchHud);
-    hudElements.add(note1Hud);
-    hudElements.add(note2Hud);
-    HudState.initialiseHud(hudElements);
 
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
@@ -361,6 +346,12 @@ public class PantryController {
       }
     }
   }
+
+  @FXML
+  public void clickNote1Return(MouseEvent event) {}
+
+  @FXML
+  public void clickNote2Return(MouseEvent event) {}
 
   @FXML
   public void clickBack(MouseEvent event) {
@@ -655,52 +646,6 @@ public class PantryController {
 
     // update game state
     GameState.note2Found = true;
-
-    HudState.updateHudAll();
-  }
-
-  /**
-   * Handles the click event on the note1.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote1(MouseEvent event) {
-    if (GameState.note1Found) {
-      note1Pane.setVisible(true);
-    }
-  }
-
-  /**
-   * Handles the click event on the note1return.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote1Return(MouseEvent event) {
-    note1Pane.setVisible(false);
-  }
-
-  /**
-   * Handles the click event on the note1.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote2(MouseEvent event) {
-    if (GameState.note2Found) {
-      note2Pane.setVisible(true);
-    }
-  }
-
-  /**
-   * Handles the click event on the note2return.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickNote2Return(MouseEvent event) {
-    note2Pane.setVisible(false);
   }
 
   // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
@@ -708,26 +653,6 @@ public class PantryController {
   public void onClickSetting(MouseEvent event) {
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
-  }
-
-  @FXML
-  public void onMouseHub(MouseEvent event) {
-    Rectangle rectangle =
-        HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
-    if (rectangle != null) {
-      HudState.highlightRectangle(rectangle);
-      onHoverInteractable(event);
-    }
-  }
-
-  @FXML
-  public void offMouseHub(MouseEvent event) {
-    Rectangle rectangle =
-        HudState.findRectangle(event, torchRectangle, note1Rectangle, note2Rectangle);
-    if (rectangle != null) {
-      HudState.removeHighlightRectangle(rectangle);
-      onLeaveInteractable(event);
-    }
   }
 
   private void initialiseUserData() {
