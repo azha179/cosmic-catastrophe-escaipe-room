@@ -38,7 +38,6 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 public class RocketController {
 
   @FXML private Pane pane;
-  @FXML private ImageView back;
   @FXML private ImageView temp;
   @FXML private ImageView launch;
 
@@ -55,7 +54,14 @@ public class RocketController {
 
   // HUD Elements
   @FXML private ImageView settingButton;
-  private ArrayList<ImageView> hudElements;
+  @FXML private ImageView back;
+  @FXML private ImageView torch;
+  @FXML private ImageView note1;
+  @FXML private ImageView note2;
+  @FXML private Label torchCount;
+  @FXML private Label note1Count;
+  @FXML private Label note2Count;
+  private ArrayList<Object> hudElements;
 
   // Meow Pad
   @FXML private Rectangle memoryGameRectangle;
@@ -84,7 +90,13 @@ public class RocketController {
   private boolean isRoomFirstEntered = false;
 
   public void initialize() {
-    hudElements = new ArrayList<ImageView>();
+    hudElements = new ArrayList<Object>();
+    hudElements.add(torch);
+    hudElements.add(note1);
+    hudElements.add(note2);
+    hudElements.add(torchCount);
+    hudElements.add(note1Count);
+    hudElements.add(note2Count);
 
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
@@ -121,7 +133,7 @@ public class RocketController {
     return timer;
   }
 
-  public ArrayList<ImageView> getHudElements() {
+  public ArrayList<Object> getHudElements() {
     return hudElements;
   }
 

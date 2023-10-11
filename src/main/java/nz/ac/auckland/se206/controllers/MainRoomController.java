@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -68,7 +69,13 @@ public class MainRoomController {
 
   // HUD Elements
   @FXML private ImageView settingButton;
-  private ArrayList<ImageView> hudElements;
+  @FXML private ImageView torch;
+  @FXML private ImageView note1;
+  @FXML private ImageView note2;
+  @FXML private Label torchCount;
+  @FXML private Label note1Count;
+  @FXML private Label note2Count;
+  private ArrayList<Object> hudElements;
 
   // Task Log
   @FXML private ImageView log;
@@ -94,7 +101,13 @@ public class MainRoomController {
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
-    hudElements = new ArrayList<ImageView>();
+    hudElements = new ArrayList<Object>();
+    hudElements.add(torch);
+    hudElements.add(note1);
+    hudElements.add(note2);
+    hudElements.add(torchCount);
+    hudElements.add(note1Count);
+    hudElements.add(note2Count);
 
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
@@ -129,7 +142,7 @@ public class MainRoomController {
     return timer;
   }
 
-  public ArrayList<ImageView> getHudElements() {
+  public ArrayList<Object> getHudElements() {
     return hudElements;
   }
 
@@ -488,25 +501,16 @@ public class MainRoomController {
     GameState.torchFound = true;
     // Hide torch
     torchImage.setVisible(false);
-    // Disables torch in other rooms
-    RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.getHudElements().get(0).setDisable(true);
-    PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.getHudElements().get(0).setDisable(true);
+    // Enable torch in the hud
+    Hud.updateTorch(true, "x1");
   }
 
   @FXML
   public void clickTorch(MouseEvent event) {
-    /*   FIX THIS AFTER HUD
+
     System.out.println("torch hud clicked");
-    // Check game state
+    // note 1 is already found - torch cannot be used
     if (GameState.note1Found) {
-      // disable the ability to click torchhud
-      torchHud.setDisable(true);
-      RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      rocket.getHudElements().get(0).setDisable(true);
-      PantryController pantry = (PantryController) SceneManager.getController("pantry");
-      pantry.getHudElements().get(0).setDisable(true);
       return;
     }
     if (!GameState.isTorchOn) { // when torch is being turned on
@@ -514,11 +518,13 @@ public class MainRoomController {
       GameState.isTorchOn = true;
       // Change image
       Image image = new Image("images/Torchlit.png");
-      torchHud.setImage(image);
+      torch.setImage(image);
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      rocket.getHudElements().get(0).setImage(image);
+      ImageView torchImage = (ImageView) rocket.getHudElements().get(0);
+      torchImage.setImage(image);
       PantryController pantry = (PantryController) SceneManager.getController("pantry");
-      pantry.getHudElements().get(0).setImage(image);
+      torchImage = (ImageView) pantry.getHudElements().get(0);
+      torchImage.setImage(image);
       // Show footprints pane
       footprintPane.setVisible(true);
       // Enable first footprint
@@ -529,11 +535,13 @@ public class MainRoomController {
       GameState.isTorchOn = false;
       // Change image
       Image image = new Image("images/Torch.png");
-      torchHud.setImage(image);
+      torch.setImage(image);
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      rocket.getHudElements().get(0).setImage(image);
+      ImageView torchImage = (ImageView) rocket.getHudElements().get(0);
+      torchImage.setImage(image);
       PantryController pantry = (PantryController) SceneManager.getController("pantry");
-      pantry.getHudElements().get(0).setImage(image);
+      torchImage = (ImageView) pantry.getHudElements().get(0);
+      torchImage.setImage(image);
       // Hide footprints pane
       footprintPane.setVisible(false);
       // Disable and hide all footprints except first and set opacity to 0
@@ -551,11 +559,10 @@ public class MainRoomController {
       GameState.isTorchOn = false;
       // Change image
       Image image = new Image("images/Torch.png");
-      torchHud.setImage(image);
+      torch.setImage(image);
       // Hide footprints pane
       footprintPane.setVisible(false);
     }
-     */
   }
 
   /**
@@ -569,11 +576,15 @@ public class MainRoomController {
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.getHudElements().get(0).setImage(image);
+    ImageView torchImage = (ImageView) rocket.getHudElements().get(0);
+    torchImage.setImage(image);
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.getHudElements().get(0).setImage(image);
+    torchImage = (ImageView) pantry.getHudElements().get(0);
+    torchImage.setImage(image);
     // hide footprints pane
     footprintPane.setVisible(false);
+    // disables torch in the hud
+    Hud.updateTorch(true, "x0");
 
     switchToBush();
   }

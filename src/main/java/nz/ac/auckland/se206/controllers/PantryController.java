@@ -46,7 +46,13 @@ public class PantryController {
   // HUD Elements
   @FXML private Rectangle backButton;
   @FXML private ImageView settingButton;
-  private ArrayList<ImageView> hudElements;
+  @FXML private ImageView torch;
+  @FXML private ImageView note1;
+  @FXML private ImageView note2;
+  @FXML private Label torchCount;
+  @FXML private Label note1Count;
+  @FXML private Label note2Count;
+  private ArrayList<Object> hudElements;
 
   // Room elements
   @FXML private Pane pane;
@@ -90,7 +96,13 @@ public class PantryController {
   private ArrayList<ImageView> shadowArray = new ArrayList<>();
 
   public void initialize() {
-    hudElements = new ArrayList<ImageView>();
+    hudElements = new ArrayList<Object>();
+    hudElements.add(torch);
+    hudElements.add(note1);
+    hudElements.add(note2);
+    hudElements.add(torchCount);
+    hudElements.add(note1Count);
+    hudElements.add(note2Count);
 
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
@@ -131,7 +143,7 @@ public class PantryController {
     return timer;
   }
 
-  public ArrayList<ImageView> getHudElements() {
+  public ArrayList<Object> getHudElements() {
     return hudElements;
   }
 
