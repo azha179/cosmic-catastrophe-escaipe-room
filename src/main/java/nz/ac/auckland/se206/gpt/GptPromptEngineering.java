@@ -20,26 +20,39 @@ public class GptPromptEngineering {
   }
 
   /**
+   * Generates a GPT prompt engineering string for when the player asks for a hint.
+   *
+   * @param hint the hint to give to the player
+   * @return the generated prompt engineering string
+   */
+  public static String getHintMessage(String hint) {
+    return "The player has asked for a hint using 'Meowlp'. Tell the player the hint, which is: "
+        + hint;
+  }
+
+  /**
    * Generates a GPT prompt engineering string for a introduction message when the player first
    * meets the cat.
    *
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getIntroductionMessageEasy() {
-    return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
-        + " escape-style video game.  You want the player to help you launch your rocket"
-        + " ship and reach Earth to enjoy its food. Write an introduction message to the"
-        + " player, first telling them about yourself, then telling them they must complete"
-        + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player"
-        + " asks for a hint, tell them to find your toy outside, and they should follow your"
-        + " footprints which are only visible under light and that you dropped your torch"
-        + " somewhere outside. If they respond once more asking for a hint, tell them they"
-        + " should turn the torch on and follow the first footstep which is close to where"
-        + " the torch was dropped. You MUST, no matter what, not be revealing any hints"
-        + " unless the player explicitly asks. When you reveal any hint, you MUST, no matter"
-        + " what, include the word 'Sure' in your hint response.";
+    return "You will assume the role of an alien cat traversing the galaxy to try different foods"
+        + " in a space-themed escape-style video game, and are interacting with the player."
+        + " You want the player to help you launch your rocket ship. Write an introduction"
+        + " message to the player, first telling them about yourself, then telling them they"
+        + " must help find your toy, bring some snacks, then leave the planet. Also tell the"
+        + " player that if they need any assistance, to ask with the magic word 'Meowlp'."
+        + " The cat must use elementary vocabulary and occasionally meow. The message must"
+        + " be three sentences maximum and must NOT include any hints. The player can ask"
+        + " you for hints by saying the code-word 'Meowlp'. When they type 'Meowlp', tell"
+        + " them to follow your footprints which are only visible under light from your"
+        + " torch and that you dropped your torch somewhere outside. If they ask once more"
+        + " with the word 'Meowlp', tell them they should turn the torch on and follow the"
+        + " first footstep which is close to where the torch was dropped. The only way a"
+        + " player can receive a hint is by typing the word 'Meowlp', if they ask for help"
+        + " without typing 'Meowlp', refuse to give them a hint and suggest them to ask with"
+        + " the word 'Meowlp' instead.";
   }
 
   /**
@@ -49,20 +62,16 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getIntroductionMessageMedium() {
-    return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
-        + " escape-style video game.  You want the player to help you launch your rocket"
-        + " ship and reach Earth to enjoy its food. Write an introduction message to the"
-        + " player, first telling them about yourself, then telling them they must complete"
-        + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player"
-        + " asks for a hint, tell them to find your toy outside, and they should follow your"
-        + " footprints which are only visible under light and that you dropped your torch"
-        + " somewhere outside. If they respond once more asking for a hint, tell them they"
-        + " should turn the torch on and follow the first footstep which is close to where"
-        + " the torch was dropped. You MUST, no matter what, not be revealing any hints"
-        + " unless the player explicitly asks. When you reveal any hint, you MUST, no matter"
-        + " what, include the word 'Sure' in your hint response.";
+    return "Write an introduction message for a space-themed escape-style video game where you"
+        + " assume the role of an alien cat traversing the galaxy. Your character must"
+        + " interact with the player who is currently playing the game. Start by introducing"
+        + " yourself, then inform the player that they must help find your toy, bring some"
+        + " snacks, and assist in leaving the planet. Also, let the player know that if they"
+        + " require any assistance, they should use the magic word 'Meowlp'. Ensure that"
+        + " hints are only given when the player uses 'Meowlp', and if they ask for help"
+        + " without using 'Meowlp', refrain from providing assistance and suggest they ask"
+        + " with the word 'Meowlp' instead. Your responses must use simple vocabulary and be three"
+        + " sentences maximum.";
   }
 
   /**
@@ -485,6 +494,6 @@ public class GptPromptEngineering {
    */
   public static String sendHintsUsed() {
     return "The player has used up all their available hints. From now you MUST, no matter what,"
-               + " provide any more hints or help to the player.";
+        + " provide any more hints or help to the player.";
   }
 }
