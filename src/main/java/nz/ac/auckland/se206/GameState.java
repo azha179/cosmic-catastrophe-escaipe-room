@@ -47,6 +47,8 @@ public class GameState {
 
   public static boolean isHintUsed = false;
 
+  public static boolean textToSpeech = false;
+
   public static void updateAllHintsLabel() {
     MainRoomController mainRoomController =
         (MainRoomController) SceneManager.getController("mainroom");

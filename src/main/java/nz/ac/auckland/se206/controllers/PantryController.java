@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TTSManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -95,6 +96,9 @@ public class PantryController {
 
   // Timer element
   @FXML private Label timer;
+
+  // TTS
+  TTSManager ttsManager = new TTSManager();
 
   int currentHint = 1;
 
@@ -867,5 +871,9 @@ public class PantryController {
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
+  }
+
+  public TTSManager getTTS() {
+    return null;
   }
 }

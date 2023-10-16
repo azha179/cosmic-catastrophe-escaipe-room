@@ -32,6 +32,7 @@ import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TTSManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -93,6 +94,9 @@ public class RocketController {
 
   private boolean isRoomFirstEntered = false;
   private boolean currentHint = false;
+
+  // TTS
+  TTSManager ttsManager = new TTSManager();
 
   public void initialize() {
     hudElements = new ArrayList<Object>();
@@ -1035,5 +1039,9 @@ public class RocketController {
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
+  }
+
+  public TTSManager getTTS() {
+    return ttsManager;
   }
 }

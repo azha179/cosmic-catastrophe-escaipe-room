@@ -27,7 +27,7 @@ public class TTSManager {
   }
 
   public void speak(String text) {
-    if (voice != null) {
+    if (voice != null && GameState.textToSpeech) {
       voice.speak(text);
     }
   }
