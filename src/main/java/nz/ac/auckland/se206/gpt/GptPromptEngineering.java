@@ -32,6 +32,18 @@ public class GptPromptEngineering {
   }
 
   /**
+   * Generates a GPT prompt engineering string for when the player asks for a hint but no more hints
+   * left to give in current area.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getHintMessageNone() {
+    return "The player has asked for a hint using 'Meowlp'. Reply to the player that you are unable"
+        + " to provide any more hints for them for the current area, and suggest them to ask"
+        + " again in a different place to jog up your memory.";
+  }
+
+  /**
    * Generates a GPT prompt engineering string for when the player asks for a hint but in hard
    * difficulty.
    *

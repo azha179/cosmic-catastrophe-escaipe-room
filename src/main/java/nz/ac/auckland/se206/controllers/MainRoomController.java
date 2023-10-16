@@ -410,11 +410,6 @@ public class MainRoomController {
               System.out.println("more than 6 characters");
               if (message.substring(0, 6).equalsIgnoreCase("Meowlp")) {
                 System.out.println("mewolp");
-                // Update GameState if medium difficulty
-                if (GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
-                  GameState.hintsLeft--;
-                  currentHint++;
-                }
 
                 // Call GPT for hint
                 // If hard difficulty or hints used
@@ -425,37 +420,51 @@ public class MainRoomController {
                           new ChatMessage("user", GptPromptEngineering.getHintMessageHard()),
                           GptActions.chatCompletionRequest1);
                 } else {
-                  if (currentHint == 1) {
+                  // If current hint is 4
+                  if (currentHint >= 4) {
                     lastMsg =
                         GptActions.runGpt(
-                            new ChatMessage(
-                                "user",
-                                GptPromptEngineering.getHintMessage(
-                                    "Find my torch which dropped outside and follow the footprints"
-                                        + " with it.")),
-                            GptActions.chatCompletionRequest1);
-                  } else if (currentHint == 2) {
-                    lastMsg =
-                        GptActions.runGpt(
-                            new ChatMessage(
-                                "user",
-                                GptPromptEngineering.getHintMessage(
-                                    "Turn the torch on and follow from the first footprint which"
-                                        + " can be found near where the torch was dropped.")),
+                            new ChatMessage("user", GptPromptEngineering.getHintMessageNone()),
                             GptActions.chatCompletionRequest1);
                   } else {
-                    lastMsg =
-                        GptActions.runGpt(
-                            new ChatMessage(
-                                "user",
-                                GptPromptEngineering.getHintMessage(
-                                    "The footprints lead to the bush outside. Check the bush after"
-                                        + " following all footprints.")),
-                            GptActions.chatCompletionRequest1);
-                  }
-                  // If hints left is 0
-                  if (GameState.hintsLeft == 0 && !GameState.isHintUsed) {
-                    hintsUsed();
+                    // Update GameState if medium difficulty
+                    if (GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
+                      GameState.hintsLeft--;
+                    }
+
+                    if (currentHint == 1) {
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "Find my torch which dropped outside and follow the"
+                                          + " footprints with it.")),
+                              GptActions.chatCompletionRequest1);
+                    } else if (currentHint == 2) {
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "Turn the torch on and follow from the first footprint which"
+                                          + " can be found near where the torch was dropped.")),
+                              GptActions.chatCompletionRequest1);
+                    } else {
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "The footprints lead to the bush outside. Check the bush"
+                                          + " after following all footprints.")),
+                              GptActions.chatCompletionRequest1);
+                    }
+                    currentHint++;
+                    // If hints left is 0
+                    if (GameState.hintsLeft == 0 && !GameState.isHintUsed) {
+                      hintsUsed();
+                    }
                   }
                 }
               } else {
