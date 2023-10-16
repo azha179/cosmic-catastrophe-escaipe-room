@@ -129,7 +129,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="164.0" prefHeight="103.0" prefWidth="326.0" text="LAUNCH MANUAL" textAlignment="CENTER" wrapText="true">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="147.0" prefHeight="103.0" prefWidth="326.0" text="LAUNCH MANUAL" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Copperplate" size="30.0" />
                </font>
@@ -257,7 +257,7 @@
                   <Font name="Apple Symbols" size="22.0" />
                </font>
             </Label>
-            <ImageView fx:id="note1" fitHeight="51.0" fitWidth="45.0" layoutX="98.0" layoutY="14.0" onMouseEntered="#onHoverNote1" visible="false">
+            <ImageView fx:id="note1" fitHeight="51.0" fitWidth="45.0" layoutX="98.0" layoutY="14.0" onMouseClicked="#clickNote1" onMouseEntered="#onHoverNote1" visible="false">
                <image>
                   <Image url="@../images/Note1.png" />
                </image>
@@ -270,7 +270,7 @@
                   <Font name="Apple Symbols" size="22.0" />
                </font>
             </Label>
-            <ImageView fx:id="note2" fitHeight="65.0" fitWidth="52.0" layoutX="176.0" layoutY="7.0" onMouseEntered="#onHoverNote2" visible="false">
+            <ImageView fx:id="note2" fitHeight="65.0" fitWidth="52.0" layoutX="176.0" layoutY="7.0" onMouseClicked="#clickNote2" onMouseEntered="#onHoverNote2" visible="false">
                <image>
                   <Image url="@../images/Note2.png" />
                </image>

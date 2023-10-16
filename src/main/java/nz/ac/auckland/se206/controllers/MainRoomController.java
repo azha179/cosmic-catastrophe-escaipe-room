@@ -39,7 +39,8 @@ public class MainRoomController {
   @FXML private ImageView rocketImage;
   @FXML private ImageView pantryImage;
   @FXML private Rectangle dim;
-
+  @FXML private Pane note1Pane;
+  @FXML private Pane note2Pane;
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
   @FXML private ImageView catImageAwoken;
@@ -235,7 +236,6 @@ public class MainRoomController {
 
                   // removes dim
                   dim.setVisible(false);
-
                 });
 
             Platform.runLater(
@@ -751,10 +751,24 @@ public class MainRoomController {
   }
 
   @FXML
-  public void clickNote1Return(MouseEvent event) {}
+  public void clickNote1(MouseEvent event) {
+    note1Pane.setVisible(true);
+  }
 
   @FXML
-  public void clickNote2Return(MouseEvent event) {}
+  public void clickNote2(MouseEvent event) {
+    note2Pane.setVisible(true);
+  }
+
+  @FXML
+  public void clickNote1Return(MouseEvent event) {
+    note1Pane.setVisible(false);
+  }
+
+  @FXML
+  public void clickNote2Return(MouseEvent event) {
+    note2Pane.setVisible(false);
+  }
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {

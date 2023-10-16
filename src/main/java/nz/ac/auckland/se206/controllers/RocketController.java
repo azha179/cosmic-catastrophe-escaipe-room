@@ -41,6 +41,8 @@ public class RocketController {
   @FXML private Pane pane;
   @FXML private ImageView temp;
   @FXML private ImageView launch;
+  @FXML private Pane note1Pane;
+  @FXML private Pane note2Pane;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -161,10 +163,24 @@ public class RocketController {
   }
 
   @FXML
-  public void clickNote1Return(MouseEvent event) {}
+  public void clickNote1(MouseEvent event) {
+    note1Pane.setVisible(true);
+  }
 
   @FXML
-  public void clickNote2Return(MouseEvent event) {}
+  public void clickNote2(MouseEvent event) {
+    note2Pane.setVisible(true);
+  }
+
+  @FXML
+  public void clickNote1Return(MouseEvent event) {
+    note1Pane.setVisible(false);
+  }
+
+  @FXML
+  public void clickNote2Return(MouseEvent event) {
+    note2Pane.setVisible(false);
+  }
 
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
