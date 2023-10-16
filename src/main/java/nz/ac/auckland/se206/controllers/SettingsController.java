@@ -39,7 +39,6 @@ public class SettingsController {
     return timer;
   }
 
-
   // to ensure that back goes to the scene it was just in, use the getPreviousScene method when
   // onClickBack is done
 
@@ -58,11 +57,11 @@ public class SettingsController {
     volume = volumeSlider.getValue();
     // Takes the instance of mainroom to be able to access and change the tts volume
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    mainRoom.getTTS().setVolume((float) volume);
+    mainRoom.getTextManager().setVolume((float) volume);
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.getTTS().setVolume((float) volume);
+    rocket.getTextManager().setVolume((float) volume);
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.getTTS().setVolume((float) volume);
+    pantry.getTextManager().setVolume((float) volume);
 
     if (toggleButton.isSelected()) {
       GameState.textToSpeech = true;

@@ -161,7 +161,7 @@ public class MainRoomController {
     return timer;
   }
 
-  public TextManager getTTS() {
+  public TextManager getTextManager() {
     return textManager;
   }
 

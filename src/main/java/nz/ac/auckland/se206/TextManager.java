@@ -42,11 +42,11 @@ public class TextManager {
   public static void close() {
     if (voice != null) {
       MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-      mainRoom.getTTS().deallocate();
+      mainRoom.getTextManager().deallocate();
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      rocket.getTTS().deallocate();
+      rocket.getTextManager().deallocate();
       PantryController pantry = (PantryController) SceneManager.getController("pantry");
-      pantry.getTTS().deallocate();
+      pantry.getTextManager().deallocate();
     }
   }
 

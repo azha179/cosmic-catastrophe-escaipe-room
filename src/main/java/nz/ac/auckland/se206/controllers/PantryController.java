@@ -1046,7 +1046,7 @@ public class PantryController {
     highlightNote2.setVisible(false);
   }
 
-  public TextManager getTTS() {
+  public TextManager getTextManager() {
     return textManager;
   }
 }

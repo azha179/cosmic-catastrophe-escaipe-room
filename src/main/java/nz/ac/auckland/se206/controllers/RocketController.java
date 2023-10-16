@@ -1260,7 +1260,7 @@ public class RocketController {
     highlightNote2.setVisible(false);
   }
 
-  public TextManager getTTS() {
+  public TextManager getTextManager() {
     return textManager;
   }
 }
