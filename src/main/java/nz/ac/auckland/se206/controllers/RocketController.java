@@ -204,7 +204,7 @@ public class RocketController {
   // Dependent on the state of the rightpad, the memory game will be revealed
   private void handleRightMeowPadActivation() {
     GameState.isRightMeowPadActivated = true;
-    if (GameState.isLeftMeowPadActivated) {
+    if (GameState.isLeftMeowPadActivated && GameState.note1Found && GameState.note2Found) {
       resetCurrentHint();
     }
 
@@ -317,7 +317,9 @@ public class RocketController {
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
-    resetCurrentHint();
+    if (GameState.note1Found && GameState.note2Found) {
+      resetCurrentHint();
+    }
     // Generate message
     // only if both notes are found AND right meow pad is not activated
     if (GameState.note1Found && GameState.note2Found && !GameState.isRightMeowPadActivated) {
