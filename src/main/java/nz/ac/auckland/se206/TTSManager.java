@@ -2,9 +2,15 @@ package nz.ac.auckland.se206;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import nz.ac.auckland.se206.controllers.MainRoomController;
+import nz.ac.auckland.se206.controllers.PantryController;
+import nz.ac.auckland.se206.controllers.RocketController;
 
 public class TTSManager {
-  private Voice voice;
+  private static Voice voice;
+  private static TTSManager ttsManager;
 
   public TTSManager() {
     // Initialize the FreeTTS voice
@@ -16,8 +22,8 @@ public class TTSManager {
     } else {
       throw new IllegalStateException("Cannot find the FreeTTS voice.");
     }
-    voice.setPitch(800);
-    voice.setRate(150);
+    voice.setPitch(500);
+    voice.setRate(140);
   }
 
   public void setVolume(float volume) {
@@ -32,9 +38,40 @@ public class TTSManager {
     }
   }
 
-  public void close() {
+  public static void close() {
     if (voice != null) {
-      voice.deallocate();
+      MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+      mainRoom.getTTS().deallocate();
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getTTS().deallocate();
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getTTS().deallocate();
     }
+  }
+
+  private void deallocate() {
+    voice.deallocate();
+  }
+
+  public static void speakInitialise(String Message) {
+
+    Platform.runLater(
+        () -> {
+          // Create a new TTS manager instance
+          ttsManager = new TTSManager();
+
+          // Text to speech task
+          Task<Void> textToSpeechTask =
+              new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                  ttsManager.speak(Message);
+                  return null;
+                }
+              };
+
+          Thread textToSpeechThread = new Thread(textToSpeechTask);
+          textToSpeechThread.start();
+        });
   }
 }

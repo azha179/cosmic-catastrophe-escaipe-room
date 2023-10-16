@@ -45,7 +45,6 @@ public class SettingsController {
   public void onClickApply(MouseEvent event) {
     volume = volumeSlider.getValue();
     // Takes the instance of mainroom to be able to access and change the tts volume
-    // Any additions to other rooms, add here
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.getTTS().setVolume((float) volume);
     RocketController rocket = (RocketController) SceneManager.getController("rocket");

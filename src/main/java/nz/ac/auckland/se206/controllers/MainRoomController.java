@@ -245,23 +245,7 @@ public class MainRoomController {
                   dim.setVisible(false);
                 });
 
-            Platform.runLater(
-                () -> {
-
-                  // Text to speech task
-                  Task<Void> textToSpeechTask =
-                      new Task<Void>() {
-                        @Override
-                        protected Void call() throws Exception {
-                          ttsManager.speak("Meow");
-
-                          return null;
-                        }
-                      };
-
-                  Thread textToSpeechThread = new Thread(textToSpeechTask);
-                  textToSpeechThread.start();
-                });
+            TTSManager.speakInitialise(chatMessage.getContent());
 
             return null;
           }
@@ -340,6 +324,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickCatActive(MouseEvent event) {
+    TTSManager.close();
     System.out.println("cat clicked");
     // Hide active cat
     catImageActive.setVisible(false);
@@ -366,6 +351,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickReply(MouseEvent event) {
+    TTSManager.close();
     System.out.println("reply clicked");
     // call reply method
     reply();
@@ -381,6 +367,7 @@ public class MainRoomController {
     //
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
+      TTSManager.close();
       System.out.println("enter pressed");
       // call reply method
       reply();
@@ -513,6 +500,8 @@ public class MainRoomController {
                   // Show reply area
                   toggleReplyArea();
                 });
+            // tts for cat speaking
+            TTSManager.speakInitialise(lastMsg.getContent());
 
             return null;
           }
@@ -537,11 +526,8 @@ public class MainRoomController {
     System.out.println("rocket clicked");
   }
 
-  private void switchToBush() {
-    App.setUi(AppUi.BUSH);
-  }
-
   private void switchToRocket() {
+    TTSManager.close();
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to rocket
     Parent rocketScene = SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
@@ -565,6 +551,7 @@ public class MainRoomController {
   }
 
   private void switchToPantry() {
+    TTSManager.close();
     App.setUi(AppUi.PANTRY_INTERIOR);
     // gives focus to pantry
     Parent pantryScene = SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
@@ -674,6 +661,11 @@ public class MainRoomController {
     switchToBush();
   }
 
+  private void switchToBush() {
+    TTSManager.close();
+    App.setUi(AppUi.BUSH);
+  }
+
   /**
    * Handles the hover event on the footprints.
    *
@@ -753,15 +745,20 @@ public class MainRoomController {
   // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
   @FXML
   public void onClickSetting(MouseEvent event) {
+    TTSManager.close();
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.MAIN_ROOM);
   }
 
   @FXML
-  public void clickNote1Return(MouseEvent event) {}
+  public void clickNote1Return(MouseEvent event) {
+    TTSManager.close();
+  }
 
   @FXML
-  public void clickNote2Return(MouseEvent event) {}
+  public void clickNote2Return(MouseEvent event) {
+    TTSManager.close();
+  }
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {

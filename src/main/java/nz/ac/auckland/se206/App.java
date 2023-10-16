@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.MainRoomController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -87,9 +86,7 @@ public class App extends Application {
     stage.setOnCloseRequest(
         event -> {
           // Terminate text to speech
-          MainRoomController mainRoomController =
-              (MainRoomController) SceneManager.getController("mainroom");
-          mainRoomController.terminateTextToSpeech();
+          TTSManager.close();
 
           // Terminate the timer
           if (CountDownTimer.countdownTimeline != null) {
