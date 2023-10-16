@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
    <children>
       <ImageView fx:id="rocketImage" fitHeight="570.0" fitWidth="769.0" layoutX="-15.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -222,7 +222,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="661.0" layoutY="18.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="661.0" layoutY="6.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Settings.PNG" />
          </image>
@@ -233,40 +233,52 @@
             <Glow />
          </effect>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="106.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
-      <Label fx:id="timer" alignment="CENTER" layoutX="106.0" layoutY="25.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="112.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
+      <Label fx:id="timer" alignment="CENTER" layoutX="112.0" layoutY="12.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
          <font>
             <Font name="Copperplate" size="30.0" />
          </font>
       </Label>
-      <Pane fx:id="hud" layoutX="278.0" layoutY="2.0" prefHeight="74.0" prefWidth="275.0">
+      <Pane fx:id="hud" layoutX="247.0" layoutY="1.0" prefHeight="74.0" prefWidth="275.0">
          <children>
-            <ImageView fx:id="torch" fitHeight="36.0" fitWidth="60.0" layoutX="23.0" layoutY="29.0" visible="false">
+            <Rectangle fx:id="highlightTorch" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="68.0" layoutX="1.0" layoutY="3.0" onMouseExited="#onLeaveTorch" smooth="false" stroke="#e1cf69" strokeType="INSIDE" visible="false" width="84.0" />
+            <Rectangle fx:id="highlightNote1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="68.0" layoutX="84.0" layoutY="3.0" onMouseExited="#onLeaveNote1" stroke="#e1cf69" strokeType="INSIDE" visible="false" width="84.0" />
+            <Rectangle fx:id="highlightNote2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="68.0" layoutX="167.0" layoutY="3.0" onMouseExited="#onLeaveNote2" stroke="#e1cf69" strokeType="INSIDE" visible="false" width="84.0" />
+            <ImageView fx:id="torch" fitHeight="36.0" fitWidth="60.0" layoutX="11.0" layoutY="22.0" onMouseEntered="#onHoverTorch" visible="false">
                <image>
                   <Image url="@../images/Torch.PNG" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
             </ImageView>
-            <Label fx:id="torchCount" alignment="CENTER" layoutX="61.0" layoutY="14.0" prefHeight="0.0" prefWidth="30.0" text="x0" textAlignment="CENTER" textFill="WHITE" visible="false">
+            <Label fx:id="torchCount" alignment="CENTER" layoutX="51.0" layoutY="3.0" prefHeight="0.0" prefWidth="30.0" text="x0" textAlignment="CENTER" textFill="WHITE" visible="false">
                <font>
                   <Font name="Apple Symbols" size="22.0" />
                </font>
             </Label>
-            <ImageView fx:id="note1" fitHeight="51.0" fitWidth="45.0" layoutX="112.0" layoutY="21.0" visible="false">
+            <ImageView fx:id="note1" fitHeight="51.0" fitWidth="45.0" layoutX="98.0" layoutY="14.0" onMouseEntered="#onHoverNote1" visible="false">
                <image>
                   <Image url="@../images/Note1.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
             </ImageView>
-            <Label fx:id="note1Count" alignment="CENTER" layoutX="150.0" layoutY="14.0" prefHeight="0.0" prefWidth="30.0" text="x0" textAlignment="CENTER" textFill="WHITE" visible="false">
+            <Label fx:id="note1Count" alignment="CENTER" layoutX="138.0" layoutY="3.0" prefHeight="0.0" prefWidth="30.0" text="x0" textAlignment="CENTER" textFill="WHITE" visible="false">
                <font>
                   <Font name="Apple Symbols" size="22.0" />
                </font>
             </Label>
-            <ImageView fx:id="note2" fitHeight="65.0" fitWidth="52.0" layoutX="192.0" layoutY="14.0" visible="false">
+            <ImageView fx:id="note2" fitHeight="65.0" fitWidth="52.0" layoutX="176.0" layoutY="7.0" onMouseEntered="#onHoverNote2" visible="false">
                <image>
                   <Image url="@../images/Note2.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
             </ImageView>
-            <Label fx:id="note2Count" alignment="CENTER" layoutX="236.0" layoutY="14.0" prefHeight="0.0" prefWidth="30.0" text="x0" textAlignment="CENTER" textFill="WHITE" visible="false">
+            <Label fx:id="note2Count" alignment="CENTER" layoutX="220.0" layoutY="3.0" prefHeight="0.0" prefWidth="30.0" text="x0" textAlignment="CENTER" textFill="WHITE" visible="false">
                <font>
                   <Font name="Apple Symbols" size="22.0" />
                </font>

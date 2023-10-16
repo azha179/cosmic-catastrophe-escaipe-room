@@ -76,6 +76,9 @@ public class MainRoomController {
   @FXML private Label note1Count;
   @FXML private Label note2Count;
   private ArrayList<Object> hudElements;
+  @FXML private Rectangle highlightTorch;
+  @FXML private Rectangle highlightNote1;
+  @FXML private Rectangle highlightNote2;
 
   // Task Log
   @FXML private ImageView log;
@@ -225,8 +228,14 @@ public class MainRoomController {
                       });
                   // Enable cat
                   catImageSleep.setDisable(false);
+
+                  // enabling room switches
+                  rocketImage.setDisable(false);
+                  pantryImage.setDisable(false);
+
                   // removes dim
                   dim.setVisible(false);
+
                 });
 
             Platform.runLater(
@@ -642,16 +651,18 @@ public class MainRoomController {
 
     // change image of torchhud
     Image image = new Image("images/Torch.png");
+    torch.setImage(image);
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    ImageView torchImage = (ImageView) rocket.getHudElements().get(0);
-    torchImage.setImage(image);
+    ImageView torch = (ImageView) rocket.getHudElements().get(0);
+    torch.setImage(image);
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    torchImage = (ImageView) pantry.getHudElements().get(0);
-    torchImage.setImage(image);
+    torch = (ImageView) pantry.getHudElements().get(0);
+    torch.setImage(image);
     // hide footprints pane
     footprintPane.setVisible(false);
     // disables torch in the hud
     Hud.updateTorch(true, "x0");
+    Hud.disableTorch();
 
     switchToBush();
   }
@@ -803,5 +814,36 @@ public class MainRoomController {
     if (textToSpeech != null) {
       textToSpeech.terminate();
     }
+  }
+
+  // Hud highlight methods
+  @FXML
+  public void onHoverTorch(MouseEvent event) {
+    highlightTorch.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveTorch(MouseEvent event) {
+    highlightTorch.setVisible(false);
+  }
+
+  @FXML
+  public void onHoverNote1(MouseEvent event) {
+    highlightNote1.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveNote1(MouseEvent event) {
+    highlightNote1.setVisible(false);
+  }
+
+  @FXML
+  public void onHoverNote2(MouseEvent event) {
+    highlightNote2.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveNote2(MouseEvent event) {
+    highlightNote2.setVisible(false);
   }
 }

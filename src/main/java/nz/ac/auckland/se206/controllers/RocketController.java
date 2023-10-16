@@ -29,6 +29,7 @@ import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -62,6 +63,9 @@ public class RocketController {
   @FXML private Label note1Count;
   @FXML private Label note2Count;
   private ArrayList<Object> hudElements;
+  @FXML private Rectangle highlightTorch;
+  @FXML private Rectangle highlightNote1;
+  @FXML private Rectangle highlightNote2;
 
   // Meow Pad
   @FXML private Rectangle memoryGameRectangle;
@@ -262,12 +266,18 @@ public class RocketController {
     System.out.println("right Meow pad activated");
     // If the task has been done, then it activates
     rightActivateCircle.setVisible(true);
-    // if both notes are activated, then the memory game is activated
+    // if both pads are activated, then the memory game is activated
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+
+      // disables both notes
+      Hud.updateNote1(true, "x0");
+      Hud.disableNote1();
+      Hud.updateNote2(true, "x0");
+      Hud.disableNote2();
 
       // Generate message
       // Hide chat
@@ -368,12 +378,18 @@ public class RocketController {
     }
 
     leftActivateCircle.setVisible(true);
-    // if both notes are activated, then the memory game is activated
+    // if both pad are activated, then the memory game is activated
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
+
+      // disables both notes
+      Hud.updateNote1(true, "x0");
+      Hud.disableNote1();
+      Hud.updateNote2(true, "x0");
+      Hud.disableNote2();
 
       // Generate message
       // Hide chat
@@ -988,5 +1004,36 @@ public class RocketController {
   /** Reset current hint to false */
   public void resetCurrentHint() {
     currentHint = false;
+  }
+
+  // Hud highlight methods
+  @FXML
+  public void onHoverTorch(MouseEvent event) {
+    highlightTorch.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveTorch(MouseEvent event) {
+    highlightTorch.setVisible(false);
+  }
+
+  @FXML
+  public void onHoverNote1(MouseEvent event) {
+    highlightNote1.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveNote1(MouseEvent event) {
+    highlightNote1.setVisible(false);
+  }
+
+  @FXML
+  public void onHoverNote2(MouseEvent event) {
+    highlightNote2.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveNote2(MouseEvent event) {
+    highlightNote2.setVisible(false);
   }
 }

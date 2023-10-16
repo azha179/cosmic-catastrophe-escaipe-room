@@ -44,14 +44,17 @@ public class BushController {
   // if the note is clicked on, it will hide from the scene builder
   @FXML
   public void clickNote1(MouseEvent event) {
+
     GameState.note1Found = true;
     // Reset current hint in rocket
     RocketController rocketController = (RocketController) SceneManager.getController("rocket");
     rocketController.resetCurrentHint();
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
-    // The note is hidden and the hud is updated to contain the note
-    Hud.updateNote1(true, "x1");
+    if (!GameState.isNotesResolved) {
+      // The note is hidden and the hud is updated to contain the note
+      Hud.updateNote1(true, "x1");
+    }
     // if statement ensures that the note and toy have been found before exit
     if (GameState.toyFound && GameState.note1Found) {
       backButton.setVisible(true);
