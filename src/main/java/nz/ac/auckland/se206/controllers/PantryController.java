@@ -856,5 +856,9 @@ public class PantryController {
       return;
     }
     hintsLabel.setText("Hints left: " + GameState.hintsLeft);
+    // If no hints left, change label text to red
+    if (GameState.hintsLeft == 0) {
+      hintsLabel.setStyle("-fx-text-fill: red;");
+    }
   }
 }

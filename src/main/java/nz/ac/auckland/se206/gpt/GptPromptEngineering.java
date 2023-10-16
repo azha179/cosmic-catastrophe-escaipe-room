@@ -27,8 +27,19 @@ public class GptPromptEngineering {
    */
   public static String getHintMessage(String hint) {
     return "The player has asked for a hint using 'Meowlp'. Reply to the player the hint, which is:"
-               + " "
+        + " "
         + hint;
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for when the player asks for a hint but in hard
+   * difficulty.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getHintMessageHard() {
+    return "The player has asked for a hint using 'Meowlp'. Reply to the player that you are unable"
+        + " to provide any hints for them, and wish them luck.";
   }
 
   /**
@@ -81,8 +92,9 @@ public class GptPromptEngineering {
         + " interact with the player who is currently playing the game. Start by introducing"
         + " yourself, then inform the player that they must help find your toy, bring some"
         + " snacks, and assist in leaving the planet. Ensure that when the player asks for a"
-        + " hint, you must refrain from providing any assistance. Your responses must use"
-        + " simple vocabulary and be three sentences maximum.";
+        + " hint or says a codeword 'Meowlp', you must refrain from providing any"
+        + " assistance. Your responses must use simple vocabulary and be three sentences"
+        + " maximum.";
   }
 
   /**
