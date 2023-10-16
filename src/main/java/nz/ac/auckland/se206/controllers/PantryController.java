@@ -681,6 +681,10 @@ public class PantryController {
     if (message.isEmpty()) {
       return;
     }
+    // Append message to chat log
+    SettingsController settings = (SettingsController) SceneManager.getController("settings");
+    settings.getChatBox().appendText("You: " + message + "\n\n");
+
     System.out.println("replying: " + message);
     // clear reply text field
     replyTextField.clear();

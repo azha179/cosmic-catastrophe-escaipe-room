@@ -80,6 +80,6 @@
             </Label>
          </children>
       </Pane>
-      <TextArea fx:id="chatBox" layoutX="128.0" layoutY="229.0" prefHeight="171.0" prefWidth="460.0" />
+      <TextArea fx:id="chatBox" editable="false" layoutX="128.0" layoutY="229.0" prefHeight="171.0" prefWidth="460.0" promptText="Chat history with the Cat will be displayed here." wrapText="true" />
    </children>
 </Pane>
