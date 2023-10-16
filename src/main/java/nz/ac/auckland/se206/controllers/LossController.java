@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.Hover;
-import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.TTSManager;
 
 public class LossController {
 
@@ -16,9 +16,7 @@ public class LossController {
   @FXML
   public void clickExit(MouseEvent event) {
     // Terminate text to speech
-    MainRoomController mainRoomController =
-        (MainRoomController) SceneManager.getController("mainroom");
-    mainRoomController.terminateTextToSpeech();
+    TTSManager.close();
 
     // Terminate the timer
     if (CountDownTimer.countdownTimeline != null) {

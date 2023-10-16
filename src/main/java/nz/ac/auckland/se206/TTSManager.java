@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 import nz.ac.auckland.se206.controllers.MainRoomController;
 import nz.ac.auckland.se206.controllers.PantryController;
 import nz.ac.auckland.se206.controllers.RocketController;
+import nz.ac.auckland.se206.controllers.SettingsController;
 
 public class TTSManager {
   private static Voice voice;
@@ -22,8 +23,8 @@ public class TTSManager {
     } else {
       throw new IllegalStateException("Cannot find the FreeTTS voice.");
     }
-    voice.setPitch(500);
-    voice.setRate(140);
+    voice.setPitch(280);
+    voice.setRate(120);
   }
 
   public void setVolume(float volume) {
@@ -59,7 +60,7 @@ public class TTSManager {
         () -> {
           // Create a new TTS manager instance
           ttsManager = new TTSManager();
-
+          ttsManager.setVolume((float) SettingsController.getVolume());
           // Text to speech task
           Task<Void> textToSpeechTask =
               new Task<Void>() {

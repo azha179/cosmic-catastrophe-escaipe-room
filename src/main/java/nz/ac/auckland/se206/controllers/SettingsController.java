@@ -22,7 +22,7 @@ public class SettingsController {
   // Timer element
   @FXML private Label timer;
 
-  private double volume;
+  private static double volume = 1;
 
   public void initialize() {
     volumeSlider.setValue(1);
@@ -51,6 +51,7 @@ public class SettingsController {
     rocket.getTTS().setVolume((float) volume);
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     pantry.getTTS().setVolume((float) volume);
+
     if (toggleButton.isSelected()) {
       GameState.textToSpeech = true;
     } else {
@@ -65,5 +66,9 @@ public class SettingsController {
     } else {
       toggleButton.setText("Turn On");
     }
+  }
+
+  public static double getVolume() {
+    return volume;
   }
 }
