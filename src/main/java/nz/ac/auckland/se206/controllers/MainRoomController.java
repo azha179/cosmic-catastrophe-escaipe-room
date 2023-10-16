@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TTSManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -104,6 +105,9 @@ public class MainRoomController {
   // Hints
   private int currentHint = 1;
 
+  // TTS
+  TTSManager ttsManager = new TTSManager();
+
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
@@ -146,6 +150,10 @@ public class MainRoomController {
 
   public Label getTimer() {
     return timer;
+  }
+
+  public TTSManager getTTS() {
+    return ttsManager;
   }
 
   public ArrayList<Object> getHudElements() {
@@ -235,7 +243,6 @@ public class MainRoomController {
 
                   // removes dim
                   dim.setVisible(false);
-
                 });
 
             Platform.runLater(
@@ -246,8 +253,8 @@ public class MainRoomController {
                       new Task<Void>() {
                         @Override
                         protected Void call() throws Exception {
-                          textToSpeech = new TextToSpeech();
-                          textToSpeech.speak("Meow");
+                          ttsManager.speak("Meow");
+
                           return null;
                         }
                       };
