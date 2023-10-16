@@ -274,15 +274,6 @@
             <Glow />
          </effect>
       </ImageView>
-      <Rectangle fx:id="dim" arcHeight="5.0" arcWidth="5.0" height="550.0" opacity="0.46" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="740.0" />
-      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="486.0" layoutY="340.0" onMouseClicked="#catInitialise" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/SleepingCat.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="122.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
       <Label fx:id="timer" alignment="CENTER" layoutX="122.0" layoutY="22.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
          <font>
@@ -335,5 +326,14 @@
             </Label>
          </children>
       </Pane>
+      <Rectangle fx:id="dim" arcHeight="5.0" arcWidth="5.0" height="550.0" opacity="0.46" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="740.0" />
+      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="486.0" layoutY="340.0" onMouseClicked="#catInitialise" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/SleepingCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>
