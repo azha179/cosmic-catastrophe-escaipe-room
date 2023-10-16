@@ -108,7 +108,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="hintsLabel" alignment="BOTTOM_LEFT" layoutX="310.0" layoutY="90.0" text="Hints: inf." textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="hintsLabel" alignment="BOTTOM_LEFT" layoutX="320.0" layoutY="83.0" text="Hints: inf." textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>

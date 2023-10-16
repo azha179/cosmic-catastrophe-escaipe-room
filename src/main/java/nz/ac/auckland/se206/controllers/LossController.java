@@ -31,14 +31,12 @@ public class LossController {
 
   @FXML
   public void onHoverInteractable(MouseEvent event) {
-    System.out.println("wad");
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
 
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
-    System.out.println("oo");
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
   }
