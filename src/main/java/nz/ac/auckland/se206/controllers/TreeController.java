@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -22,6 +23,11 @@ public class TreeController {
   @FXML
   public void onClickNote2(MouseEvent event) {
     GameState.note2Found = true;
+    if (GameState.note1Found) {
+      // reset current hint in rocket
+      RocketController rocketController = (RocketController) SceneManager.getController("rocket");
+      rocketController.resetCurrentHint();
+    }
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     back.setVisible(true);

@@ -46,6 +46,9 @@ public class BushController {
   public void clickNote1(MouseEvent event) {
 
     GameState.note1Found = true;
+    // Reset current hint in rocket
+    RocketController rocketController = (RocketController) SceneManager.getController("rocket");
+    rocketController.resetCurrentHint();
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     if (!GameState.isNotesResolved) {
