@@ -219,12 +219,6 @@ public class RocketController {
             // Call GPT
             @Override
             protected Void call() throws Exception {
-              GptActions.chatCompletionRequest3 =
-                  new ChatCompletionRequest()
-                      .setN(1)
-                      .setTemperature(0.2)
-                      .setTopP(0.5)
-                      .setMaxTokens(100);
               ChatMessage chatMessage;
               // depends on difficulty
               if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
@@ -335,12 +329,6 @@ public class RocketController {
             // Call GPT
             @Override
             protected Void call() throws Exception {
-              GptActions.chatCompletionRequest3 =
-                  new ChatCompletionRequest()
-                      .setN(1)
-                      .setTemperature(0.2)
-                      .setTopP(0.5)
-                      .setMaxTokens(100);
               ChatMessage chatMessage;
               // depends on difficulty
               if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
