@@ -42,6 +42,8 @@ public class RocketController {
   @FXML private Pane pane;
   @FXML private ImageView temp;
   @FXML private ImageView launch;
+  @FXML private Pane note1Pane;
+  @FXML private Pane note2Pane;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -98,7 +100,9 @@ public class RocketController {
   // TTS
   TTSManager ttsManager = new TTSManager();
 
+  /** Initialise method for the rocket. */
   public void initialize() {
+    // Add all hud elements to an arraylist
     hudElements = new ArrayList<Object>();
     hudElements.add(torch);
     hudElements.add(note1);
@@ -107,13 +111,16 @@ public class RocketController {
     hudElements.add(note1Count);
     hudElements.add(note2Count);
 
+    // Add all task elements to an arraylist
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
 
+    // Initialise the left meow pad
     initialiseLeftMeowPad();
 
+    // Disable and hide the memory game rectangle
     memoryGameRectangle.setDisable(true);
     memoryGameRectangle.setVisible(false);
 
@@ -138,80 +145,169 @@ public class RocketController {
         });
   }
 
+  /**
+   * Getter method for the timer label.
+   *
+   * @return the timer label
+   */
   public Label getTimer() {
     return timer;
   }
 
+  /**
+   * Getter method for the hud elements.
+   *
+   * @return the hud elements
+   */
   public ArrayList<Object> getHudElements() {
     return hudElements;
   }
 
+  /**
+   * Getter method for the task list.
+   *
+   * @return the task list
+   */
   public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
+  /** Enables the log by making it visible. */
   public void enableLog() {
     log.setVisible(true);
   }
 
+  /**
+   * Handles the click event for the back button and switches to the main room.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickBack(MouseEvent event) {
     switchToRoom();
   }
 
+  /**
+   * Handles the click event for the memory game rectangle and switches to the memory game.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickTemp(MouseEvent event) {
     TTSManager.close();
     switchToMemoryGame();
   }
 
+  /**
+   * Handles the click event for note 1 and shows the note 1 pane.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote1(MouseEvent event) {
+    note1Pane.setVisible(true);
+  }
+
+  /**
+   * Handles the click event for note 2 and shows the note 2 pane.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote2(MouseEvent event) {
+    note2Pane.setVisible(true);
+  }
+
+  /**
+   * Handles the click event for note 1 return button and hides the note 1 pane.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote1Return(MouseEvent event) {
     TTSManager.close();
+    note1Pane.setVisible(false);
   }
 
+  /**
+   * Handles the click event for note 2 return button and hides the note 2 pane.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote2Return(MouseEvent event) {
     TTSManager.close();
+    note2Pane.setVisible(false);
   }
 
+  /** Switches the scene to the main room. */
   private void switchToRoom() {
     TTSManager.close();
     App.setUi(AppUi.MAIN_ROOM);
   }
 
+  /**
+   * Handles the press event for the right meow pad.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onPressRightMeowPad(MouseEvent event) {
+    // if the right meow pad is not activated
     if (!GameState.isRightMeowPadActivated) {
       rightMeowPadCount = 0;
       isRightMeowPadpressed = true;
     }
   }
 
+  /**
+   * Handles the release event for the right meow pad.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onReleaseRightMeowPad(MouseEvent event) {
     isRightMeowPadpressed = false;
   }
 
+  /**
+   * Handles the mouse drag event for the right meow pad.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onMouseDrag(MouseEvent event) {
+    // if the right meow pad is not activated and right meow pad is pressed
     if (isRightMeowPadpressed && !GameState.isRightMeowPadActivated) {
+      // Increase the count as the mouse drags
       rightMeowPadCount++;
       System.out.println(rightMeowPadCount);
+      // if the count is 150, then the right meow pad is activated
       if (rightMeowPadCount == 150) {
         handleRightMeowPadActivation();
       }
     }
   }
 
+  /**
+   * Handles the press event for the left meow pad.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onPressLeftMeowPad(MouseEvent event) {
+    // if the left meow pad is not activated
     if (!isLeftMeowPadPressed && !GameState.isLeftMeowPadActivated) {
       leftMeowPadPressTimer.play();
       isLeftMeowPadPressed = true;
     }
   }
 
+  /**
+   * Handles the release event for the left meow pad.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onReleaseLeftMeowPad(MouseEvent event) {
     leftMeowPadPressTimer.stop();
@@ -224,9 +320,11 @@ public class RocketController {
   @FXML
   public void offMouseRectangle(MouseEvent event) {}
 
-  // Dependent on the state of the rightpad, the memory game will be revealed
+  /** Handles the right meow pad activation. */
   private void handleRightMeowPadActivation() {
+    // Update GameState
     GameState.isRightMeowPadActivated = true;
+    // Reset current hint in rocket if both notes are found and left meow pad is activated
     if (GameState.isLeftMeowPadActivated && GameState.note1Found && GameState.note2Found) {
       resetCurrentHint();
     }
@@ -282,6 +380,7 @@ public class RocketController {
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
+      // Enable the memory game rectangle
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
 
@@ -342,10 +441,12 @@ public class RocketController {
     }
   }
 
-  // Dependent on the state of the leftpad, the memory game will be revealed
+  /** Handles the activation of the left meow pad. */
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
+    // Update GameState
     GameState.isLeftMeowPadActivated = true;
+    // Reset current hint in rocket if both notes are found
     if (GameState.note1Found && GameState.note2Found) {
       resetCurrentHint();
     }
@@ -399,6 +500,7 @@ public class RocketController {
     if (GameState.isLeftMeowPadActivated && GameState.isRightMeowPadActivated) {
       GameState.isNotesResolved = true;
       System.out.println("2 notes resolved");
+      // Enable the memory game rectangle
       memoryGameRectangle.setDisable(false);
       memoryGameRectangle.setVisible(true);
 
@@ -460,27 +562,42 @@ public class RocketController {
     }
   }
 
+  /**
+   * Handles the click event on the launch button and switches to the win scene.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickLaunch(MouseEvent event) {
+    // Update GameState
     GameState.isGameActive = false;
     switchToWin();
+    // Stop the timer
     CountDownTimer.countdownTimeline.stop();
     WinController win = (WinController) SceneManager.getController("win");
+    // Update the win scene with the time left
     win.getResult()
         .setText("...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
   }
 
+  /** Switches the scene to the win scene. */
   private void switchToWin() {
     TTSManager.close();
     App.setUi(AppUi.WIN);
   }
 
+  /**
+   * Getter method for the launch image view.
+   *
+   * @return the launch image view
+   */
   public ImageView getLaunch() {
     return this.launch;
   }
 
   /** Initialise cat response upon entering the rocket for the first time. */
   public void catInitialise() {
+    // If the room has been entered before, then do nothing
     if (isRoomFirstEntered) {
       return;
     }
@@ -719,9 +836,11 @@ public class RocketController {
     }
   }
 
-  // Method for replying
+  /** Reply method which calls GPT and updates the text area. */
   public void reply() {
+    // Get message from reply text field and trim
     String message = replyTextField.getText().trim();
+    // If message is empty, then do nothing
     if (message.isEmpty()) {
       return;
     }
@@ -844,11 +963,15 @@ public class RocketController {
                   }
                 }
               } else {
+                // If the message does not start with 'Meowlp', then call GPT with the original
+                // message
                 System.out.println("meow");
                 ChatMessage msg = new ChatMessage("user", message);
                 lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
               }
             } else {
+              // If the message does not start with 'Meowlp', then call GPT with the original
+              // message
               System.out.println("meow");
               ChatMessage msg = new ChatMessage("user", message);
               lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
@@ -887,14 +1010,20 @@ public class RocketController {
     replyThread.start();
   }
 
-  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  /**
+   * Handles the click event on the settings button and switches to the settings scene.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClickSetting(MouseEvent event) {
     TTSManager.close();
+    // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
   }
 
+  /** Switches the scene to the memory game. */
   private void switchToMemoryGame() {
     App.setUi(AppUi.MEMORY_GAME);
     // gives focus to memory game
@@ -903,9 +1032,14 @@ public class RocketController {
     memoryGameScene.requestFocus();
   }
 
+  /**
+   * Handles the escape key press event and switches to the main room if the return button is
+   * visible
+   *
+   * @param event the key event
+   */
   @FXML
   public void onPressKey(KeyEvent event) {
-
     if (event.getCode() == KeyCode.ESCAPE) {
       // check if return button is visible
       if (back.isVisible()) {
@@ -915,20 +1049,31 @@ public class RocketController {
     }
   }
 
-  // Scales the image up where the mouse is hovering over
+  /**
+   * Handles the hover event on interactable objects and scales them up.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
 
+  /**
+   * Handles the unhover event on interactable objects and scales them down.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
   }
 
+  /** Initialises the left meow pad */
   private void initialiseLeftMeowPad() {
+    // Timer for left meow pad
     leftMeowPadPressTimer =
         new Timeline(
             new KeyFrame(
@@ -944,29 +1089,46 @@ public class RocketController {
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
+            // Sets left meow pad to not pressed once timer is finished
             isLeftMeowPadPressed = false;
           }
         });
   }
 
-  /** Getter method for chatTextArea. */
+  /**
+   * Getter method for the cat text area.
+   *
+   * @return the cat text area
+   */
   public TextArea getCatTextArea() {
     return catTextArea;
   }
 
+  /**
+   * Handles the hover event on the log.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverLog(MouseEvent event) {
+    // Shows log pane and enables log hover
     logPane.setVisible(true);
     logHover.setDisable(false);
   }
 
+  /**
+   * Handles the unhover event on the log.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveLog(MouseEvent event) {
+    // Hides log pane and disables log hover
     logPane.setVisible(false);
     logHover.setDisable(true);
   }
 
-  // Method to hide all the chat elements while generating
+  /** Hides all chat elements */
   public void hideChat() {
     // Hide catImageSleep
     catImageSleep.setVisible(false);
@@ -989,7 +1151,7 @@ public class RocketController {
     replyRectangle.setVisible(false);
   }
 
-  // Method to show all the chat elements after generating
+  /** Shows all chat elements */
   public void showChat() {
     // Make chat pane visible
     chatPane.setVisible(true);
@@ -1017,7 +1179,7 @@ public class RocketController {
     hintsLabel.setStyle("-fx-text-fill: red;");
   }
 
-  /** Updates hint label */
+  /** Method to update hint labels */
   public void updateHintsLabel() {
     // If easy difficult, set label to inf.
     if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
@@ -1037,31 +1199,62 @@ public class RocketController {
   }
 
   // Hud highlight methods
+
+  /**
+   * Handles the hover event on the torch and shows the highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverTorch(MouseEvent event) {
     highlightTorch.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on the torch and hides the highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveTorch(MouseEvent event) {
     highlightTorch.setVisible(false);
   }
 
+  /**
+   * Handles the hover event on the note 1 and shows the highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverNote1(MouseEvent event) {
     highlightNote1.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on the note 1 and hides the highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveNote1(MouseEvent event) {
     highlightNote1.setVisible(false);
   }
 
+  /**
+   * Handles the hover event on the note 2 and shows the highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverNote2(MouseEvent event) {
     highlightNote2.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on the note 2 and hides the highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);

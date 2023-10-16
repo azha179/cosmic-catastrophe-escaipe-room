@@ -10,6 +10,11 @@ public class Hover {
   private static double originalX;
   private static double originalY;
 
+  /**
+   * Scales up the image
+   *
+   * @param image the image to scale up
+   */
   public static void scaleUp(ImageView image) {
     // storing original image parameters
     originalWidth = image.getFitWidth();
@@ -34,6 +39,11 @@ public class Hover {
     image.setFitHeight(newHeight);
   }
 
+  /**
+   * Scales down the image
+   *
+   * @param image the image to scale down
+   */
   public static void scaleDown(ImageView image) {
 
     // reverts to the original width and height

@@ -63,6 +63,8 @@ public class PantryController {
   @FXML private ImageView back;
   @FXML private ImageView pantryImage;
   @FXML private ImageView plantImage;
+  @FXML private Pane note1Pane;
+  @FXML private Pane note2Pane;
 
   // Food ingredients
   @FXML private ImageView ingredientMilk;
@@ -104,7 +106,9 @@ public class PantryController {
 
   private ArrayList<ImageView> shadowArray = new ArrayList<>();
 
+  /** Initialise method for the pantry. */
   public void initialize() {
+    // Add all hud elements to an array
     hudElements = new ArrayList<Object>();
     hudElements.add(torch);
     hudElements.add(note1);
@@ -113,6 +117,7 @@ public class PantryController {
     hudElements.add(note1Count);
     hudElements.add(note2Count);
 
+    // Add all task elements to an array
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
@@ -148,23 +153,44 @@ public class PantryController {
         });
   }
 
+  /**
+   * Getter method for the timer label.
+   *
+   * @return the timer label
+   */
   public Label getTimer() {
     return timer;
   }
 
+  /**
+   * Getter method for the hud elements.
+   *
+   * @return the hud elements
+   */
   public ArrayList<Object> getHudElements() {
     return hudElements;
   }
 
+  /**
+   * Getter method for the task list.
+   *
+   * @return the task list
+   */
   public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
+  /** Enables the log by making it visible. */
   public void enableLog() {
     log.setVisible(true);
   }
 
-  // Will put shadow behind image if it is selected
+  /**
+   * Method to put drop shadow behind image if it is selected
+   *
+   * @param image the image to put drop shadow behind
+   * @param colour the colour of the drop shadow
+   */
   public void dropShadow(ImageView image, String colour) {
     DropShadow dropShadow = new DropShadow();
     // if colour selected is already white then stay white otherwise become green
@@ -182,23 +208,33 @@ public class PantryController {
     shadowArray.add(image);
   }
 
-  // remove the selected highlight from all the array elements
+  /** Method to remove the selected highlight from all the array elements */
   public void removeShadow() {
     for (ImageView imageView : shadowArray) {
       imageView.setEffect(null);
     }
   }
 
+  /**
+   * Handles the click event on the ingredients.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickIngredient(MouseEvent event) {
     TTSManager.close();
+
+    // Get the image view of the ingredient clicked
     ImageView ingredient = (ImageView) event.getTarget();
+    // If the ingredient is already selected or the recipe is resolved then return
     if (FoodRecipe.playerRecipe.contains(ingredient) || GameState.isRecipeResolved) {
       return;
     }
+    // Add the ingredient to the player recipe
     FoodRecipe.playerRecipe.add(ingredient);
     dropShadow(ingredient, "WHITE");
 
+    // If the player recipe is full then check if it is correct
     if (FoodRecipe.playerRecipe.size() == 3) {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         GameState.isRecipeResolved = true;
@@ -211,6 +247,7 @@ public class PantryController {
         PantryController pantry = (PantryController) SceneManager.getController("pantry");
         pantry.getTasks().get(1).setSelected(true);
 
+        // Drop shadow behind all desired ingredients
         for (ImageView desired : FoodRecipe.desiredRecipe) {
           dropShadow(desired, "GREEN");
         }
@@ -367,22 +404,65 @@ public class PantryController {
     }
   }
 
+  /**
+   * Handles the click event on note 1 which displays the note 1 pane.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote1(MouseEvent event) {
+    note1Pane.setVisible(true);
+  }
+
+  /**
+   * Handles the click event on note 2 which displays the note 2 pane.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void clickNote2(MouseEvent event) {
+    note2Pane.setVisible(true);
+  }
+
+  /**
+   * Handles the click event on the note 1 return button which hides the note 1 pane.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote1Return(MouseEvent event) {
     TTSManager.close();
+    note1Pane.setVisible(false);
   }
 
+  /**
+   * Handles the click event on the note 2 return button which hides the note 2 pane.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote2Return(MouseEvent event) {
     TTSManager.close();
+    note2Pane.setVisible(false);
   }
 
+  /**
+   * Handles the click event on the back button which switches to the main room.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickBack(MouseEvent event) {
 
     switchToRoom();
   }
 
+  /**
+   * Handles the escape key press event which switches to the main room if the back button is
+   * visible.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onPressKey(KeyEvent event) {
 
@@ -395,6 +475,7 @@ public class PantryController {
     }
   }
 
+  /** Switches the scene to the main room. */
   private void switchToRoom() {
     TTSManager.close();
     App.setUi(AppUi.MAIN_ROOM);
@@ -402,6 +483,7 @@ public class PantryController {
 
   /** Initialise cat response upon entering the pantry for the first time. */
   public void catInitialise() {
+    // If pantry has been entered before then return
     if (GameState.isPantryFirstEntered) {
       return;
     }
@@ -591,9 +673,11 @@ public class PantryController {
     }
   }
 
-  // Method for replying
+  /** Handles the GPT calling when replying */
   public void reply() {
+    // Get message from reply text field and trim
     String message = replyTextField.getText().trim();
+    // If message is empty then return
     if (message.isEmpty()) {
       return;
     }
@@ -652,6 +736,7 @@ public class PantryController {
                       GameState.hintsLeft--;
                     }
 
+                    // Call GPT for hint depending on current hint
                     if (currentHint == 1) {
                       lastMsg =
                           GptActions.runGpt(
@@ -691,11 +776,14 @@ public class PantryController {
                   }
                 }
               } else {
+                // If the message does not start with 'Meowlp' then call GPT with the original
+                // message
                 System.out.println("meow");
                 ChatMessage msg = new ChatMessage("user", message);
                 lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
               }
             } else {
+              // If the message does not start with 'Meowlp' then call GPT with the original message
               System.out.println("meow");
               ChatMessage msg = new ChatMessage("user", message);
               lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
@@ -752,14 +840,21 @@ public class PantryController {
     GameState.note2Found = true;
   }
 
-  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  /**
+   * Handles the click event on the setting button which switches to the setting scene.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClickSetting(MouseEvent event) {
     TTSManager.close();
+
+    // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
   }
 
+  /** Method to initialise the user data for each ingredient */
   private void initialiseUserData() {
     // 1 indicates adjective ingredient
     // 2 indicates noun ingredient
@@ -784,9 +879,11 @@ public class PantryController {
     ingredientOnigiri.setUserData(3);
   }
 
+  /** Method to store all the ingredients in the FoodRecipe class */
   private void storeIngredients() {
-
+    // get all fields in PantryController
     Field[] fields = PantryController.class.getDeclaredFields();
+    // iterate through all fields
     for (Field field : fields) {
       // checks if the field is an ImageView and its name starts with "ingredient"
       if (field.getType() == ImageView.class && field.getName().startsWith("ingredient")) {
@@ -797,6 +894,7 @@ public class PantryController {
         } catch (IllegalAccessException e) {
           e.printStackTrace();
         }
+        // if the ingredient is not null then add it to the appropriate collection in FoodRecipe
         if (ingredient != null) {
           int userData = (int) ingredient.getUserData();
           if (userData == 1 || userData == 2) {
@@ -809,12 +907,22 @@ public class PantryController {
     }
   }
 
+  /**
+   * Handles the hover event on interactable elements by scaling them up.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
 
+  /**
+   * Handles the unhover event on interactable elements by scaling them down.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
@@ -826,15 +934,29 @@ public class PantryController {
     return catTextArea;
   }
 
+  /**
+   * Handles the hover event on the log.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverLog(MouseEvent event) {
+    // Show log pane
     logPane.setVisible(true);
+    // Enable log hover
     logHover.setDisable(false);
   }
 
+  /**
+   * Handles the unhover event on the log.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveLog(MouseEvent event) {
+    // Hide log pane
     logPane.setVisible(false);
+    // Disable log hover
     logHover.setDisable(true);
   }
 
@@ -848,7 +970,7 @@ public class PantryController {
     hintsLabel.setStyle("-fx-text-fill: red;");
   }
 
-  /** Updates hint label */
+  /** Method to update hint label */
   public void updateHintsLabel() {
     // If easy difficult, set label to inf.
     if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
@@ -863,31 +985,62 @@ public class PantryController {
   }
 
   // Hud highlight methods
+
+  /**
+   * Handles the hover event on the torch by making the highlight visible.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverTorch(MouseEvent event) {
     highlightTorch.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on the torch by making the highlight invisible.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveTorch(MouseEvent event) {
     highlightTorch.setVisible(false);
   }
 
+  /**
+   * Handles the hover event on note 1 by making the highlight visible.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverNote1(MouseEvent event) {
     highlightNote1.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on note 1 by making the highlight invisible.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveNote1(MouseEvent event) {
     highlightNote1.setVisible(false);
   }
 
+  /**
+   * Handles the hover event on note 2 by making the highlight visible.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverNote2(MouseEvent event) {
     highlightNote2.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on note 2 by making the highlight invisible.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
