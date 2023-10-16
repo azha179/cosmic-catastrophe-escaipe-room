@@ -405,14 +405,17 @@ public class MainRoomController {
             ChatMessage lastMsg;
             // If 'Meowlp' are the first six characters of the message, case insensitive, then give
             // hint
-            // first check if message is six characters or more, if so, print hi
-            if (message.length() >= 6) {
+            // first check if message is six characters or more and difficulty is not hard
+            if (message.length() >= 6
+                && GameSettings.difficulty != GameSettings.GameDifficulty.HARD) {
               System.out.println("more than 6 characters");
               if (message.substring(0, 6).equalsIgnoreCase("Meowlp")) {
                 System.out.println("mewolp");
-                // Update GameState
-                GameState.hintsLeft--;
-                currentHint++;
+                // Update GameState if medium difficulty
+                if (GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
+                  GameState.hintsLeft--;
+                  currentHint++;
+                }
 
                 // Call GPT for hint
                 if (currentHint == 1) {
@@ -443,7 +446,7 @@ public class MainRoomController {
                                       + " following all footprints.")),
                           GptActions.chatCompletionRequest1);
                 }
-                // If hints left is 0
+                // TODO: If hints left is 0
               } else {
                 System.out.println("meow");
                 ChatMessage msg = new ChatMessage("user", message);

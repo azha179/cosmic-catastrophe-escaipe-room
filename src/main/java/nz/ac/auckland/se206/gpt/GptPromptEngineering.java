@@ -26,7 +26,8 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getHintMessage(String hint) {
-    return "The player has asked for a hint using 'Meowlp'. Tell the player the hint, which is: "
+    return "The player has asked for a hint using 'Meowlp'. Reply to the player the hint, which is:"
+               + " "
         + hint;
   }
 
@@ -37,22 +38,16 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getIntroductionMessageEasy() {
-    return "You will assume the role of an alien cat traversing the galaxy to try different foods"
-        + " in a space-themed escape-style video game, and are interacting with the player."
-        + " You want the player to help you launch your rocket ship. Write an introduction"
-        + " message to the player, first telling them about yourself, then telling them they"
-        + " must help find your toy, bring some snacks, then leave the planet. Also tell the"
-        + " player that if they need any assistance, to ask with the magic word 'Meowlp'."
-        + " The cat must use elementary vocabulary and occasionally meow. The message must"
-        + " be three sentences maximum and must NOT include any hints. The player can ask"
-        + " you for hints by saying the code-word 'Meowlp'. When they type 'Meowlp', tell"
-        + " them to follow your footprints which are only visible under light from your"
-        + " torch and that you dropped your torch somewhere outside. If they ask once more"
-        + " with the word 'Meowlp', tell them they should turn the torch on and follow the"
-        + " first footstep which is close to where the torch was dropped. The only way a"
-        + " player can receive a hint is by typing the word 'Meowlp', if they ask for help"
-        + " without typing 'Meowlp', refuse to give them a hint and suggest them to ask with"
-        + " the word 'Meowlp' instead.";
+    return "Write an introduction message for a space-themed escape-style video game where you"
+        + " assume the role of an alien cat traversing the galaxy. Your character must"
+        + " interact with the player who is currently playing the game. Start by introducing"
+        + " yourself, then inform the player that they must help find your toy, bring some"
+        + " snacks, and assist in leaving the planet. Also, let the player know that if they"
+        + " require any assistance, they should use the magic word 'Meowlp'. Ensure that"
+        + " hints are only given when the player uses 'Meowlp', and if they ask for help"
+        + " without using 'Meowlp', refrain from providing assistance and suggest they ask"
+        + " with the word 'Meowlp' instead. Your responses must use simple vocabulary and be three"
+        + " sentences maximum.";
   }
 
   /**
@@ -81,16 +76,13 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getIntroductionMessageHard() {
-    return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
-        + " escape-style video game.  You want the player to help you launch your rocket"
-        + " ship and reach Earth to enjoy its food. Write an introduction message to the"
-        + " player, first telling them about yourself, then telling them they must complete"
-        + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response, the player will receive a list of the three tasks that need to be"
-        + " completed, which include: Find lost toy, bring food and launch rocket. The cat"
-        + " must use elementary vocabulary and occasionally meow. The message must be three"
-        + " sentences maximum and NOT include any hints. If the player asks for any help or"
-        + " hints, you MUST, no matter what, not be providing any.";
+    return "Write an introduction message for a space-themed escape-style video game where you"
+        + " assume the role of an alien cat traversing the galaxy. Your character must"
+        + " interact with the player who is currently playing the game. Start by introducing"
+        + " yourself, then inform the player that they must help find your toy, bring some"
+        + " snacks, and assist in leaving the planet. Ensure that when the player asks for a"
+        + " hint, you must refrain from providing any assistance. Your responses must use"
+        + " simple vocabulary and be three sentences maximum.";
   }
 
   /**
