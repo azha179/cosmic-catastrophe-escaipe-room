@@ -2,7 +2,12 @@ package nz.ac.auckland.se206;
 
 import javafx.scene.image.ImageView;
 
-public class Hover {
+/**
+ * Scales up and down images
+ *
+ * <p>Used for hovering over objects
+ */
+public class HoverManager {
 
   // used for hovering over objects
   private static double originalWidth;

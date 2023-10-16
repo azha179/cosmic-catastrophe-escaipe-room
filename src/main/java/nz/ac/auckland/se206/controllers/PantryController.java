@@ -23,14 +23,19 @@ import nz.ac.auckland.se206.FoodRecipe;
 import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
-import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.TTSManager;
+import nz.ac.auckland.se206.TextManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
+/**
+ * Controller for the pantry interior screen
+ *
+ * <p>Handles the click and hover events for the ingredients, notes, cat and chat
+ */
 public class PantryController {
 
   // Cat and Chat Elements
@@ -99,11 +104,12 @@ public class PantryController {
   // Timer element
   @FXML private Label timer;
 
-  // TTS
-  TTSManager ttsManager = new TTSManager();
+  // Text to speech manager
+  private TextManager textManager = new TextManager();
 
-  int currentHint = 1;
+  private int currentHint = 1;
 
+  // Array to store all the ingredients to later shadow them
   private ArrayList<ImageView> shadowArray = new ArrayList<>();
 
   /** Initialise method for the pantry. */
@@ -222,7 +228,7 @@ public class PantryController {
    */
   @FXML
   public void clickIngredient(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
 
     // Get the image view of the ingredient clicked
     ImageView ingredient = (ImageView) event.getTarget();
@@ -315,7 +321,7 @@ public class PantryController {
                       back.setVisible(true);
                     });
                 // tts for cat speaking
-                TTSManager.speakInitialise(chatMessage.getContent());
+                TextManager.speakChatMessage(chatMessage.getContent());
 
                 return null;
               }
@@ -392,7 +398,7 @@ public class PantryController {
                       back.setVisible(true);
                     });
                 // tts for cat speaking
-                TTSManager.speakInitialise(chatMessage.getContent());
+                TextManager.speakChatMessage(chatMessage.getContent());
 
                 return null;
               }
@@ -431,7 +437,7 @@ public class PantryController {
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     note1Pane.setVisible(false);
   }
 
@@ -442,7 +448,7 @@ public class PantryController {
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     note2Pane.setVisible(false);
   }
 
@@ -477,7 +483,7 @@ public class PantryController {
 
   /** Switches the scene to the main room. */
   private void switchToRoom() {
-    TTSManager.close();
+    TextManager.close();
     App.setUi(AppUi.MAIN_ROOM);
   }
 
@@ -505,7 +511,7 @@ public class PantryController {
                     .setMaxTokens(100);
             ChatMessage chatMessage;
 
-            // depends on difficulty
+            // If hard difficulty then call GPT with hard message and etc depending on difficulty
             if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
               chatMessage =
                   GptActions.runGpt(
@@ -540,8 +546,8 @@ public class PantryController {
                   // show return button
                   back.setVisible(true);
                 });
-            // tts for cat speaking
-            TTSManager.speakInitialise(chatMessage.getContent());
+            // text to speech for cat speaking
+            TextManager.speakChatMessage(chatMessage.getContent());
 
             return null;
           }
@@ -552,13 +558,15 @@ public class PantryController {
 
     GameState.isPantryFirstEntered = true;
 
-    // assigning task 2
+    // assigning task 2 for main room log
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.enableLog();
     mainRoom.getTasks().get(1).setText("Make food");
+    // assigning task 2 for pantry log
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     pantry.enableLog();
     pantry.getTasks().get(1).setText("Make food");
+    // assigning task 2 for rocket log
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.enableLog();
     rocket.getTasks().get(1).setText("Make food");
@@ -624,7 +632,7 @@ public class PantryController {
   @FXML
   public void clickCatActive(MouseEvent event) {
     System.out.println("cat clicked");
-    TTSManager.close();
+    TextManager.close();
     // Hide active cat
     catImageActive.setVisible(false);
     // Show sleeping cat
@@ -651,7 +659,7 @@ public class PantryController {
   @FXML
   public void clickReply(MouseEvent event) {
     System.out.println("reply clicked");
-    TTSManager.close();
+
     // call reply method
     reply();
   }
@@ -667,7 +675,7 @@ public class PantryController {
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
       System.out.println("enter pressed");
-      TTSManager.close();
+
       // call reply method
       reply();
     }
@@ -675,6 +683,8 @@ public class PantryController {
 
   /** Handles the GPT calling when replying */
   public void reply() {
+    // Stop the current text to speech
+    TextManager.close();
     // Get message from reply text field and trim
     String message = replyTextField.getText().trim();
     // If message is empty then return
@@ -817,7 +827,7 @@ public class PantryController {
                   back.setVisible(true);
                 });
             // tts for cat speaking
-            TTSManager.speakInitialise(lastMsg.getContent());
+            TextManager.speakChatMessage(lastMsg.getContent());
 
             return null;
           }
@@ -834,7 +844,7 @@ public class PantryController {
    */
   @FXML
   public void clickPlant(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     // disable plant
     plantImage.setDisable(true);
 
@@ -851,7 +861,7 @@ public class PantryController {
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
 
     // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
@@ -919,7 +929,7 @@ public class PantryController {
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleUp(image);
+    HoverManager.scaleUp(image);
   }
 
   /**
@@ -930,7 +940,7 @@ public class PantryController {
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleDown(image);
+    HoverManager.scaleDown(image);
   }
 
   /** Getter method for chatTextArea. */
@@ -1050,7 +1060,8 @@ public class PantryController {
     highlightNote2.setVisible(false);
   }
 
-  public TTSManager getTTS() {
-    return ttsManager;
+  /* Get the textManager for the scene */
+  public TextManager getTextManager() {
+    return textManager;
   }
 }

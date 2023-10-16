@@ -6,9 +6,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.CountDownTimer;
-import nz.ac.auckland.se206.Hover;
-import nz.ac.auckland.se206.TTSManager;
+import nz.ac.auckland.se206.HoverManager;
+import nz.ac.auckland.se206.TextManager;
 
+/**
+ * Controller for the loss screen
+ *
+ * <p>Handles the click and hover events for the exit button
+ */
 public class LossController {
 
   @FXML private ImageView exit;
@@ -21,7 +26,7 @@ public class LossController {
   @FXML
   public void clickExit(MouseEvent event) {
     // Terminate text to speech
-    TTSManager.close();
+    TextManager.close();
 
     // Terminate the timer
     if (CountDownTimer.countdownTimeline != null) {
@@ -41,7 +46,7 @@ public class LossController {
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleUp(image);
+    HoverManager.scaleUp(image);
   }
 
   /**
@@ -52,6 +57,6 @@ public class LossController {
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleDown(image);
+    HoverManager.scaleDown(image);
   }
 }

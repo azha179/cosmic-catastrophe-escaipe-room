@@ -14,10 +14,15 @@ import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameSettings.GameDifficulty;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller for the menu screen
+ *
+ * <p>Handles the click and hover events for the difficulty and time limit rectangles
+ */
 public class MenuController {
 
   @FXML private Pane pane;
@@ -37,10 +42,8 @@ public class MenuController {
   @FXML private Label playText;
   @FXML private ImageView settingButton;
 
-  GameDifficulty setRectangle;
-  GameDifficulty currentDifficulty;
-  Color clear = Color.rgb(0, 0, 0, 0.0);
-  Color unselected = new Color(1.0, 0.7176, 0.0, 1.0);
+  // The colour of the selected rectangle
+  private Color unselected = new Color(1.0, 0.7176, 0.0, 1.0);
 
   public void initialize() {}
 
@@ -218,7 +221,7 @@ public class MenuController {
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleUp(image);
+    HoverManager.scaleUp(image);
   }
 
   /**
@@ -229,7 +232,7 @@ public class MenuController {
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleDown(image);
+    HoverManager.scaleDown(image);
   }
 
   /**
