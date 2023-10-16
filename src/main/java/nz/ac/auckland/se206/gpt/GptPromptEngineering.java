@@ -113,33 +113,23 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player first enters the pantry
    *
    * @param food the food that the player needs to find
-   * @param recipe the recipe that the player needs to find
    * @return the generated prompt engineering string which reveals the next part of the game
    */
-  public static String getFirstEnterPantryMessage(String food, String recipe) {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food, but first you need to bring"
-        + " some food. The player has just entered the pantry room. Write a message to the"
-        + " player, first welcoming them to the pantry, then tell them that the food you"
-        + " want to bring is '"
+  public static String getFirstEnterPantryMessage(String food) {
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to the pantry, then tell the player that they should bring"
+        + " your favourite snack, which is: '"
         + food
-        + "'. You must tell them "
+        + "'. You must tell them '"
         + food
-        + " word for word. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player asks"
-        + " for a hint, tell them that each word in "
-        + food
-        + "represents a food item, and they should pick all food items represented. If they respond"
-        + " again asking for another hint, tell them that for example, 'Sweet Jiggly Fish' means"
-        + " you would pick the lollipop, pudding, and fish. If they respond once more asking for a"
-        + " hint, tell them that "
-        + food
-        + " means that one of the ingredients you should pick is "
-        + recipe
-        + ". You MUST, no matter what, not be revealing any hints unless the player"
-        + " explicitly asks. When you reveal any hint, you MUST, no matter what, include the word"
-        + " 'Sure' in your hint response.";
+        + "' word for word. Also, remind the player that if they"
+        + " require any assistance, they should use the magic word 'Meowlp'. Ensure that"
+        + " hints are only given when the player uses 'Meowlp', and if they ask for help"
+        + " without using 'Meowlp', refrain from providing assistance and suggest they ask"
+        + " with the word 'Meowlp' instead. Your responses must use simple vocabulary and be three"
+        + " sentences maximum.";
   }
 
   /**
@@ -151,18 +141,18 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterPantryMessageHard(String food) {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food, but first you need to bring"
-        + " some food. The player has just entered the pantry room. Write a message to the"
-        + " player, first welcoming them to the pantry, then tell them that the food you"
-        + " want to bring is '"
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to the pantry, then tell the player that they should bring"
+        + " your favourite snack, which is: '"
         + food
-        + "'. You must tell them "
+        + "'. You must tell them '"
         + food
-        + " word for word. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player asks"
-        + " for any help or hints, you MUST, no matter what, not be providing any.";
+        + "' word for word. Also, remind the player that if they require any assistance, they"
+        + " should use the magic word 'Meowlp'. Ensure that when the player asks for a hint or says"
+        + " a codeword 'Meowlp', you must refrain from providing any assistance. Your responses"
+        + " must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
