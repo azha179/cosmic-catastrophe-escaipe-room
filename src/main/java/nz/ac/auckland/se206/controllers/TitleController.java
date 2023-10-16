@@ -18,12 +18,13 @@ public class TitleController {
   @FXML private Label movingTextLabel;
   @FXML private Label movingTextCopyLabel;
 
+  /** Initialises the title screen */
   public void initialize() {
     pane.layoutBoundsProperty()
         .addListener(
             (observable, oldValue, newValue) -> {
-              double windowWidth =
-                  newValue.getWidth(); // Update window width when layout bounds change
+              // Update window width when layout bounds change
+              double windowWidth = newValue.getWidth();
 
               // Create a Timeline animation to move the text continuously
               Timeline timelineMain =
@@ -54,16 +55,27 @@ public class TitleController {
             });
   }
 
+  /**
+   * Handles the mouse click event and switches to the menu scene
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClickMouse(MouseEvent event) {
     switchToMenu();
   }
 
+  /**
+   * Handles the key press event and switches to the menu scene
+   *
+   * @param event the key event
+   */
   @FXML
   public void onPressKey(KeyEvent event) {
     switchToMenu();
   }
 
+  /** Switches to the menu scene */
   private void switchToMenu() {
     App.setUi(AppUi.MENU);
   }
