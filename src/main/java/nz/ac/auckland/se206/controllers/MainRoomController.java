@@ -578,16 +578,18 @@ public class MainRoomController {
 
     // change image of torchhud
     Image image = new Image("images/Torch.png");
+    torch.setImage(image);
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    ImageView torchImage = (ImageView) rocket.getHudElements().get(0);
-    torchImage.setImage(image);
+    ImageView torch = (ImageView) rocket.getHudElements().get(0);
+    torch.setImage(image);
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    torchImage = (ImageView) pantry.getHudElements().get(0);
-    torchImage.setImage(image);
+    torch = (ImageView) pantry.getHudElements().get(0);
+    torch.setImage(image);
     // hide footprints pane
     footprintPane.setVisible(false);
     // disables torch in the hud
     Hud.updateTorch(true, "x0");
+    Hud.disableTorch();
 
     switchToBush();
   }
