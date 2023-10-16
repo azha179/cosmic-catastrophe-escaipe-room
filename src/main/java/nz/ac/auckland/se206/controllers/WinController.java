@@ -6,7 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.SceneManager;
 
 public class WinController {
 
@@ -19,6 +21,15 @@ public class WinController {
 
   @FXML
   public void clickExit(MouseEvent event) {
+    // Terminate text to speech
+    MainRoomController mainRoomController =
+        (MainRoomController) SceneManager.getController("mainroom");
+    mainRoomController.terminateTextToSpeech();
+
+    // Terminate the timer
+    if (CountDownTimer.countdownTimeline != null) {
+      CountDownTimer.countdownTimeline.stop();
+    }
 
     Stage stage = (Stage) exit.getScene().getWindow();
     stage.close();
