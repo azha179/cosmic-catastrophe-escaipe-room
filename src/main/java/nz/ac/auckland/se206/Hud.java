@@ -7,6 +7,12 @@ import nz.ac.auckland.se206.controllers.MainRoomController;
 import nz.ac.auckland.se206.controllers.PantryController;
 import nz.ac.auckland.se206.controllers.RocketController;
 
+/**
+ * Stores the HUD elements which the user can pick up and use
+ *
+ * <p>Stores the HUD elements which the user can pick up and use. The HUD elements are updated when
+ * the user picks up/uses an item.
+ */
 public class Hud {
 
   /**

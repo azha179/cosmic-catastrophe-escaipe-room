@@ -18,6 +18,11 @@ import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller for the menu screen
+ *
+ * <p>Handles the click and hover events for the difficulty and time limit rectangles
+ */
 public class MenuController {
 
   @FXML private Pane pane;
@@ -37,6 +42,7 @@ public class MenuController {
   @FXML private Label playText;
   @FXML private ImageView settingButton;
 
+  // The colour of the selected rectangle
   private Color unselected = new Color(1.0, 0.7176, 0.0, 1.0);
 
   public void initialize() {}

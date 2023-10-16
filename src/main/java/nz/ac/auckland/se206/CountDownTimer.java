@@ -14,8 +14,13 @@ import nz.ac.auckland.se206.controllers.RocketController;
 import nz.ac.auckland.se206.controllers.SettingsController;
 import nz.ac.auckland.se206.controllers.TreeController;
 
+/**
+ * Countdown timer for the game. The timer is updated every second and is displayed in the HUD. When
+ * the timer reaches 0, the player loses.
+ */
 public class CountDownTimer {
 
+  // Stores the time left in seconds
   public static int timeLeft;
   public static Timeline countdownTimeline;
 
@@ -50,6 +55,7 @@ public class CountDownTimer {
                     }
                   }
                 }));
+    // repeat timeline indefinitely
     countdownTimeline.setCycleCount(Timeline.INDEFINITE);
     countdownTimeline.play();
   }
@@ -64,6 +70,7 @@ public class CountDownTimer {
     int minutes = timeInSeconds / 60;
     int seconds = timeInSeconds % 60;
 
+    // format minutes and seconds to 2 digits
     String formattedMinutes = String.format("%02d", minutes);
     String formattedSeconds = String.format("%02d", seconds);
 

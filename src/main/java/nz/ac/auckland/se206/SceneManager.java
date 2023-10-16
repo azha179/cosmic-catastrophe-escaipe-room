@@ -3,7 +3,13 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import javafx.scene.Parent;
 
-// Class to manage scene changes
+/**
+ * Stores the scenes and controllers
+ *
+ * <p>Stores the scenes and controllers. The scenes are stored in a hashmap with the AppUi as the
+ * key and the scene as the value. The controllers are stored in a hashmap with the FXML file name
+ * as the key and the controller as the value.
+ */
 public class SceneManager {
 
   public enum AppUi {

@@ -12,15 +12,22 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 
+/**
+ * Controller for the settings screen Manages user preferences and settings.
+ *
+ * <p>Handles the click event for the back button
+ */
 public class SettingsController {
-  @FXML private Button backButton;
+
+  // Settings elements
   @FXML private Button applyButton;
-  @FXML private Slider volumeSlider;
-  @FXML private ToggleButton toggleButton;
+  @FXML private Button backButton;
   @FXML private TextArea chatBox;
 
   // Timer element
   @FXML private Label timer;
+  @FXML private ToggleButton toggleButton;
+  @FXML private Slider volumeSlider;
 
   private static double volume = 1;
 
@@ -52,10 +59,15 @@ public class SettingsController {
     App.setUi(SceneManager.getPreviousScene());
   }
 
+  /**
+   * Handles the click event for the apply button and applies the settings
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClickApply(MouseEvent event) {
     volume = volumeSlider.getValue();
-    // Takes the instance of mainroom to be able to access and change the tts volume
+    // Takes the instance of mainroom to be able to access and change the text to speech volume
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.getTextManager().setVolume((float) volume);
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
@@ -63,6 +75,8 @@ public class SettingsController {
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     pantry.getTextManager().setVolume((float) volume);
 
+    // Checks if the toggle button is selected or not and sets the text to speech to true or false
+    // if the Game setting is true
     if (toggleButton.isSelected()) {
       GameState.textToSpeech = true;
     } else {
@@ -70,7 +84,11 @@ public class SettingsController {
     }
   }
 
-  @FXML
+  /**
+   * Handles the click event for the toggle button and changes the text on the button
+   *
+   * @param event the mouse event
+   */
   public void onToggleClicked(ActionEvent event) {
     if (toggleButton.isSelected()) {
       toggleButton.setText("Turn Off");
@@ -79,6 +97,7 @@ public class SettingsController {
     }
   }
 
+  // Getter for the volume
   public static double getVolume() {
     return volume;
   }

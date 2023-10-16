@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+// Stores the game settings
 public class GameSettings {
 
   public enum GameDifficulty {

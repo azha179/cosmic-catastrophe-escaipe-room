@@ -9,6 +9,11 @@ import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.TextManager;
 
+/**
+ * Controller for the loss screen
+ *
+ * <p>Handles the click and hover events for the exit button
+ */
 public class LossController {
 
   @FXML private ImageView exit;

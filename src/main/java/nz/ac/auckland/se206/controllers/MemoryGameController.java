@@ -24,6 +24,11 @@ import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller for the memory game
+ *
+ * <p>Handles the click and hover events for the back button and play button
+ */
 public class MemoryGameController {
 
   @FXML private Pane pane;

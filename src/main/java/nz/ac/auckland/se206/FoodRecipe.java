@@ -6,8 +6,16 @@ import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.image.ImageView;
 
+/**
+ * Stores the desired recipe, the player recipe and the ingredients
+ *
+ * <p>Stores the desired recipe, the player recipe and the ingredients. The desired recipe is
+ * initialised with 3 random ingredients. The player recipe is cleared when the player loses or
+ * wins.
+ */
 public class FoodRecipe {
 
+  // Stores the desired recipe, the player recipe and the ingredients
   public static ArrayList<ImageView> prefixIngredient = new ArrayList<ImageView>();
   public static ArrayList<ImageView> baseIngredient = new ArrayList<ImageView>();
   public static ArrayList<ImageView> desiredRecipe = new ArrayList<ImageView>();
@@ -25,12 +33,14 @@ public class FoodRecipe {
     int firstRandomPrefixIndex;
     int secondRandomPrefixIndex;
     do {
+      // makes sure the 2 random prefix ingredients are not the same
       firstRandomPrefixIndex = ThreadLocalRandom.current().nextInt(0, prefixIngredient.size());
       secondRandomPrefixIndex = ThreadLocalRandom.current().nextInt(0, prefixIngredient.size());
     } while (firstRandomPrefixIndex == secondRandomPrefixIndex);
     desiredRecipe.add(prefixIngredient.get(firstRandomPrefixIndex));
     desiredRecipe.add(prefixIngredient.get(secondRandomPrefixIndex));
 
+    // reorders the recipe to be in the correct order
     FoodRecipe.reorderRecipe(FoodRecipe.desiredRecipe);
     food = FoodRecipe.recipeToString(FoodRecipe.desiredRecipe);
   }
@@ -42,7 +52,7 @@ public class FoodRecipe {
    * @return the recipe as a string
    */
   public static String recipeToString(ArrayList<ImageView> recipe) {
-
+    // converts the recipe to a string
     String string = "";
     for (ImageView ingredient : recipe) {
       String add = ingredientToString(ingredient);

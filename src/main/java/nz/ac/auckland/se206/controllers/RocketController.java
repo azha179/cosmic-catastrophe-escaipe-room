@@ -37,6 +37,12 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
+/**
+ * Controller for the rocket interior screen
+ *
+ * <p>Handles the click and hover events for the right/left meowpads, memory game, notes, cat and
+ * chat
+ */
 public class RocketController {
 
   @FXML private Pane pane;
@@ -97,7 +103,7 @@ public class RocketController {
   private boolean isRoomFirstEntered = false;
   private boolean currentHint = false;
 
-  // TTS
+  // initialise textManager for text to speech
   private TextManager textManager = new TextManager();
 
   /** Initialise method for the rocket. */
@@ -814,7 +820,7 @@ public class RocketController {
   @FXML
   public void clickReply(MouseEvent event) {
     System.out.println("reply clicked");
-    TextManager.close();
+
     // call reply method
     reply();
   }
@@ -830,7 +836,7 @@ public class RocketController {
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
       System.out.println("enter pressed");
-      TextManager.close();
+
       // call reply method
       reply();
     }
@@ -838,6 +844,8 @@ public class RocketController {
 
   /** Reply method which calls GPT and updates the text area. */
   public void reply() {
+    // Stop the current text to speech
+    TextManager.close();
     // Get message from reply text field and trim
     String message = replyTextField.getText().trim();
     // If message is empty, then do nothing
@@ -1260,6 +1268,7 @@ public class RocketController {
     highlightNote2.setVisible(false);
   }
 
+  /* Get the textManager for the scene */
   public TextManager getTextManager() {
     return textManager;
   }

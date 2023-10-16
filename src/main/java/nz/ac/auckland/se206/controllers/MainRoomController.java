@@ -32,7 +32,13 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
-/** Controller class for the room view. */
+/**
+ * Controller for the main room
+ *
+ * <p>Handles the click and hover events for the cat, rocket, pantry, torch, note1, note2, bush,
+ * footprints, settings, log, reply, note1 return, note2 return, interactable objects, and the
+ * timer.
+ */
 public class MainRoomController {
   // Main Room Elements
   @FXML private Pane room;
@@ -271,16 +277,19 @@ public class MainRoomController {
           }
         };
 
+    // Start thread for initiateDeviceTask
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
 
-    // assigning task 1
+    // assigning task 1 to the log
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.enableLog();
     mainRoom.getTasks().get(0).setText("Find the toy");
+    // assigning task 1 to the pantry
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     pantry.enableLog();
     pantry.getTasks().get(0).setText("Find the toy");
+    // assigning task 1 to the rocket
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.enableLog();
     rocket.getTasks().get(0).setText("Find the toy");
@@ -334,6 +343,7 @@ public class MainRoomController {
           }
         };
 
+    // Start thread for catAwokenTask
     Thread catAwokenThread = new Thread(catAwokenTask);
     catAwokenThread.start();
   }
@@ -372,7 +382,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickReply(MouseEvent event) {
-    TextManager.close();
+
     System.out.println("reply clicked");
     // call reply method
     reply();
@@ -387,7 +397,7 @@ public class MainRoomController {
   public void onPressKeyReply(KeyEvent event) {
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
-      TextManager.close();
+
       System.out.println("enter pressed");
       // call reply method
       reply();
@@ -396,6 +406,8 @@ public class MainRoomController {
 
   /** Reply method which handles GPT calling and obtaining a response */
   public void reply() {
+    // Stop the current text to speech
+    TextManager.close();
     // Get message from reply text field and trim
     String message = replyTextField.getText().trim();
     // If message is empty, do nothing
@@ -602,6 +614,11 @@ public class MainRoomController {
     Hud.updateTorch(true, "x1");
   }
 
+  /**
+   * Handles the click event on the torch hud.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickTorch(MouseEvent event) {
     System.out.println("torch hud clicked");

@@ -12,8 +12,14 @@ import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller for the tree scene
+ *
+ * <p>Handles the click and hover events for the interactable objects
+ */
 public class TreeController {
 
+  //  Interactable elements
   @FXML private ImageView note2;
   @FXML private ImageView back;
 

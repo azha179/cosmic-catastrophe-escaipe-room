@@ -8,8 +8,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.HoverManager;
-import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.TextManager;
 
+/**
+ * Controller for the win screen
+ *
+ * <p>Handles the click and hover events for the exit button
+ */
 public class WinController {
 
   @FXML private ImageView exit;
@@ -32,10 +37,7 @@ public class WinController {
   @FXML
   public void clickExit(MouseEvent event) {
     // Terminate text to speech
-    MainRoomController mainRoomController =
-        (MainRoomController) SceneManager.getController("mainroom");
-    mainRoomController.terminateTextToSpeech();
-
+    TextManager.close();
     // Terminate the timer
     if (CountDownTimer.countdownTimeline != null) {
       CountDownTimer.countdownTimeline.stop();

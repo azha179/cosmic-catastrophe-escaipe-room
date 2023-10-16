@@ -12,8 +12,14 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller for the title screen
+ *
+ * <p>Handles the click and key press events for the title screen
+ */
 public class TitleController {
 
+  // Title elements
   @FXML private Pane pane;
   @FXML private Label movingTextLabel;
   @FXML private Label movingTextCopyLabel;
