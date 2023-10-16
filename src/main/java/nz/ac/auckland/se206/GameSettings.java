@@ -3,6 +3,11 @@ package nz.ac.auckland.se206;
 // Stores the game settings
 public class GameSettings {
 
+  /*
+   * Stores the game difficulty.
+   *
+   * @param difficulty the game difficulty.
+   */
   public enum GameDifficulty {
     EASY,
     MEDIUM,

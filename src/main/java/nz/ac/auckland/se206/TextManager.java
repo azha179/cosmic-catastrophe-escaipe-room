@@ -9,7 +9,7 @@ import nz.ac.auckland.se206.controllers.PantryController;
 import nz.ac.auckland.se206.controllers.RocketController;
 import nz.ac.auckland.se206.controllers.SettingsController;
 
-/** Manages the text to speech */
+/** Manages the text to speech. */
 public class TextManager {
 
   private static Voice voice;

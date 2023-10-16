@@ -24,7 +24,7 @@ public class CountDownTimer {
   public static int timeLeft;
   public static Timeline countdownTimeline;
 
-  /** Initialises the countdown timer */
+  /** Initialises the countdown timer. */
   public static void initialiseCountdownTimer() {
     timeLeft = GameSettings.timeLimit * 60;
     // Format time to string and update all timers
@@ -61,10 +61,10 @@ public class CountDownTimer {
   }
 
   /**
-   * Converts time in seconds to a string in the format mm:ss
+   * Converts time in seconds to a string in the format mm:ss.
    *
-   * @param timeInSeconds time in seconds
-   * @return time in the format mm:ss
+   * @param timeInSeconds time in seconds.
+   * @return time in the format mm:ss.
    */
   public static String timeToString(int timeInSeconds) {
     int minutes = timeInSeconds / 60;
@@ -78,9 +78,9 @@ public class CountDownTimer {
   }
 
   /**
-   * Updates the timer in all scenes
+   * Updates the timer in all scenes.
    *
-   * @param time the time to update the timer to
+   * @param time the time to update the timer to.
    */
   public static void updateTimerAll(String time) {
     // Update timer in bush

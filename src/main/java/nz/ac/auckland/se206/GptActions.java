@@ -26,8 +26,8 @@ public class GptActions {
   /**
    * Append message to the a text area.
    *
-   * @param msg the message to append
-   * @param textArea the text area to append to
+   * @param msg the message to append.
+   * @param textArea the text area to append to.
    */
   public static void appendChatMessage(ChatMessage msg, javafx.scene.control.TextArea textArea) {
     textArea.appendText("Cat: " + msg.getContent() + "\n\n");
@@ -36,8 +36,8 @@ public class GptActions {
   /**
    * Set message to the a text area.
    *
-   * @param msg the message to set
-   * @param textArea the text area to set
+   * @param msg the message to set.
+   * @param textArea the text area to set.
    */
   public static void setChatMessage(ChatMessage msg, javafx.scene.control.TextArea textArea) {
     textArea.setText(msg.getContent());
@@ -46,10 +46,10 @@ public class GptActions {
   /**
    * Runs the GPT model with a given chat message.
    *
-   * @param msg the chat message to process
-   * @param chatCompletionRequest the chat completion request
-   * @return the response chat message
-   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @param msg the chat message to process.
+   * @param chatCompletionRequest the chat completion request.
+   * @return the response chat message.
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
    */
   public static ChatMessage runGpt(ChatMessage msg, ChatCompletionRequest chatCompletionRequest)
       throws ApiProxyException {
@@ -69,7 +69,7 @@ public class GptActions {
   /**
    * Clears messages from the chat completion request.
    *
-   * @param chatCompletionRequest the chat completion request
+   * @param chatCompletionRequest the chat completion request.
    */
   public static void clearMessages(ChatCompletionRequest chatCompletionRequest) {
     chatCompletionRequest.getMessages().clear();
@@ -78,7 +78,7 @@ public class GptActions {
   /**
    * Updates the text area of all scenes.
    *
-   * @param msg the message to update the text area with
+   * @param msg the message to update the text area with.
    */
   public static void updateTextAreaAll(ChatMessage msg) {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");

@@ -57,7 +57,7 @@ public class MemoryGameController {
 
   private int sequenceIndex;
 
-  /** Initialise method which is called as soon as the class is loaded */
+  /** Initialise method which is called as soon as the class is loaded. */
   public void initialize() {
     // creates a random button sequence
     ButtonSequence.initialiseCorrectSequence();
@@ -67,18 +67,18 @@ public class MemoryGameController {
   }
 
   /**
-   * Getter method for the timer
+   * Getter method for the timer.
    *
-   * @return the timer
+   * @return the timer.
    */
   public Label getTimer() {
     return timer;
   }
 
   /**
-   * Handles the click event for the back button and switches to the rocket
+   * Handles the click event for the back button and switches to the rocket.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickBack(MouseEvent event) {
@@ -86,9 +86,9 @@ public class MemoryGameController {
   }
 
   /**
-   * Handles the click event for the play button and plays the memory game
+   * Handles the click event for the play button and plays the memory game.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickPlay(MouseEvent event) {
@@ -114,9 +114,9 @@ public class MemoryGameController {
   }
 
   /**
-   * Handles the key press event for the escape key and switches to the rocket
+   * Handles the key press event for the escape key and switches to the rocket.
    *
-   * @param event the key event
+   * @param event the key event.
    */
   @FXML
   public void onPressKey(KeyEvent event) {
@@ -126,9 +126,9 @@ public class MemoryGameController {
   }
 
   /**
-   * Handles the click event for the buttons
+   * Handles the click event for the buttons.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   private void pressButton(MouseEvent event) {
@@ -142,9 +142,9 @@ public class MemoryGameController {
   }
 
   /**
-   * Handles the release event for the buttons
+   * Handles the release event for the buttons.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   private void releaseButton(MouseEvent event) {
@@ -206,7 +206,7 @@ public class MemoryGameController {
     }
   }
 
-  /** sets all buttons to green and disables them */
+  /** sets all buttons to green and disables them. */
   private void setAllGreen() {
     // gets all the buttons
     Field[] buttonFields = getClass().getDeclaredFields();
@@ -261,7 +261,7 @@ public class MemoryGameController {
     }
   }
 
-  /** sets the image to green */
+  /** sets the image to green. */
   private void setToGreen(ImageView image) {
     // ColorAdjust is used to change the hue, brightness, contrast and saturation of the image
     ColorAdjust colorAdjust = new ColorAdjust();
@@ -272,7 +272,7 @@ public class MemoryGameController {
     image.setEffect(colorAdjust);
   }
 
-  /** sets the image to original */
+  /** sets the image to original. */
   private void setToOriginal(ImageView image) {
     // ColorAdjust is used to change the hue, brightness, contrast and saturation of the image
     ColorAdjust colorAdjust = new ColorAdjust();
@@ -280,7 +280,7 @@ public class MemoryGameController {
     image.setEffect(colorAdjust);
   }
 
-  /** plays the sequence of buttons which are randomised */
+  /** plays the sequence of buttons which are randomised. */
   private void playSequence() {
     // if game is already running dont play again
     GameState.isAnimationRunning = true;
@@ -310,9 +310,9 @@ public class MemoryGameController {
   }
 
   /**
-   * Handles the hover event for the back button and scales the image up
+   * Handles the hover event for the back button and scales the image up.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -321,9 +321,9 @@ public class MemoryGameController {
   }
 
   /**
-   * Handles the unhover event for the back button and scales the image down
+   * Handles the unhover event for the back button and scales the image down.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {

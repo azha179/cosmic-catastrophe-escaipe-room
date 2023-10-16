@@ -13,9 +13,9 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /**
- * Controller for the title screen
+ * Controller for the title screen.
  *
- * <p>Handles the click and key press events for the title screen
+ * <p>Handles the click and key press events for the title screen.
  */
 public class TitleController {
 
@@ -24,7 +24,7 @@ public class TitleController {
   @FXML private Label movingTextLabel;
   @FXML private Label movingTextCopyLabel;
 
-  /** Initialises the title screen */
+  /** Initialises the title screen. */
   public void initialize() {
     pane.layoutBoundsProperty()
         .addListener(
@@ -62,9 +62,9 @@ public class TitleController {
   }
 
   /**
-   * Handles the mouse click event and switches to the menu scene
+   * Handles the mouse click event and switches to the menu scene.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickMouse(MouseEvent event) {
@@ -72,9 +72,9 @@ public class TitleController {
   }
 
   /**
-   * Handles the key press event and switches to the menu scene
+   * Handles the key press event and switches to the menu scene.
    *
-   * @param event the key event
+   * @param event the key event.
    */
   @FXML
   public void onPressKey(KeyEvent event) {

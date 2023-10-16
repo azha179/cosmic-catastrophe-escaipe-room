@@ -10,18 +10,18 @@ import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.TextManager;
 
 /**
- * Controller for the loss screen
+ * Controller for the loss screen.
  *
- * <p>Handles the click and hover events for the exit button
+ * <p>Handles the click and hover events for the exit button.
  */
 public class LossController {
 
   @FXML private ImageView exit;
 
   /**
-   * Handles the click event for the exit button and closes the application
+   * Handles the click event for the exit button and closes the application.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickExit(MouseEvent event) {
@@ -39,9 +39,9 @@ public class LossController {
   }
 
   /**
-   * Handles the hover event for the exit button and scales the image up
+   * Handles the hover event for the exit button and scales the image up.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -50,9 +50,9 @@ public class LossController {
   }
 
   /**
-   * Handles the hover event for the exit button and scales the image down
+   * Handles the hover event for the exit button and scales the image down.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {

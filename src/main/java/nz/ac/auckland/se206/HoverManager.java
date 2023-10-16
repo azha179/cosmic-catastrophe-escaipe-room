@@ -3,9 +3,9 @@ package nz.ac.auckland.se206;
 import javafx.scene.image.ImageView;
 
 /**
- * Scales up and down images
+ * Scales up and down images.
  *
- * <p>Used for hovering over objects
+ * <p>Used for hovering over objects.
  */
 public class HoverManager {
 
@@ -16,9 +16,9 @@ public class HoverManager {
   private static double originalY;
 
   /**
-   * Scales up the image
+   * Scales up the image.
    *
-   * @param image the image to scale up
+   * @param image the image to scale up.
    */
   public static void scaleUp(ImageView image) {
     // storing original image parameters
@@ -45,9 +45,9 @@ public class HoverManager {
   }
 
   /**
-   * Scales down the image
+   * Scales down the image.
    *
-   * @param image the image to scale down
+   * @param image the image to scale down.
    */
   public static void scaleDown(ImageView image) {
 

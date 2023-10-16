@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.controllers.PantryController;
 import nz.ac.auckland.se206.controllers.RocketController;
 
 /**
- * Stores the HUD elements which the user can pick up and use
+ * Stores the HUD elements which the user can pick up and use.
  *
  * <p>Stores the HUD elements which the user can pick up and use. The HUD elements are updated when
  * the user picks up/uses an item.
@@ -16,10 +16,10 @@ import nz.ac.auckland.se206.controllers.RocketController;
 public class Hud {
 
   /**
-   * Updates the torch in all HUDs
+   * Updates the torch in all HUDs.
    *
-   * @param status the current torch status
-   * @param count the current torch count
+   * @param status the current torch status.
+   * @param count the current torch count.
    */
   public static void updateTorch(boolean status, String count) {
     // Update the torch in pantry
@@ -46,10 +46,10 @@ public class Hud {
   }
 
   /**
-   * Updates note 1 in all HUDs
+   * Updates note 1 in all HUDs.
    *
-   * @param status the current note 1 status
-   * @param count the current note 1 count
+   * @param status the current note 1 status.
+   * @param count the current note 1 count.
    */
   public static void updateNote1(boolean status, String count) {
     // Update the note 1 in pantry
@@ -76,10 +76,10 @@ public class Hud {
   }
 
   /**
-   * Updates note 2 in all HUDs
+   * Updates note 2 in all HUDs.
    *
-   * @param status the current note 2 status
-   * @param count the current note 2 count
+   * @param status the current note 2 status.
+   * @param count the current note 2 count.
    */
   public static void updateNote2(boolean status, String count) {
     // Update the note 2 in pantry
@@ -105,7 +105,7 @@ public class Hud {
     label.setText(count);
   }
 
-  /** Disables the torch in all HUDs */
+  /** Disables the torch in all HUDs. */
   public static void disableTorch() {
     // Disable the torch in pantry
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
@@ -124,7 +124,7 @@ public class Hud {
     greyScale(image);
   }
 
-  /** Disables note 1 in all HUDs */
+  /** Disables note 1 in all HUDs. */
   public static void disableNote1() {
     // Disable the note 1 in pantry
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
@@ -143,7 +143,7 @@ public class Hud {
     greyScale(image);
   }
 
-  /** Disables note 2 in all HUDs */
+  /** Disables note 2 in all HUDs. */
   public static void disableNote2() {
     // Disable the note 2 in pantry
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
@@ -163,9 +163,9 @@ public class Hud {
   }
 
   /**
-   * Greyscales an image view
+   * Greyscales an image view.
    *
-   * @param image the image view to greyscale
+   * @param image the image view to greyscale.
    */
   private static void greyScale(ImageView image) {
     ColorAdjust colourAdjust = new ColorAdjust(0, -1, -0.4, 0);
