@@ -187,11 +187,7 @@ public class GptPromptEngineering {
         + " wasn't quite what you wanted. Tell the player to try again and remind them that"
         + " you were wanting"
         + food
-        + ". The cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum and NOT include any hints. If the player asks for a hint,"
-        + " provide them with the hints given previously one at a time. You MUST, no matter what,"
-        + " not be revealing any hints unless the player explicitly asks. When you reveal any hint,"
-        + " you MUST, no matter what, include the word 'Sure' in your hint response.";
+        + ", and if they need any hints to say the magic word 'Meowlp'.";
   }
 
   /**
@@ -207,9 +203,9 @@ public class GptPromptEngineering {
         + " wasn't quite what you wanted. Tell the player to try again and remind them that"
         + " you were wanting"
         + food
-        + ". The cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum and NOT include any hints. If the player asks for any help or"
-        + " hints, you MUST, no matter what, not be providing any.";
+        + ". Ensure that when the player asks for a hint or says"
+        + " a codeword 'Meowlp', you must refrain from providing any assistance. Your responses"
+        + " must use simple vocabulary and be three sentences maximum.";
   }
 
   /**

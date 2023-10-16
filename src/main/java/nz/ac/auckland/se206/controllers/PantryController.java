@@ -308,12 +308,6 @@ public class PantryController {
               // Call GPT
               @Override
               protected Void call() throws Exception {
-                GptActions.chatCompletionRequest2 =
-                    new ChatCompletionRequest()
-                        .setN(1)
-                        .setTemperature(0.2)
-                        .setTopP(0.5)
-                        .setMaxTokens(100);
                 ChatMessage chatMessage;
                 String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
                 // depends on difficulty
@@ -592,6 +586,8 @@ public class PantryController {
     chatPane.setVisible(false);
     // hide reply area
     toggleReplyArea();
+    // hide return button
+    back.setVisible(false);
 
     // Task for calling GPT
     Task<Void> replyTask =
@@ -698,6 +694,8 @@ public class PantryController {
                   catImageActive.setDisable(false);
                   // Show reply area
                   toggleReplyArea();
+                  // Show return button
+                  back.setVisible(true);
                 });
 
             return null;
