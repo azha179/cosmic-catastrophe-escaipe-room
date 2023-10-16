@@ -8,8 +8,8 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
-import nz.ac.auckland.se206.HudState;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class TreeController {
@@ -30,8 +30,8 @@ public class TreeController {
     }
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
-    HudState.updateHudAll();
     back.setVisible(true);
+    Hud.updateNote2(true, "x1");
   }
 
   public Label getTimer() {
