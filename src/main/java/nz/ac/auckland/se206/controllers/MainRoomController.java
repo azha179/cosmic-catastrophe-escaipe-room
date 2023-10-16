@@ -167,8 +167,6 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
-    // removes dim
-    dim.setVisible(false);
 
     // Disable cat
     catImageSleep.setDisable(true);
@@ -229,6 +227,8 @@ public class MainRoomController {
                       });
                   // Enable cat
                   catImageSleep.setDisable(false);
+                  // removes dim
+                  dim.setVisible(false);
                 });
 
             Platform.runLater(
@@ -454,7 +454,7 @@ public class MainRoomController {
                             GptActions.chatCompletionRequest1);
                   }
                   // If hints left is 0
-                  if (GameState.hintsLeft == 0) {
+                  if (GameState.hintsLeft == 0 && !GameState.isHintUsed) {
                     hintsUsed();
                   }
                 }
