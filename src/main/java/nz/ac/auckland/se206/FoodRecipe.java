@@ -83,8 +83,8 @@ public class FoodRecipe {
 
     String string = "";
     // dependent on the name of the imageview, set its string
+    // make it have the correct casing
     switch (ingredient.getId().substring(10).toLowerCase()) {
-        // make it have the correct casing
       case "milk":
         string = "Milky";
         break;
