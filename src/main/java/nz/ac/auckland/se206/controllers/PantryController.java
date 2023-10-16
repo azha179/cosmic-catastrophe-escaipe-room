@@ -100,9 +100,9 @@ public class PantryController {
   @FXML private Label timer;
 
   // TTS
-  TextManager textManager = new TextManager();
+  private TextManager textManager = new TextManager();
 
-  int currentHint = 1;
+  private int currentHint = 1;
 
   private ArrayList<ImageView> shadowArray = new ArrayList<>();
 
@@ -315,7 +315,7 @@ public class PantryController {
                       back.setVisible(true);
                     });
                 // tts for cat speaking
-                TextManager.speakInitialise(chatMessage.getContent());
+                TextManager.speakChatMessage(chatMessage.getContent());
 
                 return null;
               }
@@ -392,7 +392,7 @@ public class PantryController {
                       back.setVisible(true);
                     });
                 // tts for cat speaking
-                TextManager.speakInitialise(chatMessage.getContent());
+                TextManager.speakChatMessage(chatMessage.getContent());
 
                 return null;
               }
@@ -541,7 +541,7 @@ public class PantryController {
                   back.setVisible(true);
                 });
             // tts for cat speaking
-            TextManager.speakInitialise(chatMessage.getContent());
+            TextManager.speakChatMessage(chatMessage.getContent());
 
             return null;
           }
@@ -813,7 +813,7 @@ public class PantryController {
                   back.setVisible(true);
                 });
             // tts for cat speaking
-            TextManager.speakInitialise(lastMsg.getContent());
+            TextManager.speakChatMessage(lastMsg.getContent());
 
             return null;
           }

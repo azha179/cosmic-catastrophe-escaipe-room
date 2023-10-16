@@ -97,7 +97,7 @@ public class MainRoomController {
   @FXML private Label timer;
 
   // Text to speech element
-  TextToSpeech textToSpeech;
+  private TextToSpeech textToSpeech;
 
   // Arraylist of all the footprints
   private ArrayList<ImageView> footprints = new ArrayList<ImageView>();
@@ -108,7 +108,7 @@ public class MainRoomController {
   private int currentHint = 1;
 
   // TTS
-  TextManager textManager = new TextManager();
+  private TextManager textManager = new TextManager();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -265,7 +265,7 @@ public class MainRoomController {
                   dim.setVisible(false);
                 });
 
-            TextManager.speakInitialise(chatMessage.getContent());
+            TextManager.speakChatMessage(chatMessage.getContent());
 
             return null;
           }
@@ -526,7 +526,7 @@ public class MainRoomController {
                   toggleReplyArea();
                 });
             // tts for cat speaking
-            TextManager.speakInitialise(lastMsg.getContent());
+            TextManager.speakChatMessage(lastMsg.getContent());
 
             return null;
           }

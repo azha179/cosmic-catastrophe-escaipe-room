@@ -54,7 +54,7 @@ public class TextManager {
     voice.deallocate();
   }
 
-  public static void speakInitialise(String Message) {
+  public static void speakChatMessage(String Message) {
 
     Platform.runLater(
         () -> {

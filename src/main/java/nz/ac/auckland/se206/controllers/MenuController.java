@@ -37,10 +37,7 @@ public class MenuController {
   @FXML private Label playText;
   @FXML private ImageView settingButton;
 
-  GameDifficulty setRectangle;
-  GameDifficulty currentDifficulty;
-  Color clear = Color.rgb(0, 0, 0, 0.0);
-  Color unselected = new Color(1.0, 0.7176, 0.0, 1.0);
+  private Color unselected = new Color(1.0, 0.7176, 0.0, 1.0);
 
   public void initialize() {}
 

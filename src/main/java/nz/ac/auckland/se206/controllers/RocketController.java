@@ -98,7 +98,7 @@ public class RocketController {
   private boolean currentHint = false;
 
   // TTS
-  TextManager textManager = new TextManager();
+  private TextManager textManager = new TextManager();
 
   /** Initialise method for the rocket. */
   public void initialize() {
@@ -364,7 +364,7 @@ public class RocketController {
                   });
 
               // tts for cat speaking
-              TextManager.speakInitialise(chatMessage.getContent());
+              TextManager.speakChatMessage(chatMessage.getContent());
               return null;
             }
           };
@@ -431,7 +431,7 @@ public class RocketController {
                   });
 
               // tts for cat speaking
-              TextManager.speakInitialise(chatMessage.getContent());
+              TextManager.speakChatMessage(chatMessage.getContent());
               return null;
             }
           };
@@ -485,7 +485,7 @@ public class RocketController {
                   });
 
               // tts for cat speaking
-              TextManager.speakInitialise(chatMessage.getContent());
+              TextManager.speakChatMessage(chatMessage.getContent());
 
               return null;
             }
@@ -551,7 +551,7 @@ public class RocketController {
                   });
 
               // tts for cat speaking
-              TextManager.speakInitialise(chatMessage.getContent());
+              TextManager.speakChatMessage(chatMessage.getContent());
 
               return null;
             }
@@ -715,7 +715,7 @@ public class RocketController {
                 });
 
             // tts for cat speaking
-            TextManager.speakInitialise(chatMessage.getContent());
+            TextManager.speakChatMessage(chatMessage.getContent());
 
             return null;
           }
@@ -1000,7 +1000,7 @@ public class RocketController {
                   // Show return button
                   back.setVisible(true);
                 });
-            TextManager.speakInitialise(lastMsg.getContent());
+            TextManager.speakChatMessage(lastMsg.getContent());
 
             return null;
           }
