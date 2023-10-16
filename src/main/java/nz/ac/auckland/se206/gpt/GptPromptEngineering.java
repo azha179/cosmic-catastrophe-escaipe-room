@@ -20,26 +20,57 @@ public class GptPromptEngineering {
   }
 
   /**
+   * Generates a GPT prompt engineering string for when the player asks for a hint.
+   *
+   * @param hint the hint to give to the player
+   * @return the generated prompt engineering string
+   */
+  public static String getHintMessage(String hint) {
+    return "The player has asked for a hint using 'Meowlp'. Reply to the player the hint, which is:"
+        + " "
+        + hint;
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for when the player asks for a hint but no more hints
+   * left to give in current area.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getHintMessageNone() {
+    return "The player has asked for a hint using 'Meowlp'. Reply to the player that you are unable"
+        + " to provide any more hints for them for the current area, and suggest them to ask"
+        + " again in a different place to jog up your memory.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for when the player asks for a hint but in hard
+   * difficulty.
+   *
+   * @return the generated prompt engineering string
+   */
+  public static String getHintMessageHard() {
+    return "The player has asked for a hint using 'Meowlp'. Reply to the player that you are unable"
+        + " to provide any hints for them, and wish them luck.";
+  }
+
+  /**
    * Generates a GPT prompt engineering string for a introduction message when the player first
    * meets the cat.
    *
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getIntroductionMessageEasy() {
-    return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
-        + " escape-style video game.  You want the player to help you launch your rocket"
-        + " ship and reach Earth to enjoy its food. Write an introduction message to the"
-        + " player, first telling them about yourself, then telling them they must complete"
-        + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player"
-        + " asks for a hint, tell them to find your toy outside, and they should follow your"
-        + " footprints which are only visible under light and that you dropped your torch"
-        + " somewhere outside. If they respond once more asking for a hint, tell them they"
-        + " should turn the torch on and follow the first footstep which is close to where"
-        + " the torch was dropped. You MUST, no matter what, not be revealing any hints"
-        + " unless the player explicitly asks. When you reveal any hint, you MUST, no matter"
-        + " what, include the word 'Sure' in your hint response.";
+    return "Write an introduction message for a space-themed escape-style video game where you"
+        + " assume the role of an alien cat traversing the galaxy. Your character must"
+        + " interact with the player who is currently playing the game. Start by introducing"
+        + " yourself, then inform the player that they must help find your toy, bring some"
+        + " snacks, and assist in leaving the planet. Also, let the player know that if they"
+        + " require any assistance, they should use the magic word 'Meowlp'. Ensure that"
+        + " hints are only given when the player uses 'Meowlp', and if they ask for help"
+        + " without using 'Meowlp', refrain from providing assistance and suggest they ask"
+        + " with the word 'Meowlp' instead. Your responses must use simple vocabulary and be three"
+        + " sentences maximum.";
   }
 
   /**
@@ -49,20 +80,16 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getIntroductionMessageMedium() {
-    return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
-        + " escape-style video game.  You want the player to help you launch your rocket"
-        + " ship and reach Earth to enjoy its food. Write an introduction message to the"
-        + " player, first telling them about yourself, then telling them they must complete"
-        + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player"
-        + " asks for a hint, tell them to find your toy outside, and they should follow your"
-        + " footprints which are only visible under light and that you dropped your torch"
-        + " somewhere outside. If they respond once more asking for a hint, tell them they"
-        + " should turn the torch on and follow the first footstep which is close to where"
-        + " the torch was dropped. You MUST, no matter what, not be revealing any hints"
-        + " unless the player explicitly asks. When you reveal any hint, you MUST, no matter"
-        + " what, include the word 'Sure' in your hint response.";
+    return "Write an introduction message for a space-themed escape-style video game where you"
+        + " assume the role of an alien cat traversing the galaxy. Your character must"
+        + " interact with the player who is currently playing the game. Start by introducing"
+        + " yourself, then inform the player that they must help find your toy, bring some"
+        + " snacks, and assist in leaving the planet. Also, let the player know that if they"
+        + " require any assistance, they should use the magic word 'Meowlp'. Ensure that"
+        + " hints are only given when the player uses 'Meowlp', and if they ask for help"
+        + " without using 'Meowlp', refrain from providing assistance and suggest they ask"
+        + " with the word 'Meowlp' instead. Your responses must use simple vocabulary and be three"
+        + " sentences maximum.";
   }
 
   /**
@@ -72,49 +99,37 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getIntroductionMessageHard() {
-    return "You are an alien cat traversing the galaxy to try different foods in a space-themed"
-        + " escape-style video game.  You want the player to help you launch your rocket"
-        + " ship and reach Earth to enjoy its food. Write an introduction message to the"
-        + " player, first telling them about yourself, then telling them they must complete"
-        + " three simple tasks to leave this unknown planet. Do not specify the tasks in"
-        + " this response, the player will receive a list of the three tasks that need to be"
-        + " completed, which include: Find lost toy, bring food and launch rocket. The cat"
-        + " must use elementary vocabulary and occasionally meow. The message must be three"
-        + " sentences maximum and NOT include any hints. If the player asks for any help or"
-        + " hints, you MUST, no matter what, not be providing any.";
+    return "Write an introduction message for a space-themed escape-style video game where you"
+        + " assume the role of an alien cat traversing the galaxy. Your character must"
+        + " interact with the player who is currently playing the game. Start by introducing"
+        + " yourself, then inform the player that they must help find your toy, bring some"
+        + " snacks, and assist in leaving the planet. Ensure that when the player asks for a"
+        + " hint or says a codeword 'Meowlp', you must refrain from providing any"
+        + " assistance. Your responses must use simple vocabulary and be three sentences"
+        + " maximum.";
   }
 
   /**
    * Generates a GPT prompt engineering string for a message when the player first enters the pantry
    *
    * @param food the food that the player needs to find
-   * @param recipe the recipe that the player needs to find
    * @return the generated prompt engineering string which reveals the next part of the game
    */
-  public static String getFirstEnterPantryMessage(String food, String recipe) {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food, but first you need to bring"
-        + " some food. The player has just entered the pantry room. Write a message to the"
-        + " player, first welcoming them to the pantry, then tell them that the food you"
-        + " want to bring is '"
+  public static String getFirstEnterPantryMessage(String food) {
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to the pantry, then tell the player that they should bring"
+        + " your favourite snack, which is: '"
         + food
-        + "'. You must tell them "
+        + "'. You must tell them '"
         + food
-        + " word for word. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player asks"
-        + " for a hint, tell them that each word in "
-        + food
-        + "represents a food item, and they should pick all food items represented. If they respond"
-        + " again asking for another hint, tell them that for example, 'Sweet Jiggly Fish' means"
-        + " you would pick the lollipop, pudding, and fish. If they respond once more asking for a"
-        + " hint, tell them that "
-        + food
-        + " means that one of the ingredients you should pick is "
-        + recipe
-        + ". You MUST, no matter what, not be revealing any hints unless the player"
-        + " explicitly asks. When you reveal any hint, you MUST, no matter what, include the word"
-        + " 'Sure' in your hint response.";
+        + "' word for word. Also, remind the player that if they"
+        + " require any assistance, they should use the magic word 'Meowlp'. Ensure that"
+        + " hints are only given when the player uses 'Meowlp', and if they ask for help"
+        + " without using 'Meowlp', refrain from providing assistance and suggest they ask"
+        + " with the word 'Meowlp' instead. Your responses must use simple vocabulary and be three"
+        + " sentences maximum.";
   }
 
   /**
@@ -126,18 +141,17 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterPantryMessageHard(String food) {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food, but first you need to bring"
-        + " some food. The player has just entered the pantry room. Write a message to the"
-        + " player, first welcoming them to the pantry, then tell them that the food you"
-        + " want to bring is '"
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to the pantry, then tell the player that they should bring"
+        + " your favourite snack, which is: '"
         + food
-        + "'. You must tell them "
+        + "'. You must tell them '"
         + food
-        + " word for word. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player asks"
-        + " for any help or hints, you MUST, no matter what, not be providing any.";
+        + "' word for word. Ensure that when the player asks for a hint or says"
+        + " a codeword 'Meowlp', you must refrain from providing any assistance. Your responses"
+        + " must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -172,11 +186,7 @@ public class GptPromptEngineering {
         + " wasn't quite what you wanted. Tell the player to try again and remind them that"
         + " you were wanting"
         + food
-        + ". The cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum and NOT include any hints. If the player asks for a hint,"
-        + " provide them with the hints given previously one at a time. You MUST, no matter what,"
-        + " not be revealing any hints unless the player explicitly asks. When you reveal any hint,"
-        + " you MUST, no matter what, include the word 'Sure' in your hint response.";
+        + ", and if they need any hints to say the magic word 'Meowlp'.";
   }
 
   /**
@@ -192,9 +202,9 @@ public class GptPromptEngineering {
         + " wasn't quite what you wanted. Tell the player to try again and remind them that"
         + " you were wanting"
         + food
-        + ". The cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum and NOT include any hints. If the player asks for any help or"
-        + " hints, you MUST, no matter what, not be providing any.";
+        + ". Ensure that when the player asks for a hint or says"
+        + " a codeword 'Meowlp', you must refrain from providing any assistance. Your responses"
+        + " must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -204,22 +214,18 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessage() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " there are two notes that should explain it, but you forgot where you left them."
-        + " The cat must use elementary vocabulary and occasionally meow. The message must"
-        + " be three sentences maximum and NOT include any hints. If the player asks for a"
-        + " hint, tell them you recall the first note being somewhere outside and the second"
-        + " in the pantry. If they respond again asking for another hint, tell them you"
-        + " don't have any more hints, but maybe you can try asking outside or in the"
-        + " pantry. You MUST, no matter what, not be revealing any hints unless the player"
-        + " explicitly asks. When you reveal a hint, you MUST, no matter what, include the"
-        + " word 'Sure' in your hint response.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them there are two notes around the"
+        + " area that should help unlock the button, but you're not sure where you left"
+        + " them. Also, remind the player that if they require any assistance, they should"
+        + " use the magic word 'Meowlp'. Ensure that hints are only given when the player"
+        + " uses 'Meowlp', and if they ask for help without using 'Meowlp', refrain from"
+        + " providing assistance and suggest they ask with the word 'Meowlp' instead. Your"
+        + " responses must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -229,17 +235,16 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageHard() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " there are two notes that should explain it, but you forgot where you left them."
-        + " The cat must use elementary vocabulary and occasionally meow. The message must"
-        + " be three sentences maximum and NOT include any hints. If the player asks for any"
-        + " help or hints, you MUST, no matter what, not be providing any.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them there are two notes around the"
+        + " area that should help unlock the button, but you're not sure where you left"
+        + " them. Ensure that when the player asks for a hint or says"
+        + " a codeword 'Meowlp', you must refrain from providing any assistance. Your responses"
+        + " must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -249,21 +254,18 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageBothNotesFound() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " the two notes they found should guide them to unlocking the button. The cat must"
-        + " use elementary vocabulary and occasionally meow. The message must be three"
-        + " sentences maximum and NOT include any hints. If the player asks for a hint, tell"
-        + " them to try and press on and hold the left meow pad down. If they respond again"
-        + " asking for another hint, tell them you don't have any more hints. You MUST, no"
-        + " matter what, not be revealing any hints unless the player explicitly asks. When"
-        + " you reveal any hint, you MUST, no matter what, include the word 'Sure' in your"
-        + " hint response.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them that the two notes they found"
+        + " should help them with unlocking the button. Also, remind the player that if they"
+        + " require any assistance, they should use the magic word 'Meowlp'. Ensure that"
+        + " hints are only given when the player uses 'Meowlp', and if they ask for help"
+        + " without using 'Meowlp', refrain from providing assistance and suggest they ask"
+        + " with the word 'Meowlp' instead. Your responses must use simple vocabulary and be"
+        + " three sentences maximum.";
   }
 
   /**
@@ -273,17 +275,16 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageBothNotesFoundHard() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " the two notes they found should guide them to unlocking the button. The cat must"
-        + " use elementary vocabulary and occasionally meow. The message must be three"
-        + " sentences maximum and NOT include any hints. If the player asks for any help or"
-        + " hints, you MUST, no matter what, not be providing any.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them that the two notes they found"
+        + " should help them with unlocking the button. Ensure that when the player asks for"
+        + " a hint or says a codeword 'Meowlp', you must refrain from providing any"
+        + " assistance. Your responses must use simple vocabulary and be three sentences"
+        + " maximum.";
   }
 
   /**
@@ -293,23 +294,18 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageNoteOneFound() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " the note they found should help them, but there's also another note in the"
-        + " pantry. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player"
-        + " asks for a hint, tell them to try and press on and hold the left meow pad down."
-        + " If they respond asking for another hint, tell them to go and find the second"
-        + " note in the pantry and see if that helps. If they respond again asking for"
-        + " another hint, tell them you don't have any more hints. You MUST, no matter what,"
-        + " not be revealing any hints unless the player explicitly asks. When you reveal"
-        + " any hint, you MUST, no matter what, include the word 'Sure' in your hint"
-        + " response.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them that the note they found"
+        + " should help them, but there's also another pink note somewhere that will help"
+        + " further. Also, remind the player that if they require any assistance, they"
+        + " should use the magic word 'Meowlp'. Ensure that hints are only given when the"
+        + " player uses 'Meowlp', and if they ask for help without using 'Meowlp', refrain"
+        + " from providing assistance and suggest they ask with the word 'Meowlp' instead."
+        + " Your responses must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -319,17 +315,17 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageNoteOneFoundHard() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " the note they found should help them, but there's also another note in the"
-        + " pantry. The cat must use elementary vocabulary and occasionally meow. The"
-        + " message must be three sentences maximum and NOT include any hints. If the player"
-        + " asks for any help or hints, you MUST, no matter what, not be providing any.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them that the note they found"
+        + " should help them, but there's also another pink note somewhere that will help"
+        + " further. Ensure that when the player asks for"
+        + " a hint or says a codeword 'Meowlp', you must refrain from providing any"
+        + " assistance. Your responses must use simple vocabulary and be three sentences"
+        + " maximum.";
   }
 
   /**
@@ -339,22 +335,18 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageNoteTwoFound() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " the note they found should help them, but there's also another note outside. The"
-        + " cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum and NOT include any hints. If the player asks for a"
-        + " hint, tell them to try and wiggle the right meow pad around. If they respond"
-        + " asking for another hint, tell them to go and find the other note outside and see"
-        + " if that helps. If they respond again asking for another hint, tell them you"
-        + " don't have any more hints. You MUST, no matter what, not be revealing any hints"
-        + " unless the player explicitly asks. When you reveal any hint, you MUST, no matter"
-        + " what, include the word 'Sure' in your hint response.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them that the note they found"
+        + " should help them, but there's also another yellow note somewhere that will help"
+        + " further. Also, remind the player that if they require any assistance, they"
+        + " should use the magic word 'Meowlp'. Ensure that hints are only given when the"
+        + " player uses 'Meowlp', and if they ask for help without using 'Meowlp', refrain"
+        + " from providing assistance and suggest they ask with the word 'Meowlp' instead."
+        + " Your responses must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -364,17 +356,17 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageNoteTwoFoundHard() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game.  You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just entered"
-        + " the rocket cockpit. Write a message to the player, first welcoming them to your"
-        + " trusty rocket, then tell them that to launch the rocket all they need to do is"
-        + " press the launch button. But, first they need to unlock it, and its been a while"
-        + " since you last launched the rocket so you forgot exactly how to. Tell them that"
-        + " the note they found should help them, but there's also another note outside. The"
-        + " cat must use elementary vocabulary and occasionally meow. The message must be"
-        + " three sentences maximum and NOT include any hints. If the player asks for any"
-        + " help or hints, you MUST, no matter what, not be providing any.";
+    return "Write a welcome message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character must interact with"
+        + " the player who is currently playing the game and has already met you. Start by"
+        + " welcoming the player to your rocket, then tell the player that they should"
+        + " unlock the launch button, but its been a while since the rocket was last"
+        + " launched and you forgot exactly how to. Tell them that the note they found"
+        + " should help them, but there's also another yellow note somewhere that will help"
+        + " further. Ensure that when the player asks for"
+        + " a hint or says a codeword 'Meowlp', you must refrain from providing any"
+        + " assistance. Your responses must use simple vocabulary and be three sentences"
+        + " maximum.";
   }
 
   /**
@@ -385,14 +377,9 @@ public class GptPromptEngineering {
    */
   public static String getLeftPadCompleteMessage() {
     return "The player has just completed the left meow pad. Write a message to the player,"
-        + " congratulating them. The message must be two sentences maximum and NOT include"
-        + " any hints. If the player asks for a hint now, tell them to try and wiggle the"
-        + " right meow pad around. If they respond asking for another hint, tell them to"
-        + " press and hold down the right meow pad while wiggling it around. If they respond"
-        + " again asking for another hint, tell them you don't have any more hints. You"
-        + " MUST, no matter what, refrain from revealing any hints unless the player"
-        + " explicitly asks. When you reveal any hint, you MUST, no matter what, include the"
-        + " word 'Sure' in your hint response.";
+        + " congratulating them, and suggest them to now activate the right meow pad. Remind"
+        + " them that if they need a hint, to say the magic word 'Meowlp'. Refrain from"
+        + " providing any assistance unless the player says 'Meowlp'.";
   }
 
   /**
@@ -403,9 +390,10 @@ public class GptPromptEngineering {
    */
   public static String getLeftPadCompleteMessageHard() {
     return "The player has just completed the left meow pad. Write a message to the player,"
-        + " congratulating them. The message must be two sentences maximum and NOT include"
-        + " any hints. If the player asks for any help or hints, you MUST, no matter what,"
-        + " not be providing any.";
+        + " congratulating them, then suggest them to now activate the right meow pad."
+        + " Ensure that when the player asks for a hint or says a codeword 'Meowlp', you"
+        + " must refrain from providing any assistance. Your responses must use simple"
+        + " vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -416,14 +404,9 @@ public class GptPromptEngineering {
    */
   public static String getRightPadCompleteMessage() {
     return "The player has just completed the right meow pad. Write a message to the player,"
-        + " congratulating them. The message must be two sentences maximum and NOT include"
-        + " any hints. If the player asks for a hint now, tell them the left meow pad should"
-        + " be similar, but there's no need to wiggle it. If they respond asking for another"
-        + " hint, tell them to press and hold down the left meow pad. If they respond again"
-        + " asking for another hint, tell them you don't have any more hints. You MUST, no"
-        + " matter what, refrain from revealing any hints unless the player explicitly asks."
-        + " When you reveal any hint, you MUST, no matter what, include the word 'Sure' in"
-        + " your hint response.";
+        + " congratulating them, and suggest them to now activate the left meow pad. Remind"
+        + " them that if they need a hint, to say the magic word 'Meowlp'. Refrain from"
+        + " providing any assistance unless the player says 'Meowlp'.";
   }
 
   /**
@@ -434,9 +417,10 @@ public class GptPromptEngineering {
    */
   public static String getRightPadCompleteMessageHard() {
     return "The player has just completed the right meow pad. Write a message to the player,"
-        + " congratulating them. The message must be two sentences maximum and NOT include"
-        + " any hints. If the player asks for any help or hints, you MUST, no matter what,"
-        + " not be providing any.";
+        + " congratulating them, then suggest them to now activate the left meow pad."
+        + " Ensure that when the player asks for a hint or says a codeword 'Meowlp', you"
+        + " must refrain from providing any assistance. Your responses must use simple"
+        + " vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -446,18 +430,16 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getBothPadCompleteMessage() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game. You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just"
-        + " completed the left and right meow pads. Write a message to the player,"
-        + " congratulating them, then tell them that they should now attempt the"
-        + " verification puzzle on the control panel. The cat must use elementary vocabulary"
-        + " and occasionally meow. The message must be three sentences maximum and NOT"
-        + " include any hints. If and only if the player asks for a hint, tell them repeat"
-        + " the patten shown. If they respond again asking for another hint, tell them you"
-        + " don't have any more hints. You MUST, no matter what, not be revealing any hints"
-        + " unless the player explicitly asks. When you reveal any hint, you MUST, no matter"
-        + " what, include the word 'Sure' in your hint response.";
+    return "Write a message for a space-themed escape-style video game where you assume the role of"
+        + " an alien cat traversing the galaxy. Your character must interact with the player"
+        + " who is currently playing the game and has already met you. Start by"
+        + " congratulating the player on activating both meow pads, then tell them to"
+        + " complete the verification puzzle which just unlocked on the control panel. Also,"
+        + " remind the player that if they require any assistance, they should use the magic"
+        + " word 'Meowlp'. Ensure that hints are only given when the player uses 'Meowlp',"
+        + " and if they ask for help without using 'Meowlp', refrain from providing"
+        + " assistance and suggest they ask with the word 'Meowlp' instead. Your responses"
+        + " must use simple vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -467,15 +449,14 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getBothPadCompleteMessageHard() {
-    return "You are currently an alien cat traversing the galaxy to try different foods in a"
-        + " space-themed escape-style video game. You want the player to help you launch"
-        + " your rocket ship and reach Earth to enjoy its food. The player has just"
-        + " completed the left and right meow pads. Write a message to the player,"
-        + " congratulating them, then tell them that they should now attempt the"
-        + " verification puzzle on the control panel. The cat must use elementary vocabulary"
-        + " and occasionally meow. The message must be three sentences maximum and NOT"
-        + " include any hints. If the player asks for any help or hints, you MUST, no matter"
-        + " what, not be providing any.";
+    return "Write a message for a space-themed escape-style video game where you assume the role of"
+        + " an alien cat traversing the galaxy. Your character must interact with the player"
+        + " who is currently playing the game and has already met you. Start by"
+        + " congratulating the player on activating both meow pads, then tell them to"
+        + " complete the verification puzzle which just unlocked on the control panel."
+        + " Ensure that when the player asks for a hint or says a codeword 'Meowlp', you"
+        + " must refrain from providing any assistance. Your responses must use simple"
+        + " vocabulary and be three sentences maximum.";
   }
 
   /**
@@ -485,6 +466,6 @@ public class GptPromptEngineering {
    */
   public static String sendHintsUsed() {
     return "The player has used up all their available hints. From now you MUST, no matter what,"
-               + " provide any more hints or help to the player.";
+        + " provide any more hints or help to the player.";
   }
 }

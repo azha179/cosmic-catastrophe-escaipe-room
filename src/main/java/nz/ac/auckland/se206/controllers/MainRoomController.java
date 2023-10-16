@@ -98,6 +98,9 @@ public class MainRoomController {
   // Index of last footprint that was enabled
   private int lastFootprint;
 
+  // Hints
+  private int currentHint = 1;
+
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
@@ -162,8 +165,6 @@ public class MainRoomController {
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
     System.out.println("cat first clicked");
-    // removes dim
-    dim.setVisible(false);
 
     // Disable cat
     catImageSleep.setDisable(true);
@@ -224,6 +225,8 @@ public class MainRoomController {
                       });
                   // Enable cat
                   catImageSleep.setDisable(false);
+                  // removes dim
+                  dim.setVisible(false);
                 });
 
             Platform.runLater(
@@ -370,10 +373,11 @@ public class MainRoomController {
 
   // Method for replying
   public void reply() {
-    String message = replyTextField.getText();
-    if (message.trim().isEmpty()) {
+    String message = replyTextField.getText().trim();
+    if (message.isEmpty()) {
       return;
     }
+    System.out.println("replying: " + message);
     // clear reply text field
     replyTextField.clear();
     // Disable reply button
@@ -396,27 +400,90 @@ public class MainRoomController {
           // Call GPT
           @Override
           protected Void call() throws Exception {
-            ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest1);
+            ChatMessage lastMsg;
+            // If 'Meowlp' are the first six characters of the message, case insensitive, then give
+            // hint
+            // first check if message is six characters or more
+            if (message.length() >= 6) {
+              System.out.println("more than 6 characters");
+              if (message.substring(0, 6).equalsIgnoreCase("Meowlp")) {
+                System.out.println("mewolp");
+
+                // Call GPT for hint
+                // If hard difficulty or hints used
+                if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD
+                    || GameState.isHintUsed) {
+                  lastMsg =
+                      GptActions.runGpt(
+                          new ChatMessage("user", GptPromptEngineering.getHintMessageHard()),
+                          GptActions.chatCompletionRequest1);
+                } else {
+                  // If current hint is 4
+                  if (currentHint >= 4) {
+                    lastMsg =
+                        GptActions.runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getHintMessageNone()),
+                            GptActions.chatCompletionRequest1);
+                  } else {
+                    // Update GameState if medium difficulty
+                    if (GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
+                      GameState.hintsLeft--;
+                    }
+
+                    if (currentHint == 1) {
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "Find my torch which dropped outside and follow the"
+                                          + " footprints with it.")),
+                              GptActions.chatCompletionRequest1);
+                    } else if (currentHint == 2) {
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "Turn the torch on and follow from the first footprint which"
+                                          + " can be found near where the torch was dropped.")),
+                              GptActions.chatCompletionRequest1);
+                    } else {
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "The footprints lead to the bush outside. Check the bush"
+                                          + " after following all footprints.")),
+                              GptActions.chatCompletionRequest1);
+                    }
+                    currentHint++;
+                    // If hints left is 0
+                    if (GameState.hintsLeft == 0 && !GameState.isHintUsed) {
+                      hintsUsed();
+                    }
+                  }
+                }
+              } else {
+                System.out.println("meow");
+                ChatMessage msg = new ChatMessage("user", message);
+                lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest1);
+              }
+            } else {
+              System.out.println("meow");
+              ChatMessage msg = new ChatMessage("user", message);
+              lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest1);
+            }
 
             Platform.runLater(
                 () -> {
                   // Update text area
                   GptActions.updateTextAreaAll(lastMsg);
-                  // Check if reply had the word 'Sure' and game difficulty is medium
-                  if (lastMsg.getContent().contains("Sure")
-                      && GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
-                    // update hints left
-                    GameState.hintsLeft--;
-                    // update hint label
-                    GameState.updateAllHintsLabel();
-                    // if hints left is 0
-                    if (GameState.hintsLeft == 0) {
-                      GameSettings.difficulty = GameSettings.GameDifficulty.HARD;
-                      GameState.isHintUsed = true;
-                      hintsUsed();
-                    }
-                  }
+
+                  // Update hint label
+                  GameState.updateAllHintsLabel();
+
                   // Enable reply button
                   replyImage.setDisable(false);
                   replyImage.setOpacity(1);
@@ -709,42 +776,12 @@ public class MainRoomController {
 
   /** Method that calls GPT when hints are used up in medium difficulty */
   public void hintsUsed() {
-    // Disable cat
-    catImageActive.setDisable(true);
-    // change image to thinking cat
-    Image image = new Image("images/ThinkingCat.png");
-    catImageActive.setImage(image);
-    // send message to GPT
-    Task<Void> initiateDeviceTask =
-        new Task<Void>() {
-          // Call GPT
-          @Override
-          protected Void call() throws Exception {
-            GptActions.chatCompletionRequest2 =
-                new ChatCompletionRequest()
-                    .setN(1)
-                    .setTemperature(0.2)
-                    .setTopP(0.5)
-                    .setMaxTokens(100);
-            GptActions.runGpt(
-                new ChatMessage("user", GptPromptEngineering.sendHintsUsed()),
-                GptActions.chatCompletionRequest2);
-
-            Platform.runLater(
-                () -> {
-                  // Change image to active cat
-                  Image image = new Image("images/NeutralCat.png");
-                  catImageActive.setImage(image);
-                  // Enable cat
-                  catImageActive.setDisable(false);
-                });
-
-            return null;
-          }
-        };
-
-    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
-    initiateDeviceThread.start();
+    // Change difficulty to hard to ensure future prompts are given in hard difficulty which include
+    // no hints.
+    GameSettings.difficulty = GameSettings.GameDifficulty.HARD;
+    GameState.isHintUsed = true;
+    // Change hints label text to red
+    hintsLabel.setStyle("-fx-text-fill: red;");
   }
 
   /** Updates hint label */
@@ -755,6 +792,10 @@ public class MainRoomController {
       return;
     }
     hintsLabel.setText("Hints left: " + GameState.hintsLeft);
+    // If no hints left, change label text to red
+    if (GameState.hintsLeft == 0) {
+      hintsLabel.setStyle("-fx-text-fill: red;");
+    }
   }
 
   /** Terminate text to speech */

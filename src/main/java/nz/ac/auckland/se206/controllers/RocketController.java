@@ -88,6 +88,7 @@ public class RocketController {
   @FXML private Label timer;
 
   private boolean isRoomFirstEntered = false;
+  private boolean currentHint = false;
 
   public void initialize() {
     hudElements = new ArrayList<Object>();
@@ -212,6 +213,9 @@ public class RocketController {
   // Dependent on the state of the rightpad, the memory game will be revealed
   private void handleRightMeowPadActivation() {
     GameState.isRightMeowPadActivated = true;
+    if (GameState.isLeftMeowPadActivated && GameState.note1Found && GameState.note2Found) {
+      resetCurrentHint();
+    }
 
     // Generate message
     // only if both notes are found AND left meow pad is not activated
@@ -224,12 +228,6 @@ public class RocketController {
             // Call GPT
             @Override
             protected Void call() throws Exception {
-              GptActions.chatCompletionRequest3 =
-                  new ChatCompletionRequest()
-                      .setN(1)
-                      .setTemperature(0.2)
-                      .setTopP(0.5)
-                      .setMaxTokens(100);
               ChatMessage chatMessage;
               // depends on difficulty
               if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
@@ -324,6 +322,9 @@ public class RocketController {
   private void handleLeftMeowPadActivation() {
     System.out.println("left Meow pad activated");
     GameState.isLeftMeowPadActivated = true;
+    if (GameState.note1Found && GameState.note2Found) {
+      resetCurrentHint();
+    }
     // Generate message
     // only if both notes are found AND right meow pad is not activated
     if (GameState.note1Found && GameState.note2Found && !GameState.isRightMeowPadActivated) {
@@ -335,12 +336,6 @@ public class RocketController {
             // Call GPT
             @Override
             protected Void call() throws Exception {
-              GptActions.chatCompletionRequest3 =
-                  new ChatCompletionRequest()
-                      .setN(1)
-                      .setTemperature(0.2)
-                      .setTopP(0.5)
-                      .setMaxTokens(100);
               ChatMessage chatMessage;
               // depends on difficulty
               if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
@@ -683,10 +678,11 @@ public class RocketController {
 
   // Method for replying
   public void reply() {
-    String message = replyTextField.getText();
-    if (message.trim().isEmpty()) {
+    String message = replyTextField.getText().trim();
+    if (message.isEmpty()) {
       return;
     }
+    System.out.println("replying: " + message);
     // clear reply text field
     replyTextField.clear();
     // Disable reply button
@@ -702,6 +698,8 @@ public class RocketController {
     chatPane.setVisible(false);
     // hide reply area
     toggleReplyArea();
+    // hide return button
+    back.setVisible(false);
 
     // Task for calling GPT
     Task<Void> replyTask =
@@ -709,27 +707,118 @@ public class RocketController {
           // Call GPT
           @Override
           protected Void call() throws Exception {
-            ChatMessage msg = new ChatMessage("user", message);
-            ChatMessage lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest3);
+            ChatMessage lastMsg;
+            // If 'Meowlp' are the first six characters of the message, case insensitive, then give
+            // hint
+            // first check if message is six characters or more
+            if (message.length() >= 6) {
+              System.out.println("more than 6 characters");
+              if (message.substring(0, 6).equalsIgnoreCase("Meowlp")) {
+                System.out.println("mewolp");
+
+                // Call GPT for hint
+                // If hard difficulty or hints used
+                if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD
+                    || GameState.isHintUsed) {
+                  lastMsg =
+                      GptActions.runGpt(
+                          new ChatMessage("user", GptPromptEngineering.getHintMessageHard()),
+                          GptActions.chatCompletionRequest2);
+                } else {
+                  // If current hint is used
+                  if (currentHint) {
+                    lastMsg =
+                        GptActions.runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getHintMessageNone()),
+                            GptActions.chatCompletionRequest2);
+                  } else {
+                    // Update GameState if medium difficulty
+                    if (GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
+                      GameState.hintsLeft--;
+                    }
+
+                    // hints depending on game states
+                    if (!GameState.note1Found) {
+                      // note 1 hint
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "I recall I dropped a note somewhere outside the rocket"
+                                          + " while playing with my toy.")),
+                              GptActions.chatCompletionRequest3);
+                    } else if (GameState.note1Found && !GameState.note2Found) {
+                      // note 2 hint
+                      lastMsg =
+                          GptActions.runGpt(
+                              new ChatMessage(
+                                  "user",
+                                  GptPromptEngineering.getHintMessage(
+                                      "I recall I dropped a note somewhere in the pantry while"
+                                          + " eating.")),
+                              GptActions.chatCompletionRequest3);
+                    } else {
+                      if (!GameState.isLeftMeowPadActivated) {
+                        // left meow pad hint
+                        lastMsg =
+                            GptActions.runGpt(
+                                new ChatMessage(
+                                    "user",
+                                    GptPromptEngineering.getHintMessage(
+                                        "The yellow note seems to suggest holding the left meow pad"
+                                            + " down.")),
+                                GptActions.chatCompletionRequest3);
+                      } else if (GameState.isLeftMeowPadActivated
+                          && !GameState.isRightMeowPadActivated) {
+                        // right meow pad hint
+                        lastMsg =
+                            GptActions.runGpt(
+                                new ChatMessage(
+                                    "user",
+                                    GptPromptEngineering.getHintMessage(
+                                        "The pink note seems to suggest wiggling the right meow pad"
+                                            + " around.")),
+                                GptActions.chatCompletionRequest3);
+                      } else {
+                        // memory game hint
+                        lastMsg =
+                            GptActions.runGpt(
+                                new ChatMessage(
+                                    "user",
+                                    GptPromptEngineering.getHintMessage(
+                                        "The verification puzzle requires you to memorise the"
+                                            + " pattern shown then recreate it. Once completed the"
+                                            + " button will be unlocked!")),
+                                GptActions.chatCompletionRequest3);
+                      }
+                    }
+                    currentHint = true;
+                    // If hints left is 0
+                    if (GameState.hintsLeft == 0 && !GameState.isHintUsed) {
+                      hintsUsed();
+                    }
+                  }
+                }
+              } else {
+                System.out.println("meow");
+                ChatMessage msg = new ChatMessage("user", message);
+                lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
+              }
+            } else {
+              System.out.println("meow");
+              ChatMessage msg = new ChatMessage("user", message);
+              lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
+            }
 
             Platform.runLater(
                 () -> {
                   // Update text area
                   GptActions.updateTextAreaAll(lastMsg);
-                  // Check if reply had the word 'Sure' and game difficulty is medium
-                  if (lastMsg.getContent().contains("Sure")
-                      && GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
-                    // update hints left
-                    GameState.hintsLeft--;
-                    // update hint label
-                    GameState.updateAllHintsLabel();
-                    // if hints left is 0
-                    if (GameState.hintsLeft == 0) {
-                      GameSettings.difficulty = GameSettings.GameDifficulty.HARD;
-                      GameState.isHintUsed = true;
-                      hintsUsed();
-                    }
-                  }
+
+                  // Update hint label
+                  GameState.updateAllHintsLabel();
+
                   // Enable reply button
                   replyImage.setDisable(false);
                   replyImage.setOpacity(1);
@@ -742,6 +831,8 @@ public class RocketController {
                   catImageActive.setDisable(false);
                   // Show reply area
                   toggleReplyArea();
+                  // Show return button
+                  back.setVisible(true);
                 });
 
             return null;
@@ -872,42 +963,12 @@ public class RocketController {
 
   /** Method that calls GPT when hints are used up in medium difficulty */
   public void hintsUsed() {
-    // Disable cat
-    catImageActive.setDisable(true);
-    // change image to thinking cat
-    Image image = new Image("images/ThinkingCat.png");
-    catImageActive.setImage(image);
-    // send message to GPT
-    Task<Void> initiateDeviceTask =
-        new Task<Void>() {
-          // Call GPT
-          @Override
-          protected Void call() throws Exception {
-            GptActions.chatCompletionRequest2 =
-                new ChatCompletionRequest()
-                    .setN(1)
-                    .setTemperature(0.2)
-                    .setTopP(0.5)
-                    .setMaxTokens(100);
-            GptActions.runGpt(
-                new ChatMessage("user", GptPromptEngineering.sendHintsUsed()),
-                GptActions.chatCompletionRequest2);
-
-            Platform.runLater(
-                () -> {
-                  // Change image to active cat
-                  Image image = new Image("images/NeutralCat.png");
-                  catImageActive.setImage(image);
-                  // Enable cat
-                  catImageActive.setDisable(false);
-                });
-
-            return null;
-          }
-        };
-
-    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
-    initiateDeviceThread.start();
+    // Change difficulty to hard to ensure future prompts are given in hard difficulty which include
+    // no hints.
+    GameSettings.difficulty = GameSettings.GameDifficulty.HARD;
+    GameState.isHintUsed = true;
+    // Change hints label text to red
+    hintsLabel.setStyle("-fx-text-fill: red;");
   }
 
   /** Updates hint label */
@@ -918,5 +979,14 @@ public class RocketController {
       return;
     }
     hintsLabel.setText("Hints left: " + GameState.hintsLeft);
+    // If no hints left, change label text to red
+    if (GameState.hintsLeft == 0) {
+      hintsLabel.setStyle("-fx-text-fill: red;");
+    }
+  }
+
+  /** Reset current hint to false */
+  public void resetCurrentHint() {
+    currentHint = false;
   }
 }

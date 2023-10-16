@@ -36,14 +36,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="catImageAwoken" fitHeight="173.0" fitWidth="205.0" layoutX="487.0" layoutY="284.0" onMouseClicked="#clickCatAwoken" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/AwokenCat.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </ImageView>
       <ImageView fx:id="catImageActive" fitHeight="173.0" fitWidth="205.0" layoutX="543.0" layoutY="294.0" onMouseClicked="#clickCatActive" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/NeutralCat.PNG" />
@@ -263,7 +255,26 @@
             </CheckBox>
          </children>
       </Pane>
-      <Rectangle fx:id="dim" arcHeight="5.0" arcWidth="5.0" height="550.0" opacity="0.46" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="740.0" />
+      <Pane layoutX="42.0" layoutY="2.0" prefHeight="113.0" prefWidth="163.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="35.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
+            <Label fx:id="timer" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
+               <font>
+                  <Font name="Copperplate" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Rectangle fx:id="logHover" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="103.0" layoutX="577.0" layoutY="26.0" onMouseExited="#onLeaveLog" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="89.0" />
+      <Rectangle fx:id="dim" arcHeight="5.0" arcWidth="5.0" height="550.0" opacity="0.46" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="740.0" />
+      <ImageView fx:id="catImageAwoken" fitHeight="173.0" fitWidth="205.0" layoutX="487.0" layoutY="284.0" onMouseClicked="#clickCatAwoken" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/AwokenCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
       <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="486.0" layoutY="340.0" onMouseClicked="#catInitialise" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/SleepingCat.PNG" />
