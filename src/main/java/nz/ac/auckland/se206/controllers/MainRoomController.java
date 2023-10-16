@@ -76,6 +76,9 @@ public class MainRoomController {
   @FXML private Label note1Count;
   @FXML private Label note2Count;
   private ArrayList<Object> hudElements;
+  @FXML private Rectangle highlightTorch;
+  @FXML private Rectangle highlightNote1;
+  @FXML private Rectangle highlightNote2;
 
   // Task Log
   @FXML private ImageView log;
@@ -767,5 +770,36 @@ public class MainRoomController {
     if (textToSpeech != null) {
       textToSpeech.terminate();
     }
+  }
+
+  // Hud highlight methods
+  @FXML
+  public void onHoverTorch(MouseEvent event) {
+    highlightTorch.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveTorch(MouseEvent event) {
+    highlightTorch.setVisible(false);
+  }
+
+  @FXML
+  public void onHoverNote1(MouseEvent event) {
+    highlightNote1.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveNote1(MouseEvent event) {
+    highlightNote1.setVisible(false);
+  }
+
+  @FXML
+  public void onHoverNote2(MouseEvent event) {
+    highlightNote2.setVisible(true);
+  }
+
+  @FXML
+  public void onLeaveNote2(MouseEvent event) {
+    highlightNote2.setVisible(false);
   }
 }

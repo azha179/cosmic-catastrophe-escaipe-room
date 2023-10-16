@@ -150,6 +150,8 @@ public class MemoryGameController {
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
       rocket.getLaunch().setDisable(false);
 
+      setAllGreen();
+
       text.setText(("  /|\n(˚ˎ 。7\n|、˜〵\nじしˍ,)/"));
 
       Timeline timeline =
@@ -164,7 +166,25 @@ public class MemoryGameController {
     }
   }
 
-  // savve the buttons that the user inupts
+  private void setAllGreen() {
+    Field[] buttonFields = getClass().getDeclaredFields();
+
+    for (Field field : buttonFields) {
+      if (field.getName().startsWith("button")) {
+        try {
+          ImageView button = (ImageView) field.get(this);
+          // sets each button green
+          setToGreen(button);
+          // disables button
+          button.setDisable(true);
+        } catch (IllegalAccessException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+
+  // save the buttons that the user inupts
   private void initialiseUserData() {
     Field[] buttonFields = getClass().getDeclaredFields();
     // set user data into the array

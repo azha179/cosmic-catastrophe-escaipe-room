@@ -25,7 +25,9 @@ public class TreeController {
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     back.setVisible(true);
-    Hud.updateNote2(true, "x1");
+    if (!GameState.isNotesResolved) {
+      Hud.updateNote2(true, "x1");
+    }
   }
 
   public Label getTimer() {
