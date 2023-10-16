@@ -13,14 +13,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
    <children>
       <ImageView fx:id="roomImage" fitHeight="550.0" fitWidth="740.0" pickOnBounds="true">
          <image>
             <Image url="@../images/MainScreen.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="rocketImage" fitHeight="363.0" fitWidth="376.0" layoutX="33.0" layoutY="82.0" onMouseClicked="#clickRocket" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rocketImage" disable="true" fitHeight="363.0" fitWidth="376.0" layoutX="33.0" layoutY="82.0" onMouseClicked="#clickRocket" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/RocketShip.PNG" />
          </image>
@@ -28,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="pantryImage" fitHeight="125.0" fitWidth="114.0" layoutX="339.0" layoutY="294.0" onMouseClicked="#clickPantry" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pantryImage" disable="true" fitHeight="125.0" fitWidth="114.0" layoutX="339.0" layoutY="294.0" onMouseClicked="#clickPantry" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/PantryBuilding.PNG" />
          </image>
@@ -263,15 +263,6 @@
             </CheckBox>
          </children>
       </Pane>
-      <Rectangle fx:id="dim" arcHeight="5.0" arcWidth="5.0" height="550.0" opacity="0.46" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="740.0" />
-      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="486.0" layoutY="340.0" onMouseClicked="#catInitialise" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/SleepingCat.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="659.0" layoutY="7.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Settings.PNG" />
@@ -323,5 +314,14 @@
             </Label>
          </children>
       </Pane>
+      <Rectangle fx:id="dim" arcHeight="5.0" arcWidth="5.0" height="550.0" opacity="0.46" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="740.0" />
+      <ImageView fx:id="catImageSleep" fitHeight="125.0" fitWidth="189.0" layoutX="486.0" layoutY="340.0" onMouseClicked="#catInitialise" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/SleepingCat.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

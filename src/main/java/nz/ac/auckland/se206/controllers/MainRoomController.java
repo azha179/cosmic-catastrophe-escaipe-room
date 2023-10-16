@@ -224,6 +224,9 @@ public class MainRoomController {
                       });
                   // Enable cat
                   catImageSleep.setDisable(false);
+                  // enabling room switches
+                  rocketImage.setDisable(false);
+                  pantryImage.setDisable(false);
                 });
 
             Platform.runLater(
