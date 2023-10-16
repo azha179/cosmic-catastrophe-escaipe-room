@@ -7,12 +7,6 @@ import nz.ac.auckland.se206.controllers.RocketController;
 /** Represents the state of the game. */
 public class GameState {
 
-  /** Indicates whether the riddle has been resolved. */
-  public static boolean isRiddleResolved = false;
-
-  /** Indicates whether the key has been found. */
-  public static boolean isKeyFound = false;
-
   public static boolean isGameActive = false;
 
   public static boolean toyFound = false;
@@ -47,6 +41,7 @@ public class GameState {
 
   public static boolean isHintUsed = false;
 
+  /** Updates the hint labels of all scenes */
   public static void updateAllHintsLabel() {
     MainRoomController mainRoomController =
         (MainRoomController) SceneManager.getController("mainroom");

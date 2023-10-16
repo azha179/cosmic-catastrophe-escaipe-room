@@ -7,8 +7,8 @@ public class ButtonSequence {
   public static ArrayList<Integer> correctSequence = new ArrayList<Integer>();
   public static ArrayList<Integer> playerSequence = new ArrayList<Integer>();
 
+  /** Initialises the correct sequence with 5 random integers */
   public static void initialiseCorrectSequence() {
-
     for (int i = 0; i < 5; i++) {
       // random integer from 1 - 16
       int randomInt = ThreadLocalRandom.current().nextInt(1, 17);
@@ -16,10 +16,16 @@ public class ButtonSequence {
     }
   }
 
+  /**
+   * Adds integer to the player sequence
+   *
+   * @param num the integer to add
+   */
   public static void add(int num) {
     playerSequence.add(num);
   }
 
+  /** Clears the player sequence */
   public static void clear() {
     playerSequence.clear();
   }

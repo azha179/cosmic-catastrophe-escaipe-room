@@ -14,6 +14,7 @@ public class FoodRecipe {
   public static ArrayList<ImageView> playerRecipe = new ArrayList<ImageView>();
   public static String food;
 
+  /** Initialises the desired recipe with 3 random ingredients */
   public static void initialiseDesiredRecipe() {
 
     // adds 1 random base ingredient
@@ -34,6 +35,12 @@ public class FoodRecipe {
     food = FoodRecipe.recipeToString(FoodRecipe.desiredRecipe);
   }
 
+  /**
+   * Converts the recipe to a string
+   *
+   * @param recipe the recipe to convert
+   * @return the recipe as a string
+   */
   public static String recipeToString(ArrayList<ImageView> recipe) {
 
     String string = "";
@@ -63,8 +70,13 @@ public class FoodRecipe {
     return string;
   }
 
+  /**
+   * Reorders the recipe to be in the correct order
+   *
+   * @param recipe the recipe to reorder
+   */
   public static void reorderRecipe(ArrayList<ImageView> recipe) {
-
+    // Comparator to sort the recipe
     Comparator<ImageView> comparator =
         new Comparator<ImageView>() {
           @Override
@@ -75,10 +87,16 @@ public class FoodRecipe {
           }
         };
 
+    // Sort the recipe
     Collections.sort(recipe, comparator);
   }
 
-  // Takes the ingredient imageview and translates it to its string name
+  /**
+   * Takes the ingredient imageview and translates it to its string name
+   *
+   * @param ingredient the ingredient to convert
+   * @return the ingredient as a string
+   */
   public static String ingredientToString(ImageView ingredient) {
 
     String string = "";
@@ -147,16 +165,25 @@ public class FoodRecipe {
     return string;
   }
 
+  /**
+   * Checks if one recipe is equal to another
+   *
+   * @param recipe1 the first recipe
+   * @param recipe2 the second recipe
+   * @return true if the recipes are equal, false otherwise
+   */
   public static boolean checkEqual(ArrayList<ImageView> recipe1, ArrayList<ImageView> recipe2) {
+    // if the recipes are different sizes, they are not equal
     if (recipe1.size() != recipe2.size()) {
       return false;
     }
-
+    // if the recipes are the same size, check if they contain the same ingredients
     for (ImageView ingredient : recipe1) {
       if (!recipe2.contains(ingredient)) {
         return false;
       }
     }
+    // if the recipes are the same size and contain the same ingredients, they are equal
     return true;
   }
 }
