@@ -32,9 +32,9 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /**
- * Controller for the pantry interior screen
+ * Controller for the pantry interior screen.
  *
- * <p>Handles the click and hover events for the ingredients, notes, cat and chat
+ * <p>Handles the click and hover events for the ingredients, notes, cat and chat.
  */
 public class PantryController {
 
@@ -162,7 +162,7 @@ public class PantryController {
   /**
    * Getter method for the timer label.
    *
-   * @return the timer label
+   * @return the timer label.
    */
   public Label getTimer() {
     return timer;
@@ -171,7 +171,7 @@ public class PantryController {
   /**
    * Getter method for the hud elements.
    *
-   * @return the hud elements
+   * @return the hud elements.
    */
   public ArrayList<Object> getHudElements() {
     return hudElements;
@@ -180,7 +180,7 @@ public class PantryController {
   /**
    * Getter method for the task list.
    *
-   * @return the task list
+   * @return the task list.
    */
   public ArrayList<CheckBox> getTasks() {
     return taskList;
@@ -192,10 +192,10 @@ public class PantryController {
   }
 
   /**
-   * Method to put drop shadow behind image if it is selected
+   * Method to put drop shadow behind image if it is selected.
    *
-   * @param image the image to put drop shadow behind
-   * @param colour the colour of the drop shadow
+   * @param image the image to put drop shadow behind.
+   * @param colour the colour of the drop shadow.
    */
   public void dropShadow(ImageView image, String colour) {
     DropShadow dropShadow = new DropShadow();
@@ -214,7 +214,7 @@ public class PantryController {
     shadowArray.add(image);
   }
 
-  /** Method to remove the selected highlight from all the array elements */
+  /** Method to remove the selected highlight from all the array elements. */
   public void removeShadow() {
     for (ImageView imageView : shadowArray) {
       imageView.setEffect(null);
@@ -224,7 +224,7 @@ public class PantryController {
   /**
    * Handles the click event on the ingredients.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickIngredient(MouseEvent event) {
@@ -413,7 +413,7 @@ public class PantryController {
   /**
    * Handles the click event on note 1 which displays the note 1 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote1(MouseEvent event) {
@@ -423,7 +423,7 @@ public class PantryController {
   /**
    * Handles the click event on note 2 which displays the note 2 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote2(MouseEvent event) {
@@ -433,7 +433,7 @@ public class PantryController {
   /**
    * Handles the click event on the note 1 return button which hides the note 1 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
@@ -444,7 +444,7 @@ public class PantryController {
   /**
    * Handles the click event on the note 2 return button which hides the note 2 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
@@ -455,7 +455,7 @@ public class PantryController {
   /**
    * Handles the click event on the back button which switches to the main room.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickBack(MouseEvent event) {
@@ -467,7 +467,7 @@ public class PantryController {
    * Handles the escape key press event which switches to the main room if the back button is
    * visible.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onPressKey(KeyEvent event) {
@@ -575,7 +575,7 @@ public class PantryController {
   /**
    * Handles the click event on awoken cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatAwoken(MouseEvent event) {
@@ -585,7 +585,7 @@ public class PantryController {
   /**
    * Handles the click event on sleeping cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatSleep(MouseEvent event) {
@@ -627,7 +627,7 @@ public class PantryController {
   /**
    * Handles the click event on active cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatActive(MouseEvent event) {
@@ -654,7 +654,7 @@ public class PantryController {
   /**
    * Handles the click event on the reply button.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickReply(MouseEvent event) {
@@ -681,7 +681,7 @@ public class PantryController {
     }
   }
 
-  /** Handles the GPT calling when replying */
+  /** Handles the GPT calling when replying. */
   public void reply() {
     // Stop the current text to speech
     TextManager.close();
@@ -840,7 +840,7 @@ public class PantryController {
   /**
    * Handles the click event on the plant.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickPlant(MouseEvent event) {
@@ -857,7 +857,7 @@ public class PantryController {
   /**
    * Handles the click event on the setting button which switches to the setting scene.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
@@ -924,7 +924,7 @@ public class PantryController {
   /**
    * Handles the hover event on interactable elements by scaling them up.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -935,7 +935,7 @@ public class PantryController {
   /**
    * Handles the unhover event on interactable elements by scaling them down.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
@@ -951,7 +951,7 @@ public class PantryController {
   /**
    * Handles the hover event on the log.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverLog(MouseEvent event) {
@@ -964,7 +964,7 @@ public class PantryController {
   /**
    * Handles the unhover event on the log.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveLog(MouseEvent event) {
@@ -1003,7 +1003,7 @@ public class PantryController {
   /**
    * Handles the hover event on the torch by making the highlight visible.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverTorch(MouseEvent event) {
@@ -1013,7 +1013,7 @@ public class PantryController {
   /**
    * Handles the unhover event on the torch by making the highlight invisible.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveTorch(MouseEvent event) {
@@ -1023,7 +1023,7 @@ public class PantryController {
   /**
    * Handles the hover event on note 1 by making the highlight visible.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverNote1(MouseEvent event) {
@@ -1033,7 +1033,7 @@ public class PantryController {
   /**
    * Handles the unhover event on note 1 by making the highlight invisible.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveNote1(MouseEvent event) {
@@ -1043,7 +1043,7 @@ public class PantryController {
   /**
    * Handles the hover event on note 2 by making the highlight visible.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverNote2(MouseEvent event) {
@@ -1053,14 +1053,14 @@ public class PantryController {
   /**
    * Handles the unhover event on note 2 by making the highlight invisible.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
   }
 
-  /* Get the textManager for the scene */
+  /* Get the textManager for the scene. */
   public TextManager getTextManager() {
     return textManager;
   }

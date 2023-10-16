@@ -4,7 +4,7 @@ import java.util.HashMap;
 import javafx.scene.Parent;
 
 /**
- * Stores the scenes and controllers
+ * Stores the scenes and controllers.
  *
  * <p>Stores the scenes and controllers. The scenes are stored in a hashmap with the AppUi as the
  * key and the scene as the value. The controllers are stored in a hashmap with the FXML file name

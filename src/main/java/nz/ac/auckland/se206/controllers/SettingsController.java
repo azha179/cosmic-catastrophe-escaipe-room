@@ -15,7 +15,7 @@ import nz.ac.auckland.se206.SceneManager;
 /**
  * Controller for the settings screen Manages user preferences and settings.
  *
- * <p>Handles the click event for the back button
+ * <p>Handles the click event for the back button.
  */
 public class SettingsController {
 
@@ -24,13 +24,21 @@ public class SettingsController {
   @FXML private Button backButton;
   @FXML private TextArea chatBox;
 
-  // Timer element
-  @FXML private Label timer;
+  // Preference elements
   @FXML private ToggleButton toggleButton;
   @FXML private Slider volumeSlider;
 
+  // Timer
+  @FXML private Label timer;
+
+  // Stores the volume
   private static double volume = 1;
 
+  /**
+   * Initializes the settings screen.
+   *
+   * <p>Sets the volume slider to 1 and the toggle button to off.
+   */
   public void initialize() {
     volumeSlider.setValue(1);
     // set the toggle (TextToSpeech) as off
@@ -40,7 +48,7 @@ public class SettingsController {
   /**
    * Getter method for the timer label.
    *
-   * @return the timer label
+   * @return the timer label.
    */
   public Label getTimer() {
     return timer;
@@ -50,9 +58,9 @@ public class SettingsController {
   // onClickBack is done
 
   /**
-   * Handles the click event for the back button and returns to the previous scene
+   * Handles the click event for the back button and returns to the previous scene.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickBack(MouseEvent event) {
@@ -60,9 +68,9 @@ public class SettingsController {
   }
 
   /**
-   * Handles the click event for the apply button and applies the settings
+   * Handles the click event for the apply button and applies the settings.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickApply(MouseEvent event) {
@@ -85,11 +93,12 @@ public class SettingsController {
   }
 
   /**
-   * Handles the click event for the toggle button and changes the text on the button
+   * Handles the click event for the toggle button and changes the text on the button.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
-  public void onToggleClicked(ActionEvent event) {
+  @FXML
+  private void onToggleClicked(ActionEvent event) {
     if (toggleButton.isSelected()) {
       toggleButton.setText("Turn Off");
     } else {
@@ -105,7 +114,7 @@ public class SettingsController {
   /**
    * Getter method for the chat box.
    *
-   * @return the chat box
+   * @return the chat box.
    */
   public TextArea getChatBox() {
     return chatBox;

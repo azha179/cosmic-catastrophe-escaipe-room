@@ -43,7 +43,7 @@ public class GameState {
 
   public static boolean textToSpeech = false;
 
-  /** Updates the hint labels of all scenes */
+  /** Updates the hint labels of all scenes. */
   public static void updateAllHintsLabel() {
     MainRoomController mainRoomController =
         (MainRoomController) SceneManager.getController("mainroom");

@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.image.ImageView;
 
 /**
- * Stores the desired recipe, the player recipe and the ingredients
+ * Stores the desired recipe, the player recipe and the ingredients.
  *
  * <p>Stores the desired recipe, the player recipe and the ingredients. The desired recipe is
  * initialised with 3 random ingredients. The player recipe is cleared when the player loses or
@@ -22,7 +22,7 @@ public class FoodRecipe {
   public static ArrayList<ImageView> playerRecipe = new ArrayList<ImageView>();
   public static String food;
 
-  /** Initialises the desired recipe with 3 random ingredients */
+  /** Initialises the desired recipe with 3 random ingredients. */
   public static void initialiseDesiredRecipe() {
 
     // adds 1 random base ingredient
@@ -46,10 +46,10 @@ public class FoodRecipe {
   }
 
   /**
-   * Converts the recipe to a string
+   * Converts the recipe to a string.
    *
-   * @param recipe the recipe to convert
-   * @return the recipe as a string
+   * @param recipe the recipe to convert.
+   * @return the recipe as a string.
    */
   public static String recipeToString(ArrayList<ImageView> recipe) {
     // converts the recipe to a string
@@ -81,9 +81,9 @@ public class FoodRecipe {
   }
 
   /**
-   * Reorders the recipe to be in the correct order
+   * Reorders the recipe to be in the correct order.
    *
-   * @param recipe the recipe to reorder
+   * @param recipe the recipe to reorder.
    */
   public static void reorderRecipe(ArrayList<ImageView> recipe) {
     // Comparator to sort the recipe
@@ -102,10 +102,10 @@ public class FoodRecipe {
   }
 
   /**
-   * Takes the ingredient imageview and translates it to its string name
+   * Takes the ingredient imageview and translates it to its string name.
    *
-   * @param ingredient the ingredient to convert
-   * @return the ingredient as a string
+   * @param ingredient the ingredient to convert.
+   * @return the ingredient as a string.
    */
   public static String ingredientToString(ImageView ingredient) {
 
@@ -176,11 +176,11 @@ public class FoodRecipe {
   }
 
   /**
-   * Checks if one recipe is equal to another
+   * Checks if one recipe is equal to another.
    *
-   * @param recipe1 the first recipe
-   * @param recipe2 the second recipe
-   * @return true if the recipes are equal, false otherwise
+   * @param recipe1 the first recipe.
+   * @param recipe2 the second recipe.
+   * @return true if the recipes are equal, false otherwise.
    */
   public static boolean checkEqual(ArrayList<ImageView> recipe1, ArrayList<ImageView> recipe2) {
     // if the recipes are different sizes, they are not equal

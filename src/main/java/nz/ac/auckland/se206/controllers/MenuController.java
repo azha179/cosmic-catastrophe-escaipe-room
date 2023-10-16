@@ -19,9 +19,9 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /**
- * Controller for the menu screen
+ * Controller for the menu screen.
  *
- * <p>Handles the click and hover events for the difficulty and time limit rectangles
+ * <p>Handles the click and hover events for the difficulty and time limit rectangles.
  */
 public class MenuController {
 
@@ -48,9 +48,9 @@ public class MenuController {
   public void initialize() {}
 
   /**
-   * Handles the click event for easy difficulty and sets the difficulty to easy
+   * Handles the click event for easy difficulty and sets the difficulty to easy.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickEasy(MouseEvent event) {
@@ -60,9 +60,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the click event for medium difficulty and sets the difficulty to medium
+   * Handles the click event for medium difficulty and sets the difficulty to medium.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickMedium(MouseEvent event) {
@@ -74,9 +74,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the click event for hard difficulty and sets the difficulty to hard
+   * Handles the click event for hard difficulty and sets the difficulty to hard.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickHard(MouseEvent event) {
@@ -88,9 +88,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the click event for the 2 minute time limit and sets the time limit to 2 minutes
+   * Handles the click event for the 2 minute time limit and sets the time limit to 2 minutes.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickTwo(MouseEvent event) {
@@ -99,9 +99,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the click event for the 4 minute time limit and sets the time limit to 4 minutes
+   * Handles the click event for the 4 minute time limit and sets the time limit to 4 minutes.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickFour(MouseEvent event) {
@@ -110,9 +110,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the click event for the 6 minute time limit and sets the time limit to 6 minutes
+   * Handles the click event for the 6 minute time limit and sets the time limit to 6 minutes.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickSix(MouseEvent event) {
@@ -121,9 +121,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the click event for the play button and switches to the main room
+   * Handles the click event for the play button and switches to the main room.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickPlay(MouseEvent event) {
@@ -144,9 +144,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the click event for the settings button and switches to the settings menu
+   * Handles the click event for the settings button and switches to the settings menu.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
@@ -156,9 +156,9 @@ public class MenuController {
   }
 
   /**
-   * Changes the colour of the difficulty rectangles
+   * Changes the colour of the difficulty rectangles.
    *
-   * @param rectangle the rectangle to change the colour of
+   * @param rectangle the rectangle to change the colour of.
    */
   @FXML
   public void changeColourDifficulty(Rectangle rectangle) {
@@ -175,9 +175,9 @@ public class MenuController {
   }
 
   /**
-   * Changes the colour of the time limit rectangles
+   * Changes the colour of the time limit rectangles.
    *
-   * @param rectangle the rectangle to change the colour of
+   * @param rectangle the rectangle to change the colour of.
    */
   @FXML
   public void changeColourTime(Rectangle rectangle) {
@@ -194,9 +194,9 @@ public class MenuController {
   }
 
   /**
-   * Sets the effects of the selected rectangle
+   * Sets the effects of the selected rectangle.
    *
-   * @param rectangle the rectangle to set the effects of
+   * @param rectangle the rectangle to set the effects of.
    */
   @FXML
   public void selectedObject(Rectangle rectangle) {
@@ -214,9 +214,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the hover event for the interactable objects and scales the image up
+   * Handles the hover event for the interactable objects and scales the image up.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -225,9 +225,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the unhover event for the interactable objects and scales the image down
+   * Handles the unhover event for the interactable objects and scales the image down.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
@@ -236,9 +236,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the hover event for the difficulty rectangles and changes the opacity
+   * Handles the hover event for the difficulty rectangles and changes the opacity.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onMouseEnter(MouseEvent event) {
@@ -247,9 +247,9 @@ public class MenuController {
   }
 
   /**
-   * Handles the unhover event for the difficulty rectangles and changes the opacity
+   * Handles the unhover event for the difficulty rectangles and changes the opacity.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onMouseExit(MouseEvent event) {
@@ -257,12 +257,12 @@ public class MenuController {
     image.setOpacity(1);
   }
 
-  /** Switches to the main room */
+  /** Switches to the main room. */
   private void switchToRoom() {
     App.setUi(AppUi.MAIN_ROOM);
     GameState.isGameActive = true;
 
-    // Initialise the timer
+    /** Initialise the timer. */
     CountDownTimer.initialiseCountdownTimer();
   }
 }

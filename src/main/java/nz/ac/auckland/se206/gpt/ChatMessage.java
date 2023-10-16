@@ -9,8 +9,8 @@ public class ChatMessage {
   /**
    * Constructs a new ChatMessage object with the specified role and content.
    *
-   * @param role the role of the message (e.g., "user", "assistant")
-   * @param content the content of the message
+   * @param role the role of the message (e.g., "user", "assistant").
+   * @param content the content of the message.
    */
   public ChatMessage(String role, String content) {
     this.role = role;
@@ -20,7 +20,7 @@ public class ChatMessage {
   /**
    * Returns the role of the chat message.
    *
-   * @return the role
+   * @return the role.
    */
   public String getRole() {
     return role;
@@ -29,7 +29,7 @@ public class ChatMessage {
   /**
    * Returns the content of the chat message.
    *
-   * @return the content
+   * @return the content.
    */
   public String getContent() {
     return content;

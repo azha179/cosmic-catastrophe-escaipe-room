@@ -33,7 +33,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
- * Controller for the main room
+ * Controller for the main room.
  *
  * <p>Handles the click and hover events for the cat, rocket, pantry, torch, note1, note2, bush,
  * footprints, settings, log, reply, note1 return, note2 return, interactable objects, and the
@@ -161,7 +161,7 @@ public class MainRoomController {
   /**
    * Getter method for the timer label.
    *
-   * @return the timer label
+   * @return the timer label.
    */
   public Label getTimer() {
     return timer;
@@ -174,7 +174,7 @@ public class MainRoomController {
   /**
    * Getter method for the hud elements.
    *
-   * @return the hud elements
+   * @return the hud elements.
    */
   public ArrayList<Object> getHudElements() {
     return hudElements;
@@ -183,7 +183,7 @@ public class MainRoomController {
   /**
    * Getter method for the tasks.
    *
-   * @return the tasks
+   * @return the tasks.
    */
   public ArrayList<CheckBox> getTasks() {
     return taskList;
@@ -197,7 +197,7 @@ public class MainRoomController {
   /**
    * Handles the cat initialise click event at the start of the game.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
@@ -298,7 +298,7 @@ public class MainRoomController {
   /**
    * Handles the click event on awoken cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatAwoken(MouseEvent event) {
@@ -308,7 +308,7 @@ public class MainRoomController {
   /**
    * Handles the click event on sleeping cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatSleep(MouseEvent event) {
@@ -351,7 +351,7 @@ public class MainRoomController {
   /**
    * Handles the click event on active cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatActive(MouseEvent event) {
@@ -378,7 +378,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the reply button.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickReply(MouseEvent event) {
@@ -391,7 +391,7 @@ public class MainRoomController {
   /**
    * Handles the key press event on the reply text field.
    *
-   * @param event the key event
+   * @param event the key event.
    */
   @FXML
   public void onPressKeyReply(KeyEvent event) {
@@ -555,7 +555,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the rocket.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickRocket(MouseEvent event) {
@@ -580,7 +580,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the pantry.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickPantry(MouseEvent event) {
@@ -605,7 +605,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the torch on ground.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickTorchGround(MouseEvent event) {
@@ -621,7 +621,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the torch hud.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickTorch(MouseEvent event) {
@@ -688,7 +688,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the bush.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickBush(MouseEvent event) {
@@ -721,7 +721,7 @@ public class MainRoomController {
   /**
    * Handles the hover event on the footprints.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void hoverFootprints(MouseEvent event) {
@@ -761,7 +761,7 @@ public class MainRoomController {
   /**
    * Handles the unhover event on the footprints.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void unhoverFootprints(MouseEvent event) {
@@ -783,7 +783,7 @@ public class MainRoomController {
   /**
    * Method to enable the footprints.
    *
-   * @param index the index of the next footprint to be enabled
+   * @param index the index of the next footprint to be enabled.
    */
   private void enableFootprint(int index) {
     // if index is less than length of footprints, show and enable the next footprint
@@ -797,7 +797,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the settings which switches the scene to the settings view.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
@@ -810,7 +810,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the note1.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote1(MouseEvent event) {
@@ -821,7 +821,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the note2.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote2(MouseEvent event) {
@@ -832,7 +832,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the note1 return button.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
@@ -844,7 +844,7 @@ public class MainRoomController {
   /**
    * Handles the click event on the note2 return button.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
@@ -856,7 +856,7 @@ public class MainRoomController {
   /**
    * Handles the hover event on the interactable objects.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -868,7 +868,7 @@ public class MainRoomController {
   /**
    * Handles the unhover event on the interactable objects.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
@@ -880,7 +880,7 @@ public class MainRoomController {
   /**
    * Getter method for the cat text area.
    *
-   * @return the cat text area
+   * @return the cat text area.
    */
   public TextArea getCatTextArea() {
     return catTextArea;
@@ -889,7 +889,7 @@ public class MainRoomController {
   /**
    * Handles the hover event on the log.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverLog(MouseEvent event) {
@@ -901,7 +901,7 @@ public class MainRoomController {
   /**
    * Handles the unhover event on the log.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveLog(MouseEvent event) {
@@ -946,7 +946,7 @@ public class MainRoomController {
   /**
    * Handles the hover event on the torch which shows the torch highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverTorch(MouseEvent event) {
@@ -956,7 +956,7 @@ public class MainRoomController {
   /**
    * Handles the unhover event on the torch which hides the torch highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveTorch(MouseEvent event) {
@@ -966,7 +966,7 @@ public class MainRoomController {
   /**
    * Handles the hover event on the note1 which shows the note1 highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverNote1(MouseEvent event) {
@@ -976,7 +976,7 @@ public class MainRoomController {
   /**
    * Handles the unhover event on the note1 which hides the note1 highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveNote1(MouseEvent event) {
@@ -986,7 +986,7 @@ public class MainRoomController {
   /**
    * Handles the hover event on the note2 which shows the note2 highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverNote2(MouseEvent event) {
@@ -996,7 +996,7 @@ public class MainRoomController {
   /**
    * Handles the unhover event on the note2 which hides the note2 highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveNote2(MouseEvent event) {

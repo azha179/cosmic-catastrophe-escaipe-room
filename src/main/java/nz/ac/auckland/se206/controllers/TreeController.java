@@ -13,9 +13,9 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /**
- * Controller for the tree scene
+ * Controller for the tree scene.
  *
- * <p>Handles the click and hover events for the interactable objects
+ * <p>Handles the click and hover events for the interactable objects.
  */
 public class TreeController {
 
@@ -27,9 +27,9 @@ public class TreeController {
   @FXML private Label timer;
 
   /**
-   * Handles the click event for the note and collects the note
+   * Handles the click event for the note and collects the note.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickNote2(MouseEvent event) {
@@ -53,16 +53,16 @@ public class TreeController {
   /**
    * Getter method for the timer label.
    *
-   * @return the timer label
+   * @return the timer label.
    */
   public Label getTimer() {
     return timer;
   }
 
   /**
-   * Handles the click event for the back button and returns to the pantry scene
+   * Handles the click event for the back button and returns to the pantry scene.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickBack(MouseEvent event) {
@@ -70,9 +70,9 @@ public class TreeController {
   }
 
   /**
-   * Handles the hover event for the interactable objects and scales the image up
+   * Handles the hover event for the interactable objects and scales the image up.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -81,9 +81,9 @@ public class TreeController {
   }
 
   /**
-   * Handles the unhover event for the interactable objects and scales the image down
+   * Handles the unhover event for the interactable objects and scales the image down.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {

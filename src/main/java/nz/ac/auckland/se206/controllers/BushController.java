@@ -12,6 +12,11 @@ import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller for the bush screen.
+ *
+ * <p>Handles the click event for the cat toy and note.
+ */
 public class BushController {
   @FXML private ImageView backButton;
   @FXML private ImageView catToy;
@@ -21,18 +26,18 @@ public class BushController {
   @FXML private Label timer;
 
   /**
-   * Getter method for the timer
+   * Getter method for the timer.
    *
-   * @return the timer
+   * @return the timer.
    */
   public Label getTimer() {
     return timer;
   }
 
   /**
-   * Handles the click event for the cat toy and collects the toy
+   * Handles the click event for the cat toy and collects the toy.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickToy(MouseEvent event) {
@@ -58,9 +63,9 @@ public class BushController {
   }
 
   /**
-   * Handles the click event for the note and collects the note
+   * Handles the click event for the note and collects the note.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote1(MouseEvent event) {
@@ -85,9 +90,9 @@ public class BushController {
   }
 
   /**
-   * Handles the click event for the back button which switches to the main room
+   * Handles the click event for the back button which switches to the main room.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickBack(MouseEvent event) {
@@ -96,15 +101,15 @@ public class BushController {
     }
   }
 
-  /** Switches to the main room */
+  /** Switches to the main room. */
   private void switchToMainRoom() {
     App.setUi(AppUi.MAIN_ROOM);
   }
 
   /**
-   * Handles the hover event for the interactable objects
+   * Handles the hover event for the interactable objects.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -113,9 +118,9 @@ public class BushController {
   }
 
   /**
-   * Handles the leave event for the interactable objects
+   * Handles the leave event for the interactable objects.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {

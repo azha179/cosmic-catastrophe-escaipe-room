@@ -38,10 +38,10 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /**
- * Controller for the rocket interior screen
+ * Controller for the rocket interior screen.
  *
  * <p>Handles the click and hover events for the right/left meowpads, memory game, notes, cat and
- * chat
+ * chat.
  */
 public class RocketController {
 
@@ -154,7 +154,7 @@ public class RocketController {
   /**
    * Getter method for the timer label.
    *
-   * @return the timer label
+   * @return the timer label.
    */
   public Label getTimer() {
     return timer;
@@ -163,7 +163,7 @@ public class RocketController {
   /**
    * Getter method for the hud elements.
    *
-   * @return the hud elements
+   * @return the hud elements.
    */
   public ArrayList<Object> getHudElements() {
     return hudElements;
@@ -172,7 +172,7 @@ public class RocketController {
   /**
    * Getter method for the task list.
    *
-   * @return the task list
+   * @return the task list.
    */
   public ArrayList<CheckBox> getTasks() {
     return taskList;
@@ -186,7 +186,7 @@ public class RocketController {
   /**
    * Handles the click event for the back button and switches to the main room.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickBack(MouseEvent event) {
@@ -196,7 +196,7 @@ public class RocketController {
   /**
    * Handles the click event for the memory game rectangle and switches to the memory game.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickTemp(MouseEvent event) {
@@ -207,7 +207,7 @@ public class RocketController {
   /**
    * Handles the click event for note 1 and shows the note 1 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote1(MouseEvent event) {
@@ -217,7 +217,7 @@ public class RocketController {
   /**
    * Handles the click event for note 2 and shows the note 2 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote2(MouseEvent event) {
@@ -227,7 +227,7 @@ public class RocketController {
   /**
    * Handles the click event for note 1 return button and hides the note 1 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
@@ -238,7 +238,7 @@ public class RocketController {
   /**
    * Handles the click event for note 2 return button and hides the note 2 pane.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
@@ -255,7 +255,7 @@ public class RocketController {
   /**
    * Handles the press event for the right meow pad.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onPressRightMeowPad(MouseEvent event) {
@@ -269,7 +269,7 @@ public class RocketController {
   /**
    * Handles the release event for the right meow pad.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onReleaseRightMeowPad(MouseEvent event) {
@@ -279,7 +279,7 @@ public class RocketController {
   /**
    * Handles the mouse drag event for the right meow pad.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onMouseDrag(MouseEvent event) {
@@ -298,7 +298,7 @@ public class RocketController {
   /**
    * Handles the press event for the left meow pad.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onPressLeftMeowPad(MouseEvent event) {
@@ -312,7 +312,7 @@ public class RocketController {
   /**
    * Handles the release event for the left meow pad.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onReleaseLeftMeowPad(MouseEvent event) {
@@ -432,7 +432,7 @@ public class RocketController {
                   () -> {
                     // Set chat message to text area
                     GptActions.setChatMessage(chatMessage, catTextArea);
-                    // Show chat
+                    // Show chat pane
                     showChat();
                   });
 
@@ -571,7 +571,7 @@ public class RocketController {
   /**
    * Handles the click event on the launch button and switches to the win scene.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickLaunch(MouseEvent event) {
@@ -595,7 +595,7 @@ public class RocketController {
   /**
    * Getter method for the launch image view.
    *
-   * @return the launch image view
+   * @return the launch image view.
    */
   public ImageView getLaunch() {
     return this.launch;
@@ -736,7 +736,7 @@ public class RocketController {
   /**
    * Handles the click event on awoken cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatAwoken(MouseEvent event) {
@@ -746,7 +746,7 @@ public class RocketController {
   /**
    * Handles the click event on sleeping cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatSleep(MouseEvent event) {
@@ -788,7 +788,7 @@ public class RocketController {
   /**
    * Handles the click event on active cat.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickCatActive(MouseEvent event) {
@@ -815,7 +815,7 @@ public class RocketController {
   /**
    * Handles the click event on the reply button.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void clickReply(MouseEvent event) {
@@ -828,7 +828,7 @@ public class RocketController {
   /**
    * Handles the key press event on the reply text field.
    *
-   * @param event the key event
+   * @param event the key event.
    */
   @FXML
   public void onPressKeyReply(KeyEvent event) {
@@ -1025,7 +1025,7 @@ public class RocketController {
   /**
    * Handles the click event on the settings button and switches to the settings scene.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
@@ -1064,7 +1064,7 @@ public class RocketController {
   /**
    * Handles the hover event on interactable objects and scales them up.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
@@ -1075,7 +1075,7 @@ public class RocketController {
   /**
    * Handles the unhover event on interactable objects and scales them down.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
@@ -1110,7 +1110,7 @@ public class RocketController {
   /**
    * Getter method for the cat text area.
    *
-   * @return the cat text area
+   * @return the cat text area.
    */
   public TextArea getCatTextArea() {
     return catTextArea;
@@ -1119,7 +1119,7 @@ public class RocketController {
   /**
    * Handles the hover event on the log.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverLog(MouseEvent event) {
@@ -1131,7 +1131,7 @@ public class RocketController {
   /**
    * Handles the unhover event on the log.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveLog(MouseEvent event) {
@@ -1215,7 +1215,7 @@ public class RocketController {
   /**
    * Handles the hover event on the torch and shows the highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverTorch(MouseEvent event) {
@@ -1225,7 +1225,7 @@ public class RocketController {
   /**
    * Handles the unhover event on the torch and hides the highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveTorch(MouseEvent event) {
@@ -1235,7 +1235,7 @@ public class RocketController {
   /**
    * Handles the hover event on the note 1 and shows the highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverNote1(MouseEvent event) {
@@ -1245,7 +1245,7 @@ public class RocketController {
   /**
    * Handles the unhover event on the note 1 and hides the highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveNote1(MouseEvent event) {
@@ -1255,7 +1255,7 @@ public class RocketController {
   /**
    * Handles the hover event on the note 2 and shows the highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onHoverNote2(MouseEvent event) {
@@ -1265,14 +1265,14 @@ public class RocketController {
   /**
    * Handles the unhover event on the note 2 and hides the highlight.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
   }
 
-  /* Get the textManager for the scene */
+  /* Get the textManager for the scene. */
   public TextManager getTextManager() {
     return textManager;
   }
