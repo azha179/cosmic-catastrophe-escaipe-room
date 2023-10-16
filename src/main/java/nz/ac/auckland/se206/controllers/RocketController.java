@@ -32,6 +32,7 @@ import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TTSManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -95,6 +96,9 @@ public class RocketController {
 
   private boolean isRoomFirstEntered = false;
   private boolean currentHint = false;
+
+  // TTS
+  TTSManager ttsManager = new TTSManager();
 
   /** Initialise method for the rocket. */
   public void initialize() {
@@ -190,6 +194,7 @@ public class RocketController {
    */
   @FXML
   public void clickTemp(MouseEvent event) {
+    TTSManager.close();
     switchToMemoryGame();
   }
 
@@ -220,6 +225,7 @@ public class RocketController {
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
+    TTSManager.close();
     note1Pane.setVisible(false);
   }
 
@@ -230,11 +236,13 @@ public class RocketController {
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
+    TTSManager.close();
     note2Pane.setVisible(false);
   }
 
   /** Switches the scene to the main room. */
   private void switchToRoom() {
+    TTSManager.close();
     App.setUi(AppUi.MAIN_ROOM);
   }
 
@@ -355,6 +363,8 @@ public class RocketController {
                     showChat();
                   });
 
+              // tts for cat speaking
+              TTSManager.speakInitialise(chatMessage.getContent());
               return null;
             }
           };
@@ -420,6 +430,8 @@ public class RocketController {
                     showChat();
                   });
 
+              // tts for cat speaking
+              TTSManager.speakInitialise(chatMessage.getContent());
               return null;
             }
           };
@@ -471,6 +483,9 @@ public class RocketController {
                     // Show chat
                     showChat();
                   });
+
+              // tts for cat speaking
+              TTSManager.speakInitialise(chatMessage.getContent());
 
               return null;
             }
@@ -535,6 +550,9 @@ public class RocketController {
                     showChat();
                   });
 
+              // tts for cat speaking
+              TTSManager.speakInitialise(chatMessage.getContent());
+
               return null;
             }
           };
@@ -564,6 +582,7 @@ public class RocketController {
 
   /** Switches the scene to the win scene. */
   private void switchToWin() {
+    TTSManager.close();
     App.setUi(AppUi.WIN);
   }
 
@@ -695,6 +714,9 @@ public class RocketController {
                   catImageActive.setDisable(false);
                 });
 
+            // tts for cat speaking
+            TTSManager.speakInitialise(chatMessage.getContent());
+
             return null;
           }
         };
@@ -764,6 +786,7 @@ public class RocketController {
    */
   @FXML
   public void clickCatActive(MouseEvent event) {
+    TTSManager.close();
     System.out.println("cat clicked");
     // Hide active cat
     catImageActive.setVisible(false);
@@ -791,6 +814,7 @@ public class RocketController {
   @FXML
   public void clickReply(MouseEvent event) {
     System.out.println("reply clicked");
+    TTSManager.close();
     // call reply method
     reply();
   }
@@ -806,6 +830,7 @@ public class RocketController {
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
       System.out.println("enter pressed");
+      TTSManager.close();
       // call reply method
       reply();
     }
@@ -975,6 +1000,7 @@ public class RocketController {
                   // Show return button
                   back.setVisible(true);
                 });
+            TTSManager.speakInitialise(lastMsg.getContent());
 
             return null;
           }
@@ -991,6 +1017,7 @@ public class RocketController {
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
+    TTSManager.close();
     // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
@@ -1016,6 +1043,7 @@ public class RocketController {
     if (event.getCode() == KeyCode.ESCAPE) {
       // check if return button is visible
       if (back.isVisible()) {
+
         switchToRoom();
       }
     }
@@ -1230,5 +1258,9 @@ public class RocketController {
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
+  }
+
+  public TTSManager getTTS() {
+    return ttsManager;
   }
 }

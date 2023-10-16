@@ -41,6 +41,8 @@ public class GameState {
 
   public static boolean isHintUsed = false;
 
+  public static boolean textToSpeech = false;
+
   /** Updates the hint labels of all scenes */
   public static void updateAllHintsLabel() {
     MainRoomController mainRoomController =

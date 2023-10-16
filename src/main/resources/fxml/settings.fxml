@@ -2,10 +2,10 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
@@ -21,14 +21,14 @@
             <Image url="@../images/Menu2Image.PNG" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282743" height="376.0" layoutX="96.0" layoutY="70.0" opacity="0.64" stroke="BLACK" strokeType="INSIDE" width="570.0" />
-      <ImageView fitHeight="78.0" fitWidth="233.0" layoutX="97.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282743" height="410.0" layoutX="85.0" layoutY="69.0" opacity="0.64" stroke="BLACK" strokeType="INSIDE" width="596.0" />
+      <ImageView fitHeight="78.0" fitWidth="233.0" layoutX="105.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/SettingText.png" />
          </image>
       </ImageView>
-      <Separator layoutX="98.0" layoutY="111.0" prefHeight="11.0" prefWidth="542.0" />
-      <ToggleButton fx:id="ttsToggle" layoutX="320.0" layoutY="190.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="264.0" text="ToggleButton">
+      <Separator layoutX="110.0" layoutY="133.0" prefHeight="11.0" prefWidth="542.0" />
+      <ToggleButton fx:id="toggleButton" layoutX="315.0" layoutY="152.0" mnemonicParsing="false" onAction="#onToggleClicked" prefHeight="22.0" prefWidth="264.0" text="Turn On">
          <font>
             <Font name="Copperplate" size="13.0" />
          </font>
@@ -36,17 +36,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ToggleButton>
-      <Label layoutX="120.0" layoutY="138.0" prefHeight="31.0" prefWidth="160.0" text="Resolution" textFill="#ffdb67">
+      <Label layoutX="132.0" layoutY="194.0" text="Volume" textFill="#ffdb67">
          <font>
             <Font name="Copperplate" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="121.0" layoutY="240.0" text="Volume" textFill="#ffdb67">
-         <font>
-            <Font name="Copperplate" size="20.0" />
-         </font>
-      </Label>
-      <Slider fx:id="volumeSilder" layoutX="315.0" layoutY="243.0" prefHeight="16.0" prefWidth="268.0">
+      <Slider fx:id="volumeSlider" layoutX="317.0" layoutY="197.0" max="1.0" prefHeight="16.0" prefWidth="268.0" showTickMarks="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -54,12 +49,7 @@
             <Bloom />
          </effect>
       </Slider>
-      <Button fx:id="applyButton" layoutX="327.0" layoutY="291.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="87.0" text="Apply">
-         <font>
-            <Font name="Copperplate" size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="backButton" layoutX="127.0" layoutY="292.0" mnemonicParsing="false" onMouseClicked="#onClickBack" prefHeight="55.0" prefWidth="95.0" text="Back">
+      <Button fx:id="applyButton" layoutX="464.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#onClickApply" prefHeight="47.0" prefWidth="100.0" text="Apply">
          <font>
             <Font name="Copperplate" size="20.0" />
          </font>
@@ -67,17 +57,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="120.0" layoutY="192.0" text="Text to Speech" textFill="#ffdb67">
+      <Button fx:id="backButton" layoutX="145.0" layoutY="414.0" mnemonicParsing="false" onMouseClicked="#onClickBack" prefHeight="46.0" prefWidth="96.0" text="Back">
+         <font>
+            <Font name="Copperplate" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="129.0" layoutY="153.0" text="Text to Speech" textFill="#ffdb67">
          <font>
             <Font name="Copperplate" size="20.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="resolutionButton" layoutX="323.0" layoutY="139.0" prefHeight="26.0" prefWidth="264.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ChoiceBox>
-      <Pane layoutX="40.0" layoutY="4.0" prefHeight="113.0" prefWidth="163.0">
+      <Pane layoutX="6.0" layoutY="6.0" prefHeight="113.0" prefWidth="163.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="35.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
             <Label fx:id="timer" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
@@ -87,5 +80,6 @@
             </Label>
          </children>
       </Pane>
+      <TextArea fx:id="chatBox" layoutX="128.0" layoutY="229.0" prefHeight="171.0" prefWidth="460.0" />
    </children>
 </Pane>

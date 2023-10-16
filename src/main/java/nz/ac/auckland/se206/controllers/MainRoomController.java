@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TTSManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -106,6 +107,9 @@ public class MainRoomController {
   // Hints
   private int currentHint = 1;
 
+  // TTS
+  TTSManager ttsManager = new TTSManager();
+
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
@@ -155,6 +159,10 @@ public class MainRoomController {
    */
   public Label getTimer() {
     return timer;
+  }
+
+  public TTSManager getTTS() {
+    return ttsManager;
   }
 
   /**
@@ -257,23 +265,7 @@ public class MainRoomController {
                   dim.setVisible(false);
                 });
 
-            Platform.runLater(
-                () -> {
-
-                  // Text to speech task
-                  Task<Void> textToSpeechTask =
-                      new Task<Void>() {
-                        @Override
-                        protected Void call() throws Exception {
-                          textToSpeech = new TextToSpeech();
-                          textToSpeech.speak("Meow");
-                          return null;
-                        }
-                      };
-
-                  Thread textToSpeechThread = new Thread(textToSpeechTask);
-                  textToSpeechThread.start();
-                });
+            TTSManager.speakInitialise(chatMessage.getContent());
 
             return null;
           }
@@ -353,6 +345,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickCatActive(MouseEvent event) {
+    TTSManager.close();
     System.out.println("cat clicked");
     // Hide active cat
     catImageActive.setVisible(false);
@@ -379,6 +372,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickReply(MouseEvent event) {
+    TTSManager.close();
     System.out.println("reply clicked");
     // call reply method
     reply();
@@ -393,6 +387,7 @@ public class MainRoomController {
   public void onPressKeyReply(KeyEvent event) {
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
+      TTSManager.close();
       System.out.println("enter pressed");
       // call reply method
       reply();
@@ -530,6 +525,8 @@ public class MainRoomController {
                   // Show reply area
                   toggleReplyArea();
                 });
+            // tts for cat speaking
+            TTSManager.speakInitialise(lastMsg.getContent());
 
             return null;
           }
@@ -554,13 +551,9 @@ public class MainRoomController {
     System.out.println("rocket clicked");
   }
 
-  /** Switches the scene to bush */
-  private void switchToBush() {
-    App.setUi(AppUi.BUSH);
-  }
-
   /** Switches the scene to rocket */
   private void switchToRocket() {
+    TTSManager.close();
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to rocket
     Parent rocketScene = SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
@@ -585,6 +578,7 @@ public class MainRoomController {
 
   /** Switches the scene to pantry */
   private void switchToPantry() {
+    TTSManager.close();
     App.setUi(AppUi.PANTRY_INTERIOR);
     // gives focus to pantry
     Parent pantryScene = SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
@@ -697,6 +691,12 @@ public class MainRoomController {
     switchToBush();
   }
 
+  /** Switches the scene to bush */
+  private void switchToBush() {
+    TTSManager.close();
+    App.setUi(AppUi.BUSH);
+  }
+
   /**
    * Handles the hover event on the footprints.
    *
@@ -780,6 +780,7 @@ public class MainRoomController {
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
+    TTSManager.close();
     // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.MAIN_ROOM);
@@ -814,6 +815,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
+    TTSManager.close();
     // Hide note1Pane
     note1Pane.setVisible(false);
   }
@@ -825,6 +827,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
+    TTSManager.close();
     // Hide note2Pane
     note2Pane.setVisible(false);
   }

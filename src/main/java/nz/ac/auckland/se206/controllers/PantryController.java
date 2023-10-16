@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.Hover;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TTSManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -97,6 +98,9 @@ public class PantryController {
 
   // Timer element
   @FXML private Label timer;
+
+  // TTS
+  TTSManager ttsManager = new TTSManager();
 
   int currentHint = 1;
 
@@ -218,6 +222,8 @@ public class PantryController {
    */
   @FXML
   public void clickIngredient(MouseEvent event) {
+    TTSManager.close();
+
     // Get the image view of the ingredient clicked
     ImageView ingredient = (ImageView) event.getTarget();
     // If the ingredient is already selected or the recipe is resolved then return
@@ -308,6 +314,8 @@ public class PantryController {
                       // show return button
                       back.setVisible(true);
                     });
+                // tts for cat speaking
+                TTSManager.speakInitialise(chatMessage.getContent());
 
                 return null;
               }
@@ -383,6 +391,8 @@ public class PantryController {
                       // show return button
                       back.setVisible(true);
                     });
+                // tts for cat speaking
+                TTSManager.speakInitialise(chatMessage.getContent());
 
                 return null;
               }
@@ -421,6 +431,7 @@ public class PantryController {
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
+    TTSManager.close();
     note1Pane.setVisible(false);
   }
 
@@ -431,6 +442,7 @@ public class PantryController {
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
+    TTSManager.close();
     note2Pane.setVisible(false);
   }
 
@@ -441,6 +453,7 @@ public class PantryController {
    */
   @FXML
   public void clickBack(MouseEvent event) {
+
     switchToRoom();
   }
 
@@ -456,6 +469,7 @@ public class PantryController {
     if (event.getCode() == KeyCode.ESCAPE) {
       // check if return button is visible
       if (back.isVisible()) {
+
         switchToRoom();
       }
     }
@@ -463,6 +477,7 @@ public class PantryController {
 
   /** Switches the scene to the main room. */
   private void switchToRoom() {
+    TTSManager.close();
     App.setUi(AppUi.MAIN_ROOM);
   }
 
@@ -525,6 +540,8 @@ public class PantryController {
                   // show return button
                   back.setVisible(true);
                 });
+            // tts for cat speaking
+            TTSManager.speakInitialise(chatMessage.getContent());
 
             return null;
           }
@@ -607,6 +624,7 @@ public class PantryController {
   @FXML
   public void clickCatActive(MouseEvent event) {
     System.out.println("cat clicked");
+    TTSManager.close();
     // Hide active cat
     catImageActive.setVisible(false);
     // Show sleeping cat
@@ -633,6 +651,7 @@ public class PantryController {
   @FXML
   public void clickReply(MouseEvent event) {
     System.out.println("reply clicked");
+    TTSManager.close();
     // call reply method
     reply();
   }
@@ -648,6 +667,7 @@ public class PantryController {
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
       System.out.println("enter pressed");
+      TTSManager.close();
       // call reply method
       reply();
     }
@@ -792,6 +812,8 @@ public class PantryController {
                   // Show return button
                   back.setVisible(true);
                 });
+            // tts for cat speaking
+            TTSManager.speakInitialise(lastMsg.getContent());
 
             return null;
           }
@@ -808,7 +830,7 @@ public class PantryController {
    */
   @FXML
   public void clickPlant(MouseEvent event) {
-
+    TTSManager.close();
     // disable plant
     plantImage.setDisable(true);
 
@@ -825,6 +847,8 @@ public class PantryController {
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
+    TTSManager.close();
+
     // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
@@ -1020,5 +1044,9 @@ public class PantryController {
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
+  }
+
+  public TTSManager getTTS() {
+    return ttsManager;
   }
 }

@@ -45,6 +45,7 @@ public class CountDownTimer {
                       // time up - player loses
                       countdownTimeline.stop();
                       GameState.isGameActive = false;
+                      TTSManager.close();
                       App.setUi(AppUi.LOSS);
                     }
                   }
