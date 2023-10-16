@@ -25,10 +25,20 @@ public class SettingsController {
   // to ensure that back goes to the scene it was just in, use the getPreviousScene method when
   // onClickBack is done
 
+  /**
+   * Getter method for the timer label.
+   *
+   * @return the timer label
+   */
   public Label getTimer() {
     return timer;
   }
 
+  /**
+   * Handles the click event for the back button and returns to the previous scene
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClickBack(MouseEvent event) {
     App.setUi(SceneManager.getPreviousScene());

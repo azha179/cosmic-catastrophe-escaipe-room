@@ -52,6 +52,7 @@ public class MemoryGameController {
 
   private int sequenceIndex;
 
+  /** Initialise method which is called as soon as the class is loaded */
   public void initialize() {
     // creates a random button sequence
     ButtonSequence.initialiseCorrectSequence();
@@ -60,17 +61,33 @@ public class MemoryGameController {
     initialiseUserData();
   }
 
+  /**
+   * Getter method for the timer
+   *
+   * @return the timer
+   */
   public Label getTimer() {
     return timer;
   }
 
+  /**
+   * Handles the click event for the back button and switches to the rocket
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickBack(MouseEvent event) {
     switchToRocket();
   }
 
+  /**
+   * Handles the click event for the play button and plays the memory game
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickPlay(MouseEvent event) {
+    // if animation is running dont play again
     if (GameState.isAnimationRunning) {
       return;
     }
@@ -79,6 +96,7 @@ public class MemoryGameController {
     playSequence();
   }
 
+  /** Method which switches the scene to the rocket */
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to memory game
@@ -90,17 +108,26 @@ public class MemoryGameController {
     ButtonSequence.clear();
   }
 
+  /**
+   * Handles the key press event for the escape key and switches to the rocket
+   *
+   * @param event the key event
+   */
   @FXML
   public void onPressKey(KeyEvent event) {
-
     if (event.getCode() == KeyCode.ESCAPE) {
       switchToRocket();
     }
   }
 
+  /**
+   * Handles the click event for the buttons
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void pressButton(MouseEvent event) {
-
+    // if animation is running or game is resolved then return
     if (GameState.isAnimationRunning || GameState.isMemoryGameResolved) {
       return;
     }
@@ -109,9 +136,14 @@ public class MemoryGameController {
     setToGreen((ImageView) event.getTarget());
   }
 
+  /**
+   * Handles the release event for the buttons
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void releaseButton(MouseEvent event) {
-
+    // if animation is running or game is resolved then return
     if (GameState.isAnimationRunning || GameState.isMemoryGameResolved) {
       return;
     }
@@ -147,13 +179,16 @@ public class MemoryGameController {
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
 
+      // enables launch button
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
       rocket.getLaunch().setDisable(false);
 
       setAllGreen();
 
+      // Sets the text
       text.setText(("  /|\n(˚ˎ 。7\n|、˜〵\nじしˍ,)/"));
 
+      // Create a Timeline animation
       Timeline timeline =
           new Timeline(
               new KeyFrame(
@@ -166,9 +201,12 @@ public class MemoryGameController {
     }
   }
 
+  /** sets all buttons to green and disables them */
   private void setAllGreen() {
+    // gets all the buttons
     Field[] buttonFields = getClass().getDeclaredFields();
 
+    // sets each button green and disables them
     for (Field field : buttonFields) {
       if (field.getName().startsWith("button")) {
         try {
@@ -191,6 +229,7 @@ public class MemoryGameController {
     for (Field field : buttonFields) {
       if (field.getName().startsWith("button")) {
         try {
+          // get the number of the button
           int buttonNumber = Integer.parseInt(field.getName().substring(6));
           ImageView button = (ImageView) field.get(this);
           button.setUserData(Integer.toString(buttonNumber));
@@ -217,7 +256,9 @@ public class MemoryGameController {
     }
   }
 
+  /** sets the image to green */
   private void setToGreen(ImageView image) {
+    // ColorAdjust is used to change the hue, brightness, contrast and saturation of the image
     ColorAdjust colorAdjust = new ColorAdjust();
     colorAdjust.setHue(0.56);
     colorAdjust.setBrightness(0.26);
@@ -226,13 +267,15 @@ public class MemoryGameController {
     image.setEffect(colorAdjust);
   }
 
+  /** sets the image to original */
   private void setToOriginal(ImageView image) {
+    // ColorAdjust is used to change the hue, brightness, contrast and saturation of the image
     ColorAdjust colorAdjust = new ColorAdjust();
     colorAdjust.setHue(0);
     image.setEffect(colorAdjust);
   }
 
-  // The sequence of the buttons which is random
+  /** plays the sequence of buttons which are randomised */
   private void playSequence() {
     // if game is already running dont play again
     GameState.isAnimationRunning = true;
@@ -240,7 +283,10 @@ public class MemoryGameController {
     int currentInteger = ButtonSequence.correctSequence.get(sequenceIndex);
     ImageView button = findButtonByUserData(currentInteger);
 
+    // Set the button to green
     setToGreen(button);
+
+    // Pause for 0.6 seconds
     PauseTransition firstPause = new PauseTransition(Duration.seconds(0.6));
     firstPause.setOnFinished(
         (ActionEvent e) -> {
@@ -258,12 +304,22 @@ public class MemoryGameController {
     firstPause.play();
   }
 
+  /**
+   * Handles the hover event for the back button and scales the image up
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
 
+  /**
+   * Handles the unhover event for the back button and scales the image down
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();

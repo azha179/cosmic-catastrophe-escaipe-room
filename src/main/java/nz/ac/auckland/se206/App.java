@@ -21,6 +21,12 @@ public class App extends Application {
     launch();
   }
 
+  /**
+   * Sets the root of the scene to the input FXML file.
+   *
+   * @param fxml The name of the FXML file.
+   * @throws IOException If the file is not found.
+   */
   public static void setRoot(String fxml) throws IOException {
     scene.setRoot(loadFxml(fxml));
   }
@@ -34,6 +40,11 @@ public class App extends Application {
     scene.setRoot(SceneManager.getAppUi(newUi));
   }
 
+  /**
+   * Getter method for the scene.
+   *
+   * @return the scene
+   */
   public static Scene getScene() {
     return scene;
   }
@@ -62,6 +73,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+    // Add all the FXML files to the SceneManager
     SceneManager.addAppUi(AppUi.TITLE, loadFxml("title"));
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.SETTING, loadFxml("settings"));
@@ -75,8 +87,12 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.LOSS, loadFxml("loss"));
     scene = new Scene(SceneManager.getAppUi(AppUi.TITLE), 740, 550);
 
+    // Add the stylesheet to the scene
     scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+    // Set the title of the stage
     stage.setTitle("Cosmic Catastrophe");
+
+    // Show the scene
     stage.setScene(scene);
     stage.setResizable(false);
     stage.show();

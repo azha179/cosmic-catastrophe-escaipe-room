@@ -8,8 +8,8 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Hover;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.Hud;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class TreeController {
@@ -20,8 +20,14 @@ public class TreeController {
   // Timer element
   @FXML private Label timer;
 
+  /**
+   * Handles the click event for the note and collects the note
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClickNote2(MouseEvent event) {
+    // Update GameState
     GameState.note2Found = true;
     if (GameState.note1Found) {
       // reset current hint in rocket
@@ -29,28 +35,50 @@ public class TreeController {
       rocketController.resetCurrentHint();
     }
     ImageView image = (ImageView) event.getTarget();
+    // Hide the note image and show the back button
     image.setVisible(false);
     back.setVisible(true);
+    // If the notes have not been resolved, update the note in the HUD
     if (!GameState.isNotesResolved) {
       Hud.updateNote2(true, "x1");
     }
   }
 
+  /**
+   * Getter method for the timer label.
+   *
+   * @return the timer label
+   */
   public Label getTimer() {
     return timer;
   }
 
+  /**
+   * Handles the click event for the back button and returns to the pantry scene
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickBack(MouseEvent event) {
     App.setUi(AppUi.PANTRY_INTERIOR);
   }
 
+  /**
+   * Handles the hover event for the interactable objects and scales the image up
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
 
+  /**
+   * Handles the unhover event for the interactable objects and scales the image down
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();

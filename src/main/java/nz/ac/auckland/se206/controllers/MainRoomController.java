@@ -33,7 +33,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the room view. */
 public class MainRoomController {
-
+  // Main Room Elements
   @FXML private Pane room;
   @FXML private ImageView roomImage;
   @FXML private ImageView rocketImage;
@@ -41,6 +41,7 @@ public class MainRoomController {
   @FXML private Rectangle dim;
   @FXML private Pane note1Pane;
   @FXML private Pane note2Pane;
+
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
   @FXML private ImageView catImageAwoken;
@@ -81,7 +82,7 @@ public class MainRoomController {
   @FXML private Rectangle highlightNote1;
   @FXML private Rectangle highlightNote2;
 
-  // Task Log
+  // Task Log Elements
   @FXML private ImageView log;
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
@@ -108,6 +109,7 @@ public class MainRoomController {
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
+    // Add all the hud elements to the arraylist
     hudElements = new ArrayList<Object>();
     hudElements.add(torch);
     hudElements.add(note1);
@@ -116,6 +118,7 @@ public class MainRoomController {
     hudElements.add(note1Count);
     hudElements.add(note2Count);
 
+    // Add all the tasks to the arraylist
     taskList = new ArrayList<CheckBox>();
     taskList.add(task1);
     taskList.add(task2);
@@ -145,24 +148,40 @@ public class MainRoomController {
         });
   }
 
+  /**
+   * Getter method for the timer label.
+   *
+   * @return the timer label
+   */
   public Label getTimer() {
     return timer;
   }
 
+  /**
+   * Getter method for the hud elements.
+   *
+   * @return the hud elements
+   */
   public ArrayList<Object> getHudElements() {
     return hudElements;
   }
 
+  /**
+   * Getter method for the tasks.
+   *
+   * @return the tasks
+   */
   public ArrayList<CheckBox> getTasks() {
     return taskList;
   }
 
+  /** Enables the log by making it visible */
   public void enableLog() {
     log.setVisible(true);
   }
 
   /**
-   * Handles the click event on cat initialise click at the start of the game.
+   * Handles the cat initialise click event at the start of the game.
    *
    * @param event the mouse event
    */
@@ -262,6 +281,7 @@ public class MainRoomController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
+
     // assigning task 1
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.enableLog();
@@ -371,7 +391,6 @@ public class MainRoomController {
    */
   @FXML
   public void onPressKeyReply(KeyEvent event) {
-    //
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
       System.out.println("enter pressed");
@@ -380,9 +399,11 @@ public class MainRoomController {
     }
   }
 
-  // Method for replying
+  /** Reply method which handles GPT calling and obtaining a response */
   public void reply() {
+    // Get message from reply text field and trim
     String message = replyTextField.getText().trim();
+    // If message is empty, do nothing
     if (message.isEmpty()) {
       return;
     }
@@ -439,6 +460,7 @@ public class MainRoomController {
                       GameState.hintsLeft--;
                     }
 
+                    // Call GPT for hint depending on current hint
                     if (currentHint == 1) {
                       lastMsg =
                           GptActions.runGpt(
@@ -468,18 +490,20 @@ public class MainRoomController {
                               GptActions.chatCompletionRequest1);
                     }
                     currentHint++;
-                    // If hints left is 0
+                    // If hints left is 0 and hint has not been used, call hintsUsed method
                     if (GameState.hintsLeft == 0 && !GameState.isHintUsed) {
                       hintsUsed();
                     }
                   }
                 }
               } else {
+                // If message does not start with 'Meowlp', call GPT with original message
                 System.out.println("meow");
                 ChatMessage msg = new ChatMessage("user", message);
                 lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest1);
               }
             } else {
+              // If message does not start with 'Meowlp', call GPT with original message
               System.out.println("meow");
               ChatMessage msg = new ChatMessage("user", message);
               lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest1);
@@ -530,10 +554,12 @@ public class MainRoomController {
     System.out.println("rocket clicked");
   }
 
+  /** Switches the scene to bush */
   private void switchToBush() {
     App.setUi(AppUi.BUSH);
   }
 
+  /** Switches the scene to rocket */
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to rocket
@@ -557,6 +583,7 @@ public class MainRoomController {
     System.out.println("pantry clicked");
   }
 
+  /** Switches the scene to pantry */
   private void switchToPantry() {
     App.setUi(AppUi.PANTRY_INTERIOR);
     // gives focus to pantry
@@ -583,18 +610,19 @@ public class MainRoomController {
 
   @FXML
   public void clickTorch(MouseEvent event) {
-
     System.out.println("torch hud clicked");
     // note 1 is already found - torch cannot be used
     if (GameState.note1Found) {
       return;
     }
-    if (!GameState.isTorchOn) { // when torch is being turned on
+    // When torch is being turned on
+    if (!GameState.isTorchOn) {
       // Update GameState
       GameState.isTorchOn = true;
       // Change image
       Image image = new Image("images/Torchlit.png");
       torch.setImage(image);
+      // Change image of torch in all other scenes too
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
       ImageView torchImage = (ImageView) rocket.getHudElements().get(0);
       torchImage.setImage(image);
@@ -612,6 +640,7 @@ public class MainRoomController {
       // Change image
       Image image = new Image("images/Torch.png");
       torch.setImage(image);
+      // Change image of torch in all other scenes too
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
       ImageView torchImage = (ImageView) rocket.getHudElements().get(0);
       torchImage.setImage(image);
@@ -652,6 +681,7 @@ public class MainRoomController {
     // change image of torchhud
     Image image = new Image("images/Torch.png");
     torch.setImage(image);
+    // change image of torch in all other scenes too
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     ImageView torch = (ImageView) rocket.getHudElements().get(0);
     torch.setImage(image);
@@ -743,58 +773,115 @@ public class MainRoomController {
     }
   }
 
-  // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
+  /**
+   * Handles the click event on the settings which switches the scene to the settings view.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClickSetting(MouseEvent event) {
+    // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.MAIN_ROOM);
   }
 
+  /**
+   * Handles the click event on the note1.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote1(MouseEvent event) {
+    // Show note1Pane
     note1Pane.setVisible(true);
   }
 
+  /**
+   * Handles the click event on the note2.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote2(MouseEvent event) {
+    // Show note2Pane
     note2Pane.setVisible(true);
   }
 
+  /**
+   * Handles the click event on the note1 return button.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote1Return(MouseEvent event) {
+    // Hide note1Pane
     note1Pane.setVisible(false);
   }
 
+  /**
+   * Handles the click event on the note2 return button.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNote2Return(MouseEvent event) {
+    // Hide note2Pane
     note2Pane.setVisible(false);
   }
 
+  /**
+   * Handles the hover event on the interactable objects.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverInteractable(MouseEvent event) {
+    // Scale up image hovered
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleUp(image);
   }
 
+  /**
+   * Handles the unhover event on the interactable objects.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
+    // Scale down image hovered
     ImageView image = (ImageView) (Node) event.getTarget();
     Hover.scaleDown(image);
   }
 
-  /** Getter method for catTextArea. */
+  /**
+   * Getter method for the cat text area.
+   *
+   * @return the cat text area
+   */
   public TextArea getCatTextArea() {
     return catTextArea;
   }
 
+  /**
+   * Handles the hover event on the log.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverLog(MouseEvent event) {
+    // Show log pane and enable log hover
     logPane.setVisible(true);
     logHover.setDisable(false);
   }
 
+  /**
+   * Handles the unhover event on the log.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveLog(MouseEvent event) {
+    // Hide log pane and disable log hover
     logPane.setVisible(false);
     logHover.setDisable(true);
   }
@@ -823,7 +910,7 @@ public class MainRoomController {
     }
   }
 
-  /** Terminate text to speech */
+  /** Method to terminate text to speech */
   public void terminateTextToSpeech() {
     if (textToSpeech != null) {
       textToSpeech.terminate();
@@ -831,31 +918,62 @@ public class MainRoomController {
   }
 
   // Hud highlight methods
+
+  /**
+   * Handles the hover event on the torch which shows the torch highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverTorch(MouseEvent event) {
     highlightTorch.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on the torch which hides the torch highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveTorch(MouseEvent event) {
     highlightTorch.setVisible(false);
   }
 
+  /**
+   * Handles the hover event on the note1 which shows the note1 highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverNote1(MouseEvent event) {
     highlightNote1.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on the note1 which hides the note1 highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveNote1(MouseEvent event) {
     highlightNote1.setVisible(false);
   }
 
+  /**
+   * Handles the hover event on the note2 which shows the note2 highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onHoverNote2(MouseEvent event) {
     highlightNote2.setVisible(true);
   }
 
+  /**
+   * Handles the unhover event on the note2 which hides the note2 highlight.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
