@@ -45,6 +45,9 @@ public class BushController {
   @FXML
   public void clickNote1(MouseEvent event) {
     GameState.note1Found = true;
+    // Reset current hint in rocket
+    RocketController rocketController = (RocketController) SceneManager.getController("rocket");
+    rocketController.resetCurrentHint();
     ImageView image = (ImageView) event.getTarget();
     image.setVisible(false);
     // The note is hidden and the hud is updated to contain the note
