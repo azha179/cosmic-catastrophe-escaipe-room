@@ -39,7 +39,6 @@ public class SettingsController {
     return timer;
   }
 
-
   // to ensure that back goes to the scene it was just in, use the getPreviousScene method when
   // onClickBack is done
 
@@ -82,5 +81,14 @@ public class SettingsController {
 
   public static double getVolume() {
     return volume;
+  }
+
+  /**
+   * Getter method for the chat box.
+   *
+   * @return the chat box
+   */
+  public TextArea getChatBox() {
+    return chatBox;
   }
 }

@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import nz.ac.auckland.se206.controllers.MainRoomController;
 import nz.ac.auckland.se206.controllers.PantryController;
 import nz.ac.auckland.se206.controllers.RocketController;
+import nz.ac.auckland.se206.controllers.SettingsController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -29,7 +30,7 @@ public class GptActions {
    * @param textArea the text area to append to
    */
   public static void appendChatMessage(ChatMessage msg, javafx.scene.control.TextArea textArea) {
-    textArea.appendText(msg.getContent() + "\n\n");
+    textArea.appendText("Cat: " + msg.getContent() + "\n\n");
   }
 
   /**
@@ -86,5 +87,9 @@ public class GptActions {
     setChatMessage(msg, mainRoom.getCatTextArea());
     setChatMessage(msg, pantry.getCatTextArea());
     setChatMessage(msg, rocket.getCatTextArea());
+
+    // Append the message to the chat log
+    SettingsController settings = (SettingsController) SceneManager.getController("settings");
+    appendChatMessage(msg, settings.getChatBox());
   }
 }
