@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.CountDownTimer;
 import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameSettings.GameDifficulty;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -218,7 +218,7 @@ public class MenuController {
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleUp(image);
+    HoverManager.scaleUp(image);
   }
 
   /**
@@ -229,7 +229,7 @@ public class MenuController {
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleDown(image);
+    HoverManager.scaleDown(image);
   }
 
   /**

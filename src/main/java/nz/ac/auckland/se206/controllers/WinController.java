@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.CountDownTimer;
-import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.SceneManager;
 
 public class WinController {
@@ -54,7 +54,7 @@ public class WinController {
   @FXML
   public void onHoverInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleUp(image);
+    HoverManager.scaleUp(image);
   }
 
   /**
@@ -65,6 +65,6 @@ public class WinController {
   @FXML
   public void onLeaveInteractable(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleDown(image);
+    HoverManager.scaleDown(image);
   }
 }

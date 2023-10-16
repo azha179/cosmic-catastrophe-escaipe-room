@@ -102,7 +102,7 @@ public class App extends Application {
     stage.setOnCloseRequest(
         event -> {
           // Terminate text to speech
-          TTSManager.close();
+          TextManager.close();
 
           // Terminate the timer
           if (CountDownTimer.countdownTimeline != null) {

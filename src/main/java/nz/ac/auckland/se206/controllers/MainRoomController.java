@@ -22,11 +22,11 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
-import nz.ac.auckland.se206.Hover;
+import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.TTSManager;
+import nz.ac.auckland.se206.TextManager;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -108,7 +108,7 @@ public class MainRoomController {
   private int currentHint = 1;
 
   // TTS
-  TTSManager ttsManager = new TTSManager();
+  TextManager textManager = new TextManager();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -161,8 +161,8 @@ public class MainRoomController {
     return timer;
   }
 
-  public TTSManager getTTS() {
-    return ttsManager;
+  public TextManager getTTS() {
+    return textManager;
   }
 
   /**
@@ -265,7 +265,7 @@ public class MainRoomController {
                   dim.setVisible(false);
                 });
 
-            TTSManager.speakInitialise(chatMessage.getContent());
+            TextManager.speakInitialise(chatMessage.getContent());
 
             return null;
           }
@@ -345,7 +345,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickCatActive(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     System.out.println("cat clicked");
     // Hide active cat
     catImageActive.setVisible(false);
@@ -372,7 +372,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickReply(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     System.out.println("reply clicked");
     // call reply method
     reply();
@@ -387,7 +387,7 @@ public class MainRoomController {
   public void onPressKeyReply(KeyEvent event) {
     // Check if enter key is pressed
     if (event.getCode().toString().equals("ENTER")) {
-      TTSManager.close();
+      TextManager.close();
       System.out.println("enter pressed");
       // call reply method
       reply();
@@ -526,7 +526,7 @@ public class MainRoomController {
                   toggleReplyArea();
                 });
             // tts for cat speaking
-            TTSManager.speakInitialise(lastMsg.getContent());
+            TextManager.speakInitialise(lastMsg.getContent());
 
             return null;
           }
@@ -553,7 +553,7 @@ public class MainRoomController {
 
   /** Switches the scene to rocket */
   private void switchToRocket() {
-    TTSManager.close();
+    TextManager.close();
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to rocket
     Parent rocketScene = SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
@@ -578,7 +578,7 @@ public class MainRoomController {
 
   /** Switches the scene to pantry */
   private void switchToPantry() {
-    TTSManager.close();
+    TextManager.close();
     App.setUi(AppUi.PANTRY_INTERIOR);
     // gives focus to pantry
     Parent pantryScene = SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
@@ -693,7 +693,7 @@ public class MainRoomController {
 
   /** Switches the scene to bush */
   private void switchToBush() {
-    TTSManager.close();
+    TextManager.close();
     App.setUi(AppUi.BUSH);
   }
 
@@ -780,7 +780,7 @@ public class MainRoomController {
    */
   @FXML
   public void onClickSetting(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     // Ensure onClickSettings has the  SceneManager.getAppUi(AppUi."currentscene"); to work
     App.setUi(AppUi.SETTING);
     SceneManager.getAppUi(AppUi.MAIN_ROOM);
@@ -815,7 +815,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickNote1Return(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     // Hide note1Pane
     note1Pane.setVisible(false);
   }
@@ -827,7 +827,7 @@ public class MainRoomController {
    */
   @FXML
   public void clickNote2Return(MouseEvent event) {
-    TTSManager.close();
+    TextManager.close();
     // Hide note2Pane
     note2Pane.setVisible(false);
   }
@@ -841,7 +841,7 @@ public class MainRoomController {
   public void onHoverInteractable(MouseEvent event) {
     // Scale up image hovered
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleUp(image);
+    HoverManager.scaleUp(image);
   }
 
   /**
@@ -853,7 +853,7 @@ public class MainRoomController {
   public void onLeaveInteractable(MouseEvent event) {
     // Scale down image hovered
     ImageView image = (ImageView) (Node) event.getTarget();
-    Hover.scaleDown(image);
+    HoverManager.scaleDown(image);
   }
 
   /**

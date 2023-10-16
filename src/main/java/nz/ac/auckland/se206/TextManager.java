@@ -9,11 +9,11 @@ import nz.ac.auckland.se206.controllers.PantryController;
 import nz.ac.auckland.se206.controllers.RocketController;
 import nz.ac.auckland.se206.controllers.SettingsController;
 
-public class TTSManager {
+public class TextManager {
   private static Voice voice;
-  private static TTSManager ttsManager;
+  private static TextManager textManager;
 
-  public TTSManager() {
+  public TextManager() {
     // Initialize the FreeTTS voice
     System.setProperty(
         "freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
@@ -59,14 +59,14 @@ public class TTSManager {
     Platform.runLater(
         () -> {
           // Create a new TTS manager instance
-          ttsManager = new TTSManager();
-          ttsManager.setVolume((float) SettingsController.getVolume());
+          textManager = new TextManager();
+          textManager.setVolume((float) SettingsController.getVolume());
           // Text to speech task
           Task<Void> textToSpeechTask =
               new Task<Void>() {
                 @Override
                 protected Void call() throws Exception {
-                  ttsManager.speak(Message);
+                  textManager.speak(Message);
                   return null;
                 }
               };
