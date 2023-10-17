@@ -243,7 +243,7 @@ public class MenuController {
   @FXML
   public void onMouseEnter(MouseEvent event) {
     ImageView image = (ImageView) (Node) event.getTarget();
-    image.setOpacity(0.2);
+    image.setOpacity(0.1);
   }
 
   /**

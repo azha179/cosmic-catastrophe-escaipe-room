@@ -28,7 +28,7 @@
          </image>
       </ImageView>
       <Separator layoutX="110.0" layoutY="133.0" prefHeight="11.0" prefWidth="542.0" />
-      <ToggleButton fx:id="toggleButton" layoutX="315.0" layoutY="152.0" mnemonicParsing="false" onAction="#onToggleClicked" prefHeight="22.0" prefWidth="264.0" text="Turn On">
+      <ToggleButton fx:id="toggleButton" layoutX="315.0" layoutY="152.0" mnemonicParsing="false" onAction="#onToggleClicked" prefHeight="22.0" prefWidth="264.0" text="Turn Off">
          <font>
             <Font name="Copperplate" size="13.0" />
          </font>
