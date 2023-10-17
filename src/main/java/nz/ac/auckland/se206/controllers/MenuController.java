@@ -262,7 +262,7 @@ public class MenuController {
     App.setUi(AppUi.MAIN_ROOM);
     GameState.isGameActive = true;
 
-    /** Initialise the timer. */
+    // Initialise the countdown timer
     CountDownTimer.initialiseCountdownTimer();
   }
 }

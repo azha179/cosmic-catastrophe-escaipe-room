@@ -25,7 +25,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /**
- * Controller for the memory game
+ * Controller for the memory game.
  *
  * <p>Handles the click and hover events for the back button and play button
  */
@@ -101,7 +101,7 @@ public class MemoryGameController {
     playSequence();
   }
 
-  /** Method which switches the scene to the rocket */
+  /** Method which switches the scene to the rocket. */
   private void switchToRocket() {
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to memory game
@@ -209,7 +209,7 @@ public class MemoryGameController {
     }
   }
 
-  /** sets all buttons to green and disables them. */
+  /** Sets all buttons to green and disables them. */
   private void setAllGreen() {
     // gets all the buttons
     Field[] buttonFields = getClass().getDeclaredFields();
@@ -264,7 +264,11 @@ public class MemoryGameController {
     }
   }
 
-  /** sets the image to green. */
+  /**
+   * Takes an image as input then sets the image to green.
+   *
+   * @param image the image to set to green.
+   */
   private void setToGreen(ImageView image) {
     // ColorAdjust is used to change the hue, brightness, contrast and saturation of the image
     ColorAdjust colorAdjust = new ColorAdjust();
@@ -275,7 +279,11 @@ public class MemoryGameController {
     image.setEffect(colorAdjust);
   }
 
-  /** sets the image to original. */
+  /**
+   * Takes an image as input then sets the image to original.
+   *
+   * @param image the image to set to original.
+   */
   private void setToOriginal(ImageView image) {
     // ColorAdjust is used to change the hue, brightness, contrast and saturation of the image
     ColorAdjust colorAdjust = new ColorAdjust();
@@ -283,7 +291,7 @@ public class MemoryGameController {
     image.setEffect(colorAdjust);
   }
 
-  /** plays the sequence of buttons which are randomised. */
+  /** Plays the sequence of buttons which are randomised. */
   private void playSequence() {
     // if game is already running dont play again
     GameState.isAnimationRunning = true;
