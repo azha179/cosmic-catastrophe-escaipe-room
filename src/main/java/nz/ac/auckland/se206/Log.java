@@ -9,10 +9,7 @@ import nz.ac.auckland.se206.controllers.RocketController;
 /** Updates the contents in the task log */
 public class Log {
 
-  /*
-   * Enables the log in all rooms by making them visible
-   *
-   */
+  /** Method enables the log in all rooms by making them visible. */
   public static void enableLog() {
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.getLogPane().setVisible(true);
@@ -22,10 +19,7 @@ public class Log {
     mainRoom.getLogPane().setVisible(true);
   }
 
-  /*
-   * Shows task 1 in the log by writing it in
-   *
-   */
+  /** Method shows task 1 in the log by writing it in. */
   public static void showTask1() {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.getTasks().get(0).setText("- Find the toy");
@@ -35,10 +29,7 @@ public class Log {
     rocket.getTasks().get(0).setText("- Find the toy");
   }
 
-  /*
-   * Shows task 2 in the log by writing it in
-   *
-   */
+  /** Method shows task 2 in the log by writing it in. */
   public static void showTask2() {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.getTasks().get(1).setText("- Make food");
@@ -48,10 +39,7 @@ public class Log {
     rocket.getTasks().get(1).setText("- Make food");
   }
 
-  /*
-   * Shows task 3 in the log by writing it in
-   *
-   */
+  /** Method shows task 3 in the log by writing it in. */
   public static void showTask3() {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     mainRoom.getTasks().get(2).setText("- Find a way out");
@@ -61,10 +49,7 @@ public class Log {
     rocket.getTasks().get(2).setText("- Find a way out");
   }
 
-  /*
-   * Completes task 1 by setting the text to green
-   *
-   */
+  /** Method completes task 1 by setting the text to green. */
   public static void completeTask1() {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     Label label = mainRoom.getTasks().get(0);
@@ -77,10 +62,7 @@ public class Log {
     setToGreen(label);
   }
 
-  /*
-   * Completes task 1 by setting the text to green
-   *
-   */
+  /** Method completes task 1 by setting the text to green. */
   public static void completeTask2() {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     Label label = mainRoom.getTasks().get(1);
@@ -93,10 +75,7 @@ public class Log {
     setToGreen(label);
   }
 
-  /*
-   * Completes task 1 by setting the text to green
-   *
-   */
+  /** Method completes task 1 by setting the text to green. */
   public static void completeTask3() {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     Label label = mainRoom.getTasks().get(2);
@@ -110,7 +89,7 @@ public class Log {
   }
 
   /**
-   * Sets the input text to a green colour
+   * Method sets the input text to a green colour.
    *
    * @param label the text to set to green
    */
