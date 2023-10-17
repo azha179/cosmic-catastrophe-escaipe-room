@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressKey" prefHeight="550.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RocketController">
    <children>
       <ImageView fx:id="rocketImage" fitHeight="550.0" fitWidth="740.0" pickOnBounds="true">
          <image>
@@ -285,5 +286,7 @@
             </Label>
          </children>
       </Pane>
+      <ProgressBar fx:id="leftProgressBar" layoutX="3.0" layoutY="448.0" prefHeight="12.0" prefWidth="72.0" progress="0.0" rotate="-112.2" />
+      <ProgressBar fx:id="rightProgressBar" layoutX="658.0" layoutY="448.0" prefHeight="12.0" prefWidth="72.0" progress="0.0" rotate="-69.9" />
    </children>
 </Pane>
