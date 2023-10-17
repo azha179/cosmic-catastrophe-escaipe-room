@@ -224,7 +224,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="203.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" style="-fx-arc-width: 75; -fx-arc-height: 75;" width="286.0" />
             <TextArea fx:id="catTextArea" editable="false" layoutX="16.0" layoutY="8.0" prefHeight="184.0" prefWidth="255.0" wrapText="true">
                <font>
-                  <Font name="Arial" size="15.0" />
+                  <Font name="Copperplate" size="15.0" />
                </font>
             </TextArea>
          </children>
@@ -248,7 +248,7 @@
       </ImageView>
       <Label fx:id="hintsLabel" alignment="BOTTOM_LEFT" layoutX="320.0" layoutY="85.0" text="Hints: inf." textAlignment="CENTER">
          <font>
-            <Font name="Arial Bold" size="25.0" />
+            <Font name="Copperplate" size="25.0" />
          </font>
       </Label>
       <ImageView fx:id="settingButton" fitHeight="66.0" fitWidth="59.0" layoutX="665.0" layoutY="17.0" onMouseClicked="#onClickSetting" onMouseEntered="#onHoverInteractable" onMouseExited="#onLeaveInteractable" pickOnBounds="true" preserveRatio="true">
@@ -279,17 +279,17 @@
             <Rectangle fx:id="logBackground" arcHeight="5.0" arcWidth="5.0" fill="#210139cf" height="80.0" layoutX="53.0" layoutY="35.0" stroke="WHITE" strokeType="INSIDE" visible="false" width="102.0" />
             <Label fx:id="task1" layoutX="62.0" layoutY="42.0" prefHeight="17.0" prefWidth="91.0" text="- ???" textFill="WHITE" visible="false">
                <font>
-                  <Font name="Arial" size="11.0" />
+                  <Font name="Copperplate" size="11.0" />
                </font>
             </Label>
             <Label fx:id="task2" layoutX="62.0" layoutY="64.0" prefHeight="17.0" prefWidth="91.0" text="- ???" textFill="WHITE" visible="false">
                <font>
-                  <Font name="Arial" size="11.0" />
+                  <Font name="Copperplate" size="11.0" />
                </font>
             </Label>
             <Label fx:id="task3" layoutX="62.0" layoutY="86.0" prefHeight="17.0" prefWidth="91.0" text="- ???" textFill="WHITE" visible="false">
                <font>
-                  <Font name="Arial" size="11.0" />
+                  <Font name="Copperplate" size="11.0" />
                </font>
             </Label>
             <Rectangle fx:id="logHover" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="95.0" layoutX="53.0" layoutY="19.0" onMouseExited="#onLeaveLog" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="102.0" />
