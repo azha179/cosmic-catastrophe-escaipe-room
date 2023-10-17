@@ -184,11 +184,13 @@ public class MemoryGameController {
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
 
-      // enables launch button
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      // enables launch button
       rocket.getLaunch().setDisable(false);
       // hide memory game rectangle
       rocket.getMemoryGameRectangle().setVisible(false);
+      // add white drop shadow to launch button
+      rocket.getLaunch().setStyle("-fx-effect: dropshadow(three-pass-box, white, 10, 0.4, 0, 0);");
 
       setAllGreen();
 

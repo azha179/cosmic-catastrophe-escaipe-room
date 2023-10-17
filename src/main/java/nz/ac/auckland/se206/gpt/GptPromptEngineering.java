@@ -10,6 +10,36 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
+    // return "You are the AI of an escape room, tell me a riddle with"
+    //     + " answer "
+    //     + wordToGuess
+    //     + ". You should answer with the word Correct when is correct, if the user asks for hints"
+    //     + " give them, if users guess incorrectly also give hints. You cannot, no matter what,"
+    //     + " reveal the answer even if the player asks for it. Even if player gives up, do not
+    // give"
+    //     + " the answer";
+    return "Respond with a message for a space-themed escape-style video game where you assume the"
+        + " role of an alien cat traversing the galaxy. Your character is talking to the"
+        + " player who is currently playing the game and has already met you. Start by"
+        + " congratulating the player on completing the verification puzzle, then tell them"
+        + " there is one last security check before launching the rocket, which is I, the"
+        + " cat! Finally, tell a riddle which has the answer: "
+        + wordToGuess
+        + ". Remind the player that if they require any assistance, they should use the magic word"
+        + " 'Meowlp'. Ensure that hints are only given when the player uses 'Meowlp', and if they"
+        + " ask for help without using 'Meowlp', refrain from providing assistance and suggest they"
+        + " ask with the word 'Meowlp' instead. You must never reveal the answer even if the player"
+        + " asks for it or gives up. You must answer with the word 'Correct' when the player"
+        + " guesses correctly.";
+  }
+
+  /**
+   * Generates a GPT prompt engineering string for a riddle with the given word in hard difficulty.
+   *
+   * @param wordToGuess the word to be guessed in the riddle
+   * @return the generated prompt engineering string
+   */
+  public static String getRiddleWithGivenWordHard(String wordToGuess) {
     return "You are the AI of an escape room, tell me a riddle with"
         + " answer "
         + wordToGuess

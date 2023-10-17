@@ -347,7 +347,7 @@ public class RocketController {
   private void handleRightMeowPadActivation() {
     // Update GameState
     GameState.isRightMeowPadActivated = true;
-    // Reset current hint in rocket if both notes are found and left meow pad is activated
+    // Reset current hint in rocket if left meow pad is activated
     if (GameState.isLeftMeowPadActivated && GameState.note1Found && GameState.note2Found) {
       resetCurrentHint();
     }
@@ -534,7 +534,6 @@ public class RocketController {
       Hud.disableNote2();
 
       // Generate message
-      // Hide chat
       hideChat();
       // Initiate first message from GPT
       Task<Void> initiateDeviceTask =
@@ -592,15 +591,21 @@ public class RocketController {
    */
   @FXML
   public void clickLaunch(MouseEvent event) {
-    // Update GameState
-    GameState.isGameActive = false;
-    switchToWin();
-    // Stop the timer
-    CountDownTimer.countdownTimeline.stop();
-    WinController win = (WinController) SceneManager.getController("win");
-    // Update the win scene with the time left
-    win.getResult()
-        .setText("...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
+    // if riddle not yet solved
+    if (!GameState.isRiddleSolved) {
+      initialiseFinalRiddle();
+    } else {
+      // Update GameState
+      GameState.isGameActive = false;
+      switchToWin();
+      // Stop the timer
+      CountDownTimer.countdownTimeline.stop();
+      WinController win = (WinController) SceneManager.getController("win");
+      // Update the win scene with the time left
+      win.getResult()
+          .setText(
+              "...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
+    }
   }
 
   /** Switches the scene to the win scene. */
@@ -1059,6 +1064,12 @@ public class RocketController {
     Parent memoryGameScene = SceneManager.getAppUi(AppUi.MEMORY_GAME);
     App.getScene().setRoot(memoryGameScene);
     memoryGameScene.requestFocus();
+  }
+
+  /** Initialises the final riddle after the memory game is completed. */
+  public void initialiseFinalRiddle() {
+    System.out.println("riddle");
+    return;
   }
 
   /**
