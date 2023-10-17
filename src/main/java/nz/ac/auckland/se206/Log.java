@@ -57,6 +57,7 @@ public class Log {
 
   /** Method handles completing task 1 in all scene logs by setting the text to green. */
   public static void completeTask1() {
+    // Set the text to green for each scene
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     Label label = mainRoom.getTasks().get(0);
     setToGreen(label);
@@ -70,6 +71,7 @@ public class Log {
 
   /** Method handles completing task 2 in all scene logs by setting the text to green. */
   public static void completeTask2() {
+    // Set the text to green for each scene
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     Label label = mainRoom.getTasks().get(1);
     setToGreen(label);
@@ -83,6 +85,7 @@ public class Log {
 
   /** Method handles completing task 3 in all scene logs by setting the text to green. */
   public static void completeTask3() {
+    // Set the text to green for each scene
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     Label label = mainRoom.getTasks().get(2);
     setToGreen(label);
