@@ -185,12 +185,11 @@ public class MemoryGameController {
       GameState.isMemoryGameResolved = true;
 
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      // enables launch button
-      rocket.getLaunch().setDisable(false);
+
       // hide memory game rectangle
       rocket.getMemoryGameRectangle().setVisible(false);
-      // add white drop shadow to launch button
-      rocket.getLaunch().setStyle("-fx-effect: dropshadow(three-pass-box, white, 10, 0.4, 0, 0);");
+      // initialise the riddle
+      rocket.initialiseFinalRiddle();
 
       setAllGreen();
 

@@ -43,6 +43,8 @@ public class GameState {
 
   public static boolean isRiddleSolved = false;
 
+  public static boolean isRiddleActive = false;
+
   public static boolean textToSpeech = false;
 
   /** Updates the hint labels of all scenes. */

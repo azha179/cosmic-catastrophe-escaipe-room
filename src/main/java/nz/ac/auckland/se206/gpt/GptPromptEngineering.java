@@ -19,11 +19,9 @@ public class GptPromptEngineering {
     // give"
     //     + " the answer";
     return "Respond with a message for a space-themed escape-style video game where you assume the"
-        + " role of an alien cat traversing the galaxy. Your character is talking to the"
-        + " player who is currently playing the game and has already met you. Start by"
-        + " congratulating the player on completing the verification puzzle, then tell them"
-        + " there is one last security check before launching the rocket, which is I, the"
-        + " cat! Finally, tell a riddle which has the answer: "
+               + " role of an alien cat traversing the galaxy. Your character is talking to the"
+               + " player who is currently playing the game and has already met you. Tell a riddle"
+               + " which has the answer: "
         + wordToGuess
         + ". Remind the player that if they require any assistance, they should use the magic word"
         + " 'Meowlp'. Ensure that hints are only given when the player uses 'Meowlp', and if they"

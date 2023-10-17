@@ -476,7 +476,6 @@ public class RocketController {
     // Generate message
     // only if both notes are found AND right meow pad is not activated
     if (GameState.note1Found && GameState.note2Found && !GameState.isRightMeowPadActivated) {
-      // Hide chat
       hideChat();
       // Initiate first message from GPT
       Task<Void> initiateDeviceTask =
@@ -1069,6 +1068,55 @@ public class RocketController {
   /** Initialises the final riddle after the memory game is completed. */
   public void initialiseFinalRiddle() {
     System.out.println("riddle");
+    // Update GameState
+    GameState.isRiddleActive = true;
+    hideChat();
+    // Initiate first message from GPT
+    Task<Void> initiateDeviceTask =
+        new Task<Void>() {
+          // Call GPT
+          @Override
+          protected Void call() throws Exception {
+            // clear messages
+            GptActions.clearMessages(GptActions.chatCompletionRequest3);
+            GptActions.chatCompletionRequest3 =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.2)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            ChatMessage chatMessage;
+            // depends on difficulty
+            if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getRiddleWithGivenWordHard("earth")),
+                      GptActions.chatCompletionRequest3);
+            } else {
+              chatMessage =
+                  GptActions.runGpt(
+                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("earth")),
+                      GptActions.chatCompletionRequest3);
+            }
+
+            Platform.runLater(
+                () -> {
+                  // Set chat message to text area
+                  GptActions.setChatMessage(chatMessage, catTextArea);
+                  // Show chat
+                  showChat();
+                });
+
+            // tts for cat speaking
+            TextManager.speakChatMessage(chatMessage.getContent());
+
+            return null;
+          }
+        };
+
+    Thread initiateDeviceThread = new Thread(initiateDeviceTask);
+    initiateDeviceThread.start();
     return;
   }
 
