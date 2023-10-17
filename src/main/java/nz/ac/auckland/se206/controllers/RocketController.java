@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,6 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -80,12 +82,18 @@ public class RocketController {
   @FXML private Rectangle memoryGameRectangle;
   @FXML private Rectangle leftMeowPad;
   @FXML private Rectangle rightMeowPad;
+  @FXML private ProgressBar leftProgressBar;
+  @FXML private ProgressBar rightProgressBar;
   @FXML private Circle leftActivateCircle;
   @FXML private Circle rightActivateCircle;
   private boolean isLeftMeowPadPressed = false;
   private Timeline leftMeowPadPressTimer;
   private boolean isRightMeowPadpressed = false;
   private int rightMeowPadCount;
+  private Timeline leftProgressBarTimer;
+  private double originalWidth;
+  private double originalHeight;
+  private Color originalColor = new Color(1.0, 0.6431, 0.6431, 0.2784);
 
   // Task Log
   @FXML private ImageView log;
@@ -126,9 +134,15 @@ public class RocketController {
     // Initialise the left meow pad
     initialiseLeftMeowPad();
 
+    // Initialise the left and right progress bars
+    leftProgressBar.setProgress(0);
+    rightProgressBar.setProgress(0);
+
     // Disable and hide the memory game rectangle
     memoryGameRectangle.setDisable(true);
     memoryGameRectangle.setVisible(false);
+    originalWidth = memoryGameRectangle.getWidth();
+    originalHeight = memoryGameRectangle.getHeight();
 
     // Cat and Chat initialisation
     // Hide catImageSleep
@@ -252,6 +266,10 @@ public class RocketController {
     App.setUi(AppUi.MAIN_ROOM);
   }
 
+  private void updateProgressBar(ProgressBar progressBar, double progress) {
+    Platform.runLater(() -> progressBar.setProgress(progress));
+  }
+
   /**
    * Handles the press event for the right meow pad.
    *
@@ -291,6 +309,10 @@ public class RocketController {
       // if the count is 150, then the right meow pad is activated
       if (rightMeowPadCount == 150) {
         handleRightMeowPadActivation();
+      } else {
+        // Update the progress bar based on the count
+        double progress = rightMeowPadCount / 150.0;
+        updateProgressBar(rightProgressBar, progress);
       }
     }
   }
@@ -302,10 +324,25 @@ public class RocketController {
    */
   @FXML
   public void onPressLeftMeowPad(MouseEvent event) {
+    Platform.runLater(
+        () -> {
+          leftProgressBar.setProgress(leftProgressBar.getProgress() + 0.05);
+        });
     // if the left meow pad is not activated
     if (!isLeftMeowPadPressed && !GameState.isLeftMeowPadActivated) {
       leftMeowPadPressTimer.play();
       isLeftMeowPadPressed = true;
+      leftProgressBarTimer =
+          new Timeline(
+              new KeyFrame(
+                  Duration.millis(100), // Update every 100 milliseconds
+                  ae -> {
+                    if (leftProgressBar.getProgress() < 1.0) {
+                      leftProgressBar.setProgress(leftProgressBar.getProgress() + 0.05);
+                    }
+                  }));
+      leftProgressBarTimer.setCycleCount(Timeline.INDEFINITE); // Run indefinitely
+      leftProgressBarTimer.play(); // Start the timer
     }
   }
 
@@ -318,13 +355,44 @@ public class RocketController {
   public void onReleaseLeftMeowPad(MouseEvent event) {
     leftMeowPadPressTimer.stop();
     isLeftMeowPadPressed = false;
+    // Stop the leftprogress bar increase if the mouse has been released.
+    if (leftProgressBarTimer != null) {
+      leftProgressBarTimer.stop();
+      leftProgressBarTimer = null;
+      //// Set the left progress bar back to 0 if the mouse has been released and GameState has not
+      // changed.
+      if (!GameState.isLeftMeowPadActivated) {
+        leftProgressBar.setProgress(0);
+      }
+    }
   }
 
+  /**
+   * Handles the on mouse for the memory game rectangle and changes it to green and upscales.
+   *
+   * @param event the mouse event.
+   */
   @FXML
-  public void onMouseRectangle(MouseEvent event) {}
+  public void onMouseRectangle(MouseEvent event) {
+    // Change the appearance when the mouse enters the rectangle
+    memoryGameRectangle.setFill(new Color(0.0, 1.0, 0.0, 0.3));
+    memoryGameRectangle.setWidth(originalWidth + 5); // Increase width
+    memoryGameRectangle.setHeight(originalHeight + 5); // Increase height
+  }
 
+  /**
+   * Handles the off mouse for the memory game rectangle and changes it back to blue and original
+   * size.
+   *
+   * @param event the mouse event.
+   */
   @FXML
-  public void offMouseRectangle(MouseEvent event) {}
+  public void offMouseRectangle(MouseEvent event) {
+    // Restore the original appearance when the mouse leaves the rectangle
+    memoryGameRectangle.setFill(originalColor);
+    memoryGameRectangle.setWidth(originalWidth); // Restore width
+    memoryGameRectangle.setHeight(originalHeight); // Restore height
+  }
 
   /** Handles the right meow pad activation. */
   private void handleRightMeowPadActivation() {
