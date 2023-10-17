@@ -1224,7 +1224,7 @@ public class RocketController {
 
   /**
    * Handles the escape key press event and switches to the main room if the return button is
-   * visible
+   * visible.
    *
    * @param event the key event
    */
@@ -1261,7 +1261,7 @@ public class RocketController {
     HoverManager.scaleDown(image);
   }
 
-  /** Initialises the left meow pad */
+  /** Initialises the left meow pad. */
   private void initialiseLeftMeowPad() {
     // Timer for left meow pad
     leftMeowPadPressTimer =

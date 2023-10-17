@@ -167,6 +167,11 @@ public class MainRoomController {
     return timer;
   }
 
+  /**
+   * Getter method for the text manager.
+   *
+   * @return the text manager.
+   */
   public TextManager getTextManager() {
     return textManager;
   }
