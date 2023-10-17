@@ -181,15 +181,11 @@
             <Bloom />
          </effect>
       </Label>
-      <Pane layoutX="65.0" prefHeight="113.0" prefWidth="163.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="35.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
-            <Label fx:id="timer" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
-               <font>
-                  <Font name="Copperplate" size="30.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1c002ece" height="42.0" layoutX="122.0" layoutY="14.0" stroke="WHITE" strokeType="INSIDE" width="114.0" />
+      <Label fx:id="timer" alignment="CENTER" layoutX="122.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Copperplate" size="30.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

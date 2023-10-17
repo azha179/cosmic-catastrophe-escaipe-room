@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -91,8 +90,14 @@ public class PantryController {
   @FXML private ImageView ingredientIceCream;
   @FXML private ImageView ingredientOnigiri;
 
-  // Task Log
-  private ArrayList<CheckBox> taskList;
+  // Task Log elements
+  private ArrayList<Label> taskList;
+  @FXML private Pane logPane;
+  @FXML private Rectangle logBackground;
+  @FXML private Rectangle logHover;
+  @FXML private Label task1;
+  @FXML private Label task2;
+  @FXML private Label task3;
 
   // Timer element
   @FXML private Label timer;
@@ -117,7 +122,7 @@ public class PantryController {
     hudElements.add(note2Count);
 
     // Add all task elements to an array
-    taskList = new ArrayList<CheckBox>();
+    taskList = new ArrayList<Label>();
     // taskList.add(task1);
     // taskList.add(task2);
     // taskList.add(task3);
@@ -175,13 +180,8 @@ public class PantryController {
    *
    * @return the task list.
    */
-  public ArrayList<CheckBox> getTasks() {
+  public ArrayList<Label> getTasks() {
     return taskList;
-  }
-
-  /** Enables the log by making it visible. */
-  public void enableLog() {
-    // log.setVisible(true);
   }
 
   /**
@@ -948,6 +948,15 @@ public class PantryController {
     return catTextArea;
   }
 
+  /**
+   * Getter method for the log pane.
+   *
+   * @return the task list.
+   */
+  public Pane getLogPane() {
+    return logPane;
+  }
+
   /** Method that calls GPT when hints are used up in medium difficulty */
   public void hintsUsed() {
     // Change difficulty to hard to ensure future prompts are given in hard difficulty which include
@@ -1037,5 +1046,33 @@ public class PantryController {
   /* Get the textManager for the scene. */
   public TextManager getTextManager() {
     return textManager;
+  }
+
+  /**
+   * Handles the hover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    logBackground.setVisible(true);
+    logHover.setVisible(true);
+    task1.setVisible(true);
+    task2.setVisible(true);
+    task3.setVisible(true);
+  }
+
+  /**
+   * Handles the unhover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    logBackground.setVisible(false);
+    logHover.setVisible(false);
+    task1.setVisible(false);
+    task2.setVisible(false);
+    task3.setVisible(false);
   }
 }
