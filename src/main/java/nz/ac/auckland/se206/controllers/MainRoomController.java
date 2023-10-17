@@ -129,9 +129,9 @@ public class MainRoomController {
 
     // Add all the tasks to the arraylist
     taskList = new ArrayList<Label>();
-    // taskList.add(task1);
-    // taskList.add(task2);
-    // taskList.add(task3);
+    taskList.add(task1);
+    taskList.add(task2);
+    taskList.add(task3);
 
     // Adds all the footprints to the arraylist
     footprints.add(footprint1Image);
@@ -264,6 +264,9 @@ public class MainRoomController {
                   // shows logs
                   Log.enableLog();
 
+                  // assigns task 1 to log
+                  Log.showTask1();
+
                   // removes dim
                   dim.setVisible(false);
                 });
@@ -277,19 +280,6 @@ public class MainRoomController {
     // Start thread for initiateDeviceTask
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
-
-    // assigning task 1 to the log
-    // MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    // mainRoom.enableLog();
-    // mainRoom.getTasks().get(0).setText("Find the toy");
-    // assigning task 1 to the pantry
-    // PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    // pantry.enableLog();
-    // pantry.getTasks().get(0).setText("Find the toy");
-    // assigning task 1 to the rocket
-    // RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    // rocket.enableLog();
-    // rocket.getTasks().get(0).setText("Find the toy");
   }
 
   /**

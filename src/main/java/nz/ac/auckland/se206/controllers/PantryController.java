@@ -23,6 +23,7 @@ import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.HoverManager;
+import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TextManager;
@@ -123,9 +124,9 @@ public class PantryController {
 
     // Add all task elements to an array
     taskList = new ArrayList<Label>();
-    // taskList.add(task1);
-    // taskList.add(task2);
-    // taskList.add(task3);
+    taskList.add(task1);
+    taskList.add(task2);
+    taskList.add(task3);
 
     // assigns a value 1-3 to each food item
     initialiseUserData();
@@ -238,14 +239,8 @@ public class PantryController {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         GameState.isRecipeResolved = true;
 
-        // checking task 2 off
-        // MainRoomController mainRoom = (MainRoomController)
-        // SceneManager.getController("mainroom");
-        // mainRoom.getTasks().get(1).setSelected(true);
-        // RocketController rocket = (RocketController) SceneManager.getController("rocket");
-        // rocket.getTasks().get(1).setSelected(true);
-        // PantryController pantry = (PantryController) SceneManager.getController("pantry");
-        // pantry.getTasks().get(1).setSelected(true);
+        // completes task 2
+        Log.completeTask2();
 
         // Drop shadow behind all desired ingredients
         for (ImageView desired : FoodRecipe.desiredRecipe) {
@@ -545,6 +540,9 @@ public class PantryController {
                   catImageActive.setDisable(false);
                   // show return button
                   back.setVisible(true);
+
+                  // assigning task 2 for main room log
+                  Log.showTask2();
                 });
             // text to speech for cat speaking
             TextManager.speakChatMessage(chatMessage.getContent());
@@ -557,19 +555,6 @@ public class PantryController {
     initiateDeviceThread.start();
 
     GameState.isPantryFirstEntered = true;
-
-    // assigning task 2 for main room log
-    // MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    // mainRoom.enableLog();
-    // mainRoom.getTasks().get(1).setText("Make food");
-    // assigning task 2 for pantry log
-    // PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    // pantry.enableLog();
-    // pantry.getTasks().get(1).setText("Make food");
-    // assigning task 2 for rocket log
-    // RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    // rocket.enableLog();
-    // rocket.getTasks().get(1).setText("Make food");
   }
 
   /**

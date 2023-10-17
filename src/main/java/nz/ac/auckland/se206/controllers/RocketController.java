@@ -33,6 +33,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.Hud;
+import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TextManager;
@@ -808,6 +809,9 @@ public class RocketController {
 
                   // Enable cat
                   catImageActive.setDisable(false);
+
+                  // assigning task 3
+                  Log.showTask3();
                 });
 
             // tts for cat speaking
