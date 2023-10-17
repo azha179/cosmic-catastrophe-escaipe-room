@@ -193,12 +193,6 @@ public class MainRoomController {
     return taskList;
   }
 
-
-  /** Enables the log by making it visible. */
-  public void enableLog() {
-    log.setVisible(true);
-  }
-
   /**
    * Handles the cat initialise click event at the start of the game.
    *
