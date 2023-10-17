@@ -111,9 +111,6 @@ public class MemoryGameController {
     Parent rocketScene = SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
     App.getScene().setRoot(rocketScene);
     rocketScene.requestFocus();
-    RocketController rocketRoom = (RocketController) SceneManager.getController("rocket");
-    // Set the clear box to invisible
-    rocketRoom.getClearBox().setVisible(false);
     // resets player sequence when exiting the memory game
     ButtonSequence.clear();
   }
@@ -198,6 +195,8 @@ public class MemoryGameController {
 
       // sets all buttons to green
       setAllGreen();
+      // Disables play button
+      play.setDisable(true);
 
       // completes task 3
       Log.completeTask3();

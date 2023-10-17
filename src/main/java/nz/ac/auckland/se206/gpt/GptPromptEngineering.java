@@ -17,13 +17,13 @@ public class GptPromptEngineering {
         + " the alien cat. Tell a riddle which has the answer: "
         + wordToGuess
         + ". Remind the player explicitly that if they require any assistance, they should use the"
-        + " magic word 'Meowlp'. Do not include anything else in this message. Ensure that hints"
-        + " are only given when the player uses 'Meowlp', and if they ask for help without using"
-        + " 'Meowlp', refrain from providing assistance and suggest they ask with the word 'Meowlp'"
-        + " instead. You must never reveal the answer even if the player asks for it or gives up."
-        + " You must answer with the word 'Correct' when the player guesses correctly, and also"
-        + " tell the player that this riddle was a final test and now press the launch button after"
-        + " guessing correctly.";
+        + " magic word 'Meowlp'. Do not include anything else in this message, and the message must"
+        + " be 5 sentences maximum. Ensure that hints are only given when the player uses 'Meowlp',"
+        + " and if they ask for help without using 'Meowlp', refrain from providing assistance and"
+        + " suggest they ask with the word 'Meowlp' instead. You must never reveal the answer even"
+        + " if the player asks for it or gives up. You must answer with the word 'Correct' when the"
+        + " player guesses correctly, and also tell the player that this riddle was a final test"
+        + " and now press the launch button after guessing correctly.";
   }
 
   /**
@@ -39,10 +39,11 @@ public class GptPromptEngineering {
         + " player who is currently playing the game and has already met you, only speak as"
         + " the alien cat. Tell a riddle which has the answer: "
         + wordToGuess
-        + ". You must never reveal the answer or give hints even if the player asks for it or gives"
-        + " up. You must answer with the word 'Correct' when the player guesses correctly, and also"
-        + " tell the player that this riddle was a final test and now press the launch button after"
-        + " guessing correctly.";
+        + ". Do not include anything else in this message, and the message must be 5 sentences"
+        + " maximum. You must never reveal the answer or give hints even if the player asks for it"
+        + " or gives up. You must answer with the word 'Correct' when the player guesses correctly,"
+        + " and also tell the player that this riddle was a final test and now press the launch"
+        + " button after guessing correctly.";
   }
 
   /**
