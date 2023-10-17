@@ -40,7 +40,8 @@ public class TextManager {
 
   // Speaks the given text
   public void speak(String text) {
-    if (voice != null && GameState.textToSpeech) {
+    // If the gamestate is false (default is on)
+    if (voice != null && !GameState.textToSpeech) {
       voice.speak(text);
     }
   }
