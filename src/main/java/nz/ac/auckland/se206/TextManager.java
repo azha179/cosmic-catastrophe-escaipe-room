@@ -15,7 +15,48 @@ public class TextManager {
   private static Voice voice;
   private static TextManager textManager;
 
-  // Constructor
+  /** Handles the closing of the voice. */
+  public static void close() {
+    if (voice != null) {
+      // Deallocate the voice in each scene
+      MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+      mainRoom.getTextManager().deallocate();
+      RocketController rocket = (RocketController) SceneManager.getController("rocket");
+      rocket.getTextManager().deallocate();
+      PantryController pantry = (PantryController) SceneManager.getController("pantry");
+      pantry.getTextManager().deallocate();
+    }
+  }
+
+  /**
+   * Handles speaking the message in the chat.
+   *
+   * @param message the message to speak.
+   */
+  public static void speakChatMessage(String message) {
+
+    // Run the text to speech task on the JavaFX thread
+    Platform.runLater(
+        () -> {
+          // Create a new TTS manager instance
+          textManager = new TextManager();
+          textManager.setVolume((float) SettingsController.getVolume());
+          // Text to speech task
+          Task<Void> textToSpeechTask =
+              new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                  textManager.speak(message);
+                  return null;
+                }
+              };
+          // Start the text to speech thread
+          Thread textToSpeechThread = new Thread(textToSpeechTask);
+          textToSpeechThread.start();
+        });
+  }
+
+  /** Constructor for the TextManager which initialises the FreeTTS voice. */
   public TextManager() {
     // Initialize the FreeTTS voice
     System.setProperty(
@@ -31,59 +72,30 @@ public class TextManager {
     voice.setRate(120);
   }
 
-  // Sets the volume of the voice if it is not already active
+  /**
+   * Sets the volume of the voice if it is not already active.
+   *
+   * @param volume the volume to set.
+   */
   public void setVolume(float volume) {
     if (voice != null) {
       voice.setVolume(volume);
     }
   }
 
-  // Speaks the given text
+  /**
+   * Method which handles the speaking of the text.
+   *
+   * @param text the text to speak.
+   */
   public void speak(String text) {
     if (voice != null && GameState.textToSpeech) {
       voice.speak(text);
     }
   }
 
-  // Closes the voice
-  public static void close() {
-    if (voice != null) {
-      // Deallocate the voice in each scene
-      MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-      mainRoom.getTextManager().deallocate();
-      RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      rocket.getTextManager().deallocate();
-      PantryController pantry = (PantryController) SceneManager.getController("pantry");
-      pantry.getTextManager().deallocate();
-    }
-  }
-
-  // Deallocates the voice
+  /** Handles the deallocation of the voice. */
   private void deallocate() {
     voice.deallocate();
-  }
-
-  // Speaks the given text in the chat
-  public static void speakChatMessage(String Message) {
-
-    // Run the text to speech task on the JavaFX thread
-    Platform.runLater(
-        () -> {
-          // Create a new TTS manager instance
-          textManager = new TextManager();
-          textManager.setVolume((float) SettingsController.getVolume());
-          // Text to speech task
-          Task<Void> textToSpeechTask =
-              new Task<Void>() {
-                @Override
-                protected Void call() throws Exception {
-                  textManager.speak(Message);
-                  return null;
-                }
-              };
-          // Start the text to speech thread
-          Thread textToSpeechThread = new Thread(textToSpeechTask);
-          textToSpeechThread.start();
-        });
   }
 }

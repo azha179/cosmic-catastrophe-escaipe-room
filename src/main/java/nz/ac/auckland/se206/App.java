@@ -33,7 +33,7 @@ public class App extends Application {
   /**
    * Sets the root of the scene to the input node.
    *
-   * @param newUi
+   * @param newUi The node to be set as the root.
    */
   public static void setUi(AppUi newUi) {
     scene.setRoot(SceneManager.getAppUi(newUi));

@@ -24,7 +24,7 @@ public class TitleController {
   @FXML private Label movingTextLabel;
   @FXML private Label movingTextCopyLabel;
 
-  /** Initialises the title screen. */
+  /** Initialises the title screen which is called as soon as the scene loads. */
   public void initialize() {
     pane.layoutBoundsProperty()
         .addListener(
@@ -81,7 +81,7 @@ public class TitleController {
     switchToMenu();
   }
 
-  /** Switches to the menu scene */
+  /** Switches to the menu scene. */
   private void switchToMenu() {
     App.setUi(AppUi.MENU);
   }

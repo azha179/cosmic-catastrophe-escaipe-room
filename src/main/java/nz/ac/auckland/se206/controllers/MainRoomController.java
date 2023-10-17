@@ -189,7 +189,7 @@ public class MainRoomController {
     return taskList;
   }
 
-  /** Enables the log by making it visible */
+  /** Enables the log by making it visible. */
   public void enableLog() {
     log.setVisible(true);
   }
@@ -197,7 +197,7 @@ public class MainRoomController {
   /**
    * Handles the cat initialise click event at the start of the game.
    *
-   * @param event the mouse event.
+   * @param catInitialise the mouse event.
    */
   @FXML
   public void catInitialise(MouseEvent catInitialise) {
@@ -404,7 +404,7 @@ public class MainRoomController {
     }
   }
 
-  /** Reply method which handles GPT calling and obtaining a response */
+  /** Reply method which handles GPT calling and obtaining a response. */
   public void reply() {
     // Stop the current text to speech
     TextManager.close();
@@ -567,7 +567,7 @@ public class MainRoomController {
     System.out.println("rocket clicked");
   }
 
-  /** Switches the scene to rocket */
+  /** Switches the scene to rocket. */
   private void switchToRocket() {
     TextManager.close();
     App.setUi(AppUi.ROCKET_INTERIOR);
@@ -592,7 +592,7 @@ public class MainRoomController {
     System.out.println("pantry clicked");
   }
 
-  /** Switches the scene to pantry */
+  /** Switches the scene to pantry. */
   private void switchToPantry() {
     TextManager.close();
     App.setUi(AppUi.PANTRY_INTERIOR);
@@ -712,7 +712,7 @@ public class MainRoomController {
     switchToBush();
   }
 
-  /** Switches the scene to bush */
+  /** Switches the scene to bush. */
   private void switchToBush() {
     TextManager.close();
     App.setUi(AppUi.BUSH);
@@ -910,7 +910,7 @@ public class MainRoomController {
     logHover.setDisable(true);
   }
 
-  /** Method that calls GPT when hints are used up in medium difficulty */
+  /** Method that calls GPT when hints are used up in medium difficulty. */
   public void hintsUsed() {
     // Change difficulty to hard to ensure future prompts are given in hard difficulty which include
     // no hints.
@@ -920,7 +920,7 @@ public class MainRoomController {
     hintsLabel.setStyle("-fx-text-fill: red;");
   }
 
-  /** Updates hint label */
+  /** Handles the updating of hint label. */
   public void updateHintsLabel() {
     // If easy difficult, set label to inf.
     if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
@@ -934,7 +934,7 @@ public class MainRoomController {
     }
   }
 
-  /** Method to terminate text to speech */
+  /** Method to terminate text to speech. */
   public void terminateTextToSpeech() {
     if (textToSpeech != null) {
       textToSpeech.terminate();

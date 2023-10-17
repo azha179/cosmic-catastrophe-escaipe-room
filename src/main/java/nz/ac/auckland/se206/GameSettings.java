@@ -1,13 +1,9 @@
 package nz.ac.auckland.se206;
 
-// Stores the game settings
+/** Stores the game settings chosen by the player at the menu screen. */
 public class GameSettings {
 
-  /*
-   * Stores the game difficulty.
-   *
-   * @param difficulty the game difficulty.
-   */
+  /** Enum for the game difficulties. */
   public enum GameDifficulty {
     EASY,
     MEDIUM,

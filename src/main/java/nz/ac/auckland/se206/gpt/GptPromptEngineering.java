@@ -10,6 +10,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
+    // Returns string with the prompt
     return "Respond with a riddle for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character is talking to the"
         + " player who is currently playing the game and has already met you, only speak as"
@@ -32,6 +33,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWordHard(String wordToGuess) {
+    // Returns string with the prompt
     return "Respond with a riddle for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character is talking to the"
         + " player who is currently playing the game and has already met you, only speak as"
@@ -95,6 +97,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getIntroductionMessageEasy() {
+    // Returns string with the prompt
     return "Write an introduction message for a space-themed escape-style video game where you"
         + " assume the role of an alien cat traversing the galaxy. Your character must"
         + " interact with the player who is currently playing the game, only speak as the"
@@ -114,6 +117,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getIntroductionMessageMedium() {
+    // Returns string with the prompt
     return "Write an introduction message for a space-themed escape-style video game where you"
         + " assume the role of an alien cat traversing the galaxy. Your character must"
         + " interact with the player who is currently playing the game, only speak as the"
@@ -133,6 +137,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getIntroductionMessageHard() {
+    // Returns string with the prompt
     return "Write an introduction message for a space-themed escape-style video game where you"
         + " assume the role of an alien cat traversing the galaxy. Your character must"
         + " interact with the player who is currently playing the game, only speak as the"
@@ -150,6 +155,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterPantryMessage(String food) {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -171,10 +177,10 @@ public class GptPromptEngineering {
    * in hard difficulty
    *
    * @param food the food that the player needs to find
-   * @param recipe the recipe that the player needs to find
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterPantryMessageHard(String food) {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -195,6 +201,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFinishPantryPuzzleMessage() {
+    // Returns string with the prompt
     return "You are currently an alien cat traversing the galaxy to try different foods in a"
         + " space-themed escape-style video game.  You want the player to help you launch"
         + " your rocket ship and reach Earth to enjoy its food, but first you need to bring"
@@ -210,10 +217,10 @@ public class GptPromptEngineering {
    * the pantry. It will not reveal any hints to the player unless asked for.
    *
    * @param food the food that the player needs to find
-   * @param recipe the recipe that the player needs to find
    * @return the generated prompt engineering string which reveals the next part of the game
    */
-  public static String getWrongDishPantryMessage(String food, String recipe) {
+  public static String getWrongDishPantryMessage(String food) {
+    // Returns string with the prompt
     return " The player has has attempted your request of finding and collecting"
         + " the correct food ingredients but it wasn't what you requested. Write a message"
         + " to the player, first congratulating them for attempting but letting them know it"
@@ -227,9 +234,11 @@ public class GptPromptEngineering {
    * Generates a GPT prompt engineering string for a message when the player makes the wrong dish in
    * the pantry in hard difficulty
    *
+   * @param food the food that the player needs to find
    * @return the generated prompt engineering string
    */
   public static String getWrongDishPantryMessageHard(String food) {
+    // Returns string with the prompt
     return " The player has has attempted your request of finding and collecting"
         + " the correct food ingredients but it wasn't what you requested. Write a message"
         + " to the player, first congratulating them for attempting but letting them know it"
@@ -248,6 +257,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessage() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -270,6 +280,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageHard() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -289,6 +300,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageBothNotesFound() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -310,6 +322,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageBothNotesFoundHard() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -329,6 +342,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageNoteOneFound() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -351,6 +365,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageNoteOneFoundHard() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -370,6 +385,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getFirstEnterRocketMessageNoteTwoFound() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -392,6 +408,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getFirstEnterRocketMessageNoteTwoFoundHard() {
+    // Returns string with the prompt
     return "Write a welcome message for a space-themed escape-style video game where you assume the"
         + " role of an alien cat traversing the galaxy. Your character must interact with"
         + " the player who is currently playing the game and has already met you, only speak"
@@ -411,6 +428,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getLeftPadCompleteMessage() {
+    // Returns string with the prompt
     return "The player has just completed the left meow pad. Write a message to the player,"
         + " congratulating them, and suggest them to now activate the right meow pad. Remind"
         + " them that if they need a hint, to say the magic word 'Meowlp'. Refrain from"
@@ -424,6 +442,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getLeftPadCompleteMessageHard() {
+    // Returns string with the prompt
     return "The player has just completed the left meow pad. Write a message to the player,"
         + " congratulating them, then suggest them to now activate the right meow pad."
         + " Ensure that when the player asks for a hint or says a codeword 'Meowlp', you"
@@ -438,6 +457,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getRightPadCompleteMessage() {
+    // Returns string with the prompt
     return "The player has just completed the right meow pad. Write a message to the player,"
         + " congratulating them, and suggest them to now activate the left meow pad. Remind"
         + " them that if they need a hint, to say the magic word 'Meowlp'. Refrain from"
@@ -451,6 +471,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRightPadCompleteMessageHard() {
+    // Returns string with the prompt
     return "The player has just completed the right meow pad. Write a message to the player,"
         + " congratulating them, then suggest them to now activate the left meow pad."
         + " Ensure that when the player asks for a hint or says a codeword 'Meowlp', you"
@@ -465,6 +486,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string which reveals the next part of the game
    */
   public static String getBothPadCompleteMessage() {
+    // Returns string with the prompt
     return "Write a message for a space-themed escape-style video game where you assume the role of"
         + " an alien cat traversing the galaxy. Your character must interact with the player"
         + " who is currently playing the game and has already met you, only speak as the"
@@ -484,6 +506,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getBothPadCompleteMessageHard() {
+    // Returns string with the prompt
     return "Write a message for a space-themed escape-style video game where you assume the role of"
         + " an alien cat traversing the galaxy. Your character must interact with the player"
         + " who is currently playing the game and has already met you, only speak as the"

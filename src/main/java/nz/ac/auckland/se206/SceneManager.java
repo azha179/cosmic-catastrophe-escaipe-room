@@ -12,6 +12,7 @@ import javafx.scene.Parent;
  */
 public class SceneManager {
 
+  /** Enum to store the AppUi of the scenes. */
   public enum AppUi {
     TITLE,
     MENU,

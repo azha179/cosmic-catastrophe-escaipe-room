@@ -24,7 +24,7 @@ public class CountDownTimer {
   public static int timeLeft;
   public static Timeline countdownTimeline;
 
-  /** Initialises the countdown timer. */
+  /** Handles the intialisation of the coutndown timer and starts it. */
   public static void initialiseCountdownTimer() {
     timeLeft = GameSettings.timeLimit * 60;
     // Format time to string and update all timers
