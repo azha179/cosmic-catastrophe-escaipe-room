@@ -21,6 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -90,6 +91,9 @@ public class RocketController {
   private boolean isRightMeowPadpressed = false;
   private int rightMeowPadCount;
   private Timeline leftProgressBarTimer;
+  private double originalWidth;
+  private double originalHeight;
+  private Color originalColor = new Color(1.0, 0.6431, 0.6431, 0.2784);
 
   // Task Log
   @FXML private ImageView log;
@@ -137,6 +141,8 @@ public class RocketController {
     // Disable and hide the memory game rectangle
     memoryGameRectangle.setDisable(true);
     memoryGameRectangle.setVisible(false);
+    originalWidth = memoryGameRectangle.getWidth();
+    originalHeight = memoryGameRectangle.getHeight();
 
     // Cat and Chat initialisation
     // Hide catImageSleep
@@ -361,11 +367,32 @@ public class RocketController {
     }
   }
 
+  /**
+   * Handles the on mouse for the memory game rectangle and changes it to green and upscales.
+   *
+   * @param event the mouse event.
+   */
   @FXML
-  public void onMouseRectangle(MouseEvent event) {}
+  public void onMouseRectangle(MouseEvent event) {
+    // Change the appearance when the mouse enters the rectangle
+    memoryGameRectangle.setFill(new Color(0.0, 1.0, 0.0, 0.3));
+    memoryGameRectangle.setWidth(originalWidth + 5); // Increase width
+    memoryGameRectangle.setHeight(originalHeight + 5); // Increase height
+  }
 
+  /**
+   * Handles the off mouse for the memory game rectangle and changes it back to blue and original
+   * size.
+   *
+   * @param event the mouse event.
+   */
   @FXML
-  public void offMouseRectangle(MouseEvent event) {}
+  public void offMouseRectangle(MouseEvent event) {
+    // Restore the original appearance when the mouse leaves the rectangle
+    memoryGameRectangle.setFill(originalColor);
+    memoryGameRectangle.setWidth(originalWidth); // Restore width
+    memoryGameRectangle.setHeight(originalHeight); // Restore height
+  }
 
   /** Handles the right meow pad activation. */
   private void handleRightMeowPadActivation() {
