@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
@@ -115,6 +114,7 @@
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
+
       <ImageView fx:id="log" fitHeight="22.0" fitWidth="83.0" layoutX="571.0" layoutY="17.0" onMouseEntered="#onHoverLog" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/log.png" />
@@ -168,8 +168,8 @@
             <Glow />
          </effect>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfb6db" height="42.0" layoutX="122.0" layoutY="23.0" stroke="BLACK" strokeType="INSIDE" width="114.0" />
-      <Label fx:id="timer" alignment="CENTER" layoutX="122.0" layoutY="22.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1c002ece" height="42.0" layoutX="122.0" layoutY="14.0" stroke="WHITE" strokeType="INSIDE" width="114.0" />
+      <Label fx:id="timer" alignment="CENTER" layoutX="122.0" layoutY="14.0" prefHeight="42.0" prefWidth="114.0" text="00:00" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Copperplate" size="30.0" />
          </font>
@@ -218,6 +218,33 @@
                   <Font name="Apple Symbols" size="22.0" />
                </font>
             </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="logPane" layoutX="479.0" prefHeight="200.0" prefWidth="202.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1c002ecd" height="15.0" layoutX="53.0" layoutY="19.0" stroke="WHITE" strokeType="INSIDE" width="102.0" />
+            <Label fx:id="logLabel" alignment="CENTER" layoutX="54.0" layoutY="19.0" onMouseEntered="#onHoverLog" prefHeight="14.0" prefWidth="100.0" text="TASK LOG" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Copperplate" size="13.0" />
+               </font>
+            </Label>
+            <Rectangle fx:id="logBackground" arcHeight="5.0" arcWidth="5.0" fill="#210139cf" height="80.0" layoutX="53.0" layoutY="35.0" stroke="WHITE" strokeType="INSIDE" visible="false" width="102.0" />
+            <Label fx:id="task1" layoutX="62.0" layoutY="42.0" prefHeight="17.0" prefWidth="91.0" text="- ???" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="task2" layoutX="62.0" layoutY="64.0" prefHeight="17.0" prefWidth="91.0" text="- ???" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="task3" layoutX="62.0" layoutY="86.0" prefHeight="17.0" prefWidth="91.0" text="- ???" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </Label>
+            <Rectangle fx:id="logHover" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="95.0" layoutX="53.0" layoutY="19.0" onMouseExited="#onLeaveLog" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="102.0" />
          </children>
       </Pane>
       <ProgressBar fx:id="leftProgressBar" layoutX="3.0" layoutY="448.0" prefHeight="12.0" prefWidth="72.0" progress="0.0" rotate="-112.2" />

@@ -9,6 +9,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.Hud;
+import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TextManager;
@@ -54,13 +55,8 @@ public class BushController {
       backButton.setVisible(true);
     }
 
-    // Checking task 1 off
-    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    mainRoom.getTasks().get(0).setSelected(true);
-    RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.getTasks().get(0).setSelected(true);
-    PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.getTasks().get(0).setSelected(true);
+    // task 1 is complete
+    Log.completeTask1();
   }
 
   /**

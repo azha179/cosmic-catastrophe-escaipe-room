@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonSequence;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.HoverManager;
+import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TextManager;
@@ -195,7 +196,11 @@ public class MemoryGameController {
       // initialise the riddle
       rocket.initialiseFinalRiddle();
 
+      // sets all buttons to green
       setAllGreen();
+
+      // completes task 3
+      Log.completeTask3();
 
       // Sets the text
       text.setText(("  /|\n(˚ˎ 。7\n|、˜〵\nじしˍ,)/"));

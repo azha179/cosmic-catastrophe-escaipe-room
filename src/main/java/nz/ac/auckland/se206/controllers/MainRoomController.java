@@ -7,7 +7,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -24,6 +23,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.Hud;
+import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TextManager;
@@ -89,15 +89,14 @@ public class MainRoomController {
   @FXML private Rectangle highlightNote1;
   @FXML private Rectangle highlightNote2;
 
-  // Task Log Elements
-  @FXML private ImageView log;
+  // Task Log elements
+  private ArrayList<Label> taskList;
+  @FXML private Pane logPane;
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
-  @FXML private Pane logPane;
-  @FXML private CheckBox task1;
-  @FXML private CheckBox task2;
-  @FXML private CheckBox task3;
-  private ArrayList<CheckBox> taskList;
+  @FXML private Label task1;
+  @FXML private Label task2;
+  @FXML private Label task3;
 
   // Timer element
   @FXML private Label timer;
@@ -129,7 +128,7 @@ public class MainRoomController {
     hudElements.add(note2Count);
 
     // Add all the tasks to the arraylist
-    taskList = new ArrayList<CheckBox>();
+    taskList = new ArrayList<Label>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -190,9 +189,10 @@ public class MainRoomController {
    *
    * @return the tasks.
    */
-  public ArrayList<CheckBox> getTasks() {
+  public ArrayList<Label> getTasks() {
     return taskList;
   }
+
 
   /** Enables the log by making it visible. */
   public void enableLog() {
@@ -272,6 +272,12 @@ public class MainRoomController {
                   rocketImage.setDisable(false);
                   pantryImage.setDisable(false);
 
+                  // shows logs
+                  Log.enableLog();
+
+                  // assigns task 1 to log
+                  Log.showTask1();
+
                   // removes dim
                   dim.setVisible(false);
                 });
@@ -285,19 +291,6 @@ public class MainRoomController {
     // Start thread for initiateDeviceTask
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
-
-    // assigning task 1 to the log
-    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    mainRoom.enableLog();
-    mainRoom.getTasks().get(0).setText("Find the toy");
-    // assigning task 1 to the pantry
-    PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.enableLog();
-    pantry.getTasks().get(0).setText("Find the toy");
-    // assigning task 1 to the rocket
-    RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.enableLog();
-    rocket.getTasks().get(0).setText("Find the toy");
   }
 
   /**
@@ -896,27 +889,12 @@ public class MainRoomController {
   }
 
   /**
-   * Handles the hover event on the log.
+   * Getter method for the log pane.
    *
-   * @param event the mouse event.
+   * @return the task list.
    */
-  @FXML
-  public void onHoverLog(MouseEvent event) {
-    // Show log pane and enable log hover
-    logPane.setVisible(true);
-    logHover.setDisable(false);
-  }
-
-  /**
-   * Handles the unhover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onLeaveLog(MouseEvent event) {
-    // Hide log pane and disable log hover
-    logPane.setVisible(false);
-    logHover.setDisable(true);
+  public Pane getLogPane() {
+    return logPane;
   }
 
   /** Method that calls GPT when hints are used up in medium difficulty. */
@@ -1010,5 +988,33 @@ public class MainRoomController {
   @FXML
   public void onLeaveNote2(MouseEvent event) {
     highlightNote2.setVisible(false);
+  }
+
+  /**
+   * Handles the hover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    logBackground.setVisible(true);
+    logHover.setVisible(true);
+    task1.setVisible(true);
+    task2.setVisible(true);
+    task3.setVisible(true);
+  }
+
+  /**
+   * Handles the unhover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    logBackground.setVisible(false);
+    logHover.setVisible(false);
+    task1.setVisible(false);
+    task2.setVisible(false);
+    task3.setVisible(false);
   }
 }

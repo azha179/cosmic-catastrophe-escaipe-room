@@ -12,7 +12,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
@@ -34,6 +33,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.Hud;
+import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TextManager;
@@ -98,15 +98,14 @@ public class RocketController {
   private double originalHeight;
   private Color originalColor = new Color(1.0, 0.6431, 0.6431, 0.2784);
 
-  // Task Log
-  @FXML private ImageView log;
+  // Task Log elements
+  private ArrayList<Label> taskList;
+  @FXML private Pane logPane;
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
-  @FXML private Pane logPane;
-  @FXML private CheckBox task1;
-  @FXML private CheckBox task2;
-  @FXML private CheckBox task3;
-  private ArrayList<CheckBox> taskList;
+  @FXML private Label task1;
+  @FXML private Label task2;
+  @FXML private Label task3;
 
   // Timer element
   @FXML private Label timer;
@@ -129,7 +128,7 @@ public class RocketController {
     hudElements.add(note2Count);
 
     // Add all task elements to an arraylist
-    taskList = new ArrayList<CheckBox>();
+    taskList = new ArrayList<Label>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -193,13 +192,17 @@ public class RocketController {
    *
    * @return the task list.
    */
-  public ArrayList<CheckBox> getTasks() {
+  public ArrayList<Label> getTasks() {
     return taskList;
   }
 
-  /** Enables the log by making it visible. */
-  public void enableLog() {
-    log.setVisible(true);
+  /**
+   * Getter method for the log pane.
+   *
+   * @return the task list.
+   */
+  public Pane getLogPane() {
+    return logPane;
   }
 
   /**
@@ -803,6 +806,9 @@ public class RocketController {
 
                   // Enable cat
                   catImageActive.setDisable(false);
+
+                  // assigning task 3
+                  Log.showTask3();
                 });
 
             // tts for cat speaking
@@ -1298,6 +1304,9 @@ public class RocketController {
     return catTextArea;
   }
 
+
+  /** Hides all chat elements */
+
   /**
    * Handles the hover event on the log.
    *
@@ -1473,11 +1482,39 @@ public class RocketController {
   }
 
   /**
+
+   * Handles the hover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    logBackground.setVisible(true);
+    logHover.setVisible(true);
+    task1.setVisible(true);
+    task2.setVisible(true);
+    task3.setVisible(true);
+  }
+
+  /**
+   * Handles the unhover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    logBackground.setVisible(false);
+    logHover.setVisible(false);
+    task1.setVisible(false);
+    task2.setVisible(false);
+    task3.setVisible(false);
+
    * Getter method to get the clearBox image to use in memoryGameController
    *
    * @param event the mouse event.
    */
   public ImageView getClearBox() {
     return clearBox;
+
   }
 }

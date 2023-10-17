@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -24,6 +23,7 @@ import nz.ac.auckland.se206.GameSettings;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GptActions;
 import nz.ac.auckland.se206.HoverManager;
+import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TextManager;
@@ -91,15 +91,14 @@ public class PantryController {
   @FXML private ImageView ingredientIceCream;
   @FXML private ImageView ingredientOnigiri;
 
-  // Task Log
-  @FXML private ImageView log;
+  // Task Log elements
+  private ArrayList<Label> taskList;
+  @FXML private Pane logPane;
   @FXML private Rectangle logBackground;
   @FXML private Rectangle logHover;
-  @FXML private Pane logPane;
-  @FXML private CheckBox task1;
-  @FXML private CheckBox task2;
-  @FXML private CheckBox task3;
-  private ArrayList<CheckBox> taskList;
+  @FXML private Label task1;
+  @FXML private Label task2;
+  @FXML private Label task3;
 
   // Timer element
   @FXML private Label timer;
@@ -124,7 +123,7 @@ public class PantryController {
     hudElements.add(note2Count);
 
     // Add all task elements to an array
-    taskList = new ArrayList<CheckBox>();
+    taskList = new ArrayList<Label>();
     taskList.add(task1);
     taskList.add(task2);
     taskList.add(task3);
@@ -182,13 +181,8 @@ public class PantryController {
    *
    * @return the task list.
    */
-  public ArrayList<CheckBox> getTasks() {
+  public ArrayList<Label> getTasks() {
     return taskList;
-  }
-
-  /** Enables the log by making it visible. */
-  public void enableLog() {
-    log.setVisible(true);
   }
 
   /**
@@ -245,13 +239,8 @@ public class PantryController {
       if (FoodRecipe.checkEqual(FoodRecipe.desiredRecipe, FoodRecipe.playerRecipe)) {
         GameState.isRecipeResolved = true;
 
-        // checking task 2 off
-        MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-        mainRoom.getTasks().get(1).setSelected(true);
-        RocketController rocket = (RocketController) SceneManager.getController("rocket");
-        rocket.getTasks().get(1).setSelected(true);
-        PantryController pantry = (PantryController) SceneManager.getController("pantry");
-        pantry.getTasks().get(1).setSelected(true);
+        // completes task 2
+        Log.completeTask2();
 
         // Drop shadow behind all desired ingredients
         for (ImageView desired : FoodRecipe.desiredRecipe) {
@@ -549,6 +538,9 @@ public class PantryController {
                   catImageActive.setDisable(false);
                   // show return button
                   back.setVisible(true);
+
+                  // assigning task 2 for main room log
+                  Log.showTask2();
                 });
             // text to speech for cat speaking
             TextManager.speakChatMessage(chatMessage.getContent());
@@ -561,19 +553,6 @@ public class PantryController {
     initiateDeviceThread.start();
 
     GameState.isPantryFirstEntered = true;
-
-    // assigning task 2 for main room log
-    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    mainRoom.enableLog();
-    mainRoom.getTasks().get(1).setText("Make food");
-    // assigning task 2 for pantry log
-    PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.enableLog();
-    pantry.getTasks().get(1).setText("Make food");
-    // assigning task 2 for rocket log
-    RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.enableLog();
-    rocket.getTasks().get(1).setText("Make food");
   }
 
   /**
@@ -957,29 +936,12 @@ public class PantryController {
   }
 
   /**
-   * Handles the hover event on the log.
+   * Getter method for the log pane.
    *
-   * @param event the mouse event.
+   * @return the task list.
    */
-  @FXML
-  public void onHoverLog(MouseEvent event) {
-    // Show log pane
-    logPane.setVisible(true);
-    // Enable log hover
-    logHover.setDisable(false);
-  }
-
-  /**
-   * Handles the unhover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onLeaveLog(MouseEvent event) {
-    // Hide log pane
-    logPane.setVisible(false);
-    // Disable log hover
-    logHover.setDisable(true);
+  public Pane getLogPane() {
+    return logPane;
   }
 
   /** Method that calls GPT when hints are used up in medium difficulty. */
@@ -1075,5 +1037,33 @@ public class PantryController {
    */
   public TextManager getTextManager() {
     return textManager;
+  }
+
+  /**
+   * Handles the hover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    logBackground.setVisible(true);
+    logHover.setVisible(true);
+    task1.setVisible(true);
+    task2.setVisible(true);
+    task3.setVisible(true);
+  }
+
+  /**
+   * Handles the unhover event on the task log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    logBackground.setVisible(false);
+    logHover.setVisible(false);
+    task1.setVisible(false);
+    task2.setVisible(false);
+    task3.setVisible(false);
   }
 }
