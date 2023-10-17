@@ -816,6 +816,8 @@ public class MainRoomController {
   public void clickNote1(MouseEvent event) {
     // Show note1Pane
     note1Pane.setVisible(true);
+    // removes highlight
+    highlightNote1.setVisible(false);
   }
 
   /**
@@ -827,6 +829,8 @@ public class MainRoomController {
   public void clickNote2(MouseEvent event) {
     // Show note2Pane
     note2Pane.setVisible(true);
+    // removes highlight
+    highlightNote2.setVisible(false);
   }
 
   /**

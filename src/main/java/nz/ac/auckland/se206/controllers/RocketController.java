@@ -223,23 +223,29 @@ public class RocketController {
   }
 
   /**
-   * Handles the click event for note 1 and shows the note 1 pane.
+   * Handles the click event on the note1.
    *
    * @param event the mouse event.
    */
   @FXML
   public void clickNote1(MouseEvent event) {
+    // Show note1Pane
     note1Pane.setVisible(true);
+    // removes highlight
+    highlightNote1.setVisible(false);
   }
 
   /**
-   * Handles the click event for note 2 and shows the note 2 pane.
+   * Handles the click event on the note2.
    *
    * @param event the mouse event.
    */
   @FXML
   public void clickNote2(MouseEvent event) {
+    // Show note2Pane
     note2Pane.setVisible(true);
+    // removes highlight
+    highlightNote2.setVisible(false);
   }
 
   /**
