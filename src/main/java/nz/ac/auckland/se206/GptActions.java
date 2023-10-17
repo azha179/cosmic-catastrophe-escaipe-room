@@ -34,7 +34,7 @@ public class GptActions {
   }
 
   /**
-   * Set message to the a text area.
+   * Set message to the a text area and append it to the chat log.
    *
    * @param msg the message to set.
    * @param textArea the text area to set.
@@ -88,9 +88,9 @@ public class GptActions {
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    setChatMessage(msg, mainRoom.getCatTextArea());
-    setChatMessage(msg, pantry.getCatTextArea());
-    setChatMessage(msg, rocket.getCatTextArea());
+    mainRoom.getCatTextArea().setText(msg.getContent());
+    pantry.getCatTextArea().setText(msg.getContent());
+    rocket.getCatTextArea().setText(msg.getContent());
 
     // Append the message to the chat log
     SettingsController settings = (SettingsController) SceneManager.getController("settings");
