@@ -1304,32 +1304,7 @@ public class RocketController {
     return catTextArea;
   }
 
-
   /** Hides all chat elements */
-
-  /**
-   * Handles the hover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onHoverLog(MouseEvent event) {
-    // Shows log pane and enables log hover
-    logPane.setVisible(true);
-    logHover.setDisable(false);
-  }
-
-  /**
-   * Handles the unhover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onLeaveLog(MouseEvent event) {
-    // Hides log pane and disables log hover
-    logPane.setVisible(false);
-    logHover.setDisable(true);
-  }
 
   /** Hides all chat elements for when GPT is generating a reponse. */
   public void hideChat() {
@@ -1482,7 +1457,6 @@ public class RocketController {
   }
 
   /**
-
    * Handles the hover event on the task log.
    *
    * @param event the mouse event.
@@ -1508,13 +1482,14 @@ public class RocketController {
     task1.setVisible(false);
     task2.setVisible(false);
     task3.setVisible(false);
+  }
 
+  /*
    * Getter method to get the clearBox image to use in memoryGameController
    *
    * @param event the mouse event.
    */
   public ImageView getClearBox() {
     return clearBox;
-
   }
 }
