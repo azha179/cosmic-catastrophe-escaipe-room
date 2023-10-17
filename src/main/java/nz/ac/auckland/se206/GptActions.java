@@ -41,6 +41,10 @@ public class GptActions {
    */
   public static void setChatMessage(ChatMessage msg, javafx.scene.control.TextArea textArea) {
     textArea.setText(msg.getContent());
+
+    // Append the message to the chat log
+    SettingsController settings = (SettingsController) SceneManager.getController("settings");
+    appendChatMessage(msg, settings.getChatBox());
   }
 
   /**
