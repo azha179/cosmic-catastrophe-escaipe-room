@@ -1210,6 +1210,15 @@ public class RocketController {
     currentHint = false;
   }
 
+  /**
+   * Getter method for memory game rectangle.
+   *
+   * @return memory game rectangle.
+   */
+  public Rectangle getMemoryGameRectangle() {
+    return memoryGameRectangle;
+  }
+
   // Hud highlight methods
 
   /**

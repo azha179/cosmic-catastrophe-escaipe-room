@@ -187,6 +187,8 @@ public class MemoryGameController {
       // enables launch button
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
       rocket.getLaunch().setDisable(false);
+      // hide memory game rectangle
+      rocket.getMemoryGameRectangle().setVisible(false);
 
       setAllGreen();
 
