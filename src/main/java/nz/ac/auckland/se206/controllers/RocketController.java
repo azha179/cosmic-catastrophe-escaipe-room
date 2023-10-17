@@ -671,6 +671,11 @@ public class RocketController {
       win.getResult()
           .setText(
               "...with " + CountDownTimer.timeToString(CountDownTimer.timeLeft) + " to spare!");
+      // If tasks not all completed, then update the win label and task label
+      if (!GameState.note1Found || !GameState.note2Found) {
+        win.getWonLabel().setText("WON?");
+        win.getTaskLabel().setVisible(true);
+      }
     }
   }
 
@@ -1105,6 +1110,8 @@ public class RocketController {
 
                       // enables launch button
                       launch.setDisable(false);
+                      // Set the clear box to invisible
+                      clearBox.setVisible(false);
                       // add white drop shadow to launch button
                       launch.setStyle(
                           "-fx-effect: dropshadow(three-pass-box, white, 10, 0.4, 0, 0);");
@@ -1304,10 +1311,9 @@ public class RocketController {
     return catTextArea;
   }
 
-  /** Hides all chat elements */
-
   /** Hides all chat elements for when GPT is generating a reponse. */
   public void hideChat() {
+    TextManager.close();
     // Hide catImageSleep
     catImageSleep.setVisible(false);
     // hide catImageAwoken

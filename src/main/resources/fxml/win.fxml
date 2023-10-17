@@ -31,7 +31,7 @@
             <Font name="Arial" size="25.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="33.0" layoutY="151.0" prefHeight="81.0" prefWidth="234.0" text="WON!" textAlignment="CENTER" textFill="#fffbb2" wrapText="true">
+      <Label fx:id="wonLabel" alignment="CENTER" layoutX="33.0" layoutY="151.0" prefHeight="81.0" prefWidth="234.0" text="WON!" textAlignment="CENTER" textFill="#fffbb2" wrapText="true">
          <font>
             <Font name="Copperplate" size="81.0" />
          </font>
@@ -44,5 +44,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Label fx:id="taskLabel" alignment="CENTER" layoutX="314.0" layoutY="191.0" prefHeight="127.0" prefWidth="174.0" text="You didn't bring everything the cat wanted :(" textAlignment="CENTER" textFill="#fffbb2" visible="false" wrapText="true">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

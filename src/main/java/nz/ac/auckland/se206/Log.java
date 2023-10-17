@@ -22,6 +22,7 @@ public class Log {
     mainRoom.getLogPane().setVisible(true);
   }
 
+
   /*
    * Updates to show task 1 in the log for all scenes in the game by writing it in.
    *
@@ -34,6 +35,7 @@ public class Log {
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.getTasks().get(0).setText("- Find the toy");
   }
+
 
   /*
    * Updates to show task 2 in the log for all scenes in the game by writing it in.
@@ -48,6 +50,7 @@ public class Log {
     rocket.getTasks().get(1).setText("- Make food");
   }
 
+
   /*
    * Updates to show task 3 in the log for all scenes in the game by writing it in.
    *
@@ -60,6 +63,7 @@ public class Log {
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
     rocket.getTasks().get(2).setText("- Find a way out");
   }
+
 
   /*
    * Completes task 1 in all scene logs by setting the text to green.
@@ -92,6 +96,7 @@ public class Log {
     label = rocket.getTasks().get(1);
     setToGreen(label);
   }
+
 
   /*
    * Completes task 3 in all scene logs by setting the text to green.
