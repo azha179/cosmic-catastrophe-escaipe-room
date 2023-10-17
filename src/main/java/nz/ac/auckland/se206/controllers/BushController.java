@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.Hud;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TextManager;
 
 /**
  * Controller for the bush screen.
@@ -103,6 +104,7 @@ public class BushController {
 
   /** Switches to the main room. */
   private void switchToMainRoom() {
+    TextManager.close();
     App.setUi(AppUi.MAIN_ROOM);
   }
 
