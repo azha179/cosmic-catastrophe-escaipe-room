@@ -184,9 +184,12 @@ public class MemoryGameController {
     if (ButtonSequence.correctSequence.equals(ButtonSequence.playerSequence)) {
       GameState.isMemoryGameResolved = true;
 
-      // enables launch button
       RocketController rocket = (RocketController) SceneManager.getController("rocket");
-      rocket.getLaunch().setDisable(false);
+
+      // hide memory game rectangle
+      rocket.getMemoryGameRectangle().setVisible(false);
+      // initialise the riddle
+      rocket.initialiseFinalRiddle();
 
       setAllGreen();
 
