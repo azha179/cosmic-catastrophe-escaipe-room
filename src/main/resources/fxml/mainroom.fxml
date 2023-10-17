@@ -280,7 +280,7 @@
                   <Font name="Copperplate" size="27.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="198.0" layoutY="242.0" prefHeight="76.0" prefWidth="255.0" text="we've still yet fixed the right meow pad but we notice it detects movement" textFill="#9a9a9a" wrapText="true">
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="198.0" layoutY="242.0" prefHeight="76.0" prefWidth="311.0" text="we've still yet fixed the right meow pad but we notice it detects dragging movement" textFill="#9a9a9a" wrapText="true">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
