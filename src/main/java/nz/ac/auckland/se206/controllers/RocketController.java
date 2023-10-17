@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -1111,17 +1113,35 @@ public class RocketController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage chatMessage;
+            // Random riddle answer
+            List<String> riddleAnswers =
+                List.of(
+                    "Earth",
+                    "Planet",
+                    "Sun",
+                    "Moon",
+                    "Star",
+                    "Space",
+                    "Galaxy",
+                    "Comet",
+                    "Alien",
+                    "Whiskers",
+                    "Paws",
+                    "Tail");
+            Random random = new Random();
+            String riddleAnswer = riddleAnswers.get(random.nextInt(riddleAnswers.size()));
             // depends on difficulty
             if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
               chatMessage =
                   GptActions.runGpt(
                       new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWordHard("earth")),
+                          "user", GptPromptEngineering.getRiddleWithGivenWordHard(riddleAnswer)),
                       GptActions.chatCompletionRequest3);
             } else {
               chatMessage =
                   GptActions.runGpt(
-                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("earth")),
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getRiddleWithGivenWord(riddleAnswer)),
                       GptActions.chatCompletionRequest3);
             }
 
