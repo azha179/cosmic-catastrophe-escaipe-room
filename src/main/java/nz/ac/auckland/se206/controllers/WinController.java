@@ -19,6 +19,8 @@ public class WinController {
 
   @FXML private ImageView exit;
   @FXML private Label result;
+  @FXML private Label wonLabel;
+  @FXML private Label taskLabel;
 
   /**
    * Getter method for the result label.
@@ -27,6 +29,24 @@ public class WinController {
    */
   public Label getResult() {
     return result;
+  }
+
+  /**
+   * Getter method for the won label.
+   *
+   * @return the won label.
+   */
+  public Label getWonLabel() {
+    return wonLabel;
+  }
+
+  /**
+   * Getter method for the task label.
+   *
+   * @return the task label.
+   */
+  public Label getTaskLabel() {
+    return taskLabel;
   }
 
   /**
