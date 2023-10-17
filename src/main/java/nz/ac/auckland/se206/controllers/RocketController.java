@@ -54,6 +54,7 @@ public class RocketController {
   @FXML private ImageView launch;
   @FXML private Pane note1Pane;
   @FXML private Pane note2Pane;
+  @FXML private ImageView clearBox;
 
   // Cat and Chat Elements
   @FXML private ImageView catImageSleep;
@@ -229,6 +230,7 @@ public class RocketController {
    */
   @FXML
   public void clickNote1(MouseEvent event) {
+    TextManager.close();
     // Show note1Pane
     note1Pane.setVisible(true);
     // removes highlight
@@ -242,6 +244,7 @@ public class RocketController {
    */
   @FXML
   public void clickNote2(MouseEvent event) {
+    TextManager.close();
     // Show note2Pane
     note2Pane.setVisible(true);
     // removes highlight
@@ -1142,6 +1145,7 @@ public class RocketController {
 
   /** Switches the scene to the memory game. */
   private void switchToMemoryGame() {
+    TextManager.close();
     App.setUi(AppUi.MEMORY_GAME);
     // gives focus to memory game
     Parent memoryGameScene = SceneManager.getAppUi(AppUi.MEMORY_GAME);
@@ -1466,5 +1470,14 @@ public class RocketController {
    */
   public TextManager getTextManager() {
     return textManager;
+  }
+
+  /**
+   * Getter method to get the clearBox image to use in memoryGameController
+   *
+   * @param event the mouse event.
+   */
+  public ImageView getClearBox() {
+    return clearBox;
   }
 }
