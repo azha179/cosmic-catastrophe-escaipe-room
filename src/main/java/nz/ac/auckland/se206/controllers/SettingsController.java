@@ -100,9 +100,9 @@ public class SettingsController {
   @FXML
   private void onToggleClicked(ActionEvent event) {
     if (toggleButton.isSelected()) {
-      toggleButton.setText("Turn Off");
-    } else {
       toggleButton.setText("Turn On");
+    } else {
+      toggleButton.setText("Turn Off");
     }
   }
 
