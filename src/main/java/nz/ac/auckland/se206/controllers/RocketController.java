@@ -932,63 +932,71 @@ public class RocketController {
                       GameState.hintsLeft--;
                     }
 
-                    // hints depending on game states
-                    if (!GameState.note1Found) {
-                      // note 1 hint
+                    // If riddle is active
+                    if (GameState.isRiddleActive) {
                       lastMsg =
                           GptActions.runGpt(
-                              new ChatMessage(
-                                  "user",
-                                  GptPromptEngineering.getHintMessage(
-                                      "I recall I dropped a note somewhere outside the rocket"
-                                          + " while playing with my toy.")),
-                              GptActions.chatCompletionRequest3);
-                    } else if (GameState.note1Found && !GameState.note2Found) {
-                      // note 2 hint
-                      lastMsg =
-                          GptActions.runGpt(
-                              new ChatMessage(
-                                  "user",
-                                  GptPromptEngineering.getHintMessage(
-                                      "I recall I dropped a note somewhere in the pantry while"
-                                          + " eating.")),
+                              new ChatMessage("user", GptPromptEngineering.getHintMessageRiddle()),
                               GptActions.chatCompletionRequest3);
                     } else {
-                      if (!GameState.isLeftMeowPadActivated) {
-                        // left meow pad hint
+                      // hints depending on game states
+                      if (!GameState.note1Found) {
+                        // note 1 hint
                         lastMsg =
                             GptActions.runGpt(
                                 new ChatMessage(
                                     "user",
                                     GptPromptEngineering.getHintMessage(
-                                        "The yellow note seems to suggest holding the left meow pad"
-                                            + " down.")),
+                                        "I recall I dropped a note somewhere outside the rocket"
+                                            + " while playing with my toy.")),
                                 GptActions.chatCompletionRequest3);
-                      } else if (GameState.isLeftMeowPadActivated
-                          && !GameState.isRightMeowPadActivated) {
-                        // right meow pad hint
+                      } else if (GameState.note1Found && !GameState.note2Found) {
+                        // note 2 hint
                         lastMsg =
                             GptActions.runGpt(
                                 new ChatMessage(
                                     "user",
                                     GptPromptEngineering.getHintMessage(
-                                        "The pink note seems to suggest wiggling the right meow pad"
-                                            + " around.")),
+                                        "I recall I dropped a note somewhere in the pantry while"
+                                            + " eating.")),
                                 GptActions.chatCompletionRequest3);
                       } else {
-                        // memory game hint
-                        lastMsg =
-                            GptActions.runGpt(
-                                new ChatMessage(
-                                    "user",
-                                    GptPromptEngineering.getHintMessage(
-                                        "The verification puzzle requires you to memorise the"
-                                            + " pattern shown then recreate it. Once completed the"
-                                            + " button will be unlocked!")),
-                                GptActions.chatCompletionRequest3);
+                        if (!GameState.isLeftMeowPadActivated) {
+                          // left meow pad hint
+                          lastMsg =
+                              GptActions.runGpt(
+                                  new ChatMessage(
+                                      "user",
+                                      GptPromptEngineering.getHintMessage(
+                                          "The yellow note seems to suggest holding the left meow"
+                                              + " pad down.")),
+                                  GptActions.chatCompletionRequest3);
+                        } else if (GameState.isLeftMeowPadActivated
+                            && !GameState.isRightMeowPadActivated) {
+                          // right meow pad hint
+                          lastMsg =
+                              GptActions.runGpt(
+                                  new ChatMessage(
+                                      "user",
+                                      GptPromptEngineering.getHintMessage(
+                                          "The pink note seems to suggest wiggling the right meow"
+                                              + " pad around.")),
+                                  GptActions.chatCompletionRequest3);
+                        } else {
+                          // memory game hint
+                          lastMsg =
+                              GptActions.runGpt(
+                                  new ChatMessage(
+                                      "user",
+                                      GptPromptEngineering.getHintMessage(
+                                          "The verification puzzle requires you to memorise the"
+                                              + " pattern shown then recreate it. Once completed"
+                                              + " the button will be unlocked!")),
+                                  GptActions.chatCompletionRequest3);
+                        }
                       }
+                      currentHint = true;
                     }
-                    currentHint = true;
                     // If hints left is 0
                     if (GameState.hintsLeft == 0 && !GameState.isHintUsed) {
                       hintsUsed();
@@ -1017,6 +1025,21 @@ public class RocketController {
 
                   // Update hint label
                   GameState.updateAllHintsLabel();
+
+                  // Check if message contained 'Correct' when riddle is active
+                  if (GameState.isRiddleActive) {
+                    if (lastMsg.getContent().contains("Correct")) {
+                      // Update GameState
+                      GameState.isRiddleSolved = true;
+                      GameState.isRiddleActive = false;
+
+                      // enables launch button
+                      launch.setDisable(false);
+                      // add white drop shadow to launch button
+                      launch.setStyle(
+                          "-fx-effect: dropshadow(three-pass-box, white, 10, 0.4, 0, 0);");
+                    }
+                  }
 
                   // Enable reply button
                   replyImage.setDisable(false);
@@ -1070,6 +1093,8 @@ public class RocketController {
     System.out.println("riddle");
     // Update GameState
     GameState.isRiddleActive = true;
+    // hide return button
+    back.setVisible(false);
     hideChat();
     // Initiate first message from GPT
     Task<Void> initiateDeviceTask =
