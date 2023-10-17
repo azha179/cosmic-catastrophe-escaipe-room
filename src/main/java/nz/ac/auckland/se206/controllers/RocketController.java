@@ -918,14 +918,14 @@ public class RocketController {
                   lastMsg =
                       GptActions.runGpt(
                           new ChatMessage("user", GptPromptEngineering.getHintMessageHard()),
-                          GptActions.chatCompletionRequest2);
+                          GptActions.chatCompletionRequest3);
                 } else {
                   // If current hint is used
                   if (currentHint) {
                     lastMsg =
                         GptActions.runGpt(
                             new ChatMessage("user", GptPromptEngineering.getHintMessageNone()),
-                            GptActions.chatCompletionRequest2);
+                            GptActions.chatCompletionRequest3);
                   } else {
                     // Update GameState if medium difficulty
                     if (GameSettings.difficulty == GameSettings.GameDifficulty.MEDIUM) {
@@ -1000,14 +1000,14 @@ public class RocketController {
                 // message
                 System.out.println("meow");
                 ChatMessage msg = new ChatMessage("user", message);
-                lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
+                lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest3);
               }
             } else {
               // If the message does not start with 'Meowlp', then call GPT with the original
               // message
               System.out.println("meow");
               ChatMessage msg = new ChatMessage("user", message);
-              lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest2);
+              lastMsg = GptActions.runGpt(msg, GptActions.chatCompletionRequest3);
             }
 
             Platform.runLater(
