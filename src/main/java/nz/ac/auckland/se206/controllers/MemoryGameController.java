@@ -24,6 +24,7 @@ import nz.ac.auckland.se206.HoverManager;
 import nz.ac.auckland.se206.Log;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TextManager;
 
 /**
  * Controller for the memory game.
@@ -104,12 +105,15 @@ public class MemoryGameController {
 
   /** Method which switches the scene to the rocket. */
   private void switchToRocket() {
+    TextManager.close();
     App.setUi(AppUi.ROCKET_INTERIOR);
     // gives focus to memory game
     Parent rocketScene = SceneManager.getAppUi(AppUi.ROCKET_INTERIOR);
     App.getScene().setRoot(rocketScene);
     rocketScene.requestFocus();
-
+    RocketController rocketRoom = (RocketController) SceneManager.getController("rocket");
+    // Set the clear box to invisible
+    rocketRoom.getClearBox().setVisible(false);
     // resets player sequence when exiting the memory game
     ButtonSequence.clear();
   }
