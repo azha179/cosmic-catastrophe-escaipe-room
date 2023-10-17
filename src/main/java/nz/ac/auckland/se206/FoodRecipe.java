@@ -52,32 +52,37 @@ public class FoodRecipe {
    * @return the recipe as a string.
    */
   public static String recipeToString(ArrayList<ImageView> recipe) {
-    // converts the recipe to a string
-    String string = "";
-    for (ImageView ingredient : recipe) {
+    // create a StringBuilder to efficiently build the string
+    StringBuilder builder = new StringBuilder();
+
+    for (int i = 0; i < recipe.size(); i++) {
+      ImageView ingredient = recipe.get(i);
       String add = ingredientToString(ingredient);
-      string += add;
-      if (ingredient.equals(recipe.get(2))) {
+      builder.append(add);
+
+      if (i == 2) {
         break;
       }
-      // on ingredient #1
-      if (ingredient.equals(recipe.get(0))) {
-        // both adjectives
-        if ((int) ingredient.getUserData() == 1 && ((int) recipe.get(1).getUserData() == 1)) {
-          string += "-";
-          // both nouns
+
+      if (i == 0) {
+        // on ingredient #1
+        if ((int) ingredient.getUserData() == 1
+            && (i + 1 < recipe.size())
+            && (int) recipe.get(i + 1).getUserData() == 1) {
+          builder.append("-");
         } else if ((int) ingredient.getUserData() == 2
-            && ((int) recipe.get(1).getUserData() == 2)) {
-          string += " & ";
+            && (i + 1 < recipe.size())
+            && (int) recipe.get(i + 1).getUserData() == 2) {
+          builder.append(" & ");
         } else {
-          string += " ";
+          builder.append(" ");
         }
       } else {
-        string += " ";
+        builder.append(" ");
       }
     }
 
-    return string;
+    return builder.toString();
   }
 
   /**
