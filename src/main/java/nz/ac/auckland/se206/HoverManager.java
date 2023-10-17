@@ -16,7 +16,7 @@ public class HoverManager {
   private static double originalY;
 
   /**
-   * Scales up the image.
+   * Method which scales up the image given.
    *
    * @param image the image to scale up.
    */
@@ -45,7 +45,7 @@ public class HoverManager {
   }
 
   /**
-   * Scales down the image.
+   * Method which scales down the image given.
    *
    * @param image the image to scale down.
    */

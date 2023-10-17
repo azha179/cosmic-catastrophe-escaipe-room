@@ -18,6 +18,17 @@ import nz.ac.auckland.se206.SceneManager;
  * <p>Handles the click event for the back button.
  */
 public class SettingsController {
+  // Stores the volume
+  private static double volume = 1;
+
+  /**
+   * Getter method for the volume.
+   *
+   * @return the volume.
+   */
+  public static double getVolume() {
+    return volume;
+  }
 
   // Settings elements
   @FXML private Button applyButton;
@@ -30,9 +41,6 @@ public class SettingsController {
 
   // Timer
   @FXML private Label timer;
-
-  // Stores the volume
-  private static double volume = 1;
 
   /**
    * Initializes the settings screen.
@@ -104,11 +112,6 @@ public class SettingsController {
     } else {
       toggleButton.setText("Turn Off");
     }
-  }
-
-  // Getter for the volume
-  public static double getVolume() {
-    return volume;
   }
 
   /**

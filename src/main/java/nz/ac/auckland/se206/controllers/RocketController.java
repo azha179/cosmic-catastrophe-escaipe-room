@@ -115,7 +115,7 @@ public class RocketController {
   // initialise textManager for text to speech
   private TextManager textManager = new TextManager();
 
-  /** Initialise method for the rocket. */
+  /** Initialise method for the rocket which is called as soon as the scene loads. */
   public void initialize() {
     // Add all hud elements to an arraylist
     hudElements = new ArrayList<Object>();
@@ -425,7 +425,6 @@ public class RocketController {
     // Generate message
     // only if both notes are found AND left meow pad is not activated
     if (GameState.note1Found && GameState.note2Found && !GameState.isLeftMeowPadActivated) {
-      // Hide chat
       hideChat();
       // Initiate first message from GPT
       Task<Void> initiateDeviceTask =
@@ -452,7 +451,6 @@ public class RocketController {
                   () -> {
                     // Set chat message to text area
                     GptActions.setChatMessage(chatMessage, catTextArea);
-                    // Show chat
                     showChat();
                   });
 
@@ -484,7 +482,6 @@ public class RocketController {
       Hud.disableNote2();
 
       // Generate message
-      // Hide chat
       hideChat();
       // Initiate first message from GPT
       Task<Void> initiateDeviceTask =
@@ -519,7 +516,6 @@ public class RocketController {
                   () -> {
                     // Set chat message to text area
                     GptActions.setChatMessage(chatMessage, catTextArea);
-                    // Show chat pane
                     showChat();
                   });
 
@@ -572,7 +568,6 @@ public class RocketController {
                   () -> {
                     // Set chat message to text area
                     GptActions.setChatMessage(chatMessage, catTextArea);
-                    // Show chat
                     showChat();
                   });
 
@@ -637,7 +632,6 @@ public class RocketController {
                   () -> {
                     // Set chat message to text area
                     GptActions.setChatMessage(chatMessage, catTextArea);
-                    // Show chat
                     showChat();
                   });
 
@@ -1220,7 +1214,6 @@ public class RocketController {
                 () -> {
                   // Set chat message to text area
                   GptActions.setChatMessage(chatMessage, catTextArea);
-                  // Show chat
                   showChat();
                 });
 
@@ -1233,12 +1226,11 @@ public class RocketController {
 
     Thread initiateDeviceThread = new Thread(initiateDeviceTask);
     initiateDeviceThread.start();
-    return;
   }
 
   /**
    * Handles the escape key press event and switches to the main room if the return button is
-   * visible
+   * visible.
    *
    * @param event the key event
    */
@@ -1275,7 +1267,7 @@ public class RocketController {
     HoverManager.scaleDown(image);
   }
 
-  /** Initialises the left meow pad */
+  /** Initialises the left meow pad. */
   private void initialiseLeftMeowPad() {
     // Timer for left meow pad
     leftMeowPadPressTimer =
@@ -1308,7 +1300,34 @@ public class RocketController {
     return catTextArea;
   }
 
+
   /** Hides all chat elements */
+
+  /**
+   * Handles the hover event on the log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onHoverLog(MouseEvent event) {
+    // Shows log pane and enables log hover
+    logPane.setVisible(true);
+    logHover.setDisable(false);
+  }
+
+  /**
+   * Handles the unhover event on the log.
+   *
+   * @param event the mouse event.
+   */
+  @FXML
+  public void onLeaveLog(MouseEvent event) {
+    // Hides log pane and disables log hover
+    logPane.setVisible(false);
+    logHover.setDisable(true);
+  }
+
+  /** Hides all chat elements for when GPT is generating a reponse. */
   public void hideChat() {
     // Hide catImageSleep
     catImageSleep.setVisible(false);
@@ -1331,7 +1350,7 @@ public class RocketController {
     replyRectangle.setVisible(false);
   }
 
-  /** Shows all chat elements */
+  /** Shows all chat elements for when GPT is generating a response. */
   public void showChat() {
     // Make chat pane visible
     chatPane.setVisible(true);
@@ -1349,7 +1368,7 @@ public class RocketController {
     back.setVisible(true);
   }
 
-  /** Method that calls GPT when hints are used up in medium difficulty */
+  /** Method that calls GPT when hints are used up in medium difficulty. */
   public void hintsUsed() {
     // Change difficulty to hard to ensure future prompts are given in hard difficulty which include
     // no hints.
@@ -1359,7 +1378,7 @@ public class RocketController {
     hintsLabel.setStyle("-fx-text-fill: red;");
   }
 
-  /** Method to update hint labels */
+  /** Method to update hint labels on the scene. */
   public void updateHintsLabel() {
     // If easy difficult, set label to inf.
     if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
@@ -1373,7 +1392,7 @@ public class RocketController {
     }
   }
 
-  /** Reset current hint to false */
+  /** Method to reset current hint back to false. */
   public void resetCurrentHint() {
     currentHint = false;
   }
@@ -1449,7 +1468,11 @@ public class RocketController {
     highlightNote2.setVisible(false);
   }
 
-  /* Get the textManager for the scene. */
+  /**
+   * Getter method for the text manager.
+   *
+   * @return the text manager.
+   */
   public TextManager getTextManager() {
     return textManager;
   }

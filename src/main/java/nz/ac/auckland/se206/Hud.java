@@ -163,7 +163,7 @@ public class Hud {
   }
 
   /**
-   * Greyscales an image view.
+   * Greyscales an image view by using a colour adjust effect.
    *
    * @param image the image view to greyscale.
    */

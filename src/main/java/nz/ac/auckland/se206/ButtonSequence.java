@@ -33,7 +33,7 @@ public class ButtonSequence {
     playerSequence.add(num);
   }
 
-  /** Clears the player sequence. */
+  /** Method to clear the player sequence of the class. */
   public static void clear() {
     playerSequence.clear();
   }

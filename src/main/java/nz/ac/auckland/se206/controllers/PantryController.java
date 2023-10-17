@@ -348,7 +348,6 @@ public class PantryController {
               @Override
               protected Void call() throws Exception {
                 ChatMessage chatMessage;
-                String recipe = FoodRecipe.desiredRecipe.get(0).getId().substring(10).toLowerCase();
                 // depends on difficulty
                 if (GameSettings.difficulty == GameSettings.GameDifficulty.HARD) {
                   chatMessage =
@@ -362,8 +361,7 @@ public class PantryController {
                       GptActions.runGpt(
                           new ChatMessage(
                               "user",
-                              GptPromptEngineering.getWrongDishPantryMessage(
-                                  FoodRecipe.food, recipe)),
+                              GptPromptEngineering.getWrongDishPantryMessage(FoodRecipe.food)),
                           GptActions.chatCompletionRequest2);
                 }
 
@@ -853,7 +851,7 @@ public class PantryController {
     SceneManager.getAppUi(AppUi.PANTRY_INTERIOR);
   }
 
-  /** Method to initialise the user data for each ingredient */
+  /** Method to initialise the user data for each ingredient. */
   private void initialiseUserData() {
     // 1 indicates adjective ingredient
     // 2 indicates noun ingredient
@@ -878,7 +876,7 @@ public class PantryController {
     ingredientOnigiri.setUserData(3);
   }
 
-  /** Method to store all the ingredients in the FoodRecipe class */
+  /** Method to store all the ingredients in the FoodRecipe class. */
   private void storeIngredients() {
     // get all fields in PantryController
     Field[] fields = PantryController.class.getDeclaredFields();
@@ -928,7 +926,11 @@ public class PantryController {
     HoverManager.scaleDown(image);
   }
 
-  /** Getter method for chatTextArea. */
+  /**
+   * Getter method for the cat text area.
+   *
+   * @return the cat text area.
+   */
   public TextArea getCatTextArea() {
     return catTextArea;
   }
@@ -942,7 +944,7 @@ public class PantryController {
     return logPane;
   }
 
-  /** Method that calls GPT when hints are used up in medium difficulty */
+  /** Method that calls GPT when hints are used up in medium difficulty. */
   public void hintsUsed() {
     // Change difficulty to hard to ensure future prompts are given in hard difficulty which include
     // no hints.
@@ -952,7 +954,7 @@ public class PantryController {
     hintsLabel.setStyle("-fx-text-fill: red;");
   }
 
-  /** Method to update hint label */
+  /** Method to update hint label on the scene. */
   public void updateHintsLabel() {
     // If easy difficult, set label to inf.
     if (GameSettings.difficulty == GameSettings.GameDifficulty.EASY) {
@@ -1028,7 +1030,11 @@ public class PantryController {
     highlightNote2.setVisible(false);
   }
 
-  /* Get the textManager for the scene. */
+  /**
+   * Getter method for the text manager.
+   *
+   * @return the text manager.
+   */
   public TextManager getTextManager() {
     return textManager;
   }

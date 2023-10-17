@@ -230,6 +230,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+
       <Pane fx:id="logPane" layoutX="479.0" prefHeight="200.0" prefWidth="202.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1c002ecd" height="15.0" layoutX="53.0" layoutY="19.0" stroke="WHITE" strokeType="INSIDE" width="102.0" />
@@ -258,8 +259,9 @@
          </children>
       </Pane>
       <Pane fx:id="note2Pane" prefHeight="543.0" prefWidth="737.0" visible="false">
+
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="567.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="766.0" />
             <ImageView fitHeight="473.0" fitWidth="502.0" layoutX="115.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note2Screen.PNG" />
@@ -290,7 +292,7 @@
       </Pane>
       <Pane fx:id="note1Pane" layoutX="3.0" layoutY="2.0" prefHeight="543.0" prefWidth="737.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="554.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="567.0" layoutX="-8.0" layoutY="-8.0" opacity="0.76" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="751.0" />
             <ImageView fitHeight="515.0" fitWidth="525.0" layoutX="108.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/note1Screen.PNG" />

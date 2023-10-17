@@ -49,10 +49,12 @@ public class GameState {
 
   /** Updates the hint labels of all scenes. */
   public static void updateAllHintsLabel() {
+    // Get controllers for each scene
     MainRoomController mainRoomController =
         (MainRoomController) SceneManager.getController("mainroom");
     PantryController pantryController = (PantryController) SceneManager.getController("pantry");
     RocketController rocketController = (RocketController) SceneManager.getController("rocket");
+    // Update the hint labels
     mainRoomController.updateHintsLabel();
     pantryController.updateHintsLabel();
     rocketController.updateHintsLabel();

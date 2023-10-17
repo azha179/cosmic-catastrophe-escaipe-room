@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -47,24 +46,42 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Label fx:id="fourText1" layoutX="137.0" layoutY="144.0" onMouseClicked="#onClickFour" prefHeight="25.0" prefWidth="77.0" text="EASY" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="fourText13" layoutX="137.0" layoutY="141.0" onMouseClicked="#onClickFour" prefHeight="37.0" prefWidth="109.0" text="EASY" textAlignment="CENTER">
          <font>
-            <Font name="Copperplate" size="25.0" />
+            <Font name="Copperplate" size="26.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
-            <Bloom>
-               <input>
-                  <SepiaTone />
-               </input>
-            </Bloom>
+            <Bloom />
          </effect>
       </Label>
-      <Label fx:id="fourText12" layoutX="97.0" layoutY="163.0" onMouseClicked="#onClickFour" prefHeight="104.0" prefWidth="148.0" text="Ask as many questions as you wish, and enjoy hints aplenty!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label fx:id="fourText1" layoutX="134.0" layoutY="139.0" onMouseClicked="#onClickFour" prefHeight="37.0" prefWidth="109.0" text="EASY" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Copperplate" size="14.0" />
+            <Font name="Copperplate" size="26.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText122" layoutX="101.0" layoutY="160.0" onMouseClicked="#onClickFour" prefHeight="104.0" prefWidth="148.0" text="Ask as many questions as you wish, and enjoy hints aplenty!" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText12" layoutX="99.0" layoutY="158.0" onMouseClicked="#onClickFour" prefHeight="104.0" prefWidth="148.0" text="Ask as many questions as you wish, and enjoy hints aplenty!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -90,7 +107,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Label fx:id="fourText11" layoutX="320.0" layoutY="144.0" onMouseClicked="#onClickFour" text="MEDIUM" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="fourText112" layoutX="323.0" layoutY="145.0" onMouseClicked="#onClickFour" text="MEDIUM" textAlignment="CENTER">
          <font>
             <Font name="Copperplate" size="25.0" />
          </font>
@@ -101,9 +118,31 @@
             <Bloom />
          </effect>
       </Label>
-      <Label fx:id="fourText121" layoutX="294.0" layoutY="168.0" onMouseClicked="#onClickFour" prefHeight="94.0" prefWidth="148.0" text="You get a paw-some five hints and can chat with the alien catto!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label fx:id="fourText11" layoutX="320.0" layoutY="143.0" onMouseClicked="#onClickFour" text="MEDIUM" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Copperplate" size="14.0" />
+            <Font name="Copperplate" size="25.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText121" layoutX="294.0" layoutY="163.0" onMouseClicked="#onClickFour" prefHeight="94.0" prefWidth="148.0" text="A paw-some five hints and can chat with the alien catto!" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText1212" layoutX="292.0" layoutY="161.0" onMouseClicked="#onClickFour" prefHeight="94.0" prefWidth="148.0" text="A paw-some five hints and can chat with the alien catto!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -129,7 +168,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Label fx:id="fourText111" layoutX="530.0" layoutY="142.0" onMouseClicked="#onClickFour" text="HARD" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="fourText1111" layoutX="525.0" layoutY="142.0" onMouseClicked="#onClickFour" prefHeight="25.0" prefWidth="81.0" text="HARD" textAlignment="CENTER">
          <font>
             <Font name="Copperplate" size="25.0" />
          </font>
@@ -140,9 +179,31 @@
             <Bloom />
          </effect>
       </Label>
-      <Label fx:id="fourText1211" layoutX="492.0" layoutY="168.0" onMouseClicked="#onClickFour" prefHeight="94.0" prefWidth="148.0" text="chat with the cunning cat, but rely solely on your existing knowledge – no hints allowed!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label fx:id="fourText111" layoutX="522.0" layoutY="140.0" onMouseClicked="#onClickFour" prefHeight="25.0" prefWidth="81.0" text="HARD" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Copperplate" size="14.0" />
+            <Font name="Copperplate" size="25.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText12111" layoutX="496.0" layoutY="158.0" onMouseClicked="#onClickFour" prefHeight="104.0" prefWidth="138.0" text="Rely solely on your existing knowledge – no hints allowed!" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="fourText1211" layoutX="494.0" layoutY="157.0" onMouseClicked="#onClickFour" prefHeight="104.0" prefWidth="138.0" text="Rely solely on your existing knowledge – no hints allowed!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Copperplate" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -163,7 +224,18 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Label fx:id="twoText" layoutX="176.0" layoutY="346.0" onMouseClicked="#onClickTwo" text="2 Mins" textFill="#ffc500">
+      <Label fx:id="twoText1" layoutX="176.0" layoutY="348.0" onMouseClicked="#onClickTwo" text="2 Mins">
+         <font>
+            <Font name="Copperplate" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="twoText" layoutX="176.0" layoutY="345.0" onMouseClicked="#onClickTwo" text="2 Mins" textFill="#ffc500">
          <font>
             <Font name="Copperplate" size="18.0" />
          </font>
@@ -179,6 +251,17 @@
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
       <Rectangle fx:id="six" arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="37.0" layoutX="488.0" layoutY="337.0" onMouseClicked="#onClickSix" opacity="0.28" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="109.0" />
+      <Label fx:id="fourText2" layoutX="344.0" layoutY="348.0" onMouseClicked="#onClickFour" text="4 Mins">
+         <font>
+            <Font name="Copperplate" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
       <Label fx:id="fourText" layoutX="342.0" layoutY="346.0" onMouseClicked="#onClickFour" text="4 Mins" textFill="#ffb700">
          <font>
             <Font name="Copperplate" size="18.0" />
@@ -190,7 +273,18 @@
             <Bloom />
          </effect>
       </Label>
-      <Label fx:id="sixText" layoutX="515.0" layoutY="347.0" onMouseClicked="#onClickSix" text="6 Mins" textFill="#ffb700">
+      <Label fx:id="sixText1" layoutX="517.0" layoutY="346.0" onMouseClicked="#onClickSix" text="6 Mins">
+         <font>
+            <Font name="Copperplate" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="sixText" layoutX="515.0" layoutY="344.0" onMouseClicked="#onClickSix" text="6 Mins" textFill="#ffb700">
          <font>
             <Font name="Copperplate" size="18.0" />
          </font>
