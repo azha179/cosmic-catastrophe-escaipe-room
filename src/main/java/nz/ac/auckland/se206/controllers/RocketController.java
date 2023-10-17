@@ -1311,8 +1311,6 @@ public class RocketController {
     return catTextArea;
   }
 
-  /** Hides all chat elements */
-
   /** Hides all chat elements for when GPT is generating a reponse. */
   public void hideChat() {
     TextManager.close();
