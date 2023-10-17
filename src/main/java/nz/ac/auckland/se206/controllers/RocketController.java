@@ -98,13 +98,6 @@ public class RocketController {
   private Color originalColor = new Color(1.0, 0.6431, 0.6431, 0.2784);
 
   // Task Log
-  @FXML private ImageView log;
-  @FXML private Rectangle logBackground;
-  @FXML private Rectangle logHover;
-  @FXML private Pane logPane;
-  @FXML private CheckBox task1;
-  @FXML private CheckBox task2;
-  @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
   // Timer element
@@ -129,9 +122,9 @@ public class RocketController {
 
     // Add all task elements to an arraylist
     taskList = new ArrayList<CheckBox>();
-    taskList.add(task1);
-    taskList.add(task2);
-    taskList.add(task3);
+    // taskList.add(task1);
+    // taskList.add(task2);
+    // taskList.add(task3);
 
     // Initialise the left meow pad
     initialiseLeftMeowPad();
@@ -198,7 +191,7 @@ public class RocketController {
 
   /** Enables the log by making it visible. */
   public void enableLog() {
-    log.setVisible(true);
+    // log.setVisible(true);
   }
 
   /**
@@ -1300,30 +1293,6 @@ public class RocketController {
    */
   public TextArea getCatTextArea() {
     return catTextArea;
-  }
-
-  /**
-   * Handles the hover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onHoverLog(MouseEvent event) {
-    // Shows log pane and enables log hover
-    logPane.setVisible(true);
-    logHover.setDisable(false);
-  }
-
-  /**
-   * Handles the unhover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onLeaveLog(MouseEvent event) {
-    // Hides log pane and disables log hover
-    logPane.setVisible(false);
-    logHover.setDisable(true);
   }
 
   /** Hides all chat elements */

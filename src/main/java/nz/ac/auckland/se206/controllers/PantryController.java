@@ -92,13 +92,6 @@ public class PantryController {
   @FXML private ImageView ingredientOnigiri;
 
   // Task Log
-  @FXML private ImageView log;
-  @FXML private Rectangle logBackground;
-  @FXML private Rectangle logHover;
-  @FXML private Pane logPane;
-  @FXML private CheckBox task1;
-  @FXML private CheckBox task2;
-  @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
   // Timer element
@@ -125,9 +118,9 @@ public class PantryController {
 
     // Add all task elements to an array
     taskList = new ArrayList<CheckBox>();
-    taskList.add(task1);
-    taskList.add(task2);
-    taskList.add(task3);
+    // taskList.add(task1);
+    // taskList.add(task2);
+    // taskList.add(task3);
 
     // assigns a value 1-3 to each food item
     initialiseUserData();
@@ -188,7 +181,7 @@ public class PantryController {
 
   /** Enables the log by making it visible. */
   public void enableLog() {
-    log.setVisible(true);
+    // log.setVisible(true);
   }
 
   /**
@@ -246,12 +239,13 @@ public class PantryController {
         GameState.isRecipeResolved = true;
 
         // checking task 2 off
-        MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-        mainRoom.getTasks().get(1).setSelected(true);
-        RocketController rocket = (RocketController) SceneManager.getController("rocket");
-        rocket.getTasks().get(1).setSelected(true);
-        PantryController pantry = (PantryController) SceneManager.getController("pantry");
-        pantry.getTasks().get(1).setSelected(true);
+        // MainRoomController mainRoom = (MainRoomController)
+        // SceneManager.getController("mainroom");
+        // mainRoom.getTasks().get(1).setSelected(true);
+        // RocketController rocket = (RocketController) SceneManager.getController("rocket");
+        // rocket.getTasks().get(1).setSelected(true);
+        // PantryController pantry = (PantryController) SceneManager.getController("pantry");
+        // pantry.getTasks().get(1).setSelected(true);
 
         // Drop shadow behind all desired ingredients
         for (ImageView desired : FoodRecipe.desiredRecipe) {
@@ -565,17 +559,17 @@ public class PantryController {
     GameState.isPantryFirstEntered = true;
 
     // assigning task 2 for main room log
-    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    mainRoom.enableLog();
-    mainRoom.getTasks().get(1).setText("Make food");
+    // MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    // mainRoom.enableLog();
+    // mainRoom.getTasks().get(1).setText("Make food");
     // assigning task 2 for pantry log
-    PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.enableLog();
-    pantry.getTasks().get(1).setText("Make food");
+    // PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    // pantry.enableLog();
+    // pantry.getTasks().get(1).setText("Make food");
     // assigning task 2 for rocket log
-    RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.enableLog();
-    rocket.getTasks().get(1).setText("Make food");
+    // RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    // rocket.enableLog();
+    // rocket.getTasks().get(1).setText("Make food");
   }
 
   /**
@@ -952,32 +946,6 @@ public class PantryController {
   /** Getter method for chatTextArea. */
   public TextArea getCatTextArea() {
     return catTextArea;
-  }
-
-  /**
-   * Handles the hover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onHoverLog(MouseEvent event) {
-    // Show log pane
-    logPane.setVisible(true);
-    // Enable log hover
-    logHover.setDisable(false);
-  }
-
-  /**
-   * Handles the unhover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onLeaveLog(MouseEvent event) {
-    // Hide log pane
-    logPane.setVisible(false);
-    // Disable log hover
-    logHover.setDisable(true);
   }
 
   /** Method that calls GPT when hints are used up in medium difficulty */

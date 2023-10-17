@@ -90,13 +90,6 @@ public class MainRoomController {
   @FXML private Rectangle highlightNote2;
 
   // Task Log Elements
-  @FXML private ImageView log;
-  @FXML private Rectangle logBackground;
-  @FXML private Rectangle logHover;
-  @FXML private Pane logPane;
-  @FXML private CheckBox task1;
-  @FXML private CheckBox task2;
-  @FXML private CheckBox task3;
   private ArrayList<CheckBox> taskList;
 
   // Timer element
@@ -130,9 +123,9 @@ public class MainRoomController {
 
     // Add all the tasks to the arraylist
     taskList = new ArrayList<CheckBox>();
-    taskList.add(task1);
-    taskList.add(task2);
-    taskList.add(task3);
+    // taskList.add(task1);
+    // taskList.add(task2);
+    // taskList.add(task3);
 
     // Adds all the footprints to the arraylist
     footprints.add(footprint1Image);
@@ -191,7 +184,7 @@ public class MainRoomController {
 
   /** Enables the log by making it visible */
   public void enableLog() {
-    log.setVisible(true);
+    // log.setVisible(true);
   }
 
   /**
@@ -282,17 +275,17 @@ public class MainRoomController {
     initiateDeviceThread.start();
 
     // assigning task 1 to the log
-    MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
-    mainRoom.enableLog();
-    mainRoom.getTasks().get(0).setText("Find the toy");
+    // MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
+    // mainRoom.enableLog();
+    // mainRoom.getTasks().get(0).setText("Find the toy");
     // assigning task 1 to the pantry
-    PantryController pantry = (PantryController) SceneManager.getController("pantry");
-    pantry.enableLog();
-    pantry.getTasks().get(0).setText("Find the toy");
+    // PantryController pantry = (PantryController) SceneManager.getController("pantry");
+    // pantry.enableLog();
+    // pantry.getTasks().get(0).setText("Find the toy");
     // assigning task 1 to the rocket
-    RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    rocket.enableLog();
-    rocket.getTasks().get(0).setText("Find the toy");
+    // RocketController rocket = (RocketController) SceneManager.getController("rocket");
+    // rocket.enableLog();
+    // rocket.getTasks().get(0).setText("Find the toy");
   }
 
   /**
@@ -888,30 +881,6 @@ public class MainRoomController {
    */
   public TextArea getCatTextArea() {
     return catTextArea;
-  }
-
-  /**
-   * Handles the hover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onHoverLog(MouseEvent event) {
-    // Show log pane and enable log hover
-    logPane.setVisible(true);
-    logHover.setDisable(false);
-  }
-
-  /**
-   * Handles the unhover event on the log.
-   *
-   * @param event the mouse event.
-   */
-  @FXML
-  public void onLeaveLog(MouseEvent event) {
-    // Hide log pane and disable log hover
-    logPane.setVisible(false);
-    logHover.setDisable(true);
   }
 
   /** Method that calls GPT when hints are used up in medium difficulty */
