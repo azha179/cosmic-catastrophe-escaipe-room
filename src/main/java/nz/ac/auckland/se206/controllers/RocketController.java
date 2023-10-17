@@ -129,6 +129,7 @@ public class RocketController {
     // Disable and hide the memory game rectangle
     memoryGameRectangle.setDisable(true);
     memoryGameRectangle.setVisible(false);
+    memoryGameRectangle.setOpacity(0.5);
 
     // Cat and Chat initialisation
     // Hide catImageSleep
@@ -320,11 +321,27 @@ public class RocketController {
     isLeftMeowPadPressed = false;
   }
 
+  /**
+   * Handles the mouse hover event for the memory game rectangle.
+   *
+   * @param event the mouse event.
+   */
   @FXML
-  public void onMouseRectangle(MouseEvent event) {}
+  public void onMouseRectangle(MouseEvent event) {
+    // Highlight the memory game rectangle
+    memoryGameRectangle.setOpacity(1);
+  }
 
+  /**
+   * Handles the mouse unhover event for the memory game rectangle.
+   *
+   * @param event the mouse event.
+   */
   @FXML
-  public void offMouseRectangle(MouseEvent event) {}
+  public void offMouseRectangle(MouseEvent event) {
+    // Unhighlight the memory game rectangle
+    memoryGameRectangle.setOpacity(0.5);
+  }
 
   /** Handles the right meow pad activation. */
   private void handleRightMeowPadActivation() {
