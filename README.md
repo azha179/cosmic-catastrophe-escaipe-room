@@ -7,7 +7,7 @@ Java is required on the system.
 Maven is used to run the program.
 
 ## To setup OpenAI's API
-The project requires an OpenAI token to use the GPT API. As a university project, the API setup is handled by the professors, which requires a university email and token key to be used. If you wish to use the API with a token, feel free to contact me for assistance.
+The project requires an OpenAI token to use the GPT API. As a university project, the API setup is handled by the professors, which requires a university email and token key to be used. If you wish to use the API with a token, feel free to reach out for assistance.
 
 Original Instructions:
 - add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
