@@ -23,6 +23,8 @@ public class GptActions {
   public static ChatCompletionRequest
       chatCompletionRequest3; // Rocket specific request, used in rocket
 
+  private static final String API_ERROR_MESSAGE = "Sorry, I'm unable to respond right now.";
+
   /**
    * Append message to the a text area.
    *
@@ -30,7 +32,8 @@ public class GptActions {
    * @param textArea the text area to append to.
    */
   public static void appendChatMessage(ChatMessage msg, javafx.scene.control.TextArea textArea) {
-    textArea.appendText("Cat: " + msg.getContent() + "\n\n");
+    String content = msg != null ? msg.getContent() : API_ERROR_MESSAGE;
+    textArea.appendText("Cat: " + content + "\n\n");
   }
 
   /**
@@ -40,7 +43,8 @@ public class GptActions {
    * @param textArea the text area to set.
    */
   public static void setChatMessage(ChatMessage msg, javafx.scene.control.TextArea textArea) {
-    textArea.setText(msg.getContent());
+    String content = msg != null ? msg.getContent() : API_ERROR_MESSAGE;
+    textArea.setText(content);
 
     // Append the message to the chat log
     SettingsController settings = (SettingsController) SceneManager.getController("settings");
@@ -85,12 +89,13 @@ public class GptActions {
    * @param msg the message to update the text area with.
    */
   public static void updateTextAreaAll(ChatMessage msg) {
+    String content = msg != null ? msg.getContent() : API_ERROR_MESSAGE;
     MainRoomController mainRoom = (MainRoomController) SceneManager.getController("mainroom");
     PantryController pantry = (PantryController) SceneManager.getController("pantry");
     RocketController rocket = (RocketController) SceneManager.getController("rocket");
-    mainRoom.getCatTextArea().setText(msg.getContent());
-    pantry.getCatTextArea().setText(msg.getContent());
-    rocket.getCatTextArea().setText(msg.getContent());
+    mainRoom.getCatTextArea().setText(content);
+    pantry.getCatTextArea().setText(content);
+    rocket.getCatTextArea().setText(content);
 
     // Append the message to the chat log
     SettingsController settings = (SettingsController) SceneManager.getController("settings");

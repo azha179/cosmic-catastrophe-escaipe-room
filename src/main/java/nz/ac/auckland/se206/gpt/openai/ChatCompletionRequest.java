@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.gpt.openai;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
@@ -18,7 +19,8 @@ public class ChatCompletionRequest {
 
   private static final int NOT_SET = -1;
   private static final String URL_COMPLETION_ENDPOINT =
-      "https://us-central1-api-proxies-and-wrappers.cloudfunctions.net/proxy/openai-chat-completion";
+      "https://api.openai.com/v1/chat/completions";
+  private static final String DEFAULT_MODEL = "gpt-3.5-turbo";
   private static final OpenAiService openAiServiceFromFile = new OpenAiService("apiproxy.config");
 
   private final OpenAiService openAiService;
@@ -154,8 +156,7 @@ public class ChatCompletionRequest {
       // Build JSON object for overall request
       JsonObjectBuilder jsonOverallBuilder =
           Json.createObjectBuilder()
-              .add("email", openAiService.getEmail())
-              .add("access_token", openAiService.getApiKey())
+              .add("model", DEFAULT_MODEL)
               .add("messages", jsonMessages);
 
       // Add optional parameters to the request if set
@@ -181,26 +182,29 @@ public class ChatCompletionRequest {
       HttpPost httpPost = new HttpPost(URL_COMPLETION_ENDPOINT);
       httpPost.setHeader("Content-Type", "application/json");
       httpPost.setHeader("Accept", "application/json");
+      httpPost.setHeader("Authorization", "Bearer " + openAiService.getApiKey());
       httpPost.setEntity(new StringEntity(value.toString()));
       ObjectMapper mapperApiMapper = new ObjectMapper();
 
       // Send the HTTP request and process the response
       CloseableHttpClient client = HttpClients.createDefault();
-      ResponseChatCompletion responseChat =
-          (ResponseChatCompletion)
-              client.execute(
-                  httpPost,
-                  httpResponse ->
-                      mapperApiMapper.readValue(
-                          httpResponse.getEntity().getContent(), ResponseChatCompletion.class));
+      @SuppressWarnings("unchecked")
+      Map<String, Object> responseBody =
+          client.execute(
+              httpPost,
+              httpResponse ->
+                  mapperApiMapper.readValue(
+                      httpResponse.getEntity().getContent(), Map.class));
 
-      // Check for API call success and handle any errors
-      if (!responseChat.success && responseChat.code != 0) {
-        throw new ApiProxyException("Problem calling API: " + responseChat.message);
+      // Check for API-level errors returned by OpenAI
+      if (responseBody.containsKey("error")) {
+        @SuppressWarnings("unchecked")
+        Map<String, Object> error = (Map<String, Object>) responseBody.get("error");
+        throw new ApiProxyException("OpenAI API error: " + error.get("message"));
       }
 
       // Return the chat completion result
-      return new ChatCompletionResult(responseChat.chatCompletion);
+      return new ChatCompletionResult(responseBody);
 
     } catch (Exception e) {
       throw new ApiProxyException("Problem calling API: " + e.getMessage());
