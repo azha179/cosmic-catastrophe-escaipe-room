@@ -11,7 +11,7 @@ Escape room-themed game built in JavaFX as a university group project for SOFTEN
 
 ### OpenAI API
 
-The game requires an OpenAI API key to generate GPT dialogue.
+The game requires an OpenAI API key with sufficient credits to generate GPT dialogue.
 
 1. Obtain a personal API key from [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 2. Create a file named `apiproxy.config` in the project root (same level as `pom.xml`)
