@@ -1,35 +1,36 @@
-# SOFTENG 206 - EscAIpe Room
+# Cosmic Catastrophe - EscAIpe Room
 
-## To setup OpenAI's API
+Escape room-themed game built in JavaFX as a university group project for SOFTENG 206. The game features a cat character whose dialogue is generated using the OpenAI GPT API.
 
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
-- put inside your personal OpenAI API key (put the quotes "")
+## Requirements
 
-  ```
-  apiKey: "sk-..."
-  ```
-  get your API key from https://platform.openai.com/api-keys
+- Java
+- Maven
 
-## To setup codestyle's API
+## Setup
 
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `codestyle.config`
-- put inside the credentials that you received from gradestyle@digitaledu.ac.nz (put the quotes "")
+### OpenAI API
 
-  ```
-  email: "upi123@aucklanduni.ac.nz"
-  accessToken: "YOUR_KEY"
-  ```
+The game requires an OpenAI API key to generate GPT dialogue.
 
- these are your credentials to invoke GradeStyle
+1. Obtain a personal API key from [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. Create a file named `apiproxy.config` in the project root (same level as `pom.xml`)
+3. Add your key to the file:
 
-## To run the game
+   ```
+   apiKey: "sk-..."
+   ```
 
-`./mvnw clean javafx:run`
+## Running the game
 
-## To debug the game
+```
+./mvnw clean javafx:run
+```
 
-`./mvnw clean javafx:run@debug` then in VS Code "Run & Debug", then run "Debug JavaFX"
+## Debugging
 
-## To run codestyle
+```
+./mvnw clean javafx:run@debug
+```
 
-`./mvnw clean compile exec:java@style`
+Then in VS Code, open **Run & Debug** and select **Debug JavaFX**.
