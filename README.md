@@ -21,6 +21,22 @@ The game requires an OpenAI API key with sufficient credits to generate GPT dial
    apiKey: "sk-..."
    ```
 
+### Changing the GPT model
+
+The default model is `gpt-4o-mini`. To use a different model, call `setModel()` on the `ChatCompletionRequest` in the relevant controller before executing it:
+
+```java
+new ChatCompletionRequest().setModel("gpt-4o").setN(1)...
+```
+
+The original university assignment used GPT-3 (`gpt-3.5-turbo`) via a university-managed proxy. Available models:
+
+| Model | Notes |
+|---|---|
+| `gpt-4o-mini` | Default. Fast and cheap, good quality for most use cases. |
+| `gpt-4o` | Best quality, higher cost per request. |
+| `gpt-3.5-turbo` | Original model used in the assignment. Cheapest, but noticeably weaker. |
+
 ## Running the game
 
 ```

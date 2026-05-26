@@ -20,13 +20,14 @@ public class ChatCompletionRequest {
   private static final int NOT_SET = -1;
   private static final String URL_COMPLETION_ENDPOINT =
       "https://api.openai.com/v1/chat/completions";
-  private static final String DEFAULT_MODEL = "gpt-3.5-turbo";
+  private static final String DEFAULT_MODEL = "gpt-4o-mini";
   private static final OpenAiService openAiServiceFromFile = new OpenAiService("apiproxy.config");
 
   private final OpenAiService openAiService;
   private final List<ChatMessage> messages;
 
   // Optional parameters
+  private String model = DEFAULT_MODEL;
   private int maxTokens = NOT_SET;
   private double temperature = NOT_SET;
   private double topP = NOT_SET;
@@ -122,6 +123,21 @@ public class ChatCompletionRequest {
   }
 
   /**
+   * Sets the model to use for the request.
+   *
+   * @param model the model identifier (e.g. "gpt-4o-mini", "gpt-4o").
+   * @return the current ChatCompletionRequest instance.
+   * @throws IllegalArgumentException if model is null or empty.
+   */
+  public ChatCompletionRequest setModel(String model) {
+    if (model == null || model.trim().isEmpty()) {
+      throw new IllegalArgumentException("'model' cannot be null or empty");
+    }
+    this.model = model;
+    return this;
+  }
+
+  /**
    * Sets the n parameter for the request.
    *
    * @param n the n parameter.
@@ -156,7 +172,7 @@ public class ChatCompletionRequest {
       // Build JSON object for overall request
       JsonObjectBuilder jsonOverallBuilder =
           Json.createObjectBuilder()
-              .add("model", DEFAULT_MODEL)
+              .add("model", model)
               .add("messages", jsonMessages);
 
       // Add optional parameters to the request if set
